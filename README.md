@@ -23,36 +23,9 @@ RESTART ECLIPSE!!!!
 
 ### Setting up eureka
   1. Open up caliber-meta/caliber-eureka in eclipse.
-  2. Push ALT + F5 to update the maven project. This should cause the
-     icon on caliber-eureka to lose the red x.
-  3. Right click caliber-eureka > Run As > Spring Boot App
+  2. Right click caliber-eureka > Run As > Spring Boot App
 
 Now you have a working instance of Eureaka assuming no errors. If you
 have issues finding the config server, verify that your environment
 variables are set correctly and restart eclipse. Ask an ops member if
 problems persist.
-
-### Setting up your repository
-
-   If you are on the screening-admin-service team, you will need to go
-   to caliber-meta/screening-admin-service and run git-fetch followed
-   by checking out Richard's branch
-   
-     : git checkout 1805-Richard
-
-   Follow your team's policy with respect to feature branches.
-
-   If you are on the tech-screening-service team, you will need to go
-   to caliber-meta/tech-screening-service and run git-fetch followed
-   by checking out Richard's branch.
-
-     : git checkout 1805-Richard.
-
-   Follow your team's policy with respect to feature branches.
-
-   
-   To run your project follow these steps:
-
-   1. Open your project in eclipse.
-   2. Push ALT + F5 to update maven for your project.
-   3. Right click your project and select Run as > Spring Boot Application.
