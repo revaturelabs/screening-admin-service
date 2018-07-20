@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.caliber.beans.Category;
+import com.revature.caliber.daos.CategoryDAO;
 
 
 @Service
@@ -18,8 +19,8 @@ public class CategoryServiceImpl implements CategoryService {
 	@Transactional
 	@Override
 	public Category create(Category category) {
-		// TODO Auto-generated method stub
-		return null;
+		return cd.save(category);
+		
 	}
 
 	@Override
