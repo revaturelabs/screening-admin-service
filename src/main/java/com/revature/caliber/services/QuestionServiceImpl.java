@@ -18,4 +18,9 @@ public class QuestionServiceImpl implements QuestionService {
 		return questionDao.findByBucketId(bucketId);
 	}
 
+	@Override
+	public Question create(Question question) {
+		return questionDao.save(question);
+	}
+
 }

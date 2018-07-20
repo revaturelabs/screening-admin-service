@@ -44,8 +44,8 @@ public class CategoryController {
 	 */
 	@ApiOperation(value = "Adds a new Category", response = Category.class)
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Category> create(@Valid @RequestBody Category Category) {
-		return new ResponseEntity<>(this.cs.create(Category), HttpStatus.CREATED);
+	public ResponseEntity<Category> create(@Valid @RequestBody Category category) {
+		return new ResponseEntity<>(this.cs.create(category), HttpStatus.CREATED);
 	}
 
 	/**
