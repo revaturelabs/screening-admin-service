@@ -24,7 +24,9 @@ public interface QuestionBucketDAO extends JpaRepository<QuestionBucket, Integer
 	
 	//bycategory
 	@Query("select * from BUCKET where bucket_category = ?")
-	public QuestionBucket getBucketByCategory(String bucketCategory);
+	public QuestionBucket getBucketByCategory(Integer bucketCategory);
+
+
 	
 	//update
 	

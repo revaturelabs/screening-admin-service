@@ -207,6 +207,5 @@ public class QuestionBucket implements Serializable {
 		return "QuestionBucket [bucketId=" + bucketId + ", bucketCategory=" + bucketCategory + ", bucketDescription="
 				+ bucketDescription + ", isActive=" + isActive + ", skillTypeId=" + skillTypeId + "]";
 	}
-
-	
 }
+
