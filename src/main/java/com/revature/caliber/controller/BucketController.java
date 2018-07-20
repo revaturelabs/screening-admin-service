@@ -14,7 +14,8 @@ package com.revature.caliber.controller;
 	import org.springframework.web.bind.annotation.RequestBody;
 	import org.springframework.web.bind.annotation.RequestMapping;
 	import org.springframework.web.bind.annotation.RestController;
-	import com.revature.caliber.beans.QuestionBucket;
+
+import com.revature.caliber.beans.Bucket;
 	import com.revature.caliber.services.BucketService;
 	import io.swagger.annotations.ApiOperation;
 	//import io.swagger.annotations.ApiOperation;
@@ -40,10 +41,10 @@ package com.revature.caliber.controller;
 		 * 
 		 * @return list of all Buckets
 		 */
-		@ApiOperation(value = "Gets a list of all the Buckets", response = QuestionBucket.class, responseContainer = "List")
+		@ApiOperation(value = "Gets a list of all the Buckets", response = Bucket.class, responseContainer = "List")
 		@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-		public ResponseEntity<List<QuestionBucket>> getAllBuckets() {
-			List<QuestionBucket> buckets = bucketService.getAllBuckets();
+		public ResponseEntity<List<Bucket>> getAllBuckets() {
+			List<Bucket> buckets = bucketService.getAllBuckets();
 			return new ResponseEntity<>(buckets, HttpStatus.OK);
 		}
 		
@@ -57,7 +58,7 @@ package com.revature.caliber.controller;
 		 */
 		@ApiOperation(value = "Creates a new Bucket")
 		@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-		public ResponseEntity<QuestionBucket> createBucket(@Valid @RequestBody QuestionBucket questionbucket) {
+		public ResponseEntity<Bucket> createBucket(@Valid @RequestBody Bucket questionbucket) {
 			log.info("Saving bucket:" + questionbucket);
 			questionbucket.setIsActive(true);
 			bucketService.save(questionbucket);
@@ -73,17 +74,17 @@ package com.revature.caliber.controller;
 		 * @param id - id of Bucket
 		 * @return Bucket of given id
 		 */
-		@ApiOperation(value = "Gets a Bucket by bucket id", response = QuestionBucket.class)
+		@ApiOperation(value = "Gets a Bucket by bucket id", response = Bucket.class)
 		@GetMapping(value="/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-		public ResponseEntity<QuestionBucket> getBucketById(@PathVariable Integer bucketId) {
-			QuestionBucket bucket = bucketService.getBucketById(bucketId);
+		public ResponseEntity<Bucket> getBucketById(@PathVariable Integer bucketId) {
+			Bucket bucket = bucketService.getBucketById(bucketId);
 			return new ResponseEntity<>(bucket, HttpStatus.OK);
 		}
 		
-		@ApiOperation(value = "Gets a Bucket category", response = QuestionBucket.class)
+		@ApiOperation(value = "Gets a Bucket category", response = Bucket.class)
 		@GetMapping(value="/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-		public ResponseEntity<QuestionBucket> getBucketByCategory(@PathVariable Integer bucketCategory) {
-			QuestionBucket bucket = bucketService.getBucketByCategory(bucketCategory);
+		public ResponseEntity<Bucket> getBucketByCategory(@PathVariable Integer bucketCategory) {
+			Bucket bucket = bucketService.getBucketByCategory(bucketCategory);
 			return new ResponseEntity<>(bucket, HttpStatus.OK);
 		}
 		
@@ -96,9 +97,9 @@ package com.revature.caliber.controller;
 		 * @param bucket - updated Bucket 
 		 * @return updated Bucket
 		 */
-		@ApiOperation(value = "Updates a Bucket", response = QuestionBucket.class)
+		@ApiOperation(value = "Updates a Bucket", response = Bucket.class)
 		@PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-		public ResponseEntity<QuestionBucket> updateBucket(@RequestBody QuestionBucket bucket) {
+		public ResponseEntity<Bucket> updateBucket(@RequestBody Bucket bucket) {
 			bucketService.updateBucket(bucket);
 			return new ResponseEntity<>(bucket, HttpStatus.OK);
 		}
