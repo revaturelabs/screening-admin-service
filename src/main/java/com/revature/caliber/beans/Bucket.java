@@ -6,10 +6,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.springframework.data.annotation.Id;
+
 import org.springframework.stereotype.Component;
 
 import io.swagger.annotations.ApiModel;
@@ -69,13 +70,16 @@ public class Bucket implements Serializable {
 	 * @param bucketCategory - the Bucket category
 	 * @param bucketDescription - the Bucket's content description
 	 * @param isActive true if active; false otherwise
+	 * @param skillTypeId - the Bucket's Skill Type Id
 	 */
-	public Bucket(Integer bucketId, Integer bucketCategory, String bucketDescription, Boolean isActive) {
+	public Bucket(Integer bucketId, Integer bucketCategory, String bucketDescription, Boolean isActive,
+			Integer skillTypeId) {
 		super();
 		this.bucketId = bucketId;
 		this.bucketCategory = bucketCategory;
 		this.bucketDescription = bucketDescription;
 		this.isActive = isActive;
+		this.skillTypeId = skillTypeId;
 	}
 
 	/**
@@ -86,12 +90,14 @@ public class Bucket implements Serializable {
 	 * @param bucketCategory - the bucket category
 	 * @param bucketDescription - the bucket's content description
 	 * @param isActive - true if active; false otherwise
+	 * @param skillTypeID - the Bucket's Skill Type Id
 	 */
 	public Bucket(Integer bucketCategory, String bucketDescription, Boolean isActive) {
 		super();
 		this.bucketCategory = bucketCategory;
 		this.bucketDescription = bucketDescription;
 		this.isActive = isActive;
+		this.skillTypeId = skillTypeId;
 	}
 	
 	/**
