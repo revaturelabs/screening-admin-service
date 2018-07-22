@@ -5,9 +5,11 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.revature.caliber.beans.QuestionBucket;
+
+import com.revature.caliber.beans.Bucket;
+import com.revature.caliber.daos.BucketDAO;
 //import com.revature.gambit.messaging.Sender;
-import com.revature.caliber.daos.QuestionBucketDAO;
+
 
 import zipkin2.reporter.Sender;
 //import static com.revature.gambit.util.MessagingUtil.TOPIC_CREATE_BUCKET_ID;
@@ -25,10 +27,10 @@ public class BucketServiceImp implements BucketService {
 	private static final Logger log = Logger.getLogger(BucketServiceImp.class);
 
 	@Autowired
-	QuestionBucketDAO bucketDAO;
+	BucketDAO bucketDAO;
 	
-	@Autowired
-	private Sender sender;
+	//@Autowired
+	//private Sender sender;
 	/*
 	@Transactional
 	@Override
@@ -50,49 +52,59 @@ public class BucketServiceImp implements BucketService {
 		}
 	}
 */
+	/*
 	@Override
-	public List<QuestionBucket> getAllBuckets() {
+	public List<Bucket> getAllBuckets() {
 		log.debug("Find all Buckets");
 		return bucketDAO.findAll();
 	}
-
+*/
+	/*
 	@Override
-	public QuestionBucket getBucketById(Integer bucketId) {
+	public Bucket getBucketById(Integer bucketId) {
 		log.debug("Find Bucket By BucketId");
 		return bucketDAO.findOne(bucketId);
 	}
+	*/
 	//find bucket by category
 	@Override
-	public QuestionBucket getBucketByCategory(Integer bucketCategory) {
+	public Bucket getBucketByCategory(Integer bucketCategory) {
 		log.debug("Find Bucket By categoryId");
+		//switch(bucketCategory) {
+		//case 1: Bucket b = new Bucket(1,1,"hello", true);
+		//	return b;	
+		//}
+		//return null;
 		return bucketDAO.findOne(bucketCategory);
 	}
-	
+	/*
 	//add question bucket
 	@Transactional
 	@Override
-	public QuestionBucket createBucket(QuestionBucket questionbucket) {
-		QuestionBucket bucket = new QuestionBucket();
+	public Bucket createBucket(Bucket questionbucket) {
+		Bucket bucket = new Bucket();
 		return bucketDAO.save(questionbucket);
 	}
-
+*/
+	/*
 	@Transactional
 	@Override
-	public QuestionBucket updateBucket(QuestionBucket bucket) {
-		QuestionBucket bucketExists = bucketDAO.findOne(bucket.getBucketId());
+	public Bucket updateBucket(Bucket bucket) {
+		Bucket bucketExists = bucketDAO.findOne(bucket.getBucketId());
 		if(bucketExists == null) {
 			return null;
 		} else {
 			return bucketDAO.save(bucket);
 		}
 	}
-
+*/
+	/*
 	@Override
-	public QuestionBucket save(QuestionBucket bucket) {
+	public Bucket save(Bucket bucket) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+*/
 	
 	
 }

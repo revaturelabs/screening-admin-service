@@ -1,6 +1,6 @@
 package com.revature.caliber.services;
 import java.util.List;
-import com.revature.caliber.beans.QuestionBucket;
+import com.revature.caliber.beans.Bucket;
 
 
 /**
@@ -21,7 +21,7 @@ public interface BucketService {
 	 * @param bucket - Bucket to save
 	 * @return saved Bucket
 	 */
-	public QuestionBucket save(QuestionBucket bucket);
+	//public Bucket save(Bucket bucket);
 
 	/**
 	 * Returns all Buckets
@@ -30,7 +30,7 @@ public interface BucketService {
 	 * 
 	 * @return all Buckets
 	 */
-	public List<QuestionBucket> getAllBuckets();
+	//public List<Bucket> getAllBuckets();
 
 	/**
 	 * Returns Bucket of given id
@@ -40,7 +40,7 @@ public interface BucketService {
 	 * @param bucketId - the id of the Bucket being located
 	 * @return the Bucket whose id was matched; return null if not found
 	 */
-	public QuestionBucket getBucketById(Integer bucketId);
+	//public Bucket getBucketById(Integer bucketId);
 
 	/**
 	 * Updates given Bucket to database
@@ -51,9 +51,8 @@ public interface BucketService {
 	 * @param bucket - updated Bucket
 	 * @return updated Bucket
 	 */
-	public QuestionBucket getBucketByCategory(Integer bucketCategory);
+	public Bucket getBucketByCategory(Integer bucketCategory);
 	
-	public QuestionBucket createBucket(QuestionBucket questionbucket);
-	public QuestionBucket updateBucket(QuestionBucket bucket);
+	//public Bucket createBucket(Bucket questionbucket);
+	//public Bucket updateBucket(Bucket bucket);
 }
-	

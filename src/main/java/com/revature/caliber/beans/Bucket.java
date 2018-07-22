@@ -9,7 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.springframework.data.annotation.Id;
+//import org.springframework.data.annotation.Id;
+import javax.persistence.Id;
 import org.springframework.stereotype.Component;
 
 import io.swagger.annotations.ApiModel;
@@ -21,10 +22,10 @@ import io.swagger.annotations.ApiModelProperty;
  * @author Philip Escobedo | 1803-USF-MAR26 | Wezley Singleton
  */
 @ApiModel(value = "Bucket", description = "A Bucket for categorizing Questions")
-@Component
+//@Component
 @Entity
 @Table(name = "BUCKET")
-public class QuestionBucket implements Serializable {
+public class Bucket implements Serializable {
 
 	private static final long serialVersionUID = 2435095816452768808L;
 	
@@ -56,7 +57,7 @@ public class QuestionBucket implements Serializable {
 	 * 
 	 * @author Philip Escobedo | 1803-USF-MAR26 | Wezley Singleton
 	 */
-	public QuestionBucket() {
+	public Bucket() {
 		super();
 	}
 
@@ -70,7 +71,7 @@ public class QuestionBucket implements Serializable {
 	 * @param bucketDescription - the Bucket's content description
 	 * @param isActive true if active; false otherwise
 	 */
-	public QuestionBucket(Integer bucketId, Integer bucketCategory, String bucketDescription, Boolean isActive) {
+	public Bucket(Integer bucketId, Integer bucketCategory, String bucketDescription, Boolean isActive) {
 		super();
 		this.bucketId = bucketId;
 		this.bucketCategory = bucketCategory;
@@ -87,7 +88,7 @@ public class QuestionBucket implements Serializable {
 	 * @param bucketDescription - the bucket's content description
 	 * @param isActive - true if active; false otherwise
 	 */
-	public QuestionBucket(Integer bucketCategory, String bucketDescription, Boolean isActive) {
+	public Bucket(Integer bucketCategory, String bucketDescription, Boolean isActive) {
 		super();
 		this.bucketCategory = bucketCategory;
 		this.bucketDescription = bucketDescription;
@@ -205,6 +206,6 @@ public class QuestionBucket implements Serializable {
 	@Override
 	public String toString() {
 		return "QuestionBucket [bucketId=" + bucketId + ", bucketCategory=" + bucketCategory + ", bucketDescription="
-				+ bucketDescription + ", isActive=" + isActive + ", skillTypeId=" + skillTypeId + "]";
+				+ bucketDescription + ", skillTypeId=" + skillTypeId + ", isActive=" + isActive +"]";
 	}
 }
