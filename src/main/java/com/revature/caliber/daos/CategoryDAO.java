@@ -19,7 +19,7 @@ public interface CategoryDAO extends JpaRepository<Category, Integer> {
 	//@Query("select * from Category")
 	//@Query("select c from Category c where c.Category_id = ?1")
 	//@Query("select c from Category c where c.Category_id IN (?1)")
-	//@Query("select c from Category c where c.Category_id = :Category_id")
+  // @Query("select c from Category c where c.Category_id = :Category_id")
 	public List<Category> findAll();
 	
 //	public Category saveCategory(Category category);

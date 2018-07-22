@@ -59,7 +59,7 @@ public class Category implements Serializable{
 		public void setCategoryID(int categoryId) {
 			this.categoryId = categoryId;
 		}
-/**
+
 		public String getTitle() {
 			return title;
 		}
@@ -106,10 +106,10 @@ public class Category implements Serializable{
 				return false;
 			return true;
 		}
-*/		
+		
 		@Override
 		public String toString() {
-			return "Category [categoryId=" + categoryId + ", title=" + title + "]";
+			return "Category [categoryId=" + categoryId + ", title=" + title +", isActive =" + isActive + "]";
 		}
 
 }
