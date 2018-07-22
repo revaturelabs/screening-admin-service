@@ -1,7 +1,12 @@
 package com.revature.caliber.services;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.revature.caliber.beans.Bucket;
+
+
+
 
 
 /**
@@ -54,7 +59,7 @@ public interface BucketService {
 	 */
 	public Bucket getBucketByCategory(Integer bucketCategory);
 	
-	public Bucket createBucket(Bucket questionbucket);
+	public Bucket createBucket(Bucket bucket);
 	public Bucket updateBucket(Bucket bucket);
 }
 	
