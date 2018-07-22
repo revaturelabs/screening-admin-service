@@ -14,9 +14,9 @@ import com.revature.caliber.beans.Bucket;
 public interface BucketDAO extends JpaRepository<Bucket, Integer> {
 
 	
-	public Bucket addBucket(Bucket bucket);
+	Bucket addBucket(Bucket bucket);
 	
-	public Bucket update(Bucket bucket);
+	Bucket update(Bucket bucket);
 	
 	
 	public void delete(Bucket bucket);
