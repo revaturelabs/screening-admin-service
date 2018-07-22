@@ -28,9 +28,5 @@ public class QuestionServiceImpl implements QuestionService {
 		
 	}
 
-	@Override
-	public Question create(Question question) {
-		return questionDao.save(question);
-	}
 
 }

@@ -26,7 +26,7 @@ public class Question implements Serializable{
 	@ApiModelProperty(value = "Question id")
 	@Id
 	@SequenceGenerator(name = "QUESTION_SEQUENCE",initialValue= 1000, sequenceName = "QUESTION_SEQUENCE")
-	@GeneratedValue(strategy = GenerationType.IDENTITY,generator = "QUESTION_SEQUENCE")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "QUESTION_SEQUENCE")
 	@Column(name = "QUESTION_ID")
 	private Integer questionId;
 	

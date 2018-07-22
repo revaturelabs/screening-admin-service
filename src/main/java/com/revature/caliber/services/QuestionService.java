@@ -2,7 +2,6 @@ package com.revature.caliber.services;
 
 import java.util.List;
 
-import com.revature.caliber.beans.Category;
 import com.revature.caliber.beans.Question;
 
 public interface QuestionService {

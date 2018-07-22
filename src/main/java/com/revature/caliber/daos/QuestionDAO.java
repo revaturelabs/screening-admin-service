@@ -29,6 +29,9 @@ public interface QuestionDAO extends JpaRepository<Question, Integer> {
 	 */
 	public Question findByQuestionId(Integer questionId);
 	
+	
+	public Question save(Question question);
+	
 	/**
 	 * Toggles Question status to (in)active based on given information
 	 * 
