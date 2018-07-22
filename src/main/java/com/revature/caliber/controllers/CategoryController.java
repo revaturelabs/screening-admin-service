@@ -113,7 +113,7 @@ public class CategoryController {
 	@ApiOperation(value = "Updates a Category by id", response = Category.class)
 	@PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Category> update(@PathVariable int id, @RequestBody Category updatedCategory) {
-    	if(id == updatedCategory.getCategoryID()) {
+    	if(id == updatedCategory.getCategoryId()) {
     		return new ResponseEntity<>(cs.saveCategory(updatedCategory), HttpStatus.ACCEPTED);
     	} else {
     		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
