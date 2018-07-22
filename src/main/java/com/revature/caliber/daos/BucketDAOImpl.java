@@ -16,15 +16,17 @@ public class BucketDAOImpl implements CustomBucketDAO {
 	@PersistenceContext
 	EntityManager entityManager;
 	
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Bucket> getBuckeyByCategory(Integer bucketCategory) {
-		Query query = entityManager.createNativeQuery("SELECT b.* FROM Bucket as b " +
+	public List<Bucket> getBucketByCategory(Integer bucketCategory) {
+		Query query = entityManager.createNativeQuery("SELECT b.* FROM BUCKET as b " +
                 "WHERE b.bucket_category LIKE ?", Bucket.class);
 		query.setParameter(1, bucketCategory + "%");
 		
 		return query.getResultList();
 	}
+
+
 
 }

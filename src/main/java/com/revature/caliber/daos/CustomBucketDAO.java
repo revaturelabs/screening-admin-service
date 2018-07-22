@@ -6,6 +6,6 @@ import com.revature.caliber.beans.Bucket;
 
 public interface CustomBucketDAO {
 	
-	List<Bucket> getBuckeyByCategory(Integer bucketCategory);
+	List<Bucket> getBucketByCategory(Integer bucketCategory);
 	
 }

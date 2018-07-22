@@ -92,7 +92,7 @@ public class Bucket implements Serializable {
 	 * @param isActive - true if active; false otherwise
 	 * @param skillTypeID - the Bucket's Skill Type Id
 	 */
-	public Bucket(Integer bucketCategory, String bucketDescription, Boolean isActive) {
+	public Bucket(Integer bucketCategory, String bucketDescription, Boolean isActive, Integer skillTypeId) {
 		super();
 		this.bucketCategory = bucketCategory;
 		this.bucketDescription = bucketDescription;
