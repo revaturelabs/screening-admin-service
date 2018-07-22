@@ -15,18 +15,18 @@ import io.swagger.annotations.ApiModelProperty;
 /**
 * Category with JPA annotations
 *  
-* @author Philip Escobedo | 1803-USF-MAR26 | Wezley Singleton
+* @author Ethan Conner | 1805-WV
 */
 @ApiModel(value = "Category", description = "View Categories")
 @Component
 @Entity
-@Table(name = "Category")
+@Table(name = "Catigory")
 public class Category implements Serializable{
     private static final long serialVersionUID = 2435095816452768808L;
     @ApiModelProperty(value = "id of the Category")
     @Id
    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="category_gen")
-   @SequenceGenerator(name="category_gen", sequenceName="category_seq", allocationSize=1)
+   @SequenceGenerator(name="category_gen", sequenceName="category_sequence", allocationSize=1)
     @Column(name = "Category_Id")
         private int categoryId;
     @ApiModelProperty(value = "name of the Categories title")

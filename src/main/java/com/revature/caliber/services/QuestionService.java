@@ -13,4 +13,6 @@ public interface QuestionService {
 	 * @return Question List
 	 */
 	public List<Question> getQuestionsByBucket(int bucketId);
+
+	Question create(Question question);
 }
