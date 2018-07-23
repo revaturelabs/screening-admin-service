@@ -2,7 +2,6 @@ package com.revature.caliber.controllers;
 
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpStatus;
@@ -12,7 +11,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.ApiResponse;
 import com.revature.caliber.beans.Question;
 import com.revature.caliber.services.QuestionServiceImpl;
 
@@ -28,10 +30,8 @@ import com.revature.caliber.services.QuestionServiceImpl;
 @RequestMapping("/questions")
 @CrossOrigin
 @ComponentScan("com.revature.caliber.*")
+@ApiModel(value = "QuestionController", description = "A rest controller to handle HTTP Requests made to /questions")
 public class QuestionController {
-
-	// maybe an aspect would be ideal?
-	// private static final Logger log = Logger.getLogger(QuestionController.class);
 	
 	@Autowired
 	private QuestionServiceImpl questionService;
@@ -39,12 +39,17 @@ public class QuestionController {
 	/**
 	 * Returns questions associated with bucket of given id
 	 * 
-	 * @param bucketId Id of bucket
+	 * @param bucketId - Id of bucket
 	 * @return List of questions associated with bucket of given id
+	 * @author Isaac Pawling | 1805-WVU | Richard Orr
 	 */
 	@GetMapping("/bucket/{bucketId}")
+	@ApiOperation(value = "Find list of Questions by bucketId",
+		notes = "Each question belongs to a particular bucket that classifies subject matter",
+	    response = Question.class,
+	    responseContainer = "List")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Response is empty is bucketId is not found") } )
 	public ResponseEntity<List<Question>> getBucketQuestions(@PathVariable(value="bucketId") Integer bucketId) {
-		// log.info("Getting questions for bucket: " + bucketId);
 		return new ResponseEntity<>(questionService.getQuestionsByBucket(bucketId), HttpStatus.OK);
 	}
 }

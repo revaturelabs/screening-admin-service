@@ -32,7 +32,8 @@ public class QuestionDAOTest {
 	}
 
 	@Test
-	public void testFindByBucketId() {
+	public void testFindByBucketId(){
+		System.out.println("\n\n\n\n" + q);
 		assertTrue(qd.findByBucketId(1).contains(q) == true);
 	}
 }

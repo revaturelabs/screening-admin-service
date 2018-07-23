@@ -26,6 +26,8 @@ public interface QuestionDAO extends JpaRepository<Question, Integer> {
 	 * 
 	 * @param questionId - id of Question
 	 * @return Question 
+	 * 
+	 * ITP - I think the .getOne() JPA repository method takes care of this for us
 	 */
 	public Question findByQuestionId(Integer questionId);
 	
