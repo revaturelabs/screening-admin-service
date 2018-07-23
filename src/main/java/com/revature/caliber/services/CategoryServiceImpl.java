@@ -15,45 +15,11 @@ public class CategoryServiceImpl implements CategoryService {
 
 	@Autowired
 	CategoryDAO cd;
-/**
-	@Transactional
-	@Override
-	public Category create(Category category) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-*/
+
 	@Override
 	public List<Category> findAll() {
 		return cd.findAll();
 	}
-/**
-	@Override
-	public List<Category> findAllActive() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@Override
-	public Category findByCategoryID(int id) {
-		Category category = this.cd.findByCatergoryID(id);
-		return category;
-	}
-
-	@Transactional
-	@Override
-	public Category saveCategory(Category category) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Transactional
-	@Override
-	public void deleteByCategoryID(int id) {
-		// TODO Auto-generated method stub
-		
-	}
-
-*/
 
 }

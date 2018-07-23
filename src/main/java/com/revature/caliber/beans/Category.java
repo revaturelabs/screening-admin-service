@@ -12,11 +12,6 @@ import org.springframework.stereotype.Component;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-/**
- * Category with JPA annotations
- *  
- * @author Philip Escobedo | 1803-USF-MAR26 | Wezley Singleton
- */
 @ApiModel(value = "Category", description = "View Categories")
 @Component
 @Entity
@@ -39,8 +34,7 @@ public class Category implements Serializable{
 		/**
 		 * Instantiates a new Category.
 		 */
-		
-		
+	
 		public Category() {
 			super();
 		}
