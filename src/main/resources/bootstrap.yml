@@ -1,7 +1,7 @@
 #Spring Configuration
 spring:
   application:
-    name: question-bucket-service-api-test
+    name: screening-admin-service
   #Configure Test H2 Database
   datasource:
     driver-class-name: org.h2.Driver

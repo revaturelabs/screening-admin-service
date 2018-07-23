@@ -21,7 +21,7 @@ public interface BucketService {
 	 * @param bucket - Bucket to save
 	 * @return saved Bucket
 	 */
-	//public Bucket save(Bucket bucket);
+	public Bucket save(Bucket bucket);
 
 	/**
 	 * Returns all Buckets
@@ -53,6 +53,6 @@ public interface BucketService {
 	 */
 	public Bucket getBucketByCategory(Integer bucketCategory);
 	
-	//public Bucket createBucket(Bucket questionbucket);
+	public Bucket createBucket(Bucket bucket);
 	//public Bucket updateBucket(Bucket bucket);
 }

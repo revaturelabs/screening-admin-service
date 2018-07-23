@@ -24,20 +24,20 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel(value = "Bucket", description = "A Bucket for categorizing Questions")
 //@Component
 @Entity
-@Table(name = "BUCKET")
+@Table(name = "bucket")
 public class Bucket implements Serializable {
 
 	private static final long serialVersionUID = 2435095816452768808L;
 	
 	@ApiModelProperty(value = "id of the Bucket")
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "BUCKET_ID_SEQUENCE")
-	@SequenceGenerator(name = "BUCKET_ID_SEQUENCE", sequenceName = "BUCKET_ID_SEQUENCE")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "BUCKET_SEQUENCE")
+	@SequenceGenerator(name = "BUCKET_SEQUENCE", sequenceName = "BUCKET_SEQUENCE")
 	@Column(name = "BUCKET_ID")
 	private Integer bucketId;
 
 	@ApiModelProperty(value = "name of the Bucket's category")
-	@Column(name = "BUCKET_CATEGORY")
+	@Column(name = "CATEGORY_ID")
 	private Integer bucketCategory;
 
 	@ApiModelProperty(value = "description of the Bucket")
@@ -71,12 +71,13 @@ public class Bucket implements Serializable {
 	 * @param bucketDescription - the Bucket's content description
 	 * @param isActive true if active; false otherwise
 	 */
-	public Bucket(Integer bucketId, Integer bucketCategory, String bucketDescription, Boolean isActive) {
+	public Bucket(Integer bucketId, Integer bucketCategory, String bucketDescription, Boolean isActive, Integer skillTypeId) {
 		super();
 		this.bucketId = bucketId;
 		this.bucketCategory = bucketCategory;
 		this.bucketDescription = bucketDescription;
 		this.isActive = isActive;
+		this.skillTypeId = skillTypeId;
 	}
 
 	/**
@@ -88,13 +89,14 @@ public class Bucket implements Serializable {
 	 * @param bucketDescription - the bucket's content description
 	 * @param isActive - true if active; false otherwise
 	 */
+	/*
 	public Bucket(Integer bucketCategory, String bucketDescription, Boolean isActive) {
 		super();
 		this.bucketCategory = bucketCategory;
 		this.bucketDescription = bucketDescription;
 		this.isActive = isActive;
 	}
-	
+	*/
 	/**
 	 * Gets a Bucket by id
 	 * 
@@ -206,6 +208,6 @@ public class Bucket implements Serializable {
 	@Override
 	public String toString() {
 		return "QuestionBucket [bucketId=" + bucketId + ", bucketCategory=" + bucketCategory + ", bucketDescription="
-				+ bucketDescription + ", skillTypeId=" + skillTypeId + ", isActive=" + isActive +"]";
+				+ bucketDescription + ", isActive=" + isActive +", skillTypeId=" + skillTypeId + "]";
 	}
 }

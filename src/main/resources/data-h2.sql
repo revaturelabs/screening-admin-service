@@ -1,1 +1,0 @@
-insert into BUCKET (bucket_id,category_id,bucket_description,skill_type_id,is_active) values (1,1,"hello",3,true);

@@ -11,7 +11,7 @@ import com.revature.caliber.daos.BucketDAO;
 //import com.revature.gambit.messaging.Sender;
 
 
-import zipkin2.reporter.Sender;
+//import zipkin2.reporter.Sender;
 //import static com.revature.gambit.util.MessagingUtil.TOPIC_CREATE_BUCKET_ID;
 
 /**
@@ -51,7 +51,7 @@ public class BucketServiceImp implements BucketService {
 			return savedBucket;
 		}
 	}
-*/
+
 	/*
 	@Override
 	public List<Bucket> getAllBuckets() {
@@ -77,15 +77,15 @@ public class BucketServiceImp implements BucketService {
 		//return null;
 		return bucketDAO.findOne(bucketCategory);
 	}
-	/*
+	
 	//add question bucket
 	@Transactional
 	@Override
-	public Bucket createBucket(Bucket questionbucket) {
-		Bucket bucket = new Bucket();
-		return bucketDAO.save(questionbucket);
+	public Bucket createBucket(Bucket bucket) {
+		Bucket buckets = new Bucket();
+		return bucketDAO.save(buckets);
 	}
-*/
+
 	/*
 	@Transactional
 	@Override
@@ -98,13 +98,13 @@ public class BucketServiceImp implements BucketService {
 		}
 	}
 */
-	/*
+	
 	@Override
 	public Bucket save(Bucket bucket) {
-		// TODO Auto-generated method stub
-		return null;
+		bucketDAO.save(bucket);
+		return bucket;
 	}
-*/
+
 	
 	
 }
