@@ -79,24 +79,6 @@ public class Bucket implements Serializable {
 		this.isActive = isActive;
 		this.skillTypeId = skillTypeId;
 	}
-
-	/**
-	 * Constructs a Bucket
-	 * 
-	 * @author Philip Escobeddo | 1803-USF-MAR26 | Wezley Singleton
-	 * 
-	 * @param bucketCategory - the bucket category
-	 * @param bucketDescription - the bucket's content description
-	 * @param isActive - true if active; false otherwise
-	 */
-	/*
-	public Bucket(Integer bucketCategory, String bucketDescription, Boolean isActive) {
-		super();
-		this.bucketCategory = bucketCategory;
-		this.bucketDescription = bucketDescription;
-		this.isActive = isActive;
-	}
-	*/
 	/**
 	 * Gets a Bucket by id
 	 * 

@@ -28,9 +28,9 @@ public class BucketServiceImp implements BucketService {
 
 	@Autowired
 	BucketDAO bucketDAO;
-	
-	//@Autowired
-	//private Sender sender;
+	/*
+	@Autowired
+	private Sender sender;
 	/*
 	@Transactional
 	@Override
@@ -70,14 +70,16 @@ public class BucketServiceImp implements BucketService {
 	@Override
 	public Bucket getBucketByCategory(Integer bucketCategory) {
 		log.debug("Find Bucket By categoryId");
-		//switch(bucketCategory) {
-		//case 1: Bucket b = new Bucket(1,1,"hello", true);
-		//	return b;	
-		//}
-		//return null;
-		return bucketDAO.findOne(bucketCategory);
+		return bucketDAO.getBucketByCategory(bucketCategory);
+		/*
+		switch(bucketCategory) {
+		case 1: Bucket b = new Bucket(1,1,"hello", true);
+			return b;	
+		}
+		return null;
+		*/
 	}
-	
+	/*
 	//add question bucket
 	@Transactional
 	@Override
@@ -85,7 +87,7 @@ public class BucketServiceImp implements BucketService {
 		Bucket buckets = new Bucket();
 		return bucketDAO.save(buckets);
 	}
-
+	*/
 	/*
 	@Transactional
 	@Override
@@ -98,13 +100,13 @@ public class BucketServiceImp implements BucketService {
 		}
 	}
 */
-	
+	/*
 	@Override
 	public Bucket save(Bucket bucket) {
 		bucketDAO.save(bucket);
 		return bucket;
 	}
-
+	*/
 	
 	
 }

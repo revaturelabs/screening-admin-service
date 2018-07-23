@@ -1,4 +1,4 @@
-package com.revature.caliber.controller;
+package com.revature.caliber.controllers;
 
 	import java.util.List;
 	import javax.validation.Valid;
@@ -62,7 +62,7 @@ package com.revature.caliber.controller;
 		 * @param bucket - the new Bucket
 		 * @return created Bucket
 		 */
-		
+		/*
 		@ApiOperation(value = "Creates a new Bucket")
 		@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 		public ResponseEntity<Bucket> createBucket(@Valid @RequestBody Bucket bucket) {
@@ -72,7 +72,7 @@ package com.revature.caliber.controller;
 			
 			return new ResponseEntity<>(bucket, HttpStatus.CREATED);
 		}
-		
+		*/
 		/**
 		 * Get a single Bucket by bucketId
 		 * 
@@ -89,7 +89,12 @@ package com.revature.caliber.controller;
 			return new ResponseEntity<>(bucket, HttpStatus.OK);
 		}
 		*/
-		
+		/**
+		 * Get a Bucket by category Id
+		 * 
+		 * @author adil iqbal | 1805-WV-MAY29
+		 * 
+		 */
 		@ApiOperation(value = "Gets a Bucket by category", response = Bucket.class)
 		@GetMapping("/{id}")
 		public ResponseEntity<Bucket> getBucketByCategory(@PathVariable(value="id") Integer bucketCategory) {
@@ -99,24 +104,6 @@ package com.revature.caliber.controller;
 			
 		}
 		
-		
-		/*
-		@ApiOperation(value = "Gets a Bucket by category", response = Bucket.class)
-		 @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-		    @ResponseBody
-		    public ResponseEntity<Bucket> getBucketByCategory(@PathVariable Integer bucketCategory) {
-				Bucket bucket = bucketService.getBucketByCategory(bucketCategory);
-				return new ResponseEntity<>(bucket, HttpStatus.OK);
-			}
-		*/
-		/*
-		@GetMapping(value = "/{id}")
-		@ResponseBody
-		public Bucket getBucketByCategory(@PathVariable Integer bucketCategory) {
-			Bucket bucket = bucketService.getBucketByCategory(bucketCategory);
-			return bucket;
-		}
-		*/
 		/**
 		 * Updates a Bucket
 		 * 
