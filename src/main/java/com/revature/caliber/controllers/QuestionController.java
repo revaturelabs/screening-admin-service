@@ -2,7 +2,6 @@ package com.revature.caliber.controllers;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -28,7 +27,6 @@ import com.revature.caliber.services.QuestionServiceImpl;
 @RestController
 @RequestMapping("/questions")
 @CrossOrigin
-@ComponentScan("com.revature.caliber.*")
 @ApiModel(value = "QuestionController", description = "A rest controller to handle HTTP Requests made to /questions")
 public class QuestionController {
 	

@@ -23,7 +23,7 @@ create table skill_type(
     title varchar2(100) not null
 );
 
-create table catigory(
+create table category(
     category_id number(10) primary key,
     title varchar2(100) not null,
     is_active number(1) not null

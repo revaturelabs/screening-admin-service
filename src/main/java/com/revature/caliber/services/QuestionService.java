@@ -7,7 +7,7 @@ import io.swagger.annotations.ApiModelProperty;
 import com.revature.caliber.beans.Question;
 
 /**
- * Interface that contains methods to be implemented for question status toggling and to grab
+ * Interface that contains associated with the Question POJO
  * 
  * @author Alexia Doramus | 1803-USF-MAR26 | Wezley Singleton
  * @author Joanel Vasquez | 1803-USF-MAR26 | Wezley Singleton
