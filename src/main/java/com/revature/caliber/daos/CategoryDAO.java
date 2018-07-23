@@ -9,9 +9,7 @@ import com.revature.caliber.beans.Category;
 
 @Repository
 public interface CategoryDAO extends JpaRepository<Category, Integer> {
-/**	
-	@Query("select * from Category")
-*/	
+
 	public List<Category> findAll();
 		
 }

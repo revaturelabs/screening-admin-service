@@ -21,7 +21,7 @@ public class Category implements Serializable{
 	@ApiModelProperty(value = "id of the Category")
 	@Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="category_gen")
-    @SequenceGenerator(name="category_gen", sequenceName="category_seq", allocationSize=1)
+    @SequenceGenerator(name="category_gen", sequenceName="category_sequence", allocationSize=1)
 	@Column(name = "Category_Id")
 		private int categoryId;
 	@ApiModelProperty(value = "name of the Categories title")
