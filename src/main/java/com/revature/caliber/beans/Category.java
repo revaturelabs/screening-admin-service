@@ -13,10 +13,12 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
+<<<<<<< HEAD
 * Category with JPA annotations
 *  
 * @author Ethan Conner | 1805-WV | Richard Orr
 */
+
 @ApiModel(value = "Category", description = "View Categories")
 @Component
 @Entity
@@ -126,3 +128,4 @@ public class Category implements Serializable{
     
 
 }
+
