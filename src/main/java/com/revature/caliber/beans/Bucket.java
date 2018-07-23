@@ -185,23 +185,12 @@ public class Bucket implements Serializable {
 		this.isActive = isActive;
 	}
 
-	/**
-	 * Gets the Skill Type Id number
-	 * 
-	 * @author Theodis Thompson |1805-May29-Java
-	 * 
-	 * @return the Skill Type Id
-	 */
+	
 	public int getSkillTypeId() {
 		return skillTypeId;
 	}
 
-	/**
-	 * Sets the Skill Type Id number
-	 * 
-	 * @author TheodisThompson
-	 * @param skillTypeId - the Skill Type's Id number
-	 */
+	
 	public void setSkillTypeId(int skillTypeId) {
 		this.skillTypeId = skillTypeId;
 	}
