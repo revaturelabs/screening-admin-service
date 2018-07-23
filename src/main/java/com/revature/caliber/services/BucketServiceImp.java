@@ -29,60 +29,8 @@ public class BucketServiceImp implements BucketService {
 	private static final Logger log = Logger.getLogger(BucketServiceImp.class);
 
 	@Autowired
-
 	private BucketDAO bucketDAO;
-
-
 	
-	//@Autowired
-	//private Sender sender;
-	/*
-	@Transactional
-	@Override
-	public Bucket save(Bucket bucket) {
-		bucketDAO.save(bucket);
-		return bucket;
-	}
-
-
-	@Override
-	public List<Bucket> getAllBuckets() {
-		List<Bucket> buckets = new ArrayList<>();
-		bucketDAO.findAll().forEach(buckets::add);
-		return buckets;
-	}
-*/
-	/*
-	@Override
-	public Bucket getBucketById(Integer bucketId) {
-		return bucketDAO.findOne(bucketId);
-	}
-
-	@Override
-	public Bucket getBucketByCategory(Integer bucketCategory) {
-		return bucketDAO.findOne(bucketCategory);
-	}
-
-	@Override
-	public Bucket createBucket(Bucket questionbucket) {
-		bucketDAO.save(questionbucket);
-		return questionbucket;
-
-		log.debug("Find Bucket By BucketId");
-		return bucketDAO.findOne(bucketId);
-	}
-	*/
-	//find bucket by category
-	@Override
-	public Bucket getBucketByCategory(Integer bucketCategory) {
-		log.debug("Find Bucket By categoryId");
-		//switch(bucketCategory) {
-		//case 1: Bucket b = new Bucket(1,1,"hello", true);
-		//	return b;	
-		//}
-		//return null;
-		return bucketDAO.getBucketByCategory(bucketCategory);
-	}
 	
 	//add question bucket
 	@Transactional
@@ -92,32 +40,10 @@ public class BucketServiceImp implements BucketService {
 		return bucketDAO.save(buckets);
 	}
 
-	/*
-	@Transactional
-	@Override
-	public Bucket updateBucket(Bucket bucket) {
-		Bucket bucketExists = bucketDAO.findOne(bucket.getBucketId());
-		if(bucketExists == null) {
-			return null;
-		} else {
-			return bucketDAO.save(bucket);
-		}
-
-	}
-*/
 	
-	@Override
 
-	public Bucket save(Bucket bucket) {
-		bucketDAO.save(bucket);
-		return bucket;
-	}
+	
 
-	@Override
-	public List<Bucket> getAllBuckets() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 	
 	
