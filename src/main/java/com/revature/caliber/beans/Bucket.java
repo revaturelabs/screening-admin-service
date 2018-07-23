@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Id;
-import org.springframework.stereotype.Component;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -34,6 +33,8 @@ public class Bucket implements Serializable {
 	private Integer bucketId;
 
 	@ApiModelProperty(value = "name of the Bucket's category")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CATEGORY_SEQUENCE")
+	@SequenceGenerator(name = "CATEGORY_SEQUENCE", sequenceName = "CATEGORY_SEQUENCE")
 	@Column(name = "CATEGORY_ID")
 	private Integer bucketCategory;
 
@@ -52,7 +53,7 @@ public class Bucket implements Serializable {
 	/**
 	 * Constructs a bucket
 	 * 
-	 * @author Philip Escobedo | 1803-USF-MAR26 | Wezley Singleton
+	 * @author Adil Iqbal | 1805-WVU-MAY29 |
 	 */
 	public Bucket() {
 		super();
@@ -61,7 +62,7 @@ public class Bucket implements Serializable {
 	/**
 	 * Constructs a bucket
 	 * 
-	 * @author Philip Escobedo | 1803-USF-MAR26 | Wezley Singleton
+	 * @author Adil Iqbal | 1805-WVU-MAY29 |
 	 * 
 	 * @param bucketId - the Bucket id
 	 * @param bucketCategory - the Bucket category
@@ -79,7 +80,7 @@ public class Bucket implements Serializable {
 	/**
 	 * Gets a Bucket by id
 	 * 
-	 * @author Philip Escobedo | 1803-USF-MAR26 | Wezley Singleton
+	 * @author Adil Iqbal | 1805-WVU-MAY29 |
 	 * 
 	 * @return the Bucket id
 	 */
@@ -90,7 +91,7 @@ public class Bucket implements Serializable {
 	/**
 	 * Sets the Bucket's id
 	 * 
-	 * @author Philip Escobedo | 1803-USF-MAR26 | Wezley Singleton
+	 * @author Adil Iqbal | 1805-WVU-MAY29 |
 	 * 
 	 * @param bucketId - the Bucket id to set
 	 */
@@ -101,7 +102,7 @@ public class Bucket implements Serializable {
 	/**
 	 * Gets the Bucket's category
 	 * 
-	 * @author Philip Escobedo | 1803-USF-MAR26 | Wezley Singleton
+	 * @author Adil Iqbal | 1805-WVU-MAY29 |
 	 * 
 	 * @return the Bucket's category
 	 */
@@ -112,7 +113,7 @@ public class Bucket implements Serializable {
 	/** 
 	 * Sets the Bucket's category
 	 * 
-	 * @author Philip Escobedo | 1803-USF-MAR26 | Wezley Singleton
+	 *@author Adil Iqbal | 1805-WVU-MAY29 |
 	 * 
 	 * @param bucketCategory - the Bucket's category to set
 	 */
@@ -123,7 +124,7 @@ public class Bucket implements Serializable {
 	/**
 	 * Gets the Bucket's content description
 	 * 
-	 * @author Philip Escobedo | 1803-USF-MAR26 | Wezley Singleton
+	 * @author Adil Iqbal | 1805-WVU-MAY29 |
 	 * 
 	 * @return the ucket's content description
 	 */
@@ -134,7 +135,7 @@ public class Bucket implements Serializable {
 	/**
 	 * Sets the Bucket's content description
 	 * 
-	 * @author Philip Escobedo | 1803-USF-MAR26 | Wezley Singleton
+	 * @author Adil Iqbal | 1805-WVU-MAY29 |
 	 * 
 	 * @param bucketDescription - the content description to set
 	 */
@@ -145,7 +146,7 @@ public class Bucket implements Serializable {
 	/**
 	 * Gets the Bucket's active state
 	 * 
-	 * @author Philip Escobedo | 1803-USF-MAR26 | Wezley Singleton
+	 * @author Adil Iqbal | 1805-WVU-MAY29 |
 	 * 
 	 * @return true if active; false if not active
 	 */
@@ -156,7 +157,7 @@ public class Bucket implements Serializable {
 	/**
 	 * Sets the Bucket's active state
 	 * 
-	 * @author Philip Escobedo | 1803-USF-MAR26 | Wezley Singleton
+	 * @author Adil Iqbal | 1805-WVU-MAY29 |
 	 * 
 	 * @param isActive - true for active; false for inactive
 	 */
@@ -167,7 +168,7 @@ public class Bucket implements Serializable {
 	/**
 	 * Gets the Skill Type Id number
 	 * 
-	 * @author Theodis Thompson |1805-May29-Java
+	 * @author Adil Iqbal | 1805-WVU-MAY29 |
 	 * 
 	 * @return the Skill Type Id
 	 */
@@ -176,8 +177,10 @@ public class Bucket implements Serializable {
 	}
 
 	/**
+	 * Gets the Skill Type Id number
 	 * 
-	 * @author TheodisThompson
+	 * @author Adil Iqbal | 1805-WVU-MAY29 |
+	 * 
 	 * @param skillTypeId - the Skill Type's Id number
 	 */
 	public void setSkillTypeId(int skillTypeId) {

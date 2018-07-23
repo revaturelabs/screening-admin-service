@@ -1,10 +1,9 @@
 package com.revature.caliber.services;
 
-import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import com.revature.caliber.beans.Bucket;
 import com.revature.caliber.daos.BucketDAO;
 
@@ -20,7 +19,7 @@ public class BucketServiceImp implements BucketService {
 
 	@Autowired
 	BucketDAO bucketDAO;
-	/*
+	/**
 	 * find bucket by category
 	 * @see com.revature.caliber.services.BucketService#getBucketByCategory(java.lang.Integer)
 	 */
@@ -29,7 +28,7 @@ public class BucketServiceImp implements BucketService {
 	public Bucket getBucketByCategory(Integer bucketCategory) {
 		log.debug("Find Bucket By categoryId");
 		return bucketDAO.getBucketByCategory(bucketCategory);
-		/*
+		/**
 		switch(bucketCategory) {
 		case 1: Bucket b = new Bucket(1,1,"hello", true);
 			return b;	
