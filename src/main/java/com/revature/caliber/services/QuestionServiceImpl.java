@@ -1,13 +1,18 @@
 package com.revature.caliber.services;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.revature.caliber.beans.Question;
 import com.revature.caliber.daos.QuestionDAO;
-import org.springframework.stereotype.Service;
 
+/**
+ * Implementation of the QuestionService
+ * Calls the appropriate QuestionDAO method
+ * 
+ * @author Isaac Pawling | 1805-WVU | Richard Orr
+ */
 @Service
 public class QuestionServiceImpl implements QuestionService {
 

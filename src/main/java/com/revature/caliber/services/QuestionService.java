@@ -1,11 +1,10 @@
 package com.revature.caliber.services;
 
 import java.util.List;
-
-import com.revature.caliber.beans.Question;
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+
+import com.revature.caliber.beans.Question;
 
 /**
  * Interface that contains methods to be implemented for question status toggling and to grab

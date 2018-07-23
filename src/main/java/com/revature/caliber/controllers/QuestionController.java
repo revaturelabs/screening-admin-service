@@ -1,7 +1,6 @@
 package com.revature.caliber.controllers;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpStatus;
@@ -15,6 +14,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponses;
 import io.swagger.annotations.ApiResponse;
+
 import com.revature.caliber.beans.Question;
 import com.revature.caliber.services.QuestionServiceImpl;
 
@@ -25,7 +25,6 @@ import com.revature.caliber.services.QuestionServiceImpl;
  * @author Richard Vo | 1803-USF-MAR26 | Wezley Singleton
  * @author Isaac Pawling | 1805-WVU | Richard Orr
  */
-
 @RestController
 @RequestMapping("/questions")
 @CrossOrigin
