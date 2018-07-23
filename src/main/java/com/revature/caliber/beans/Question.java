@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-
 import javax.persistence.Id;
 
 import io.swagger.annotations.ApiModel;
@@ -64,7 +63,6 @@ public class Question implements Serializable{
 
 	public Question() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Question(Integer questionId, Integer bucketId, Boolean isActive, String questionText, String sampleAnswer1,
@@ -250,10 +248,5 @@ public class Question implements Serializable{
 		builder.append("]");
 		return builder.toString();
 	}
-	
-	
-
-	
-	
 	
 }

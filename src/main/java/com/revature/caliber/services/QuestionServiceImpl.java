@@ -2,6 +2,7 @@ package com.revature.caliber.services;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.revature.caliber.beans.Question;
@@ -9,7 +10,6 @@ import com.revature.caliber.daos.QuestionDAO;
 
 @Service
 public class QuestionServiceImpl implements QuestionService {
-
 	
 	@Autowired
 	private QuestionDAO questionDao;
@@ -19,6 +19,9 @@ public class QuestionServiceImpl implements QuestionService {
 	public Question create(Question question) {
 		return questionDao.save(question);	
 	}
-
+	
+	public List<Question> getQuestionsByBucket(Integer bucketId) {
+		return questionDao.findByBucketId(bucketId);
+	}
 
 }
