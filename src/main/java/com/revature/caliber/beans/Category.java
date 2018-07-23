@@ -15,12 +15,12 @@ import io.swagger.annotations.ApiModelProperty;
 /**
 * Category with JPA annotations
 *  
-* @author Ethan Conner | 1805-WV
+* @author Ethan Conner | 1805-WV | Richard Orr
 */
 @ApiModel(value = "Category", description = "View Categories")
 @Component
 @Entity
-@Table(name = "Catigory")
+@Table(name = "Category")
 public class Category implements Serializable{
     private static final long serialVersionUID = 2435095816452768808L;
     @ApiModelProperty(value = "id of the Category")
@@ -76,6 +76,52 @@ public class Category implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + categoryId;
+		result = prime * result + (isActive ? 1231 : 1237);
+		result = prime * result + ((title == null) ? 0 : title.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Category other = (Category) obj;
+		if (categoryId != other.categoryId)
+			return false;
+		if (isActive != other.isActive)
+			return false;
+		if (title == null) {
+			if (other.title != null)
+				return false;
+		} else if (!title.equals(other.title))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Category [categoryId=");
+		builder.append(categoryId);
+		builder.append(", title=");
+		builder.append(title);
+		builder.append(", isActive=");
+		builder.append(isActive);
+		builder.append("]");
+		return builder.toString();
+	}
+	
+	
         
     
 
