@@ -2,6 +2,7 @@ package com.revature.caliber.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.revature.caliber.beans.Bucket;
 
@@ -16,6 +17,7 @@ import com.revature.caliber.beans.Bucket;
  * @author Philip Escobedo | 1803-USF-MAR26 | Wezley Singleton
  * @author Brandon Semba | 1803-USF-MAR26 | Wezley Singleton
  */
+@Service
 public interface BucketService {
 
 	/**
