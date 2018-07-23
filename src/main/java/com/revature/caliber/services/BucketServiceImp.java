@@ -1,11 +1,7 @@
 package com.revature.caliber.services;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.transaction.Transactional;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,13 +21,8 @@ import com.revature.caliber.daos.BucketDAO;
  */
 @Service
 public class BucketServiceImp implements BucketService {
-
-	private static final Logger log = Logger.getLogger(BucketServiceImp.class);
-
 	@Autowired
 	private BucketDAO bucketDAO;
-	
-	
 	//add question bucket
 	@Transactional
 	@Override
@@ -39,12 +30,4 @@ public class BucketServiceImp implements BucketService {
 		Bucket buckets = new Bucket();
 		return bucketDAO.save(buckets);
 	}
-
-	
-
-	
-
-	
-	
-	
 }

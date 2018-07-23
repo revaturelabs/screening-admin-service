@@ -14,7 +14,6 @@ import com.revature.caliber.beans.Bucket;
 @Service
 public interface BucketService {
 
-	
 	public Bucket createBucket(Bucket bucket);
 }
 

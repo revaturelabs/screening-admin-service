@@ -20,7 +20,6 @@ import io.swagger.annotations.ApiModelProperty;
  * @author Philip Escobedo | 1803-USF-MAR26 | Wezley Singleton
  */
 @ApiModel(value = "Bucket", description = "A Bucket for categorizing Questions")
-//@Component
 @Entity
 
 @Table(name = "bucket")
@@ -71,7 +70,6 @@ public class Bucket implements Serializable {
 	 * @param isActive true if active; false otherwise
 	 * @param skillTypeId - the Bucket's Skill Type Id
 	 */
-
 	public Bucket(Integer bucketId, Integer bucketCategory, String bucketDescription, Boolean isActive, Integer skillTypeId) {
 		super();
 		this.bucketId = bucketId;
@@ -91,12 +89,7 @@ public class Bucket implements Serializable {
 	 * @param isActive - true if active; false otherwise
 	 * @param skillTypeID - the Bucket's Skill Type Id
 	 */
-
 	public Bucket(Integer bucketCategory, String bucketDescription, Boolean isActive, Integer skillTypeId) {
-	}
-	
-	public Bucket(Integer bucketCategory, String bucketDescription, Boolean isActive) {
-
 		super();
 		this.bucketCategory = bucketCategory;
 		this.bucketDescription = bucketDescription;
@@ -204,6 +197,7 @@ public class Bucket implements Serializable {
 	}
 
 	/**
+	 * Sets the Skill Type Id number
 	 * 
 	 * @author TheodisThompson
 	 * @param skillTypeId - the Skill Type's Id number
