@@ -1,42 +1,41 @@
 package com.revature.caliber.daos;
 
 
-
-
-import java.util.List;
-
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 import com.revature.caliber.beans.Bucket;
 
-public interface BucketDAO extends JpaRepository<Bucket, Integer> {
+
+@Repository
+public interface BucketDAO extends JpaRepository<Bucket, Integer>{
+	
+	//add new question bucket
+	//@Modifying
+	//@Query("insert into Bucket b values (b.bucket_Id = :bucket_Id, b.category_Id = :category_Id, b.bucket_description = :bucket_description, b.is_active = :is_active, b.skill_type_id = :skill_type_id)")
+	//public Bucket createBucket(@Param("bucket_Id") Integer bucketId, @Param("category_Id") Integer bucketCategory, @Param("bucket_description") String bucketDescription, @Param("is_active") Boolean isActive, @Param("skill_type_id") Integer skillTypeId);
+	
+	
+	
+	//get all question buckets
+	//@Query("select b from Bucket b")
+	//public List<Bucket> getAllBuckets();
+	
+	//get question bucket by id number
+	//@Query("select b from Bucket b where bucket_id = :bucket_id")
+	//public Bucket getBucketById(@Param("bucket_id")Integer bucketId);
+	
+	//get question bucket by bucket category
+	@Query("select b from Bucket b where category_Id = :category_Id")
+	public Bucket getBucketByCategory(@Param("category_Id")Integer bucketCategory);
+
 
 	
-	Bucket addBucket(Bucket bucket);
+	//update
 	
-	Bucket update(Bucket bucket);
+	//delete
 	
-	
-	public void delete(Bucket bucket);
-	
-	
-	public List<Bucket> findBucketById(Integer bucketId);
-	
-	
-	
-	
-	/**
-	 * Finds a Bucket by it's Bucket category.
-	 * 
-	 * @author Angelique Elkins | 1803-USF-MAR26 | Wezley Singleton 
-	 * @author Philip Escobedo | 1803-USF-MAR26 | Wezley Singleton
-	 * 
-	 * @param bucketCategory - string value of the Bucket category of Bucket trying to find
-	 */
-	Bucket findBucketByBucketCategory(Integer bucketCategory);
-	
+
 }
 
-      

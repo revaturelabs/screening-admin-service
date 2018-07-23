@@ -23,7 +23,8 @@ create table skill_type(
     title varchar2(100) not null
 );
 
-create table catigory(
+
+create table category(
     category_id number(10) primary key,
     title varchar2(100) not null,
     is_active number(1) not null
@@ -44,4 +45,6 @@ CREATE SEQUENCE IF NOT EXISTS SKILL_TYPE_SEQUENCE MINVALUE 100001 INCREMENT BY 1
 
 CREATE SEQUENCE IF NOT EXISTS CATEGORY_SEQUENCE MINVALUE  100001 INCREMENT BY 1 START WITH  100001;
 
+
 CREATE SEQUENCE IF NOT EXISTS WEIGHT_SEQUENCE MINVALUE  100001 INCREMENT BY 1 START WITH  100001;
+

@@ -1,10 +1,9 @@
 package com.revature.caliber.services;
 import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.revature.caliber.beans.Bucket;
+
 
 
 
@@ -38,7 +37,9 @@ public interface BucketService {
 	 * 
 	 * @return all Buckets
 	 */
+
 	public List<Bucket> getAllBuckets();
+
 
 	/**
 	 * Returns Bucket of given id
@@ -48,7 +49,9 @@ public interface BucketService {
 	 * @param bucketId - the id of the Bucket being located
 	 * @return the Bucket whose id was matched; return null if not found
 	 */
-	public Bucket getBucketById(Integer bucketId);
+
+	//public Bucket getBucketById(Integer bucketId);
+
 
 	/**
 	 * Updates given Bucket to database
@@ -62,6 +65,9 @@ public interface BucketService {
 	public Bucket getBucketByCategory(Integer bucketCategory);
 	
 	public Bucket createBucket(Bucket bucket);
-	public Bucket updateBucket(Bucket bucket);
-}
+
 	
+
+	//public Bucket updateBucket(Bucket bucket);
+}
+
