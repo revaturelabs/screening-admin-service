@@ -153,6 +153,106 @@ public class Question implements Serializable{
 		this.sampleAnswer5 = sampleAnswer5;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((bucketId == null) ? 0 : bucketId.hashCode());
+		result = prime * result + ((isActive == null) ? 0 : isActive.hashCode());
+		result = prime * result + ((questionId == null) ? 0 : questionId.hashCode());
+		result = prime * result + ((questionText == null) ? 0 : questionText.hashCode());
+		result = prime * result + ((sampleAnswer1 == null) ? 0 : sampleAnswer1.hashCode());
+		result = prime * result + ((sampleAnswer2 == null) ? 0 : sampleAnswer2.hashCode());
+		result = prime * result + ((sampleAnswer3 == null) ? 0 : sampleAnswer3.hashCode());
+		result = prime * result + ((sampleAnswer4 == null) ? 0 : sampleAnswer4.hashCode());
+		result = prime * result + ((sampleAnswer5 == null) ? 0 : sampleAnswer5.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Question other = (Question) obj;
+		if (bucketId == null) {
+			if (other.bucketId != null)
+				return false;
+		} else if (!bucketId.equals(other.bucketId))
+			return false;
+		if (isActive == null) {
+			if (other.isActive != null)
+				return false;
+		} else if (!isActive.equals(other.isActive))
+			return false;
+		if (questionId == null) {
+			if (other.questionId != null)
+				return false;
+		} else if (!questionId.equals(other.questionId))
+			return false;
+		if (questionText == null) {
+			if (other.questionText != null)
+				return false;
+		} else if (!questionText.equals(other.questionText))
+			return false;
+		if (sampleAnswer1 == null) {
+			if (other.sampleAnswer1 != null)
+				return false;
+		} else if (!sampleAnswer1.equals(other.sampleAnswer1))
+			return false;
+		if (sampleAnswer2 == null) {
+			if (other.sampleAnswer2 != null)
+				return false;
+		} else if (!sampleAnswer2.equals(other.sampleAnswer2))
+			return false;
+		if (sampleAnswer3 == null) {
+			if (other.sampleAnswer3 != null)
+				return false;
+		} else if (!sampleAnswer3.equals(other.sampleAnswer3))
+			return false;
+		if (sampleAnswer4 == null) {
+			if (other.sampleAnswer4 != null)
+				return false;
+		} else if (!sampleAnswer4.equals(other.sampleAnswer4))
+			return false;
+		if (sampleAnswer5 == null) {
+			if (other.sampleAnswer5 != null)
+				return false;
+		} else if (!sampleAnswer5.equals(other.sampleAnswer5))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Question [questionId=");
+		builder.append(questionId);
+		builder.append(", bucketId=");
+		builder.append(bucketId);
+		builder.append(", isActive=");
+		builder.append(isActive);
+		builder.append(", questionText=");
+		builder.append(questionText);
+		builder.append(", sampleAnswer1=");
+		builder.append(sampleAnswer1);
+		builder.append(", sampleAnswer2=");
+		builder.append(sampleAnswer2);
+		builder.append(", sampleAnswer3=");
+		builder.append(sampleAnswer3);
+		builder.append(", sampleAnswer4=");
+		builder.append(sampleAnswer4);
+		builder.append(", sampleAnswer5=");
+		builder.append(sampleAnswer5);
+		builder.append("]");
+		return builder.toString();
+	}
+	
+	
+
 	
 	
 	
