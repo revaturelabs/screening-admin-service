@@ -19,7 +19,7 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * Bucket with JPA annotations
  *  
- * @author Philip Escobedo | 1803-USF-MAR26 | Wezley Singleton
+ * @author adil iqbal | 1805-WVU-MAY29 |
  */
 @ApiModel(value = "Bucket", description = "A Bucket for categorizing Questions")
 //@Component

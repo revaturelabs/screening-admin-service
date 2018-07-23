@@ -25,7 +25,7 @@ package com.revature.caliber.controllers;
 	/**
 	 * Controller for the bucket
 	 * 
-	 * @author Josh Dughi | 1803-USF-MAR26 | Wezley Singleton
+	 * @author adil iqbal | 1805-WVU-MAY29 
 	 */
 	
 	@RestController
@@ -39,60 +39,11 @@ package com.revature.caliber.controllers;
 		@Autowired
 		private BucketService bucketService;
 		
-		/**
-		 * @author Josh Dughi | 1803-USF-MAR26 | Wezley Singleton
-		 * 
-		 * Get list of all the Buckets
-		 * 
-		 * @return list of all Buckets
-		 */
-		/*
-		@ApiOperation(value = "Gets a list of all the Buckets", response = Bucket.class, responseContainer = "List")
-		@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-		public ResponseEntity<List<Bucket>> getAllBuckets() {
-			List<Bucket> buckets = bucketService.getAllBuckets();
-			return new ResponseEntity<>(buckets, HttpStatus.OK);
-		}
-		*/
-		/**
-		 * Creates a new Bucket
-		 * 
-		 * @author Josh Dughi | 1803-USF-MAR26 | Wezley Singleton
-		 * 
-		 * @param bucket - the new Bucket
-		 * @return created Bucket
-		 */
-		/*
-		@ApiOperation(value = "Creates a new Bucket")
-		@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-		public ResponseEntity<Bucket> createBucket(@Valid @RequestBody Bucket bucket) {
-			log.info("Saving bucket:" + bucket);
-			bucket.setIsActive(true);
-			bucketService.save(bucket);
-			
-			return new ResponseEntity<>(bucket, HttpStatus.CREATED);
-		}
-		*/
-		/**
-		 * Get a single Bucket by bucketId
-		 * 
-		 * @author Josh Dughi | 1803-USF-MAR26 | Wezley Singleton
-		 * 
-		 * @param id - id of Bucket
-		 * @return Bucket of given id
-		 */
-		/*
-		@ApiOperation(value = "Gets a Bucket by bucket id", response = Bucket.class)
-		@GetMapping(value="/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-		public ResponseEntity<Bucket> getBucketById(@PathVariable Integer bucketId) {
-			Bucket bucket = bucketService.getBucketById(bucketId);
-			return new ResponseEntity<>(bucket, HttpStatus.OK);
-		}
-		*/
+		
 		/**
 		 * Get a Bucket by category Id
 		 * 
-		 * @author adil iqbal | 1805-WV-MAY29
+		 * @author adil iqbal | 1805-WVU-MAY29
 		 * 
 		 */
 		@ApiOperation(value = "Gets a Bucket by category", response = Bucket.class)
@@ -104,20 +55,5 @@ package com.revature.caliber.controllers;
 			
 		}
 		
-		/**
-		 * Updates a Bucket
-		 * 
-		 * @author Josh Dughi | 1803-USF-MAR26 | Wezley Singleton
-		 * 
-		 * @param bucket - updated Bucket 
-		 * @return updated Bucket
-		 */
-		/*
-		@ApiOperation(value = "Updates a Bucket", response = Bucket.class)
-		@PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-		public ResponseEntity<Bucket> updateBucket(@RequestBody Bucket bucket) {
-			bucketService.updateBucket(bucket);
-			return new ResponseEntity<>(bucket, HttpStatus.OK);
-		}
-		*/
+		
 	}
