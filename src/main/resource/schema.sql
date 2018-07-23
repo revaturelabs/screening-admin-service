@@ -1,3 +1,9 @@
+
+drop table question;
+drop table bucket;
+drop table skill_type;
+
+drop table weight;
 create table question(
     question_id number(10) primary key,
     bucket_id number (10) not null,
