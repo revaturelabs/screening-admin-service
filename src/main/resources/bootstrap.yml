@@ -2,6 +2,10 @@
 spring:
   application:
     name: screening-admin-service
+  cloud:
+   config:
+     uri: http://ec2-18-216-132-100.us-east-2.compute.amazonaws.com:8888/
+     fail-fast: true   
   #Configure Test H2 Database
   datasource:
     driver-class-name: org.h2.Driver

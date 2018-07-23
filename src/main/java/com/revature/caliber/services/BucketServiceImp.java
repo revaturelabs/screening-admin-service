@@ -81,7 +81,7 @@ public class BucketServiceImp implements BucketService {
 		//	return b;	
 		//}
 		//return null;
-		return bucketDAO.findOne(bucketCategory);
+		return bucketDAO.getBucketByCategory(bucketCategory);
 	}
 	
 	//add question bucket

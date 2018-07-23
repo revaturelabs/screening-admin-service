@@ -218,5 +218,56 @@ public class Bucket implements Serializable {
 		return "QuestionBucket [bucketId=" + bucketId + ", bucketCategory=" + bucketCategory + ", bucketDescription="
 				+ bucketDescription + ", isActive=" + isActive +", skillTypeId=" + skillTypeId + "]";
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((bucketCategory == null) ? 0 : bucketCategory.hashCode());
+		result = prime * result + ((bucketDescription == null) ? 0 : bucketDescription.hashCode());
+		result = prime * result + ((bucketId == null) ? 0 : bucketId.hashCode());
+		result = prime * result + ((isActive == null) ? 0 : isActive.hashCode());
+		result = prime * result + ((skillTypeId == null) ? 0 : skillTypeId.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Bucket other = (Bucket) obj;
+		if (bucketCategory == null) {
+			if (other.bucketCategory != null)
+				return false;
+		} else if (!bucketCategory.equals(other.bucketCategory))
+			return false;
+		if (bucketDescription == null) {
+			if (other.bucketDescription != null)
+				return false;
+		} else if (!bucketDescription.equals(other.bucketDescription))
+			return false;
+		if (bucketId == null) {
+			if (other.bucketId != null)
+				return false;
+		} else if (!bucketId.equals(other.bucketId))
+			return false;
+		if (isActive == null) {
+			if (other.isActive != null)
+				return false;
+		} else if (!isActive.equals(other.isActive))
+			return false;
+		if (skillTypeId == null) {
+			if (other.skillTypeId != null)
+				return false;
+		} else if (!skillTypeId.equals(other.skillTypeId))
+			return false;
+		return true;
+	}
+	
+	
 }
 
