@@ -8,11 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-
-//import org.springframework.data.annotation.Id;
 import javax.persistence.Id;
 import org.springframework.stereotype.Component;
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -22,7 +19,7 @@ import io.swagger.annotations.ApiModelProperty;
  * @author adil iqbal | 1805-WVU-MAY29 |
  */
 @ApiModel(value = "Bucket", description = "A Bucket for categorizing Questions")
-//@Component
+
 @Entity
 @Table(name = "bucket")
 public class Bucket implements Serializable {
