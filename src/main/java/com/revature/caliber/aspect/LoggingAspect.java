@@ -9,17 +9,31 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
+/*
+ * Provides an aspect to modularize the logging concern for the service.
+ * @author Isaac Pawling | 1805-WVU | Richard Orr
+ */
 @Component
 @Aspect
 public class LoggingAspect {
     private Logger log;
     
+    /*
+     * Applies advice to join points matched by everything()
+     * Logs the method called and the parameters passed.
+     * If any errors are thrown, the stacktrace is logged.
+     * The returned object is also logged.
+     * 
+     * @param pjp the ProceedingJoinPoint used to expose target method invocation via the .proceed() method
+     * @return obj the object returned by the function
+     * @author Isaac Pawling | 1805-WVU | Richard Orr
+     */
     @Around("everything()")
     public Object log(ProceedingJoinPoint pjp) {
         Object obj = null;
         log = Logger.getLogger(pjp.getTarget().getClass());
-        log.trace("Method with signature: "+pjp.getSignature());
-        log.trace("With arguments: "+Arrays.toString(pjp.getArgs()));
+        log.info("Method with signature: "+pjp.getSignature());
+        log.info("With arguments: "+Arrays.toString(pjp.getArgs()));
      
         try {
             obj = pjp.proceed();
@@ -33,7 +47,11 @@ public class LoggingAspect {
         return obj;
     }   
     
-    /* Hooks */
+    /*
+     * Specifies the predicate to match join points.
+     * All spring bean methods in the application are matched. 
+     * @author Isaac Pawling | 1805-WVU | Richard Orr
+     */
     @Pointcut("execution(* com.revature.caliber..*(..))")
     public void everything() { /* Empty method for Aspect Pointcut */ }
 }
