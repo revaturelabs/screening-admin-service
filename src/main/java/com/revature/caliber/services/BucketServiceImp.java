@@ -10,15 +10,6 @@ import com.revature.caliber.beans.Bucket;
 import com.revature.caliber.daos.BucketDAO;
 
 
-
-
-/**
- * Implementation for our Bucket service layer
- *  
- * @author Angelique Elkins | 1803-USF-MAR26 | Wezley Singleton 
- * @author Philip Escobedo | 1803-USF-MAR26 | Wezley Singleton
- * @author Brandon Semba | 1803-USF-MAR26 | Wezley Singleton
- */
 @Service
 public class BucketServiceImp implements BucketService {
 	@Autowired
