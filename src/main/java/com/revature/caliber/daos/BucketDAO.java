@@ -22,7 +22,7 @@ public interface BucketDAO extends JpaRepository<Bucket, Integer>{
 	 *  @author adil iqbal | 1805-WVU-MAY29 | Richard Orr
 	 */
 
-	public Bucket getBucketByBucketCategory ( Integer bucketCategory);
+	public Bucket getBucketByBucketCategory( Integer bucketCategory);
 
 
 }

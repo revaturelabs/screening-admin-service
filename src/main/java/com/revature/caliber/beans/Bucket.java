@@ -107,7 +107,7 @@ public class Bucket implements Serializable {
 	 * 
 	 * @return the Bucket's category
 	 */
-	public Integer getBucketByCategory() {
+	public Integer getBucketCategory() {
 		return bucketCategory;
 	}
 
@@ -118,7 +118,7 @@ public class Bucket implements Serializable {
 	 * 
 	 * @param bucketCategory - the Bucket's category to set
 	 */
-	public void setBucketByCategory(Integer bucketCategory) {
+	public void setBucketCategory(Integer bucketCategory) {
 		this.bucketCategory = bucketCategory;
 	}
 
