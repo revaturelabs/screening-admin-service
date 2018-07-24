@@ -13,15 +13,14 @@ import com.revature.caliber.beans.Question;
  * @author Joanel Vasquez | 1803-USF-MAR26 | Wezley Singleton
  * @author Isaac Pawling | 1805-WVU | Richard Orr
  */
+
 @ApiModel(value="QuestionService", description="Provides an interface for the Service layer")
 public interface QuestionService {
 	
-	/**
-	 * Gets questions based on bucketId
-	 * 
-	 * @param bucketId of bucket
-	 * @return Question List
-	 */
 	@ApiModelProperty(value="All questions in a bucket")
 	public List<Question> getQuestionsByBucket(Integer bucketId);
+
+	@ApiModelProperty(value = "Inserts a new question")
+	public Question create(Question question);
+	
 }

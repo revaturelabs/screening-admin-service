@@ -23,7 +23,7 @@ public class Question implements Serializable{
 	@ApiModelProperty(value = "Question id")
 	@Id
 	@SequenceGenerator(name = "QUESTION_SEQUENCE",initialValue= 1000, sequenceName = "QUESTION_SEQUENCE")
-	@GeneratedValue(strategy = GenerationType.IDENTITY,generator = "QUESTION_SEQUENCE")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "QUESTION_SEQUENCE")
 	@Column(name = "QUESTION_ID")
 	private Integer questionId;
 	
@@ -224,10 +224,27 @@ public class Question implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Question [questionId=" + questionId + ", bucketId=" + bucketId + ", isActive=" + isActive
-				+ ", questionText=" + questionText + ", sampleAnswer1=" + sampleAnswer1 + ", sampleAnswer2="
-				+ sampleAnswer2 + ", sampleAnswer3=" + sampleAnswer3 + ", sampleAnswer4=" + sampleAnswer4
-				+ ", sampleAnswer5=" + sampleAnswer5 + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("Question [questionId=");
+		builder.append(questionId);
+		builder.append(", bucketId=");
+		builder.append(bucketId);
+		builder.append(", isActive=");
+		builder.append(isActive);
+		builder.append(", questionText=");
+		builder.append(questionText);
+		builder.append(", sampleAnswer1=");
+		builder.append(sampleAnswer1);
+		builder.append(", sampleAnswer2=");
+		builder.append(sampleAnswer2);
+		builder.append(", sampleAnswer3=");
+		builder.append(sampleAnswer3);
+		builder.append(", sampleAnswer4=");
+		builder.append(sampleAnswer4);
+		builder.append(", sampleAnswer5=");
+		builder.append(sampleAnswer5);
+		builder.append("]");
+		return builder.toString();
 	}
 	
 }
