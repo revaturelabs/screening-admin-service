@@ -5,8 +5,8 @@ spring:
   cloud:
      config:
        uri: ${CALIBER_CONFIG_SERVER_URL}
-     fail-fast: true
-  #Configure Test H2 Database
+       fail-fast: true
+#Configure Test H2 Database
   datasource:
     driver-class-name: org.h2.Driver
     platform: h2
