@@ -26,8 +26,8 @@
                 <enabled>true</enabled>
             </snapshots>
         </repository>
-</repositories>
-<pluginRepositories>
+	</repositories>
+	<pluginRepositories>
 		<pluginRepository>
 			<id>my-nexus</id>
 			<name>Nexus</name>
@@ -52,6 +52,10 @@
 		</dependencies>
 	</dependencyManagement>
 	<dependencies>
+	    <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+        </dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-config</artifactId>
