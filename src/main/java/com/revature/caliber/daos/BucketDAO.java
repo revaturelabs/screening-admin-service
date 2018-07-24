@@ -11,7 +11,7 @@ import com.revature.caliber.beans.Bucket;
 /**
  * DAOs for our Bucket
  *  
- * @author adil iqbal | 1805-WVU-MAY29 |
+ *  @author adil iqbal | 1805-WVU-MAY29 | Richard Orr
  */
 
 @Repository
@@ -19,10 +19,10 @@ public interface BucketDAO extends JpaRepository<Bucket, Integer>{
 	/**
 	 * get question bucket by bucket category
 	 *  
-	 * @author adil iqbal | 1805-WVU-MAY29 |
+	 *  @author adil iqbal | 1805-WVU-MAY29 | Richard Orr
 	 */
-	@Query("select b from Bucket b where category_Id = :category_Id")
-	public Bucket getBucketByCategory(@Param("category_Id")Integer bucketCategory);
+
+	public Bucket getBucketByBucketCategory ( Integer bucketCategory);
 
 
 }

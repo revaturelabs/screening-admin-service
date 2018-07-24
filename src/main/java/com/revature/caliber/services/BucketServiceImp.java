@@ -1,21 +1,20 @@
 package com.revature.caliber.services;
 
-
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.revature.caliber.beans.Bucket;
+import com.revature.caliber.services.BucketService;
 import com.revature.caliber.daos.BucketDAO;
 
 /**
  * Implementation for our Bucket service layer
  *  
- * @author adil iqbal | 1805-WVU-MAY29 |
+ *  @author adil iqbal | 1805-WVU-MAY29 | Richard Orr
+ *  
  */
 @Service
 public class BucketServiceImp implements BucketService {
 
-	private static final Logger log = Logger.getLogger(BucketServiceImp.class);
 
 	@Autowired
 	BucketDAO bucketDAO;
@@ -26,15 +25,8 @@ public class BucketServiceImp implements BucketService {
 	
 	@Override
 	public Bucket getBucketByCategory(Integer bucketCategory) {
-		log.debug("Find Bucket By categoryId");
-		return bucketDAO.getBucketByCategory(bucketCategory);
-		/**
-		switch(bucketCategory) {
-		case 1: Bucket b = new Bucket(1,1,"hello", true);
-			return b;	
-		}
-		return null;
-		*/
+		return bucketDAO.getBucketByBucketCategory(bucketCategory);
+		
 	}
 	
 }
