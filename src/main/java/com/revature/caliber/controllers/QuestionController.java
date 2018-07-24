@@ -3,7 +3,6 @@ package com.revature.caliber.controllers;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -30,7 +29,6 @@ import io.swagger.annotations.ApiOperation;
 @RestController
 @RequestMapping("/questions")
 @CrossOrigin
-@ComponentScan("com.revature.caliber.*")
 public class QuestionController {
 	@Autowired
 	private QuestionService qs;
