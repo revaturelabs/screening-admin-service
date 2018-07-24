@@ -22,16 +22,16 @@ import io.swagger.annotations.ApiModelProperty;
 @Entity
 @Table(name = "Category")
 public class Category implements Serializable{
-    private static final long serialVersionUID = 2435095816452768808L;
+	private static final long serialVersionUID = 2435095816452768808L;
     @ApiModelProperty(value = "id of the Category")
     @Id
-   @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="category_gen")
-   @SequenceGenerator(name="category_gen", sequenceName="category_sequence", allocationSize=1)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="category_gen")
+    @SequenceGenerator(name="category_gen", sequenceName="category_sequence", allocationSize=1)
     @Column(name = "Category_Id")
-        private int categoryId;
+    private int categoryId;
     @ApiModelProperty(value = "name of the Categories title")
     @Column(name = "Title")
-        private String title;
+    private String title;
     
     @ApiModelProperty(value = "is the category currently active")
     @Column(name = "is_active")
@@ -39,7 +39,6 @@ public class Category implements Serializable{
 
 	public Category() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Category(int categoryId, String title, boolean isActive) {
