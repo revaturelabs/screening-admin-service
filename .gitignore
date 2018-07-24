@@ -91,3 +91,7 @@ Servers/
 # End of https://www.gitignore.io/api/eclipse
 
 /target/
+
+#mac stuff
+*.DS_Store
+.idea/
