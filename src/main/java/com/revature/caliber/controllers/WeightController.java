@@ -70,7 +70,7 @@ public class WeightController {
 	 * @return no content
 	 */
 	@ApiOperation(value = "Update a weight", response = Void.class)
-	@PutMapping(value="/weight")
+	@PutMapping(value="/weight/{weightId}")
 	public ResponseEntity<Void> updateWeight(@Valid @RequestBody Weight weight) {
 		ws.update(weight);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -93,7 +93,7 @@ public class WeightController {
 	 * @return Void
 	 */
 	@ApiOperation(value = "Deletes a Weight", response = Void.class)
-	@DeleteMapping(value="/weight/{weightId}")
+	@DeleteMapping(value="skilltype/{skillTypeId}/category/{categoryId}/weight")
 	public ResponseEntity<Void> delete(@PathVariable(value = "weightId") long weightId){
 		ws.deleteById(weightId);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
