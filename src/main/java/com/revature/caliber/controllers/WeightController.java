@@ -39,7 +39,7 @@ public class WeightController {
 	 * @return list of weights
 	 */
 	@ApiOperation(value = "Returns list of all weights in the DB", response = Weight.class,  responseContainer = "List")
-	@GetMapping
+	@GetMapping(value="/weights")
 	public ResponseEntity<List<Weight>> getWeights() {
 		return new ResponseEntity<>(ws.getWeights(), HttpStatus.OK);
 	}
@@ -54,7 +54,7 @@ public class WeightController {
 	 * @return weight obj
 	 */
 	@ApiOperation(value = "Gets a weight based on skilltype and category", response = Weight.class)
-	@GetMapping("/{skillTypeId}/{categoryId}")
+	@GetMapping("/{skilltype/{skillTypeId}/category/{categoryId}/weights")
 	public ResponseEntity<Weight> getWeightFromIds(@PathVariable(value="skillTypeId") Integer skillTypeId,
 			@PathVariable(value="categoryId") Integer categoryId) {
 		return new ResponseEntity<>(ws.getWeightBySkillTypeAndCategory(skillTypeId.intValue(), categoryId.intValue()), HttpStatus.OK);
