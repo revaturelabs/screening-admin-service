@@ -47,7 +47,7 @@ public class BucketController {
 	
 
 	@ApiOperation(value = "Updates a Bucket", response = Bucket.class)
-	@PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@PutMapping(value = "/{bucketId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Bucket> updateBucket(@Valid @RequestBody Bucket bucket) {
 		bucketService.updateBucket(bucket);
 		return new ResponseEntity<>(bucket, HttpStatus.OK);
