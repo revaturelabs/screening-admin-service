@@ -1,4 +1,6 @@
 package com.revature.caliber.services;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.revature.caliber.beans.Bucket;
@@ -15,5 +17,15 @@ import com.revature.caliber.beans.Bucket;
 public interface BucketService {
 
 	public Bucket createBucket(Bucket bucket);
-}
+
+	public List<Bucket> getAllBuckets();
+	
+	public void updateBucket(Bucket bucket);
+	
+	public Bucket getBucketById(Integer bucketId); 
+	
+	public void deleteBucket(Integer bucketID);
+		
+		
+	}
 

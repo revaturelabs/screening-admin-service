@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -20,8 +21,8 @@ import io.swagger.annotations.ApiModelProperty;
  * @author Philip Escobedo | 1803-USF-MAR26 | Wezley Singleton
  */
 @ApiModel(value = "Bucket", description = "A Bucket for categorizing Questions")
+@Component
 @Entity
-
 @Table(name = "bucket")
 public class Bucket implements Serializable {
 
@@ -58,6 +59,7 @@ public class Bucket implements Serializable {
 	public Bucket() {
 		super();
 	}
+	  
 
 	/**
 	 * Constructs a bucket
@@ -73,24 +75,6 @@ public class Bucket implements Serializable {
 	public Bucket(Integer bucketId, Integer bucketCategory, String bucketDescription, Boolean isActive, Integer skillTypeId) {
 		super();
 		this.bucketId = bucketId;
-		this.bucketCategory = bucketCategory;
-		this.bucketDescription = bucketDescription;
-		this.isActive = isActive;
-		this.skillTypeId = skillTypeId;
-	}
-
-	/**
-	 * Constructs a Bucket
-	 * 
-	 * @author Philip Escobeddo | 1803-USF-MAR26 | Wezley Singleton
-	 * 
-	 * @param bucketCategory - the bucket category
-	 * @param bucketDescription - the bucket's content description
-	 * @param isActive - true if active; false otherwise
-	 * @param skillTypeID - the Bucket's Skill Type Id
-	 */
-	public Bucket(Integer bucketCategory, String bucketDescription, Boolean isActive, Integer skillTypeId) {
-		super();
 		this.bucketCategory = bucketCategory;
 		this.bucketDescription = bucketDescription;
 		this.isActive = isActive;
@@ -185,20 +169,31 @@ public class Bucket implements Serializable {
 		this.isActive = isActive;
 	}
 
+	/**
+	 * 
+	 * Gets the Bucket's Skill Type ID
+	 * 
+	 */
 	
 	public int getSkillTypeId() {
 		return skillTypeId;
 	}
 
-	
+	/**
+	 * 
+	 * Sets the Bucket's Skill Type Id
+	 * 
+	 */
 	public void setSkillTypeId(int skillTypeId) {
 		this.skillTypeId = skillTypeId;
 	}
 
+
+
 	@Override
 	public String toString() {
-		return "QuestionBucket [bucketId=" + bucketId + ", bucketCategory=" + bucketCategory + ", bucketDescription="
-				+ bucketDescription + ", isActive=" + isActive +", skillTypeId=" + skillTypeId + "]";
+		return "Bucket [bucketId=" + bucketId + ", bucketCategory=" + bucketCategory + ", bucketDescription="
+				+ bucketDescription + ", isActive=" + isActive + ", skillTypeId=" + skillTypeId + "]";
 	}
 
 	@Override
@@ -213,7 +208,7 @@ public class Bucket implements Serializable {
 		return result;
 	}
 
-	@Override
+	 @Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;

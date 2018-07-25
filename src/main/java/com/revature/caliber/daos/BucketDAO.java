@@ -9,5 +9,6 @@ import com.revature.caliber.beans.Bucket;
 @Repository
 public interface BucketDAO extends JpaRepository<Bucket, Integer>{
 	
+	
 }
 
