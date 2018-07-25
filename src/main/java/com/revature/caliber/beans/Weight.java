@@ -8,6 +8,15 @@ import javax.persistence.Table;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+
+
+/**
+ * 
+ * @author Ethan Conner | 1805-WVU-AUG3 | Richard Orr
+ * 
+ * POJO for the weight object
+ *
+ */
 @ApiModel(value = "Weight", description = "Weights for categories to determine how important a set of buckets"
 		+ "is during an interview")
 @Entity

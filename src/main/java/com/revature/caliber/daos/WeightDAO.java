@@ -7,6 +7,12 @@ import org.springframework.stereotype.Repository;
 
 import com.revature.caliber.beans.Weight;
 
+/**
+ * 
+ * @author Ethan Conner | 1805-WVU-AUG3 | Richard Orr
+ * Data Access Obj for Weight
+ *
+ */
 @Repository
 public interface WeightDAO extends JpaRepository<Weight, Long>{
 
