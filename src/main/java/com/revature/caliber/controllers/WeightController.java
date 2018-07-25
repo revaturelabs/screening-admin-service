@@ -70,7 +70,7 @@ public class WeightController {
 	 * @return no content
 	 */
 	@ApiOperation(value = "Update a weight", response = Void.class)
-	@PutMapping(value="/weight/{weightId}")
+	@PutMapping(value="skilltype/{skillTypeId}/category/{categoryId}/weight")
 	public ResponseEntity<Void> updateWeight(@Valid @RequestBody Weight weight) {
 		ws.update(weight);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
