@@ -55,5 +55,5 @@ public interface QuestionDAO extends JpaRepository<Question, Integer> {
 	 */
 	public List<Question> findByBucketId(Integer bucketId);
 	
-
+	
 }

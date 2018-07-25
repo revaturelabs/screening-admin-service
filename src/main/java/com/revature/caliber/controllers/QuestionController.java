@@ -10,9 +10,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -66,4 +68,30 @@ public class QuestionController {
 		return new ResponseEntity<>(qs.getQuestionsByBucket(bucketId), HttpStatus.OK);
 	}
 	
+	@ApiOperation(value = "Updates question", response = Question.class)
+	@PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Question> updateQuestion(@Valid @RequestBody Question question) {
+		qs.updateQuestion(question);
+		return new ResponseEntity<>(question, HttpStatus.OK);
+	}
+	
+	@DeleteMapping("/{questionId}")
+	public ResponseEntity<Question> deleteByQuestionId(@PathVariable(value="questionId") Integer questionId) {
+		qs.deleteByQuestionId(questionId);
+		return new ResponseEntity<>( HttpStatus.OK);
+	}
+	@ApiOperation(value = "Sets Question to active state", response = Void.class)
+	@PutMapping("/{id}/activate")
+	public ResponseEntity<Void> activateQuestion(@PathVariable(value="id") Integer questionId) {
+		qs.toggleQuestionStatus(true, questionId);
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	}
+	@ApiOperation(value = "Sets Question to inactive status", response = Void.class)
+	@PutMapping("/{id}/deactivate")
+	public ResponseEntity<Void> deactivateQuestion(@PathVariable(value="id") Integer questionId) {
+		qs.toggleQuestionStatus(false, questionId);
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	}
 }
+
+

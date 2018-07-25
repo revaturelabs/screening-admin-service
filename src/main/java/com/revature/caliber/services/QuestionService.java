@@ -31,5 +31,11 @@ public interface QuestionService {
 	 * @return Question List
 	 */
 	public List<Question> getQuestionsByBucket(Integer bucketId);
+	
+	public void deleteByQuestionId(Integer questionId);
+	
+	public Question updateQuestion(Question question);
+	
+	public void toggleQuestionStatus(Boolean isActive, Integer questionId);
 }
 

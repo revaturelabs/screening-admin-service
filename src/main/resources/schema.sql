@@ -1,4 +1,3 @@
-
 create table question(
     question_id number(10) primary key,
     bucket_id number (10) not null,
