@@ -9,10 +9,12 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 
+
 import javax.validation.Valid;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,15 +33,10 @@ import io.swagger.annotations.ApiOperation;
 @RequestMapping("/category")
 public class CategoryController {
 
-	/**
-	 * Service that contains all the business logic (methods) to be executed for
-	 * this controller based on the request type
-	 */
 	@Autowired
 	private CategoryService cs;
 
 	/**
-
 	 * Handles incoming GET request that grabs all the categories
 	 *
 	 * @return list object containing all the categories retrieved along with HTTP<br>
@@ -56,7 +53,7 @@ public class CategoryController {
 			return new ResponseEntity<>(categories, HttpStatus.OK);
 		}
 	}
-
+	
 	/**
 	 * Handles incoming POST request that adds a new Category to the DB
 	 *

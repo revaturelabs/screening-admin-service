@@ -21,5 +21,3 @@ public interface CategoryDAO extends JpaRepository<Category, Integer> {
 	public List<Category> findAll();
 		
 }
-
-

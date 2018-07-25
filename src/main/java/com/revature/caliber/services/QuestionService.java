@@ -17,9 +17,21 @@ import com.revature.caliber.beans.Question;
 @ApiModel(value="QuestionService", description="Provides an interface for the Service layer")
 public interface QuestionService {
 	
+	/**
+	 * Gets questions based on bucketId
+	 * 
+	 * @param bucketId of bucket
+	 * @return Question List
+	 */
 	@ApiModelProperty(value="All questions in a bucket")
 	public List<Question> getQuestionsByBucket(Integer bucketId);
 
+	/**
+	 * Add a new question to the database
+	 * 
+	 * @param transient question
+	 * @return detatched question
+	 */
 	@ApiModelProperty(value = "Inserts a new question")
 	public Question create(Question question);
 	

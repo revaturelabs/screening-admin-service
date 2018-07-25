@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+
 /**
 * Category with JPA annotations
 *  
@@ -90,6 +91,7 @@ public class Category implements Serializable{
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
+
 			return true;
 		if (obj == null)
 			return false;
