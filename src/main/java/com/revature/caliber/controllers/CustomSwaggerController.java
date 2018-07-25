@@ -20,18 +20,18 @@ import springfox.documentation.swagger2.web.Swagger2Controller;
  * After making this change, Caliber's gateway service will be able to display all API
  * documentations for this particular service since the path is now accessible.
  * 
- * @author Ethan Conner
+ * @author Peter Alagna
  *
  */
 @Controller
 @ApiIgnore
 @RequestMapping(value = CustomSwaggerController.SWAGGER_HOME)
 public class CustomSwaggerController extends Swagger2Controller {
-	
-	public static final String SWAGGER_HOME = "/question/documentation";
-	
-	public CustomSwaggerController(Environment environment, DocumentationCache documentationCache,
-			ServiceModelToSwagger2Mapper mapper, JsonSerializer jsonSerializer) {
-		super(environment, documentationCache, mapper, jsonSerializer);
-	}
-}
+    
+    public static final String SWAGGER_HOME = "/users/documentation";
+    
+    public CustomSwaggerController(Environment environment, DocumentationCache documentationCache,
+            ServiceModelToSwagger2Mapper mapper, JsonSerializer jsonSerializer) {
+        super(environment, documentationCache, mapper, jsonSerializer);
+    }
+} 
