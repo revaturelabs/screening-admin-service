@@ -83,6 +83,15 @@ Servers/
 .scala_dependencies 
 .worksheet 
 
+
+# Apple specific files
+.DS_Store
+.idea/
+
 # End of https://www.gitignore.io/api/eclipse
 
 /target/
+
+#mac stuff
+*.DS_Store
+.idea/

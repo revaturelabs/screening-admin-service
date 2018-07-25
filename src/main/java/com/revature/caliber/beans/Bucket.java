@@ -6,9 +6,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.Id;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -16,10 +17,9 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * Bucket with JPA annotations
  *  
- * @author adil iqbal | 1805-WVU-MAY29 | Richard Orr
+ * @author Adil Iqbal | 1805-WVU-MAY29 | Richard Orr
  */
 @ApiModel(value = "Bucket", description = "A Bucket for categorizing Questions")
-
 @Entity
 @Table(name = "bucket")
 public class Bucket implements Serializable {
@@ -69,6 +69,7 @@ public class Bucket implements Serializable {
 	 * @param bucketCategory - the Bucket category
 	 * @param bucketDescription - the Bucket's content description
 	 * @param isActive true if active; false otherwise
+	 * @param skillTypeId - the Bucket's Skill Type Id
 	 */
 	public Bucket(Integer bucketId, Integer bucketCategory, String bucketDescription, Boolean isActive, Integer skillTypeId) {
 		super();
@@ -78,6 +79,7 @@ public class Bucket implements Serializable {
 		this.isActive = isActive;
 		this.skillTypeId = skillTypeId;
 	}
+
 	/**
 	 * Gets a Bucket by id
 	 * 
@@ -173,9 +175,11 @@ public class Bucket implements Serializable {
 	 * 
 	 * @return the Skill Type Id
 	 */
+
 	public int getSkillTypeId() {
 		return skillTypeId;
 	}
+
 
 	/**
 	 * Gets the Skill Type Id number
@@ -242,4 +246,6 @@ public class Bucket implements Serializable {
 		return "Bucket [bucketId=" + bucketId + ", bucketCategory=" + bucketCategory + ", bucketDescription="
 				+ bucketDescription + ", isActive=" + isActive +", skillTypeId=" + skillTypeId + "]";
 	}
+	
 }
+
