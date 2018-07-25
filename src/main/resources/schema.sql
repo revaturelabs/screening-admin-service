@@ -30,8 +30,8 @@ create table category(
 );
 
 create table weight(
-    weight_id number(10) primary key,
-    weight number(10) not null,
+    weight_id number(20) primary key,
+    weight number(4) not null,
     category_id number(10) not null,
     skill_type_id number(10) not null
 );
@@ -43,5 +43,3 @@ CREATE SEQUENCE IF NOT EXISTS BUCKET_SEQUENCE MINVALUE 100001 INCREMENT BY 1 STA
 CREATE SEQUENCE IF NOT EXISTS SKILL_TYPE_SEQUENCE MINVALUE 100001 INCREMENT BY 1 START WITH 100001;
 
 CREATE SEQUENCE IF NOT EXISTS CATEGORY_SEQUENCE MINVALUE  100001 INCREMENT BY 1 START WITH  100001;
-
-CREATE SEQUENCE IF NOT EXISTS WEIGHT_SEQUENCE MINVALUE  100001 INCREMENT BY 1 START WITH  100001;

@@ -5,3 +5,11 @@ insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_A
 insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER_1, SAMPLE_ANSWER_2, SAMPLE_ANSWER_3, SAMPLE_ANSWER_4, SAMPLE_ANSWER_5) values (1004, 3, 1, 'Fusce posuere felis sed lacus.', 'Praesent lectus.', 'Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.', 'Sed ante.', 'Donec quis orci eget orci vehicula condimentum.', 'Aliquam sit amet diam in magna bibendum imperdiet.'); 
 insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER_1, SAMPLE_ANSWER_2, SAMPLE_ANSWER_3, SAMPLE_ANSWER_4, SAMPLE_ANSWER_5) values (1005, 4, 1, 'Nunc nisl.', 'Maecenas pulvinar lobortis est.', 'Vivamus vel nulla eget eros elementum pellentesque.', 'Donec posuere metus vitae ipsum.', 'Pellentesque eget nunc.', 'Vivamus vestibulum sagittis sapien.'); 
 insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER_1, SAMPLE_ANSWER_2, SAMPLE_ANSWER_3, SAMPLE_ANSWER_4, SAMPLE_ANSWER_5) values (1006, 1, 0, 'Etiam vel augue.', 'Nulla mollis molestie lorem.', 'Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi.', 'In sagittis dui vel nisl.', 'Nam tristique tortor eu pede.', 'Etiam faucibus cursus urna.'); 
+
+insert into CATEGORY (CATEGORY_ID, TITLE, IS_ACTIVE) values (404, 'JAVA', 1); 
+insert into CATEGORY (CATEGORY_ID, TITLE, IS_ACTIVE) values (405, 'SQL', 1);
+insert into CATEGORY (CATEGORY_ID, TITLE, IS_ACTIVE) values (406, 'Hibernate', 0); 
+
+insert into weight (weight_id, weight, skill_type_id, category_id) values (28424545, 30, 2842, 4545);
+insert into weight (weight_id, weight, skill_type_id, category_id) values (28434546, 30, 2843, 4546);
+insert into weight (weight_id, weight, skill_type_id, category_id) values (34826454, 30, 3482, 6454);
