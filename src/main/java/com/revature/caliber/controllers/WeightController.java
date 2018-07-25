@@ -24,7 +24,7 @@ import com.revature.caliber.services.WeightService;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping(value="/weights")
+@RequestMapping
 @CrossOrigin
 public class WeightController {
 	
@@ -39,7 +39,7 @@ public class WeightController {
 	 * @return list of weights
 	 */
 	@ApiOperation(value = "Returns list of all weights in the DB", response = Weight.class,  responseContainer = "List")
-	@GetMapping(value="/weights")
+	@GetMapping(value="/weight")
 	public ResponseEntity<List<Weight>> getWeights() {
 		return new ResponseEntity<>(ws.getWeights(), HttpStatus.OK);
 	}
@@ -54,7 +54,7 @@ public class WeightController {
 	 * @return weight obj
 	 */
 	@ApiOperation(value = "Gets a weight based on skilltype and category", response = Weight.class)
-	@GetMapping("/{skilltype/{skillTypeId}/category/{categoryId}/weights")
+	@GetMapping("/skilltype/{skillTypeId}/category/{categoryId}/weight")
 	public ResponseEntity<Weight> getWeightFromIds(@PathVariable(value="skillTypeId") Integer skillTypeId,
 			@PathVariable(value="categoryId") Integer categoryId) {
 		return new ResponseEntity<>(ws.getWeightBySkillTypeAndCategory(skillTypeId.intValue(), categoryId.intValue()), HttpStatus.OK);
@@ -70,7 +70,7 @@ public class WeightController {
 	 * @return no content
 	 */
 	@ApiOperation(value = "Update a weight", response = Void.class)
-	@PutMapping
+	@PutMapping(value="/weight")
 	public ResponseEntity<Void> updateWeight(@Valid @RequestBody Weight weight) {
 		ws.update(weight);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -82,7 +82,7 @@ public class WeightController {
 	 * @return persisted weight with ID created
 	 */
 	@ApiOperation(value = "Adds a new Weight", response = Weight.class)
-	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value="/weight", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Weight> create(@Valid @RequestBody Weight weight) {
 		return new ResponseEntity<>(ws.create(weight), HttpStatus.CREATED);
 	}
@@ -93,7 +93,7 @@ public class WeightController {
 	 * @return Void
 	 */
 	@ApiOperation(value = "Deletes a Weight", response = Void.class)
-	@DeleteMapping("/{weightId}")
+	@DeleteMapping(value="/weight/{weightId}")
 	public ResponseEntity<Void> delete(@PathVariable(value = "weightId") long weightId){
 		ws.deleteById(weightId);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
