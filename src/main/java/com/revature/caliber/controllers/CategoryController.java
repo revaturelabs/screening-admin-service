@@ -126,7 +126,7 @@ public class CategoryController {
 	 * @return a Category that was updated and status code 202 (ACCEPTED); otherwise,<br>
 	 * HTTP status code 400 (BAD_REQUEST)
 	 */
-	@ApiOperation(value = "Deletes a category", response = Category.class)
+	@ApiOperation(value = "Deletes a category", response = Void.class)
 	@DeleteMapping(value="/{CategoryId}")
 	public void deleteCategory(@PathVariable Integer CategoryId){
 		cs.deleteCategory(CategoryId);
