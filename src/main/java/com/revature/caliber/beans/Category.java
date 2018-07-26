@@ -13,7 +13,6 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
-<<<<<<< HEAD
 * Category with JPA annotations
 *  
 * @author Zia Mohiuddin | 1805-WV | Richard Orr
