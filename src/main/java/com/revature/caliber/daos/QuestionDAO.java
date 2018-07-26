@@ -13,9 +13,8 @@ import com.revature.caliber.beans.Question;
 /**
  * Repository that contains all methods used to manipulate Questions
  * 
- * @author Alexia Doramus | 1803-USF-MAR26 | Wezley Singleton
- * @author Joanel Vasquez | 1803-USF-MAR26 | Wezley Singleton
- * @author Ethan Conner	  | 1805-WV -AUG3  | Richard Orr
+ * @author Ethan Conner	  | 1805-WVU -MAY29  | Richard Orr
+ * @author Adil Iqbal	  | 1805-WVU -MAY29  | Richard Orr
  */
 @Repository
 public interface QuestionDAO extends JpaRepository<Question, Integer> {
@@ -23,8 +22,7 @@ public interface QuestionDAO extends JpaRepository<Question, Integer> {
 	/**
 	 * Returns Question from given id
 	 * 
-	 * @author Alexia Doramus | 1803-USF-MAR26 | Wezley Singleton
-	 * @author Joanel Vasquez | 1803-USF-MAR26 | Wezley Singleton
+	 * @author Adil Iqbal	  | 1805-WVU -MAY29  | Richard Orr
 	 * 
 	 * @param questionId - id of Question
 	 * @return Question 
@@ -34,8 +32,7 @@ public interface QuestionDAO extends JpaRepository<Question, Integer> {
 	/**
 	 * Toggles Question status to (in)active based on given information
 	 * 
-	 * @author Alexia Doramus | 1803-USF-MAR26 | Wezley Singleton
-	 * @author Joanel Vasquez | 1803-USF-MAR26 | Wezley Singleton
+	 * @author Adil Iqbal	  | 1805-WVU -MAY29  | Richard Orr
 	 * 
 	 * @param isActive - sets Question to active if true, inactive otherwise
 	 * @param questionId - id of Question to be toggled
@@ -47,8 +44,7 @@ public interface QuestionDAO extends JpaRepository<Question, Integer> {
 	/**
 	 * Returns Bucket of given id
 	 * 
-	 * @author Alexia Doramus | 1803-USF-MAR26 | Wezley Singleton
-	 * @author Joanel Vasquez | 1803-USF-MAR26 | Wezley Singleton
+	 * @author Adil Iqbal	  | 1805-WVU -MAY29  | Richard Orr
 	 * 
 	 * @param bucketId - id of Bucket
 	 * @return Bucket of given id

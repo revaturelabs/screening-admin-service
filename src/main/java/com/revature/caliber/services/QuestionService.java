@@ -16,7 +16,7 @@ public interface QuestionService {
 	
 	
 	/**
-	 * @author Ethan Conner	  | 1805-WV -AUG3  | Richard Orr
+	 * @author Ethan Conner	  | 1805-WVU -MAY29  | Richard Orr
 	 * Add a question to the database
 	 * 
 	 * @param transient question
@@ -26,15 +26,36 @@ public interface QuestionService {
 	
 	/**
 	 * Gets questions based on bucketId
-	 * 
+	 * @author Ethan Conner	  | 1805-WVU -MAY29  | Richard Orr
 	 * @param bucketId of bucket
 	 * @return Question List
 	 */
 	public List<Question> getQuestionsByBucket(Integer bucketId);
 	
+	/**
+	 * Delete question by id
+	 * @author Adil Iqbal	  | 1805-WVU -MAY29  | Richard Orr
+	 * @param bucketId of bucket
+	 * @return Question List
+	 */
+	
 	public void deleteByQuestionId(Integer questionId);
 	
+	/**
+	 * update question
+	 * @author Adil Iqbal	  | 1805-WVU -MAY29  | Richard Orr
+	 * @param bucketId of bucket
+	 * @return Question List
+	 */
+	
 	public Question updateQuestion(Question question);
+	
+	/**
+	 * change the status of the question
+	 * @author Adil Iqbal	  | 1805-WVU -MAY29  | Richard Orr
+	 * @param bucketId of bucket
+	 * @return Question List
+	 */
 	
 	public void toggleQuestionStatus(Boolean isActive, Integer questionId);
 }

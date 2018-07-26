@@ -27,10 +27,9 @@ import io.swagger.annotations.ApiOperation;
 /**
  * Controller that handles mapping for all of the methods for question manipulation
  * 
- * @author Alexia Doramus| 1803-USF-MAR26 | Wezley Singleton
- * @author Richard Vo	 | 1803-USF-MAR26 | Wezley Singleton
  * @author Ethan Conner  | 1805-WVU | Richard Orr
- * @author Isaac Pawling | 1805-WVU | Richard Orr
+ * @author Adil Iqbal	  | 1805-WVU -MAY29  | Richard Orr
+ * 
  */
 
 @RestController
@@ -43,13 +42,10 @@ public class QuestionController {
 
 	
 	/**
-	 * 
-	 * @author Alexia Doramus | 1803-USF-MAR26 | Wezley Singleton
-	 * @author Joanel Vasquez | 1803-USF-MAR26 | Wezley Singleton
-	 * @author Ethan Conner	  | 1805-WV -AUG3  | Richard Orr
-	 * 
-	 * @param question
-	 * @return question with ID to Janus
+	 * @author Adil Iqbal	  | 1805-WVU -MAY29  | Richard Orr
+	 * @author Ethan Conner	  | 1805-WVU -MAY29  | Richard Orr
+	 * @param bucketId of bucket
+	 * @return Question List
 	 */
 	@ApiOperation(value = "Adds a new Question", response = Question.class)
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -57,12 +53,6 @@ public class QuestionController {
 		return new ResponseEntity<>(this.qs.create(question), HttpStatus.CREATED);
 	}
 	
-	/**
-	 * Returns questions associated with bucket of given id
-	 * 
-	 * @param bucketId Id of bucket
-	 * @return List of questions associated with bucket of given id
-	 */
 	@GetMapping("/bucket/{bucketId}")
 	public ResponseEntity<List<Question>> getBucketQuestions(@PathVariable(value="bucketId") Integer bucketId) {
 		return new ResponseEntity<>(qs.getQuestionsByBucket(bucketId), HttpStatus.OK);
