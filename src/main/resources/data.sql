@@ -7,3 +7,7 @@ insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_A
 
 
 insert into CATEGORY (CATEGORY_ID, TITLE, IS_ACTIVE) values (404, 'JAVA', 1); 
+insert into CATEGORY (CATEGORY_ID, TITLE, IS_ACTIVE) values (405, 'Spring', 1); 
+insert into CATEGORY (CATEGORY_ID, TITLE, IS_ACTIVE) values (406, 'SQL', 0); 
+insert into CATEGORY (CATEGORY_ID, TITLE, IS_ACTIVE) values (407, 'Hibernate', 0);
+insert into CATEGORY (CATEGORY_ID, TITLE, IS_ACTIVE) values (420, 'Webservices', 1); 

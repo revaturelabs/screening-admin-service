@@ -10,7 +10,7 @@ import com.revature.caliber.beans.Category;
 
 /**
  * 
- *@author Ethan Conner | 1805-WV-AUG3 | Richard Orr
+ *@author Zia Mohiuddin | 1805-WV-AUG3 | Richard Orr
  * 
  * This is a Repository for the Category POJO that communicates
  * with a database to persist and retrieve category objects
@@ -18,8 +18,9 @@ import com.revature.caliber.beans.Category;
  */
 @Repository
 public interface CategoryDAO  extends JpaRepository<Category, Integer>{
-	
-	public List<Category> findAll();
+
+	public List<Category> findAllByIsActive(boolean b);	
+
 	
 }
 

@@ -25,7 +25,29 @@ public class CategoryServiceImpl implements CategoryService {
 
 	@Override
 	public List<Category> findAll() {
-		return cd.findAll();
+		return this.cd.findAll();
 	}
 
+
+	@Override
+	public List<Category> findAllActive() {		
+	return this.cd.findAllByIsActive(true);
+	}
+
+	@Override
+	public Category findByCategoryID(int id) {
+		return this.cd.findOne(id);
+	}
+
+	@Transactional
+	@Override
+	public void deleteCategory(Integer categoryId) {
+		cd.delete(categoryId);
+	}
+	
+	@Override
+	public void updateCategory(Category category) {
+		cd.save(category);
+	}
+	
 }

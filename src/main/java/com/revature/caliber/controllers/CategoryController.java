@@ -9,8 +9,6 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
-import org.springframework.context.annotation.ComponentScan;
-
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +24,7 @@ import com.revature.caliber.services.CategoryService;
 import io.swagger.annotations.ApiOperation;
 
 /**
- * @author Ethan Conner
+ * @author Zia Mohiuddin
  * Controller that will handle requests for the Category service
  * 
  */
@@ -73,4 +71,64 @@ public class CategoryController {
 		}
 	}
 
+	/**
+	 * Handles incoming Get requests to find all active categories
+	 * 
+	 * @return HTTP status code 200 (OK) if there are active categories,<br> 
+	 * 204 (NO_CONTENT) if there are no active categories
+	 */
+	@ApiOperation(value = "Gets a list of all active categories", response = Category.class, responseContainer = "List")
+	@GetMapping(value = "/active", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Category>> findAllActive() {
+		List<Category> categories = (List<Category>) this.cs.findAllActive();
+		
+		if (categories.isEmpty()) {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<>(categories, HttpStatus.OK);
+	}
+	
+	/**
+	 * Handles incoming GET request that gets a Category by its id
+	 * 
+	 * @param id - Category's id
+	 * @return a Category retrieved along with HTTP status code 200 (OK); otherwise,<br>
+	 * null is returned along with HTTP status code 404 (NOT_FOUND)
+	 */
+	@ApiOperation(value = "Get a Category by its id", response = Category.class)
+	@GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Category> findById(@PathVariable int id) {
+		Category category = this.cs.findByCategoryID(id);
+
+		if (category == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		} else {
+			return new ResponseEntity<>(category, HttpStatus.OK);
+		}
+	}
+	
+	/**
+	 * Handles incoming PUT requests to update Category
+	 *
+	 * @return a Category that was updated and status code 202 (ACCEPTED); otherwise,<br>
+	 * HTTP status code 400 (BAD_REQUEST)
+	 */
+	@ApiOperation(value = "Updates a Category", response = Category.class)
+	@PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Category> updateCategory(@Valid @RequestBody Category category) {
+		cs.updateCategory(category);
+		return new ResponseEntity<>(category, HttpStatus.OK);
+	}
+
+	/**
+	 * Handles incoming Delete requests to Delete Category
+	 *
+	 * @return a Category that was updated and status code 202 (ACCEPTED); otherwise,<br>
+	 * HTTP status code 400 (BAD_REQUEST)
+	 */
+	@ApiOperation(value = "Deletes a category", response = Category.class)
+	@DeleteMapping(value="/{CategoryId}")
+	public void deleteCategory(@PathVariable Integer CategoryId){
+		cs.deleteCategory(CategoryId);
+	}
 }

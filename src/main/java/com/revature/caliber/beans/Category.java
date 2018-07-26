@@ -16,7 +16,7 @@ import io.swagger.annotations.ApiModelProperty;
 <<<<<<< HEAD
 * Category with JPA annotations
 *  
-* @author Ethan Conner | 1805-WV | Richard Orr
+* @author Zia Mohiuddin | 1805-WV | Richard Orr
 */
 
 @ApiModel(value = "Category", description = "View Categories")
@@ -41,7 +41,6 @@ public class Category implements Serializable{
 
 	public Category() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Category(int categoryId, String title, boolean isActive) {
@@ -121,11 +120,7 @@ public class Category implements Serializable{
 		builder.append(isActive);
 		builder.append("]");
 		return builder.toString();
-	}
-	
-	
-        
+	}   
     
-
 }
 
