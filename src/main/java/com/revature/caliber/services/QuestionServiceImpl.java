@@ -25,7 +25,7 @@ public class QuestionServiceImpl implements QuestionService {
 	public List<Question> getQuestionsByBucket(Integer bucketId) {
 		return questionDao.findByBucketId(bucketId);
 	}
-	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)	
+	@Transactional
 	@Override
 	public void deleteByQuestionId(Integer questionId) {
 		questionDao.delete(questionId);
@@ -35,7 +35,7 @@ public class QuestionServiceImpl implements QuestionService {
 		return questionDao.save(question);
 	}
 	@Override
-	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+	@Transactional
 	public void toggleQuestionStatus(Boolean isActive, Integer questionId) {
 		questionDao.toggleQuestionStatusById(isActive, questionId);
 	}
