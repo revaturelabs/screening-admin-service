@@ -45,6 +45,7 @@ public class CategoryServiceImpl implements CategoryService {
 		cd.delete(categoryId);
 	}
 	
+	@Transactional
 	@Override
 	public void updateCategory(Category category) {
 		cd.save(category);
