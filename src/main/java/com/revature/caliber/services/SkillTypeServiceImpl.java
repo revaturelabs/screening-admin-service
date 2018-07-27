@@ -44,5 +44,10 @@ public class SkillTypeServiceImpl implements SkillTypeService {
 		skillDao.delete(id);
 	}
 
+	@Override
+	public List<SkillType> getActiveSkills(boolean b) {
+		return skillDao.findAllByIsActive(b);
+	}
+
 
 }

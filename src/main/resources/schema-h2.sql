@@ -20,7 +20,8 @@ create table bucket(
 
 create table skill_type(
     skill_type_id number(10) primary key,
-    title varchar2(100) not null
+    title varchar2(100) not null,
+    is_active number(1)
 );
 
 create table category(

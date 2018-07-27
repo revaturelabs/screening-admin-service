@@ -37,34 +37,55 @@ public class SkillType implements Serializable {
 	@Column(name = "TITLE")
 	private String title;
 	
+    @ApiModelProperty(value = "is the category currently active")
+    @Column(name = "is_active")
+    private boolean isActive;
+	
 	
 	public SkillType() {
 		super();
 	}
-	
-	public SkillType(int skillTypeId, String title) {
+
+	public SkillType(int skillTypeId, String title, boolean isActive) {
 		super();
 		this.skillTypeId = skillTypeId;
 		this.title = title;
+		this.isActive = isActive;
 	}
 
 	public int getSkillTypeId() {
 		return skillTypeId;
 	}
+
 	public void setSkillTypeId(int skillTypeId) {
 		this.skillTypeId = skillTypeId;
 	}
+
 	public String getTitle() {
 		return title;
 	}
+
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public boolean isActive() {
+		return isActive;
+	}
+
+	public void setActive(boolean isActive) {
+		this.isActive = isActive;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + (isActive ? 1231 : 1237);
 		result = prime * result + skillTypeId;
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
 		return result;
@@ -79,6 +100,8 @@ public class SkillType implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		SkillType other = (SkillType) obj;
+		if (isActive != other.isActive)
+			return false;
 		if (skillTypeId != other.skillTypeId)
 			return false;
 		if (title == null) {
@@ -91,7 +114,7 @@ public class SkillType implements Serializable {
 
 	@Override
 	public String toString() {
-		return "SkillType [skillTypeId=" + skillTypeId + ", title=" + title + "]";
+		return "SkillType [skillTypeId=" + skillTypeId + ", title=" + title + ", isActive=" + isActive + "]";
 	}
 	
 }

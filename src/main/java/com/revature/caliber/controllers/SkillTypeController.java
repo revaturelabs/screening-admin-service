@@ -74,23 +74,21 @@ public class SkillTypeController {
 		return new ResponseEntity<>(skillService.getSkills(), HttpStatus.OK);
 	}
 	
-	// TODO need to make an isActive parameter in the bean so I can do this
 	/**
 	 * Request that returns all active skill types
-	 * Mapping value = "/skillTypes/active"
 	 * 
-	 * @return List of all SkillType objects
+	 * @return List of all active SkillType objects
 	 * @author Isaac Pawling | 1805-WVU | Richard Orr
 	 */
-//	@RequestMapping(method=RequestMethod.GET)
-//	@ApiOperation(value = "Gets list of SkillTypes",
-//		notes = "Enter Notes here",
-//	    response = SkillType.class,
-//	    responseContainer = "List")
-//	@ApiResponses(value = { @ApiResponse(code = 200, message = "All SkillTypes returned") } )
-//	public ResponseEntity<List<SkillType>> getSkills() {
-//		return new ResponseEntity<>(skillService.getSkillTypes(), HttpStatus.OK);
-//	}
+	@RequestMapping(method=RequestMethod.GET, value = "/active")
+	@ApiOperation(value = "Gets list of active SkillTypes",
+		notes = "Enter Notes here",
+	    response = SkillType.class,
+	    responseContainer = "List")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "All active SkillTypes returned") } )
+	public ResponseEntity<List<SkillType>> getActiveSkills() {
+		return new ResponseEntity<>(skillService.getActiveSkills(true), HttpStatus.OK);
+	}
 	
 	/**
 	 * Request that returns a skill type by id

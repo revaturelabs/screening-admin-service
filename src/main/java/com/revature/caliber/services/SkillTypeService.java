@@ -19,6 +19,12 @@ public interface SkillTypeService {
 	public List<SkillType> getSkills();
 	
 	/**
+	 * Method that returns all active SkillTypes
+	 * @return list of SkillType objects
+	 */
+	public List<SkillType> getActiveSkills(boolean b);
+	
+	/**
 	 * Method that returns a specific SkillType
 	 * @param id the primary key of the SkillType
 	 * @return an individual skillType

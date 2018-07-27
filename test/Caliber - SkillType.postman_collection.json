@@ -1,0 +1,269 @@
+{
+	"info": {
+		"_postman_id": "4005bc23-5cec-4af4-a9cd-073c92439f71",
+		"name": "Caliber - SkillType",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get skilltypes",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"skillTypeId\": 10001,\n    \"title\": \"Bow-hunting Skills\",\n    \"active\": true\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8181/skillType/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"skillType",
+						""
+					]
+				},
+				"description": "Returns a list containing all skill types"
+			},
+			"response": []
+		},
+		{
+			"name": "get active skilltypes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8181/skillType/active",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"skillType",
+						"active"
+					]
+				},
+				"description": "Returns a list containing all active skilltypes"
+			},
+			"response": []
+		},
+		{
+			"name": "get skilltype by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8181/skillType/10001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"skillType",
+						"10001"
+					]
+				},
+				"description": "Returns a skill type for a given id"
+			},
+			"response": []
+		},
+		{
+			"name": "get skilltype by id (not found)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8181/skillType/42",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"skillType",
+						"42"
+					]
+				},
+				"description": "Attempts to get a skill type by id for an invalid id"
+			},
+			"response": []
+		},
+		{
+			"name": "Post skilltype",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"skillTypeId\": 0,\n    \"title\": \"People Skills\",\n    \"active\": true\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8181/skillType/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"skillType",
+						""
+					]
+				},
+				"description": "Creates a skilltype & returns object w/ updated Id."
+			},
+			"response": []
+		},
+		{
+			"name": "Post skill type (not acceptable)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"skillTypeId\": 0,\n    \"title\": \"\",\n    \"active\": true\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8181/skillType/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"skillType",
+						""
+					]
+				},
+				"description": "Tries to create a skilltype object w/ empty title field. 406 returned."
+			},
+			"response": []
+		},
+		{
+			"name": "put skilltype",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"skillTypeId\": 10001,\n    \"title\": \"Bow-hunting Skills\",\n    \"active\": true\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8181/skillType/10001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"skillType",
+						"10001"
+					]
+				},
+				"description": "Updates a skill with the specified Id. Returns 202"
+			},
+			"response": []
+		},
+		{
+			"name": "put skilltype (not found)",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"skillTypeId\": 10001,\n    \"title\": \"Bow-hunting Skills\",\n    \"active\": true\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8181/skillType/10001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"skillType",
+						"10001"
+					]
+				},
+				"description": "Updates a skill with the specified Id. "
+			},
+			"response": []
+		},
+		{
+			"name": "Delete skilltype (not found)",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8181/skillType/42",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"skillType",
+						"42"
+					]
+				},
+				"description": "Tried to delete a skilltype with an invalid Id. Returns 404"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete skilltype",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8181/skillType/10004",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"skillType",
+						"10004"
+					]
+				},
+				"description": "Deletes a skilltype with the specified Id. Returns 204 (will return 404 after run once, & DB is not repopulated)"
+			},
+			"response": []
+		}
+	]
+}
