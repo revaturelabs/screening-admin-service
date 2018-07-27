@@ -1,14 +1,20 @@
 package com.revature.caliber.beans;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.JoinColumn;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -40,17 +46,22 @@ public class SkillType implements Serializable {
     @ApiModelProperty(value = "is the category currently active")
     @Column(name = "is_active")
     private boolean isActive;
-	
+    
+    @ManyToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @JoinTable(name = "WEIGHT", joinColumns = { @JoinColumn(name = "SKILL_TYPE_ID") }, inverseJoinColumns = { 
+            @JoinColumn(name = "CATEGORY_ID") })
+    private List<Category> categories;	
 	
 	public SkillType() {
 		super();
 	}
 
-	public SkillType(int skillTypeId, String title, boolean isActive) {
+	public SkillType(int skillTypeId, String title, boolean isActive, List<Category> categories) {
 		super();
 		this.skillTypeId = skillTypeId;
 		this.title = title;
 		this.isActive = isActive;
+		this.categories = categories;
 	}
 
 	public int getSkillTypeId() {
@@ -77,6 +88,14 @@ public class SkillType implements Serializable {
 		this.isActive = isActive;
 	}
 
+	public List<Category> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(List<Category> categories) {
+		this.categories = categories;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -85,6 +104,7 @@ public class SkillType implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((categories == null) ? 0 : categories.hashCode());
 		result = prime * result + (isActive ? 1231 : 1237);
 		result = prime * result + skillTypeId;
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
@@ -100,6 +120,11 @@ public class SkillType implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		SkillType other = (SkillType) obj;
+		if (categories == null) {
+			if (other.categories != null)
+				return false;
+		} else if (!categories.equals(other.categories))
+			return false;
 		if (isActive != other.isActive)
 			return false;
 		if (skillTypeId != other.skillTypeId)
@@ -114,7 +139,8 @@ public class SkillType implements Serializable {
 
 	@Override
 	public String toString() {
-		return "SkillType [skillTypeId=" + skillTypeId + ", title=" + title + ", isActive=" + isActive + "]";
+		return "SkillType [skillTypeId=" + skillTypeId + ", title=" + title + ", isActive=" + isActive + ", categories="
+				+ categories + "]";
 	}
-	
+
 }

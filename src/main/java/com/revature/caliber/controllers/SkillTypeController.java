@@ -32,28 +32,6 @@ import io.swagger.annotations.ApiResponses;
 @CrossOrigin
 @ApiModel(value = "SkillTypeController", description = "A rest controller to handle HTTP Requests made to /skillTypes")
 public class SkillTypeController {
-		
-	/*
-	 * 
-	### SkillType
-	  #### GET /skillTypes
-	    find all skill types.
-	    
-	  #### GET /skillTypes/active
-	    find all active skill types.
-	    
-	  #### GET /skillTypes/{skillTypeId}
-	    find skill type by id.
-	    
-	  #### POST /skillTypes
-	    save skill type
-	  
-	   #### PUT /skillTypes/{skillTypeId}
-	    updates specific skill type
-	     
-	   #### DELETE /skillTypes/{skillTypeId}
-	    delete skill type by id
-	 */
 
 	@Autowired
 	SkillTypeService skillService;

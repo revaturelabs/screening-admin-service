@@ -48,8 +48,6 @@ public interface SkillTypeService {
 	 * Removes skill with specified Id
 	 * @param id primary key of skill to review
 	 */
-	// Will JPA will handle a many to many relationship for us?
-	// Will it handle a one to one relationship for us??
 	public void deleteSkill(Integer id);
 
 }

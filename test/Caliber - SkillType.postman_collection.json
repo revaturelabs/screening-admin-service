@@ -113,7 +113,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"skillTypeId\": 0,\n    \"title\": \"People Skills\",\n    \"active\": true\n}"
+					"raw": "{\n    \"skillTypeId\": 0,\n    \"title\": \"Experimental Batch\",\n    \"categories\": [\n    ],\n    \"active\": true\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8181/skillType/",
@@ -127,7 +127,7 @@
 						""
 					]
 				},
-				"description": "Creates a skilltype & returns object w/ updated Id."
+				"description": "Creates a skilltype & returns object w/ updated Id.\nMUST be created with empty category array. Skilltype must be created before categories can be associated."
 			},
 			"response": []
 		},
@@ -143,7 +143,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"skillTypeId\": 0,\n    \"title\": \"\",\n    \"active\": true\n}"
+					"raw": "{\n    \"skillTypeId\": 0,\n    \"title\": \"\",\n    \"categories\": [\n    ],\n    \"active\": true\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8181/skillType/",
@@ -173,7 +173,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"skillTypeId\": 10001,\n    \"title\": \"Bow-hunting Skills\",\n    \"active\": true\n}"
+					"raw": "{\n    \"skillTypeId\": 10001,\n    \"title\": \"Bow-hunting Skills\",\n    \"categories\": [\n    ],\n    \"active\": true\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8181/skillType/10001",
@@ -203,10 +203,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"skillTypeId\": 10001,\n    \"title\": \"Bow-hunting Skills\",\n    \"active\": true\n}"
+					"raw": "{\n    \"skillTypeId\": 42,\n    \"title\": \"Key to the universe skills\",\n    \"categories\": [\n    ],\n    \"active\": true\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8181/skillType/10001",
+					"raw": "http://localhost:8181/skillType/42",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -214,7 +214,7 @@
 					"port": "8181",
 					"path": [
 						"skillType",
-						"10001"
+						"42"
 					]
 				},
 				"description": "Updates a skill with the specified Id. "
@@ -250,7 +250,7 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:8181/skillType/10004",
+					"raw": "http://localhost:8181/skillType/10003",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -258,7 +258,7 @@
 					"port": "8181",
 					"path": [
 						"skillType",
-						"10004"
+						"10003"
 					]
 				},
 				"description": "Deletes a skilltype with the specified Id. Returns 204 (will return 404 after run once, & DB is not repopulated)"
