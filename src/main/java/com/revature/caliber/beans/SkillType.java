@@ -2,32 +2,57 @@ package com.revature.caliber.beans;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+/**
+ * Outlines the SkillType POJO
+ * 
+ * @author Isaac Pawling | 1085-WVU | Richard Orr
+ * 
+ */
+@ApiModel(value = "SkillType", description = "Type of skill that is associated with a number of categories")
+@Entity
+@Table(name = "SKILL_TYPE")
 public class SkillType implements Serializable {
 
 	private static final long serialVersionUID = -6863562903787298483L;
+	
 	@ApiModelProperty(value = "Skill type id")
 	@Id
-	@SequenceGenerator(name = "skillSeq", sequenceName = "SKILL_TYPE_SEQUENCE")
-	@GeneratedValue(generator = "skillSeq", strategy = GenerationType.IDENTITY)
-	@Column(name = "QUESTION_ID")
-	private int id;
+	@SequenceGenerator(name = "skillSeq", sequenceName = "SKILL_TYPE_SEQUENCE", allocationSize=1)
+	@GeneratedValue(generator = "skillSeq", strategy = GenerationType.SEQUENCE)
+	@Column(name = "SKILL_TYPE_ID")
+	private int skillTypeId;
+	
+	@ApiModelProperty(value = "Name of the skill")
+	@Column(name = "TITLE")
 	private String title;
+	
 	
 	public SkillType() {
 		super();
 	}
 	
-	public SkillType(int id, String title) {
+	public SkillType(int skillTypeId, String title) {
 		super();
-		this.id = id;
+		this.skillTypeId = skillTypeId;
 		this.title = title;
 	}
 
-	public int getId() {
-		return id;
+	public int getSkillTypeId() {
+		return skillTypeId;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setSkillTypeId(int skillTypeId) {
+		this.skillTypeId = skillTypeId;
 	}
 	public String getTitle() {
 		return title;
@@ -40,7 +65,7 @@ public class SkillType implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + id;
+		result = prime * result + skillTypeId;
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
 		return result;
 	}
@@ -54,7 +79,7 @@ public class SkillType implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		SkillType other = (SkillType) obj;
-		if (id != other.id)
+		if (skillTypeId != other.skillTypeId)
 			return false;
 		if (title == null) {
 			if (other.title != null)
@@ -66,7 +91,7 @@ public class SkillType implements Serializable {
 
 	@Override
 	public String toString() {
-		return "SkillType [id=" + id + ", title=" + title + "]";
+		return "SkillType [skillTypeId=" + skillTypeId + ", title=" + title + "]";
 	}
 	
 }
