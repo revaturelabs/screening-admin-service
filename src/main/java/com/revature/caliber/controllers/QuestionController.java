@@ -55,13 +55,13 @@ public class QuestionController {
 	}
 	
 	@ApiOperation(value = "Updates question", response = Question.class)
-	@PutMapping(value = "/question" , consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@PutMapping(value = "/question/{id}" , consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Question> updateQuestion(@Valid @RequestBody Question question) {
 		qs.updateQuestion(question);
 		return new ResponseEntity<>(question, HttpStatus.OK);
 	}
 	
-	@DeleteMapping("/question/{questionId}")
+	@DeleteMapping("/question/{id}")
 	public ResponseEntity<Question> deleteByQuestionId(@PathVariable(value="questionId") Integer questionId) {
 		qs.deleteByQuestionId(questionId);
 		return new ResponseEntity<>( HttpStatus.OK);
