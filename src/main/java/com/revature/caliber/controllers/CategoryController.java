@@ -127,8 +127,8 @@ public class CategoryController {
 	 * HTTP status code 400 (BAD_REQUEST)
 	 */
 	@ApiOperation(value = "Deletes a category", response = Void.class)
-	@DeleteMapping(value="/{CategoryId}")
-	public void deleteCategory(@PathVariable Integer CategoryId){
-		cs.deleteCategory(CategoryId);
+	@DeleteMapping(value="/{id}")
+	public void deleteCategory(@PathVariable Integer id){
+		cs.deleteCategory(id);
 	}
 }
