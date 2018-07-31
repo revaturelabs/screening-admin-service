@@ -1,17 +1,24 @@
 package com.revature.caliber.services;
 
 import java.util.List;
+import io.swagger.annotations.ApiModel;
 
 import com.revature.caliber.beans.Category;
 
+/**
+ * Interface defining the available service Methods for the Category POJO
+ * @author Zia Mohiuddin | 1805-WVU | Richard Orr
+ *
+ */
+@ApiModel(value = "CategoryService", description = "Provides interface for the Category service layer")
 public interface CategoryService {
+	
 	/**
 	 * Adds a new Category to the database
 	 * 
 	 * @param Category - Category to be added
 	 * @return a Category that has been added
 	 */
-
 	Category create(Category category);
 
 	/**
@@ -32,12 +39,14 @@ public interface CategoryService {
 	 * Retrieves a Category by id
 	 * 
 	 * @param id - id of Category being retrieved
-	 * @return a Category
+	 * @return a Category or null if not found
 	 */
 	Category findByCategoryID(int id);
 
 	/**
-	 * Deletes a Category by id
+	 * Deletes a Category by id and deletes
+	 * all weights associated with that category
+	 * and buckets
 	 * 
 	 * @param id - id of the Category to delete
 	 */
