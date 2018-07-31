@@ -8,13 +8,21 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.caliber.beans.Category;
 import com.revature.caliber.daos.CategoryDAO;
+import com.revature.caliber.daos.WeightDAO;
 
-
+/**
+ * Implementation for the Category Service layer
+ * @author Zia Mohiuddin | 1805-WVU | Richard Orr
+ *
+ */
 @Service
 public class CategoryServiceImpl implements CategoryService {
 	
 	@Autowired
 	CategoryDAO cd;
+	
+	@Autowired
+	WeightDAO wd;
 
 	@Transactional
 	@Override
@@ -42,6 +50,7 @@ public class CategoryServiceImpl implements CategoryService {
 	@Transactional
 	@Override
 	public void deleteCategory(Integer categoryId) {
+		wd.deleteByCategoryId(categoryId);
 		cd.delete(categoryId);
 	}
 	
@@ -50,5 +59,4 @@ public class CategoryServiceImpl implements CategoryService {
 	public void updateCategory(Category category) {
 		cd.save(category);
 	}
-	
 }
