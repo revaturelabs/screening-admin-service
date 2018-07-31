@@ -1,11 +1,13 @@
 package com.revature.caliber.daos;
 
-import com.revature.caliber.beans.SkillType;
-import org.springframework.stereotype.Repository;
-
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+
+import com.revature.caliber.beans.SkillType;
 
 /**
  * DAO Repository for the SkillType utilizing
@@ -15,5 +17,16 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 @Repository
 public interface SkillTypeDAO extends JpaRepository<SkillType, Integer> {
+	
+	/**
+	 * Gets all active or inactive SkillType objects
+	 * 
+	 * @param b the boolean determining active status
+	 * @return list of SkillType objects
+	 */
 	public List<SkillType> findAllByIsActive(boolean b);
+	
+    @Modifying
+    @Query("update SkillType s set s.title = ?2, s.isActive = ?3 where s.skillTypeId = ?1")
+    public void saveOnly(int id, String title, Boolean b);
 }
