@@ -3,7 +3,6 @@ package com.revature.caliber.beans;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -47,7 +46,8 @@ public class SkillType implements Serializable {
     @Column(name = "is_active")
     private boolean isActive;
     
-    @ManyToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @ApiModelProperty(value = "list of categories that are associated with the skilltype")
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "WEIGHT", joinColumns = { @JoinColumn(name = "SKILL_TYPE_ID") }, inverseJoinColumns = { 
             @JoinColumn(name = "CATEGORY_ID") })
     private List<Category> categories;	
@@ -64,6 +64,9 @@ public class SkillType implements Serializable {
 		this.categories = categories;
 	}
 
+	/**
+	 * getters & setters
+	 */
 	public int getSkillTypeId() {
 		return skillTypeId;
 	}
