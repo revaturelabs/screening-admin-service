@@ -1,13 +1,17 @@
 package com.revature.caliber.controllers;
 
+
+
+import java.util.List;
+
 import javax.validation.Valid;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
-import java.util.List;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,22 +25,22 @@ import org.springframework.web.bind.annotation.RestController;
 import com.revature.caliber.beans.Category;
 import com.revature.caliber.services.CategoryService;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 
 /**
- * @author Zia Mohiuddin
  * Controller that will handle requests for the Category service
+ * @author Ethan Conner
+ * @author Zia Mohiuddin
  * 
  */
 @RestController
 @RequestMapping("/category")
-
+@ApiModel(value = "CategoryController", description = "A rest controller to handle HTTP Requests made to /category")
 public class CategoryController {
 
-	/**
-	 * Service that contains all the business logic (methods) to be executed for<br>
-	 * this controller based on the request type
-	 */
 	@Autowired
 	private CategoryService cs;
 
@@ -48,6 +52,7 @@ public class CategoryController {
 	 */
 
 	@ApiOperation(value = "Adds a new Category", response = Category.class)
+	@ApiResponses(value = { @ApiResponse(code = 201, message = "Category created") } )
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Category> create(@Valid @RequestBody Category category) {
 		return new ResponseEntity<>(this.cs.create(category), HttpStatus.CREATED);
@@ -60,6 +65,8 @@ public class CategoryController {
 	 *         status code 200 (OK); otherwise, HTTP status code 204 (NO_CONTENT) if no categories exist
 	 */
 	@ApiOperation(value = "Gets a list of categories", response = Category.class, responseContainer = "List")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "All categories returned"),
+			@ApiResponse(code = 204, message = "No categories were found") } )
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Category>> findAll() {
 		List<Category> categories = (List<Category>) this.cs.findAll();
@@ -78,6 +85,8 @@ public class CategoryController {
 	 * 204 (NO_CONTENT) if there are no active categories
 	 */
 	@ApiOperation(value = "Gets a list of all active categories", response = Category.class, responseContainer = "List")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Active categories returned"),
+			@ApiResponse(code = 204, message="No active categories were found") } )
 	@GetMapping(value = "/active", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Category>> findAllActive() {
 		List<Category> categories = (List<Category>) this.cs.findAllActive();
@@ -96,6 +105,8 @@ public class CategoryController {
 	 * null is returned along with HTTP status code 404 (NOT_FOUND)
 	 */
 	@ApiOperation(value = "Get a Category by its id", response = Category.class)
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Category with supplied id returned"),
+			@ApiResponse(code = 404, message = "No category found with supplied id") } )
 	@GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Category> findById(@PathVariable int id) {
 		Category category = this.cs.findByCategoryID(id);
@@ -109,11 +120,11 @@ public class CategoryController {
 	
 	/**
 	 * Handles incoming PUT requests to update Category
-	 *
-	 * @return a Category that was updated and status code 202 (ACCEPTED); otherwise,<br>
-	 * HTTP status code 400 (BAD_REQUEST)
+	 * @param category - the Category object to place at "/id"
+	 * @return a Category that was updated and status code 200 (OK)
 	 */
 	@ApiOperation(value = "Updates a Category", response = Category.class)
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Category updated") } )
 	@PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Category> updateCategory(@Valid @RequestBody Category category) {
 		cs.updateCategory(category);
@@ -122,13 +133,14 @@ public class CategoryController {
 
 	/**
 	 * Handles incoming Delete requests to Delete Category
-	 *
-	 * @return a Category that was updated and status code 202 (ACCEPTED); otherwise,<br>
-	 * HTTP status code 400 (BAD_REQUEST)
+	 * @param id the id of the category to delete
+	 * @return http status 204
 	 */
 	@ApiOperation(value = "Deletes a category", response = Void.class)
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Category deleted") } )
 	@DeleteMapping(value="/{id}")
-	public void deleteCategory(@PathVariable Integer id){
+	public ResponseEntity<Void> deleteCategory(@PathVariable Integer id){
 		cs.deleteCategory(id);
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 }
