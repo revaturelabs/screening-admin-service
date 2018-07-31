@@ -13,7 +13,12 @@ import javax.persistence.Id;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-
+/**
+ * Outlines the Question POJO
+ * 
+ * @author Ethan Conner | 1805-WVU-AUG3 | Richard Orr
+ * @author Isaac Pawling | 1085-WVU | Richard Orr
+ */
 @ApiModel(value = "Question", description = "a question to ask a candidate, along with 5 sample answers "
 		+ "of varying correctness")
 @Entity 
@@ -24,7 +29,7 @@ public class Question implements Serializable{
 
 	@ApiModelProperty(value = "Question id")
 	@Id
-	@SequenceGenerator(name = "QUESTION_SEQUENCE",initialValue= 1000, sequenceName = "QUESTION_SEQUENCE")
+	@SequenceGenerator(name = "QUESTION_SEQUENCE", sequenceName = "QUESTION_SEQUENCE", allocationSize=1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "QUESTION_SEQUENCE")
 	@Column(name = "QUESTION_ID")
 	private Integer questionId;
@@ -79,6 +84,9 @@ public class Question implements Serializable{
 		this.sampleAnswer5 = sampleAnswer5;
 	}
 
+	/**
+	 * Getters and setters
+	 */
 	public Integer getQuestionId() {
 		return questionId;
 	}
