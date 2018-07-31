@@ -1,6 +1,7 @@
 package com.revature.caliber.services;
 
 import java.util.List;
+import io.swagger.annotations.ApiModel;
 
 import com.revature.caliber.beans.SkillType;
 
@@ -9,7 +10,7 @@ import com.revature.caliber.beans.SkillType;
  * 
  * @author Isaac Pawling | 1805-WVU | Richard Orr
  */
-
+@ApiModel(value = "SkillTypeService", description = "Provides interface for SkillType service layer")
 public interface SkillTypeService {
 
 	/**
