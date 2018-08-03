@@ -1,0 +1,133 @@
+{
+	"info": {
+		"_postman_id": "fe3bf500-23fe-4dd8-9e14-27a9dc782567",
+		"name": "Category",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"_postman_id": "7e9de236-aae3-4973-8534-e2303fdd2d86",
+			"name": "AddCategoryCobol",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"categoryId\":17, \"title\":\"Cobol\", \"isActive\":\"true\"}"
+				},
+				"url": {
+					"raw": "http://localhost:8181/category",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"category"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "e4082a28-791e-4749-a7e9-7d524321d4d4",
+			"name": "Get Categories",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8181/category",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"category"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "a5101103-ff2c-4801-9484-b99845841f4d",
+			"name": "GetActiveCategories",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8181/category/active",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"category",
+						"active"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "710ebcbd-fe88-4bfb-ab1a-9e8b2513b359",
+			"name": "Update Category",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n        \"categoryId\": 100001,\n        \"title\": \"Cobol\",\n        \"isActive\": false\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8181/category/100001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"category",
+						"100001"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "c913b54f-a127-49d3-94a1-fc325d004a93",
+			"name": "DeleteCategory",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8181/category/100001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"category",
+						"100001"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
