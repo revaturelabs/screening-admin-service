@@ -1,15 +1,3 @@
-create table skill_type(
-    skill_type_id number(10) primary key,
-    title varchar2(100) not null,
-    is_active number(1) not null
-);
-
-create table category(
-    category_id number(10) primary key,
-    title varchar2(100) not null,
-    is_active number(1) not null
-);
-
 create table bucket(
     bucket_id number(10) primary key,
     category_id number(10) not null,
@@ -27,6 +15,19 @@ create table question(
     sample_answer_3 varchar2(600) not null,
     sample_answer_4 varchar2(600) not null,
     sample_answer_5 varchar2(600) not null
+    is_active number(1) not null,
+    skill_type_id number(10) not null
+);
+
+create table skill_type(
+    skill_type_id number(10) primary key,
+    title varchar2(100) not null
+);
+
+create table category(
+    category_id number(10) primary key,
+    title varchar2(100) not null,
+    is_active number(1) not null
 );
 
 create table weight(
