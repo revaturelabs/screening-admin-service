@@ -20,14 +20,14 @@
 					"raw": "{\n    \"skillTypeId\": 10001,\n    \"title\": \"Bow-hunting Skills\",\n    \"active\": true\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8181/skillType/",
+					"raw": "http://localhost:8181/skilltype/",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8181",
 					"path": [
-						"skillType",
+						"skilltype",
 						""
 					]
 				},
@@ -42,14 +42,14 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:8181/skillType/active",
+					"raw": "http://localhost:8181/skilltype/active",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8181",
 					"path": [
-						"skillType",
+						"skilltype",
 						"active"
 					]
 				},
@@ -64,15 +64,15 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:8181/skillType/10001",
+					"raw": "http://localhost:8181/skilltype/51",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8181",
 					"path": [
-						"skillType",
-						"10001"
+						"skilltype",
+						"51"
 					]
 				},
 				"description": "Returns a skill type for a given id"
@@ -86,14 +86,14 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:8181/skillType/42",
+					"raw": "http://localhost:8181/skilltype/42",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8181",
 					"path": [
-						"skillType",
+						"skilltype",
 						"42"
 					]
 				},
@@ -116,14 +116,14 @@
 					"raw": "{\n    \"skillTypeId\": 0,\n    \"title\": \"Experimental Batch\",\n    \"categories\": [\n    ],\n    \"active\": true\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8181/skillType/",
+					"raw": "http://localhost:8181/skilltype/",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8181",
 					"path": [
-						"skillType",
+						"skilltype",
 						""
 					]
 				},
@@ -146,14 +146,14 @@
 					"raw": "{\n    \"skillTypeId\": 0,\n    \"title\": \"\",\n    \"categories\": [\n    ],\n    \"active\": true\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8181/skillType/",
+					"raw": "http://localhost:8181/skilltype/",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8181",
 					"path": [
-						"skillType",
+						"skilltype",
 						""
 					]
 				},
@@ -173,18 +173,18 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"skillTypeId\": 10001,\n    \"title\": \"Bow-hunting Skills\",\n    \"categories\": [\n    ],\n    \"active\": true\n}"
+					"raw": "{\n    \"skillTypeId\": 51,\n    \"title\": \"Soft Skills\",\n    \"categories\": [\n    ],\n    \"active\": true\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8181/skillType/10001",
+					"raw": "http://localhost:8181/skilltype/51",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8181",
 					"path": [
-						"skillType",
-						"10001"
+						"skilltype",
+						"51"
 					]
 				},
 				"description": "Updates a skill with the specified Id. Returns 202"
@@ -206,14 +206,14 @@
 					"raw": "{\n    \"skillTypeId\": 42,\n    \"title\": \"Key to the universe skills\",\n    \"categories\": [\n    ],\n    \"active\": true\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8181/skillType/42",
+					"raw": "http://localhost:8181/skilltype/42",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8181",
 					"path": [
-						"skillType",
+						"skilltype",
 						"42"
 					]
 				},
@@ -228,14 +228,14 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:8181/skillType/42",
+					"raw": "http://localhost:8181/skilltype/42",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8181",
 					"path": [
-						"skillType",
+						"skilltype",
 						"42"
 					]
 				},
@@ -250,18 +250,48 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:8181/skillType/10003",
+					"raw": "http://localhost:8181/skilltype/100001",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8181",
 					"path": [
-						"skillType",
-						"10003"
+						"skilltype",
+						"100001"
 					]
 				},
 				"description": "Deletes a skilltype with the specified Id. Returns 204 (will return 404 after run once, & DB is not repopulated)"
+			},
+			"response": []
+		},
+		{
+			"name": "put skilltype back",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"skillTypeId\": 51,\n    \"title\": \"Soft Skills\",\n    \"categories\": [\n        {\n            \"categoryId\": 404,\n            \"title\": \"JAVA\",\n            \"isActive\": true\n        },\n        {\n            \"categoryId\": 405,\n            \"title\": \"Spring\",\n            \"isActive\": true\n        },\n        {\n            \"categoryId\": 406,\n            \"title\": \"SQL\",\n            \"isActive\": false\n        }\n    ],\n    \"active\": true\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8181/skilltype/51",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"skilltype",
+						"51"
+					]
+				},
+				"description": "Updates a skill with the specified Id. Returns 202"
 			},
 			"response": []
 		}
