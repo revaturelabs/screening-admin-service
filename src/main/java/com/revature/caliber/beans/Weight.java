@@ -18,7 +18,7 @@ import io.swagger.annotations.ApiModelProperty;
  *
  */
 @ApiModel(value = "Weight", description = "Weights for categories to determine how important a set of buckets"
-		+ "is during an interview")
+		+ "are during an interview")
 @Entity
 @Table(name = "weight")
 public class Weight {
@@ -36,7 +36,7 @@ public class Weight {
 	@Column(name="skill_type_id")
 	private int skillTypeId;
 	
-	@ApiModelProperty(value="The category ID")
+	@ApiModelProperty(value="The category Id")
 	@Column(name = "category_id")
 	private int categoryId;
 
@@ -52,6 +52,9 @@ public class Weight {
 		this.categoryId = categoryId;
 	}
 
+	/**
+	 * Getters and setters
+	 */
 	public long getWeightId() {
 		return weightId;
 	}
