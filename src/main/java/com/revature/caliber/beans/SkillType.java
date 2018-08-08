@@ -24,7 +24,7 @@ import io.swagger.annotations.ApiModelProperty;
  * @author Isaac Pawling | 1085-WVU | Richard Orr
  * 
  */
-@ApiModel(value = "SkillType", description = "Type of skill that is associated with a number of categories")
+@ApiModel(value = "SkillType", description = "Type of skill that is associated with a number of buckets")
 @Entity
 @Table(name = "SKILL_TYPE")
 public class SkillType implements Serializable {
@@ -46,22 +46,22 @@ public class SkillType implements Serializable {
     @Column(name = "is_active")
     private boolean isActive;
     
-    @ApiModelProperty(value = "list of categories that are associated with the skilltype")
+    @ApiModelProperty(value = "list of buckets that are associated with the skilltype")
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "WEIGHT", joinColumns = { @JoinColumn(name = "SKILL_TYPE_ID") }, inverseJoinColumns = { 
-            @JoinColumn(name = "CATEGORY_ID") })
-    private List<Category> categories;	
+            @JoinColumn(name = "BUCKET_ID") })
+    private List<Bucket> buckets;
 	
 	public SkillType() {
 		super();
 	}
 
-	public SkillType(int skillTypeId, String title, boolean isActive, List<Category> categories) {
+	public SkillType(int skillTypeId, String title, boolean isActive, List<Bucket> buckets) {
 		super();
 		this.skillTypeId = skillTypeId;
 		this.title = title;
 		this.isActive = isActive;
-		this.categories = categories;
+		this.buckets = buckets;
 	}
 
 	/**
@@ -91,12 +91,12 @@ public class SkillType implements Serializable {
 		this.isActive = isActive;
 	}
 
-	public List<Category> getCategories() {
-		return categories;
+	public List<Bucket> getBuckets() {
+		return buckets;
 	}
 
-	public void setCategories(List<Category> categories) {
-		this.categories = categories;
+	public void setBuckets(List<Bucket> buckets) {
+		this.buckets = buckets;
 	}
 
 	public static long getSerialversionuid() {
@@ -107,7 +107,7 @@ public class SkillType implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((categories == null) ? 0 : categories.hashCode());
+		result = prime * result + ((buckets == null) ? 0 : buckets.hashCode());
 		result = prime * result + (isActive ? 1231 : 1237);
 		result = prime * result + skillTypeId;
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
@@ -123,10 +123,10 @@ public class SkillType implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		SkillType other = (SkillType) obj;
-		if (categories == null) {
-			if (other.categories != null)
+		if (buckets == null) {
+			if (other.buckets != null)
 				return false;
-		} else if (!categories.equals(other.categories))
+		} else if (!buckets.equals(other.buckets))
 			return false;
 		if (isActive != other.isActive)
 			return false;
@@ -142,8 +142,8 @@ public class SkillType implements Serializable {
 
 	@Override
 	public String toString() {
-		return "SkillType [skillTypeId=" + skillTypeId + ", title=" + title + ", isActive=" + isActive + ", categories="
-				+ categories + "]";
+		return "SkillType [skillTypeId=" + skillTypeId + ", title=" + title + ", isActive=" + isActive + ", buckets="
+				+ buckets + "]";
 	}
 
 }
