@@ -1,0 +1,188 @@
+{
+	"info": {
+		"_postman_id": "a3c6c43a-e26a-4d9b-935d-f1b8c512a818",
+		"name": "Question",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"_postman_id": "b1bf7aea-eae2-46ec-a07d-9c0e65b08606",
+			"name": "AddQuestionOOP",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"questionId\":0, \"bucketId\": 100001, \"isActive\":\"true\", \"questionText\":\"Explain Object-Oriented Programming\", \"sampleAnswer1\": \"makes no attempt at answer\", \"sampleAnswer2\": \"Knows that Java is OOP\",  \"sampleAnswer3\": \"OOP is a way of programming where onjects are in classes\",  \"sampleAnswer4\": \"OOP programs via classes and instances of those classes, which call upon one another to achieve tasks\",  \"sampleAnswer5\": \"OOP programs via classes and instances of those classes, which call upon one another to achieve tasks. This allows us to modularize and abstract code, making it easier to alter and maintain. The 4 pillars are Abstraction, Encapsulatioin, Inheritance and Polymorphism\" }"
+				},
+				"url": {
+					"raw": "http://localhost:8181/question",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"question"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "df0c7049-e650-497b-8d82-6bbb20de720c",
+			"name": "Get QuestionsBucket100001",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8181/bucket/406/question",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"bucket",
+						"406",
+						"question"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "d55e7e69-0587-4b94-a4bc-7146be4920c6",
+			"name": "UpdateQuestion",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"questionId\": 100001,\n    \"bucketId\": 404,\n    \"isActive\": true,\n    \"questionText\": \"I've updated this question!\",\n    \"sampleAnswer1\": \"makes no attempt at answer\",\n    \"sampleAnswer2\": \"Knows that Java is OOP\",\n    \"sampleAnswer3\": \"OOP is a way of programming where onjects are in classes\",\n    \"sampleAnswer4\": \"OOP programs via classes and instances of those classes, which call upon one another to achieve tasks\",\n    \"sampleAnswer5\": \"OOP programs via classes and instances of those classes, which call upon one another to achieve tasks. This allows us to modularize and abstract code, making it easier to alter and maintain. The 4 pillars are Abstraction, Encapsulatioin, Inheritance and Polymorphism\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8181/question/100001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"question",
+						"100001"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "4f9b649e-8d37-41fc-ba29-a0de65497938",
+			"name": "ActivateQuestion",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8181/question/1006/activate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"question",
+						"1006",
+						"activate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "a7f3d014-413f-480f-ae20-3d72ce1562a0",
+			"name": "DeactivateQuestion",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8181/question/1006/deactivate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"question",
+						"1006",
+						"deactivate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "9d799774-3c1e-40de-b394-eb7bb1161005",
+			"name": "GetAllQuestions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8181/question",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"question"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "ff51f842-0f2a-41b0-87fc-a8071db5dbc2",
+			"name": "DeleteQuestion",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8181/question/100001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"question",
+						"100001"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
