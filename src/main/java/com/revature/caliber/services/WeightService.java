@@ -48,5 +48,4 @@ public interface WeightService {
 	 * No return
 	 */
 	void deleteById(long weightId);
-
 }

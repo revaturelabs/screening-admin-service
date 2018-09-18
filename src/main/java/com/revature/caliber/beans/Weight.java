@@ -133,9 +133,4 @@ public class Weight {
 			return false;
 		return true;
 	}
-	
-	
-	
-	
-
 }

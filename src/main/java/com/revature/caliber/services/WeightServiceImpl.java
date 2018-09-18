@@ -59,5 +59,4 @@ public class WeightServiceImpl implements WeightService {
 	public void deleteById(long weightId) {
 		wd.delete(weightId);
 	}
-
 }

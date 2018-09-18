@@ -17,5 +17,4 @@ public interface WeightDAO extends JpaRepository<Weight, Long>{
 	void deleteByCategoryId(Integer categoryId);
 
 	void deleteBySkillTypeId(int id);
-
 }
