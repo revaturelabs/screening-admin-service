@@ -1,0 +1,142 @@
+{
+	"info": {
+		"_postman_id": "70cde586-dfac-41f0-a91d-55f39bf04736",
+		"name": "Weights",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"_postman_id": "0f0194f4-90ac-4694-9e60-b95bf801a4c1",
+			"name": "Weight1",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"weight\":30, \"categoryId\":404, \"skillTypeId\":54}"
+				},
+				"url": {
+					"raw": "http://localhost:8181/weight",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"weight"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "73bdc37c-27d0-4f49-95c1-bf4c1350d4c7",
+			"name": "GetAllWeights",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8181/weight",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"weight"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "117cb9ad-ff6e-423e-99ad-94641e4e018e",
+			"name": "UpdateWeight",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"weightId\":54404, \"weight\":50, \"skillTypeId\":54, \"categoryId\":404}"
+				},
+				"url": {
+					"raw": "http://localhost:8181/skilltype/54/category/404/weight",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"skilltype",
+						"54",
+						"category",
+						"404",
+						"weight"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "fe52d4ac-0b7c-49c8-822f-faa075a10de5",
+			"name": "GetBySkillAndCategory",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8181/skilltype/54/category/404/weight",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"skilltype",
+						"54",
+						"category",
+						"404",
+						"weight"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "3768d58f-f260-4d50-955b-f6ed34bc512b",
+			"name": "deleteweight",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8181/skilltype/54/category/404/weight",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"skilltype",
+						"54",
+						"category",
+						"404",
+						"weight"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
