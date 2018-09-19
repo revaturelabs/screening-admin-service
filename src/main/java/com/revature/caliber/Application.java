@@ -2,8 +2,11 @@ package com.revature.caliber;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-import com.revature.caliber.beans.Bucket;
+@EnableEurekaClient
+@EnableSwagger2
 
 @SpringBootApplication
 public class Application {
