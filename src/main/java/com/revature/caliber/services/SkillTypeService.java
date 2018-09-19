@@ -17,38 +17,38 @@ public interface SkillTypeService {
 	 * Method that returns all SkillTypes
 	 * @return list of skillType objects
 	 */
-	public List<SkillType> getSkills();
+	public List<SkillType> getSkillTypes();
 	
 	/**
 	 * Method that returns all active SkillTypes
 	 * @return list of SkillType objects
 	 */
-	public List<SkillType> getActiveSkills(boolean b);
+	public List<SkillType> getActiveSkillTypes(boolean b);
 	
 	/**
 	 * Method that returns a specific SkillType
 	 * @param id the primary key of the SkillType
 	 * @return an individual skillType
 	 */
-	public SkillType getSkill(Integer id);
+	public SkillType getSkillType(Integer id);
 	
 	/**
 	 * Creates a new skillType
 	 * @param s transient skillType
 	 * @return detached skillType
 	 */
-	public SkillType createSkill(SkillType s);
+	public SkillType createSkillType(SkillType s);
 	
 	/**
 	 * Updates a skill's title
 	 * @param s existing skill object w/ updated title
 	 */
-	public void updateSkill(SkillType s);
+	public void updateSkillType(SkillType s);
 	
 	/**
 	 * Removes skill with specified Id
 	 * @param id primary key of skill to review
 	 */
-	public void deleteSkill(Integer id);
+	public void deleteSkillType(Integer id);
 
 }

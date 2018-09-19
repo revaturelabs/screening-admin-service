@@ -5,32 +5,25 @@ insert into SKILL_TYPE (SKILL_TYPE_ID, TITLE, IS_ACTIVE) VALUES (54, 'Basic Math
 insert into SKILL_TYPE (SKILL_TYPE_ID, TITLE, IS_ACTIVE) VALUES (55, 'Advanced Math Skills', 0);
 insert into SKILL_TYPE (SKILL_TYPE_ID, TITLE, IS_ACTIVE) VALUES (56, 'Beta Skills', 0);
 
-insert into CATEGORY (CATEGORY_ID, TITLE, IS_ACTIVE) values (404, 'JAVA', 1); 
-insert into CATEGORY (CATEGORY_ID, TITLE, IS_ACTIVE) values (405, 'Spring', 1); 
-insert into CATEGORY (CATEGORY_ID, TITLE, IS_ACTIVE) values (406, 'SQL', 0); 
-insert into CATEGORY (CATEGORY_ID, TITLE, IS_ACTIVE) values (407, 'Hibernate', 0);
-insert into CATEGORY (CATEGORY_ID, TITLE, IS_ACTIVE) values (420, 'Webservices', 1); 
-insert into CATEGORY (CATEGORY_ID, TITLE, IS_ACTIVE) values (421, 'Web Development', 1); 
+insert into bucket (bucket_id, bucket_description, is_active) values (404, 'Java Applied', true);
+insert into bucket (bucket_id, bucket_description, is_active) values (407, 'Hibernate', true);
+insert into bucket (bucket_id, bucket_description, is_active) values (406, 'SQL', true);
+insert into bucket (bucket_id, bucket_description, is_active) values (410, 'Angular', true);
+insert into bucket (bucket_id, bucket_description, is_active) values (411, 'Spring AoP', true);
+insert into bucket (bucket_id, bucket_description, is_active) values (412, 'JavaScript', true);
+insert into bucket (bucket_id, bucket_description, is_active) values (413, 'Java Concepts', true);
+insert into bucket (bucket_id, bucket_description, is_active) values (414, 'SOAP', true);
+insert into bucket (bucket_id, bucket_description, is_active) values (415, 'JDBC', true);
+insert into bucket (bucket_id, bucket_description, is_active) values (416, 'REST', true);
 
-insert into bucket (bucket_id, category_id, bucket_description, is_active) values (404, 404, 'Java Applied', true);
-insert into bucket (bucket_id, category_id, bucket_description, is_active) values (407, 407, 'Hibernate', true);
-insert into bucket (bucket_id, category_id, bucket_description, is_active) values (406, 406, 'SQL', true);
-insert into bucket (bucket_id, category_id, bucket_description, is_active) values (410, 421, 'Angular', true);
-insert into bucket (bucket_id, category_id, bucket_description, is_active) values (411, 405, 'Spring AoP', true);
-insert into bucket (bucket_id, category_id, bucket_description, is_active) values (412, 421, 'JavaScript', true);
-insert into bucket (bucket_id, category_id, bucket_description, is_active) values (413, 404, 'Java Concepts', true);
-insert into bucket (bucket_id, category_id, bucket_description, is_active) values (414, 420, 'SOAP', true);
-insert into bucket (bucket_id, category_id, bucket_description, is_active) values (415, 404, 'JDBC', true);
-insert into bucket (bucket_id, category_id, bucket_description, is_active) values (416, 420, 'REST', true);
-
-insert into WEIGHT (WEIGHT_ID, WEIGHT, CATEGORY_ID, SKILL_TYPE_ID) values (51404, 30, 404, 51);
-insert into WEIGHT (WEIGHT_ID, WEIGHT, CATEGORY_ID, SKILL_TYPE_ID) values (52404, 100, 404, 52);
-insert into WEIGHT (WEIGHT_ID, WEIGHT, CATEGORY_ID, SKILL_TYPE_ID) values (53404, 70, 404, 53);
-insert into WEIGHT (WEIGHT_ID, WEIGHT, CATEGORY_ID, SKILL_TYPE_ID) values (54405, 100, 405, 54);
-insert into WEIGHT (WEIGHT_ID, WEIGHT, CATEGORY_ID, SKILL_TYPE_ID) values (53405, 30, 405, 53);
-insert into WEIGHT (WEIGHT_ID, WEIGHT, CATEGORY_ID, SKILL_TYPE_ID) values (55405, 100, 405, 55);
-insert into WEIGHT (WEIGHT_ID, WEIGHT, CATEGORY_ID, SKILL_TYPE_ID) values (56406, 100, 406, 56);
-insert into WEIGHT (WEIGHT_ID, WEIGHT, CATEGORY_ID, SKILL_TYPE_ID) values (51406, 70, 406, 51);
+insert into WEIGHT (WEIGHT_ID, WEIGHT, BUCKET_ID, SKILL_TYPE_ID) values (51404, 30, 404, 51);
+insert into WEIGHT (WEIGHT_ID, WEIGHT, BUCKET_ID, SKILL_TYPE_ID) values (52404, 100, 404, 52);
+insert into WEIGHT (WEIGHT_ID, WEIGHT, BUCKET_ID, SKILL_TYPE_ID) values (53404, 70, 404, 53);
+insert into WEIGHT (WEIGHT_ID, WEIGHT, BUCKET_ID, SKILL_TYPE_ID) values (54405, 100, 406, 54);
+insert into WEIGHT (WEIGHT_ID, WEIGHT, BUCKET_ID, SKILL_TYPE_ID) values (53405, 30, 406, 53);
+insert into WEIGHT (WEIGHT_ID, WEIGHT, BUCKET_ID, SKILL_TYPE_ID) values (55405, 100, 412, 55);
+insert into WEIGHT (WEIGHT_ID, WEIGHT, BUCKET_ID, SKILL_TYPE_ID) values (56406, 100, 406, 56);
+insert into WEIGHT (WEIGHT_ID, WEIGHT, BUCKET_ID, SKILL_TYPE_ID) values (51406, 70, 406, 51);
 
 insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER_1, SAMPLE_ANSWER_2, SAMPLE_ANSWER_3, SAMPLE_ANSWER_4, SAMPLE_ANSWER_5) values (10010,406,1,'What joins are used in SQL?' , 'Primarily together, under me. ' , 'Only self. All joins are self joins. ' , ' Self, inner.' , ' Self, inner, outer, left , right. ' , 'Self, inner, outer, left, right, natural. ' );
 insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER_1, SAMPLE_ANSWER_2, SAMPLE_ANSWER_3, SAMPLE_ANSWER_4, SAMPLE_ANSWER_5) values (10011,406,1,'What are the sublanguages of SQL?' , 'French, spanish, portuguese. ' , 'DML ' , ' DML, DDL' , ' DML,DDL,DQL,DCL ' , 'DML,DDL, DQL, DCL, TCL.' );

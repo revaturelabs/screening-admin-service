@@ -14,7 +14,5 @@ import com.revature.caliber.beans.Weight;
 @Repository
 public interface WeightDAO extends JpaRepository<Weight, Long>{
 
-	void deleteByCategoryId(Integer categoryId);
-
 	void deleteBySkillTypeId(int id);
 }

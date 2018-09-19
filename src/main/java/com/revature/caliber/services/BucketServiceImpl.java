@@ -19,7 +19,7 @@ import com.revature.caliber.daos.BucketDAO;
  *  @author Theo Thompson 	| 1805-WVU-MAY29 | Richard Orr
  */
 @Service
-public class BucketServiceImp implements BucketService {
+public class BucketServiceImpl implements BucketService {
 
 	@Autowired
 	BucketDAO bucketDAO;

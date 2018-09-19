@@ -57,13 +57,13 @@ public class WeightController {
 	 * @param categoryId - the associated category
 	 * @return weight obj
 	 */
-	@ApiOperation(value = "Gets a weight based on skilltype and category", response = Weight.class)
+/*	@ApiOperation(value = "Gets a weight based on skilltype and category", response = Weight.class)
 	@GetMapping("/skilltype/{skillTypeId}/category/{categoryId}/weight")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Requested weight returned") } )
 	public ResponseEntity<Weight> getWeightFromIds(@PathVariable(value="skillTypeId") Integer skillTypeId,
 			@PathVariable(value="categoryId") Integer categoryId) {
 		return new ResponseEntity<>(ws.getWeightBySkillTypeAndCategory(skillTypeId.intValue(), categoryId.intValue()), HttpStatus.OK);
-	}
+	}*/
 	
 	
 	/**

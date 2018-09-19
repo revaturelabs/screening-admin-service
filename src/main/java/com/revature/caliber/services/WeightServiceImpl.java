@@ -26,16 +26,6 @@ public class WeightServiceImpl implements WeightService {
 		return wd.findAll();
 	}
 
-
-	@Override
-	public Weight getWeightBySkillTypeAndCategory(int skillTypeId, int categoryId) {
-		StringBuilder sb = new StringBuilder();
-		sb.append(skillTypeId);
-		sb.append(categoryId);
-		long weightId = Long.parseLong(sb.toString());
-		return wd.findOne(weightId);
-	}
-
 	@Override
 	@Transactional
 	public void update(Weight weight) {
@@ -46,11 +36,6 @@ public class WeightServiceImpl implements WeightService {
 	@Override
 	@Transactional
 	public Weight create(Weight weight) {
-		StringBuilder sb = new StringBuilder();
-		sb.append(weight.getSkillTypeId());
-		sb.append(weight.getCategoryId());
-		long weightId = Long.parseLong(sb.toString().trim());
-		weight.setWeightId(weightId);
 		return wd.save(weight);
 	}
 

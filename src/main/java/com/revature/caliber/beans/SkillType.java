@@ -24,7 +24,7 @@ import io.swagger.annotations.ApiModelProperty;
  * @author Isaac Pawling | 1085-WVU | Richard Orr
  * 
  */
-@ApiModel(value = "SkillType", description = "Type of skill that is associated with a number of buckets")
+@ApiModel(value = "SkillType", description = "SkillType corresponding to an overall training track, associated with a number of Buckets")
 @Entity
 @Table(name = "SKILL_TYPE")
 public class SkillType implements Serializable {
@@ -42,7 +42,7 @@ public class SkillType implements Serializable {
 	@Column(name = "TITLE")
 	private String title;
 	
-    @ApiModelProperty(value = "is the category currently active")
+    @ApiModelProperty(value = "is the SkillType currently active")
     @Column(name = "is_active")
     private boolean isActive;
     

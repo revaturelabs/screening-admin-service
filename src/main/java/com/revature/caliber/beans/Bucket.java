@@ -22,7 +22,7 @@ import io.swagger.annotations.ApiModelProperty;
  *  
  * @author Adil Iqbal | 1805-WVU-MAY29 | Richard Orr
  */
-@ApiModel(value = "Bucket", description = "A Bucket for categorizing Questions")
+@ApiModel(value = "Bucket", description = "A Bucket which holds a set of related Questions")
 @Component
 @Entity
 @Table(name = "bucket")
@@ -37,10 +37,6 @@ public class Bucket implements Serializable {
 	@Column(name = "BUCKET_ID")
 	private Integer bucketId;
 
-	@ApiModelProperty(value = "determines what category the bucket is in")
-	@Column(name = "CATEGORY_ID")
-	private Integer categoryId;
-
 	@ApiModelProperty(value = "description of the Bucket")
 	@Column(name = "BUCKET_DESCRIPTION")
 	private String bucketDescription;
@@ -53,10 +49,9 @@ public class Bucket implements Serializable {
 		super();
 	}	  
 
-	public Bucket(Integer bucketId, Integer categoryId, String bucketDescription, Boolean isActive) {
+	public Bucket(Integer bucketId, String bucketDescription, Boolean isActive) {
 		super();
 		this.bucketId = bucketId;
-		this.categoryId = categoryId;
 		this.bucketDescription = bucketDescription;
 		this.isActive = isActive;
 	}
@@ -70,14 +65,6 @@ public class Bucket implements Serializable {
 
 	public void setBucketId(Integer bucketId) {
 		this.bucketId = bucketId;
-	}
-
-	public Integer getCategoryId() {
-		return categoryId;
-	}
-
-	public void setCategoryId(Integer categoryId) {
-		this.categoryId = categoryId;
 	}
 
 	public String getBucketDescription() {
@@ -100,7 +87,6 @@ public class Bucket implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((categoryId == null) ? 0 : categoryId.hashCode());
 		result = prime * result + ((bucketDescription == null) ? 0 : bucketDescription.hashCode());
 		result = prime * result + ((bucketId == null) ? 0 : bucketId.hashCode());
 		result = prime * result + ((isActive == null) ? 0 : isActive.hashCode());
@@ -116,11 +102,6 @@ public class Bucket implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Bucket other = (Bucket) obj;
-		if (categoryId == null) {
-			if (other.categoryId != null)
-				return false;
-		} else if (!categoryId.equals(other.categoryId))
-			return false;
 		if (bucketDescription == null) {
 			if (other.bucketDescription != null)
 				return false;
@@ -141,7 +122,7 @@ public class Bucket implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Bucket [bucketId=" + bucketId + ", categoryId=" + categoryId + ", bucketDescription="
+		return "Bucket [bucketId=" + bucketId + ", bucketDescription="
 				+ bucketDescription + ", isActive=" + isActive + "]";
 	}
 	

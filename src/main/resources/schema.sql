@@ -4,15 +4,8 @@ create table skill_type(
     is_active number(1) not null
 );
 
-create table category(
-    category_id number(10) primary key,
-    title varchar2(100) not null,
-    is_active number(1) not null
-);
-
 create table bucket(
     bucket_id number(10) primary key,
-    category_id number(10) not null,
     bucket_description varchar2(100) not null,
     is_active number(1) not null
 );
@@ -32,9 +25,7 @@ create table question(
 create table weight(
     weight_id number(10) primary key,
     weight number(10) not null,
-    category_id number(10) not null,
     skill_type_id number(10) not null,
-    foreign key (category_id) references category(category_id),
     foreign key (skill_type_id) references skill_type(skill_type_id)
 );
 
@@ -43,5 +34,3 @@ CREATE SEQUENCE IF NOT EXISTS QUESTION_SEQUENCE MINVALUE 100001 INCREMENT BY 1 S
 CREATE SEQUENCE IF NOT EXISTS BUCKET_SEQUENCE MINVALUE 100001 INCREMENT BY 1 START WITH 100001;
 
 CREATE SEQUENCE IF NOT EXISTS SKILL_TYPE_SEQUENCE MINVALUE 100001 INCREMENT BY 1 START WITH 100001;
-
-CREATE SEQUENCE IF NOT EXISTS CATEGORY_SEQUENCE MINVALUE  100001 INCREMENT BY 1 START WITH  100001;

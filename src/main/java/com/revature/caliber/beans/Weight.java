@@ -17,8 +17,7 @@ import io.swagger.annotations.ApiModelProperty;
  * POJO for the weight object
  *
  */
-@ApiModel(value = "Weight", description = "Weights for categories to determine how important a set of buckets"
-		+ "are during an interview")
+@ApiModel(value = "Weight", description = "Weights for Buckets within a SkillType, determining how a Bucket contributes to the final score")
 @Entity
 @Table(name = "weight")
 public class Weight {
@@ -32,24 +31,24 @@ public class Weight {
 	@Column(name = "weight")
 	private int weight;
 	
-	@ApiModelProperty(value="the skillType Id")
+	@ApiModelProperty(value="the SkillType Id")
 	@Column(name="skill_type_id")
 	private int skillTypeId;
 	
-	@ApiModelProperty(value="The category Id")
-	@Column(name = "category_id")
-	private int categoryId;
+	@ApiModelProperty(value="The Bucket Id")
+	@Column(name = "bucket_id")
+	private int bucketId;
 
 	public Weight() {
 		super();
 	}
 
-	public Weight(int weightId, int weight, int skillTypeId, int categoryId) {
+	public Weight(int weightId, int weight, int skillTypeId, int bucketId) {
 		super();
 		this.weightId = weightId;
 		this.weight = weight;
 		this.skillTypeId = skillTypeId;
-		this.categoryId = categoryId;
+		this.bucketId = bucketId;
 	}
 
 	/**
@@ -79,12 +78,12 @@ public class Weight {
 		this.skillTypeId = skillTypeId;
 	}
 
-	public int getCategoryId() {
-		return categoryId;
+	public int getBucketId() {
+		return bucketId;
 	}
 
-	public void setCategoryId(int categoryId) {
-		this.categoryId = categoryId;
+	public void setBucketId(int bucketId) {
+		this.bucketId = bucketId;
 	}
 
 	@Override
@@ -96,8 +95,8 @@ public class Weight {
 		builder.append(weight);
 		builder.append(", skillTypeId=");
 		builder.append(skillTypeId);
-		builder.append(", categoryId=");
-		builder.append(categoryId);
+		builder.append(", bucketId=");
+		builder.append(bucketId);
 		builder.append("]");
 		return builder.toString();
 	}
@@ -107,7 +106,7 @@ public class Weight {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + categoryId;
+		result = prime * result + bucketId;
 		result = prime * result + skillTypeId;
 		result = prime * result + weight;
 		result = prime * result + (int) (weightId ^ (weightId >>> 32));
@@ -123,7 +122,7 @@ public class Weight {
 		if (getClass() != obj.getClass())
 			return false;
 		Weight other = (Weight) obj;
-		if (categoryId != other.categoryId)
+		if (bucketId != other.bucketId)
 			return false;
 		if (skillTypeId != other.skillTypeId)
 			return false;

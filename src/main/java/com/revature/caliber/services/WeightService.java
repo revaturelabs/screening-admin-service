@@ -20,15 +20,6 @@ public interface WeightService {
 	List<Weight> getWeights();
 
 	/**
-	 * Weight uses a composite key of skillType and category Ids, this method makes that
-	 * composite key and searches for it.
-	 * @param skillTypeId
-	 * @param categoryId
-	 * @return weight corresponding to the skill type and id or null if not found
-	 */
-	Weight getWeightBySkillTypeAndCategory(int skillTypeId, int categoryId);
-
-	/**
 	 * @param weight
 	 * 
 	 * Updates weight. no return
@@ -36,7 +27,7 @@ public interface WeightService {
 	void update(Weight weight);
 
 	/**
-	 * creates new weight, creates ID for weight as composite of skillType and Category
+	 * creates new weighted pairing between a Bucket within a SkillType
 	 * @param weight
 	 * @return weight obj after being persisted
 	 */
