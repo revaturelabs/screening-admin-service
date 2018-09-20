@@ -94,3 +94,4 @@ Servers/
 #mac stuff
 *.DS_Store
 .idea/
+/screening-admin-service.iml
