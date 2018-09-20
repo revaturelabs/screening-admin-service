@@ -55,7 +55,7 @@ public class QuestionController {
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "All questions returned") } )
 	@GetMapping("/question")
 	public ResponseEntity<List<Question>> getQuestions() {
-		return new ResponseEntity<>(qs.getQuestions(), HttpStatus.OK);
+		return new ResponseEntity<>(qs.getAllQuestions(), HttpStatus.OK);
 	}	
 	
 	/**

@@ -25,7 +25,7 @@ public class SkillTypeServiceImpl implements SkillTypeService {
 	private WeightService ws;
 	
 	@Override
-	public List<SkillType> getSkillTypes() {
+	public List<SkillType> getAllSkillTypes() {
 		return skillTypeDao.findAll();
 	}
 

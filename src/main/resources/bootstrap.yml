@@ -2,10 +2,10 @@
 spring:
   application:
     name: screening-admin-service
-  cloud:
-    config:
-      uri: ${CALIBER_CONFIG_SERVER_URL}
-      fail-fast: true
+#  cloud:
+#    config:
+#      uri: ${CALIBER_CONFIG_SERVER_URL}
+#      fail-fast: true
   #Configure Test H2 Database
   datasource:
     driver-class-name: org.h2.Driver
@@ -16,3 +16,17 @@ spring:
   jpa:
     hibernate:
       ddl-auto: none
+
+server:
+  port: 8181
+
+security:
+  basic:
+    enabled: false
+
+management:
+  security:
+    enabled: false
+
+info:
+  component: Screening Admin Service

@@ -17,7 +17,7 @@ public interface SkillTypeService {
 	 * Method that returns all SkillTypes
 	 * @return list of skillType objects
 	 */
-	public List<SkillType> getSkillTypes();
+	public List<SkillType> getAllSkillTypes();
 	
 	/**
 	 * Method that returns all active SkillTypes

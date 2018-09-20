@@ -47,7 +47,7 @@ public class WeightController {
 	@GetMapping(value="/weight")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "All weights returned") } )
 	public ResponseEntity<List<Weight>> getWeights() {
-		return new ResponseEntity<>(ws.getWeights(), HttpStatus.OK);
+		return new ResponseEntity<>(ws.getAllWeights(), HttpStatus.OK);
 	}
 	
 	/**

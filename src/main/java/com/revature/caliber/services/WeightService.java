@@ -17,7 +17,7 @@ public interface WeightService {
 	 * Gets ALL the weights
 	 * @return list of all weights
 	 */
-	List<Weight> getWeights();
+	List<Weight> getAllWeights();
 
 	/**
 	 * @param weight

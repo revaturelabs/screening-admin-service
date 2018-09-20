@@ -30,7 +30,7 @@ public class QuestionServiceImpl implements QuestionService {
 		return questionDao.save(question);	
 	}
 	
-	public List<Question> getQuestions() {
+	public List<Question> getAllQuestions() {
 		return questionDao.findAll();
 	}
 	

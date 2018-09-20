@@ -32,7 +32,7 @@ public interface QuestionService {
 	 * 
 	 * @return Question List 
 	 */
-	public List<Question> getQuestions();
+	public List<Question> getAllQuestions();
 	
 	/**
 	 * Gets questions based on bucketId

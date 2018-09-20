@@ -45,7 +45,7 @@ public class SkillTypeController {
 	    responseContainer = "List")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "All SkillTypes returned") } )
 	public ResponseEntity<List<SkillType>> getSkills() {
-		return new ResponseEntity<>(skillService.getSkillTypes(), HttpStatus.OK);
+		return new ResponseEntity<>(skillService.getAllSkillTypes(), HttpStatus.OK);
 	}
 	
 	/**

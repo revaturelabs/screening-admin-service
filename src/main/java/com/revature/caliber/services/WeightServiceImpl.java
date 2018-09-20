@@ -22,7 +22,7 @@ public class WeightServiceImpl implements WeightService {
 	private WeightDAO wd;
 	
 	@Override
-	public List<Weight> getWeights() {
+	public List<Weight> getAllWeights() {
 		return wd.findAll();
 	}
 
