@@ -1,14 +1,12 @@
 package com.revature.caliber.services;
 
-import java.util.List;
-
-import javax.transaction.Transactional;
-
+import com.revature.caliber.beans.Weight;
+import com.revature.caliber.daos.WeightDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.revature.caliber.beans.Weight;
-import com.revature.caliber.daos.WeightDAO;
+import javax.transaction.Transactional;
+import java.util.List;
 
 /**
  * Provides implementation for the weight service layer
@@ -43,5 +41,10 @@ public class WeightServiceImpl implements WeightService {
 	@Transactional
 	public void deleteById(long weightId) {
 		wd.delete(weightId);
+	}
+
+	@Override
+	public List<Weight> getAllBucketsBySkillTypeID(int skillTypeId) {
+		return wd.getAllBySkillTypeSkillTypeId(skillTypeId);
 	}
 }

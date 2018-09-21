@@ -1,9 +1,9 @@
 package com.revature.caliber.services;
 
-import java.util.List;
+import com.revature.caliber.beans.Weight;
 import io.swagger.annotations.ApiModel;
 
-import com.revature.caliber.beans.Weight;
+import java.util.List;
 
 /**
  * Defines available methods for WeightService interface
@@ -39,4 +39,11 @@ public interface WeightService {
 	 * No return
 	 */
 	void deleteById(long weightId);
+
+	/**
+	 * Gets a list of buckets by SkillType
+	 * @param SkillTypeID ID of SkillType to filter by
+	 * @return List of weights
+	 */
+	List<Weight> getAllBucketsBySkillTypeID(int SkillTypeID);
 }
