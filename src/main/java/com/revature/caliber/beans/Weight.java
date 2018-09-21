@@ -1,64 +1,68 @@
 package com.revature.caliber.beans;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+import java.util.Objects;
 
 
 /**
- * 
+ *
  * @author Ethan Conner | 1805-WVU-AUG3 | Richard Orr
- * 
+ * @author Jeremy Straus | 1807-QC | Emily Higgins
+ * @author Rishabh Rana | 1807-QC | Emily Higgins
+ * @author Alpha Barry | 1807-QC | Emily Higgins
+ * @author Omar Guzman | 1807-QC | Emily Higgins
+ *
  * POJO for the weight object
  *
  */
 @ApiModel(value = "Weight", description = "Weights for Buckets within a SkillType, determining how a Bucket contributes to the final score")
 @Entity
-@Table(name = "weight")
+@Table(name = "WEIGHT")
 public class Weight {
-	
+
 	@ApiModelProperty(value = "The weightId - primary key for the table")
-	@Id
-	@Column(name= "weight_id")
-	private long weightId;
-	
+	@EmbeddedId
+	@Column(name= "WEIGHT_ID")
+	private WeightIdentity weightId;
+
 	@ApiModelProperty(value = "The actual weight needed for calculation")
-	@Column(name = "weight")
+	@Column(name = "WEIGHT")
 	private int weight;
-	
+
 	@ApiModelProperty(value="the SkillType Id")
-	@Column(name="skill_type_id")
-	private int skillTypeId;
-	
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "SKILLTYPE_ID")
+	private SkillType skillType;
+
 	@ApiModelProperty(value="The Bucket Id")
-	@Column(name = "bucket_id")
-	private int bucketId;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "BUCKET_ID")
+	private Bucket bucket;
 
 	public Weight() {
 		super();
 	}
 
-	public Weight(int weightId, int weight, int skillTypeId, int bucketId) {
+	public Weight(WeightIdentity weightId, int weight, SkillType skillType, Bucket bucket) {
 		super();
 		this.weightId = weightId;
 		this.weight = weight;
-		this.skillTypeId = skillTypeId;
-		this.bucketId = bucketId;
+		this.skillType = skillType;
+		this.bucket = bucket;
 	}
 
 	/**
 	 * Getters and setters
 	 */
-	public long getWeightId() {
+	public WeightIdentity getWeightId() {
 		return weightId;
 	}
 
-	public void setWeightId(long weightId) {
+	public void setWeightId(WeightIdentity weightId) {
 		this.weightId = weightId;
 	}
 
@@ -70,66 +74,46 @@ public class Weight {
 		this.weight = weight;
 	}
 
-	public int getSkillTypeId() {
-		return skillTypeId;
+	public SkillType getSkillType() {
+		return skillType;
 	}
 
-	public void setSkillTypeId(int skillTypeId) {
-		this.skillTypeId = skillTypeId;
+	public void setSkillType(SkillType skillType) {
+		this.skillType = skillType;
 	}
 
-	public int getBucketId() {
-		return bucketId;
+	public Bucket getBucket() {
+		return bucket;
 	}
 
-	public void setBucketId(int bucketId) {
-		this.bucketId = bucketId;
+	public void setBucket(Bucket bucket) {
+		this.bucket = bucket;
+	}
+
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Weight weight1 = (Weight) o;
+		return getWeightId() == weight1.getWeightId() &&
+				getWeight() == weight1.getWeight() &&
+				getSkillType() == weight1.getSkillType() &&
+				getBucket() == weight1.getBucket();
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(getWeightId(), getWeight(), getSkillType(), getBucket());
 	}
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Weight [weightId=");
-		builder.append(weightId);
-		builder.append(", weight=");
-		builder.append(weight);
-		builder.append(", skillTypeId=");
-		builder.append(skillTypeId);
-		builder.append(", bucketId=");
-		builder.append(bucketId);
-		builder.append("]");
-		return builder.toString();
-	}
-
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + bucketId;
-		result = prime * result + skillTypeId;
-		result = prime * result + weight;
-		result = prime * result + (int) (weightId ^ (weightId >>> 32));
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Weight other = (Weight) obj;
-		if (bucketId != other.bucketId)
-			return false;
-		if (skillTypeId != other.skillTypeId)
-			return false;
-		if (weight != other.weight)
-			return false;
-		if (weightId != other.weightId)
-			return false;
-		return true;
+		return "Weight{" +
+				"weightId=" + weightId +
+				", weight=" + weight +
+				", skillType=" + skillType +
+				", bucket=" + bucket +
+				'}';
 	}
 }
