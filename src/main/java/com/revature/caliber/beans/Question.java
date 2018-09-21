@@ -27,15 +27,16 @@ public class Question implements Serializable {
     @SequenceGenerator(name = "QUESTION_SEQUENCE", sequenceName = "QUESTION_SEQUENCE", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "QUESTION_SEQUENCE")
     @Column(name = "QUESTION_ID")
-    private Integer questionId;
+    private int questionId;
 
     @ApiModelProperty(value = "Bucket id")
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "BUCKET_ID")
     private Bucket bucket;
 
     @ApiModelProperty(value = "Boolean as to whether or not Question is active")
     @Column(name = "IS_ACTIVE")
-    private Boolean isActive;
+    private boolean isActive;
 
     @ApiModelProperty(value = "description of the Question")
     @Column(name = "QUESTION_TEXT")
@@ -82,11 +83,11 @@ public class Question implements Serializable {
     /**
      * Getters and setters
      */
-    public Integer getQuestionId() {
+    public int getQuestionId() {
         return questionId;
     }
 
-    public void setQuestionId(Integer questionId) {
+    public void setQuestionId(int questionId) {
         this.questionId = questionId;
     }
 
@@ -98,11 +99,11 @@ public class Question implements Serializable {
         this.bucket = bucket;
     }
 
-    public Boolean getIsActive() {
+    public boolean getIsActive() {
         return isActive;
     }
 
-    public void setIsActive(Boolean isActive) {
+    public void setIsActive(boolean isActive) {
         this.isActive = isActive;
     }
 
