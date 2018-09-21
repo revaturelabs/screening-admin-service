@@ -23,7 +23,7 @@ import io.swagger.annotations.ApiModelProperty;
  * Outlines the SkillType POJO
  * 
  * @author Isaac Pawling | 1085-WVU | Richard Orr
- * @author Jeremy Straus |
+ * @author Jeremy Straus | 1807-QC | Emily Higgins
  */
 @ApiModel(value = "SkillType", description = "SkillType corresponding to an overall training track, associated with a number of Buckets")
 @Entity
