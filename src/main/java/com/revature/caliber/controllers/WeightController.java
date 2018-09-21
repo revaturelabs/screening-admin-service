@@ -69,7 +69,7 @@ public class WeightController {
 	/**
 	 * Updates a weight obj
 	 * 
-	 * @param updated weight obj
+	 * @param weight updated weight obj
 	 * @return no content
 	 */
 	@ApiOperation(value = "Update a weight", response = Void.class)
@@ -92,7 +92,8 @@ public class WeightController {
 	}
 	
 	/**
-	 * @param weightId - ID of weight to be deleted
+	 * @param skillTypeId - SkillTypeID of weight to be deleted
+	 * @param categoryId - CategoryID of weight to be deleted
 	 * @return Void
 	 */
 	@ApiOperation(value = "Deletes a Weight", response = Void.class)
