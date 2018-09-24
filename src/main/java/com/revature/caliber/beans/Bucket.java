@@ -2,7 +2,6 @@ package com.revature.caliber.beans;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -19,7 +18,6 @@ import java.util.Objects;
  * @author Omar Guzman | 1807-QC | Emily Higgins
  */
 @ApiModel(value = "Bucket", description = "A Bucket which holds a set of related Questions")
-@Component
 @Entity
 @Table(name = "bucket")
 public class Bucket implements Serializable {
