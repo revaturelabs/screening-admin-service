@@ -10,41 +10,51 @@ import java.util.List;
 
 /**
  * Provides implementation for the weight service layer
- * @author Ethan Conner | 1805-WVU-AUG3 | Richard Orr
  *
+ * @author Ethan Conner | 1805-WVU-AUG3 | Richard Orr
  */
 @Service
 public class WeightServiceImpl implements WeightService {
 
-	@Autowired
-	private WeightDAO wd;
-	
-	@Override
-	public List<Weight> getAllWeights() {
-		return wd.findAll();
-	}
+    @Autowired
+    private WeightDAO wd;
 
-	@Override
-	@Transactional
-	public void update(Weight weight) {
-		wd.save(weight);
+    @Override
+    public List<Weight> getAllWeights() {
+        return wd.findAll();
+    }
 
-	}
+    @Override
+    @Transactional
+    public void update(Weight weight) {
+        wd.save(weight);
 
-	@Override
-	@Transactional
-	public Weight create(Weight weight) {
-		return wd.save(weight);
-	}
+    }
 
-	@Override
-	@Transactional
-	public void deleteById(long weightId) {
-		wd.delete(weightId);
-	}
+    @Override
+    @Transactional
+    public Weight create(Weight weight) {
+        return wd.save(weight);
+    }
 
-	@Override
-	public List<Weight> getAllBucketsBySkillTypeID(int skillTypeId) {
-		return wd.getAllBySkillTypeSkillTypeId(skillTypeId);
-	}
+    @Override
+    @Transactional
+    public void deleteById(long weightId) {
+        wd.delete(weightId);
+    }
+
+    @Override
+    public List<Weight> getAllBucketsBySkillTypeID(int skillTypeId) {
+        return wd.getAllBySkillTypeSkillTypeId(skillTypeId);
+    }
+
+    @Override
+    public Weight get(int weightId) {
+        return wd.findById(weightId);
+    }
+
+    @Override
+    public Weight get(int skillTypeId, int bucketId) {
+        return wd.getBySkillTypeSkillTypeIdAndBucketBucketId(skillTypeId, bucketId);
+    }
 }

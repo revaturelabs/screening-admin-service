@@ -12,9 +12,11 @@ import java.util.List;
  * Data Access Obj for Weight
  */
 @Repository
-public interface WeightDAO extends JpaRepository<Weight, Long>{
+public interface WeightDAO extends JpaRepository<Weight, Long> {
 
     void deleteBySkillTypeSkillTypeId(int skillTypeId);
 
-	List<Weight> getAllBySkillTypeSkillTypeId(int skillTypeId);
+    List<Weight> getAllBySkillTypeSkillTypeId(int skillTypeId);
+
+    Weight getBySkillTypeSkillTypeIdAndBucketBucketId(int skillTypeId, int bucketId);
 }

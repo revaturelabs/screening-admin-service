@@ -24,7 +24,7 @@ create table question(
 
 create table weight(
     weight_id number(10) primary key,
-    weight number(10) not null,
+    value number(10) not null,
     skill_type_id number(10) not null,
     foreign key (skill_type_id) references skill_type(skill_type_id)
 );
