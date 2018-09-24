@@ -2,6 +2,7 @@ package com.revature.caliber.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -46,12 +47,12 @@ public class BucketServiceImpl implements BucketService {
 	@Override
 	@Transactional
 	public void deleteBucket(Integer bucketId) {
-		bucketDAO.delete(bucketId);
+		bucketDAO.deleteById(bucketId);
 	}
 	
 	@Override
 	public Bucket getBucketById(Integer bucketId) {
-		return bucketDAO.findOne(bucketId);
+		return bucketDAO.findById(bucketId);
 	}
 	
 }

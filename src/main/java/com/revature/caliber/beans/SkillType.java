@@ -2,6 +2,7 @@ package com.revature.caliber.beans;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,7 +23,7 @@ import io.swagger.annotations.ApiModelProperty;
  * Outlines the SkillType POJO
  * 
  * @author Isaac Pawling | 1085-WVU | Richard Orr
- * 
+ * @author Jeremy Straus | 1807-QC | Emily Higgins
  */
 @ApiModel(value = "SkillType", description = "SkillType corresponding to an overall training track, associated with a number of Buckets")
 @Entity
@@ -45,28 +46,23 @@ public class SkillType implements Serializable {
     @ApiModelProperty(value = "is the SkillType currently active")
     @Column(name = "is_active")
     private boolean isActive;
-    
-    @ApiModelProperty(value = "list of buckets that are associated with the skilltype")
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "WEIGHT", joinColumns = { @JoinColumn(name = "SKILL_TYPE_ID") }, inverseJoinColumns = { 
-            @JoinColumn(name = "BUCKET_ID") })
-    private List<Bucket> buckets;
 	
 	public SkillType() {
 		super();
 	}
 
-	public SkillType(int skillTypeId, String title, boolean isActive, List<Bucket> buckets) {
-		super();
-		this.skillTypeId = skillTypeId;
+	public SkillType(String title, boolean isActive) {
 		this.title = title;
 		this.isActive = isActive;
-		this.buckets = buckets;
 	}
 
 	/**
 	 * getters & setters
 	 */
+	public static long getSerialVersionUID() {
+		return serialVersionUID;
+	}
+
 	public int getSkillTypeId() {
 		return skillTypeId;
 	}
@@ -87,63 +83,31 @@ public class SkillType implements Serializable {
 		return isActive;
 	}
 
-	public void setActive(boolean isActive) {
-		this.isActive = isActive;
+	public void setActive(boolean active) {
+		isActive = active;
 	}
 
-	public List<Bucket> getBuckets() {
-		return buckets;
-	}
-
-	public void setBuckets(List<Bucket> buckets) {
-		this.buckets = buckets;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		SkillType skillType = (SkillType) o;
+		return getSkillTypeId() == skillType.getSkillTypeId() &&
+				isActive() == skillType.isActive() &&
+				Objects.equals(getTitle(), skillType.getTitle());
 	}
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((buckets == null) ? 0 : buckets.hashCode());
-		result = prime * result + (isActive ? 1231 : 1237);
-		result = prime * result + skillTypeId;
-		result = prime * result + ((title == null) ? 0 : title.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		SkillType other = (SkillType) obj;
-		if (buckets == null) {
-			if (other.buckets != null)
-				return false;
-		} else if (!buckets.equals(other.buckets))
-			return false;
-		if (isActive != other.isActive)
-			return false;
-		if (skillTypeId != other.skillTypeId)
-			return false;
-		if (title == null) {
-			if (other.title != null)
-				return false;
-		} else if (!title.equals(other.title))
-			return false;
-		return true;
+		return Objects.hash(getSkillTypeId(), getTitle(), isActive());
 	}
 
 	@Override
 	public String toString() {
-		return "SkillType [skillTypeId=" + skillTypeId + ", title=" + title + ", isActive=" + isActive + ", buckets="
-				+ buckets + "]";
+		return "SkillType{" +
+				"skillTypeId=" + skillTypeId +
+				", title='" + title + '\'' +
+				", isActive=" + isActive +
+				'}';
 	}
-
 }
