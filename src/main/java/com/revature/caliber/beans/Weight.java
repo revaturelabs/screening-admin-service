@@ -28,7 +28,7 @@ public class Weight {
 
     @ApiModelProperty(value = "The actual weight needed for calculation")
     @Column(name = "WEIGHT")
-    private int value;
+    private int weightValue;
 
     @ApiModelProperty(value = "the SkillType Id")
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -44,10 +44,10 @@ public class Weight {
         super();
     }
 
-    public Weight(int weightId, int value, SkillType skillType, Bucket bucket) {
+    public Weight(int weightId, int weightValue, SkillType skillType, Bucket bucket) {
         super();
         this.weightId = weightId;
-        this.value = value;
+        this.weightValue = weightValue;
         this.skillType = skillType;
         this.bucket = bucket;
     }
@@ -63,12 +63,12 @@ public class Weight {
         this.weightId = weightId;
     }
 
-    public int getValue() {
-        return value;
+    public int getWeightValue() {
+        return weightValue;
     }
 
-    public void setValue(int value) {
-        this.value = value;
+    public void setWeightValue(int weightValue) {
+        this.weightValue = weightValue;
     }
 
     public SkillType getSkillType() {
@@ -94,21 +94,21 @@ public class Weight {
         if (o == null || getClass() != o.getClass()) return false;
         Weight weight1 = (Weight) o;
         return getWeightId() == weight1.getWeightId() &&
-                getValue() == weight1.getValue() &&
+                getWeightValue() == weight1.getWeightValue() &&
                 getSkillType() == weight1.getSkillType() &&
                 getBucket() == weight1.getBucket();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getWeightId(), getValue(), getSkillType(), getBucket());
+        return Objects.hash(getWeightId(), getWeightValue(), getSkillType(), getBucket());
     }
 
     @Override
     public String toString() {
         return "Weight{" +
                 "weightId=" + weightId +
-                ", value=" + value +
+                ", weightValue=" + weightValue +
                 ", skillType=" + skillType +
                 ", bucket=" + bucket +
                 '}';
