@@ -63,7 +63,12 @@ public class WeightController {
     @GetMapping("/{weightId}")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Requested weight returned")})
     public ResponseEntity<Weight> getWeightFromId(@PathVariable(value = "weightId") int weightId) {
-        return new ResponseEntity<>(ws.get(weightId), HttpStatus.OK);
+        Weight weight = ws.get(weightId);
+        if (weight == new Weight()) {
+            return new ResponseEntity<>(weight, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(weight, HttpStatus.NOT_FOUND);
+        }
     }
 
 
