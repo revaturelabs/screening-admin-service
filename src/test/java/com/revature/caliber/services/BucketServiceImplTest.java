@@ -1,11 +1,18 @@
 package com.revature.caliber.services;
 
 import static org.junit.Assert.*;
-
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import com.revature.caliber.beans.Bucket;
+
+/**
+ * Bucket Tests using JUnit
+ *
+ * @author Jeremy Straus | 1807-QC | Emily Higgins
+ * @author Rishabh Rana | 1807-QC | Emily Higgins
+ * @author Alpha Barry | 1807-QC | Emily Higgins
+ * @author Omar Guzman | 1807-QC | Emily Higgins
+ */
 
 public class BucketServiceImplTest {
 	
@@ -27,12 +34,17 @@ public class BucketServiceImplTest {
 
 	@Test
 	public void testGetAllBuckets() {
-		fail("Not yet implemented");
+		Bucket bucket = new Bucket();
+		
 	}
 
 	@Test
+	//Omar
 	public void testUpdateBucket() {
-		fail("Not yet implemented");
+		Bucket bucket = new Bucket(99999,"Bucket Update Test",false);
+		bucketService.createBucket(bucket);
+		
+		assertEquals(null,bucketService.updateBucket());
 	}
 
 	@Test
@@ -47,7 +59,9 @@ public class BucketServiceImplTest {
 
 	@Test
 	public void testGetBucketById() {
-		fail("Not yet implemented");
+		Bucket bucket = new Bucket();
+		int id = bucketService.createBucket(bucket).getBucketId();
+		assertEquals(id, bucketService.getBucketById(id));
 	}
 
 }
