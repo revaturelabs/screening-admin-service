@@ -7,11 +7,8 @@ import com.revature.caliber.beans.Bucket;
 
 /**
  * Bucket Tests using JUnit
- *
- * @author Jeremy Straus | 1807-QC | Emily Higgins
  * @author Rishabh Rana | 1807-QC | Emily Higgins
  * @author Alpha Barry | 1807-QC | Emily Higgins
- * @author Omar Guzman | 1807-QC | Emily Higgins
  */
 
 public class BucketServiceImplTest {
@@ -35,16 +32,19 @@ public class BucketServiceImplTest {
 	@Test
 	public void testGetAllBuckets() {
 		Bucket bucket = new Bucket();
-		
+		int maxB = bucketService.getAllBuckets().size();
+		bucketService.createBucket(bucket);
+		assertEquals((maxB +1), bucketService.getAllBuckets().size());
 	}
 
 	@Test
-	//Omar
 	public void testUpdateBucket() {
-		Bucket bucket = new Bucket(99999,"Bucket Update Test",false);
+		Bucket bucket = new Bucket();
 		bucketService.createBucket(bucket);
-		
-		assertEquals(null,bucketService.updateBucket());
+		String des = bucket.getBucketDescription();
+		String newDes = "new Description";
+		bucket.setBucketDescription(newDes);
+		assertEquals(newDes, bucketService.getBucketById(bucket.getBucketId()).getBucketDescription());
 	}
 
 	@Test
