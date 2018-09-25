@@ -1,9 +1,9 @@
 package com.revature.caliber.services;
 
-import java.util.List;
+import com.revature.caliber.beans.Question;
 import io.swagger.annotations.ApiModel;
 
-import com.revature.caliber.beans.Question;
+import java.util.List;
 
 /**
  * Interface that contains associated with the Question POJO
@@ -13,6 +13,7 @@ import com.revature.caliber.beans.Question;
  * @author Isaac Pawling  | 1805-WVU | Richard Orr
  * @author Ethan Conner	  | 1805-WVU -MAY29  | Richard Orr
  * @author Adil Iqbal	  | 1805-WVU -MAY29  | Richard Orr
+ * @author Jeremy Straus | 1807-QC | Emily Higgins
  */
 
 @ApiModel(value="QuestionService", description="Provides an interface for the Service layer")
@@ -22,7 +23,7 @@ public interface QuestionService {
 	/**
 	 * Add a question to the database
 	 * 
-	 * @param transient question
+	 * @param question transient question to be persisted
 	 * @return Question
 	 */
 	public Question create(Question question);
@@ -39,14 +40,14 @@ public interface QuestionService {
 	 * @param bucketId of bucket
 	 * @return List of questions in the specified bucket
 	 */
-	public List<Question> getQuestionsByBucket(Integer bucketId);
+	public List<Question> getQuestionsByBucket(int bucketId);
 	
 	/**
 	 * Delete question by id
 	 * @param questionId Id of question
 	 * No return
 	 */
-	public void deleteByQuestionId(Integer questionId);
+	public void deleteByQuestionId(int questionId);
 	
 	/**
 	 * update question
@@ -61,6 +62,6 @@ public interface QuestionService {
 	 * @param questionId - Id of question
 	 * No return
 	 */
-	public void toggleQuestionStatus(Boolean isActive, Integer questionId);
+	public void toggleQuestionStatus(boolean isActive, int questionId);
 
 }

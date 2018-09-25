@@ -20,13 +20,13 @@ spring:
 server:
   port: 8181
 
-security:
-  basic:
-    enabled: false
-
-management:
-  security:
-    enabled: false
+#security:
+#  basic:
+#    enabled: false
+#
+#management:
+#  security:
+#    enabled: false
 
 info:
   component: Screening Admin Service
