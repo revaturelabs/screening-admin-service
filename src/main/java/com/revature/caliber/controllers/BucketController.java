@@ -1,29 +1,19 @@
 package com.revature.caliber.controllers;
 
-import java.util.List;
-
-import javax.validation.Valid;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.revature.caliber.beans.Bucket;
 import com.revature.caliber.services.BucketService;
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.List;
 	
 /**
  * Controller for the bucket
@@ -72,7 +62,7 @@ public class BucketController {
 	 */
 	@ApiOperation(value = "Updates a Bucket", response = Bucket.class)
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Bucket updated") } )
-	@PutMapping(value = "/{bucketId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@PutMapping(value = "/update", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Bucket> updateBucket(@Valid @RequestBody Bucket bucket) {
 		bucketService.updateBucket(bucket);
 		return new ResponseEntity<>(bucket, HttpStatus.OK);
@@ -88,7 +78,12 @@ public class BucketController {
 	@GetMapping(value="/{bucketId}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Bucket> getBucketByBucketId(@PathVariable Integer bucketId) {
 		Bucket bucket = bucketService.getBucketById(bucketId);
-		return new ResponseEntity<>(bucket, HttpStatus.OK);
+		if (bucket == new Bucket()) {
+			return new ResponseEntity<>(bucket, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(bucket, HttpStatus.NOT_FOUND);
+		}
+
 	}
 	
 	/**
