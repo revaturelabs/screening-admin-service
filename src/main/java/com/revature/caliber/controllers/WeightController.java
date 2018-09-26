@@ -42,13 +42,13 @@ public class WeightController {
     }
 
     /**
-     * Returns weight from skill type and category ids
+     * Returns weight from skill type and bucket ids
      *
      * @param skillTypeId - the associated skill type
-     * @param bucketId    - the associated category
+     * @param bucketId    - the associated bucket
      * @return weight obj
      */
-    @ApiOperation(value = "Gets a weight based on skilltype and category", response = Weight.class)
+    @ApiOperation(value = "Gets a weight based on skilltype and bucket", response = Weight.class)
     @GetMapping("/{skillTypeId}/{bucketId}")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Requested weight returned")})
     public ResponseEntity<Weight> getWeightFromIds(@PathVariable(value = "skillTypeId") int skillTypeId,
@@ -108,5 +108,4 @@ public class WeightController {
         ws.deleteById(weightId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-
 }
