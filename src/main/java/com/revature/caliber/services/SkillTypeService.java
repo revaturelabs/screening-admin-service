@@ -1,9 +1,9 @@
 package com.revature.caliber.services;
 
-import java.util.List;
+import com.revature.caliber.beans.SkillType;
 import io.swagger.annotations.ApiModel;
 
-import com.revature.caliber.beans.SkillType;
+import java.util.List;
 
 /**
  * Defines available methods for the SkillType service interface
@@ -30,7 +30,7 @@ public interface SkillTypeService {
 	 * @param id the primary key of the SkillType
 	 * @return an individual skillType
 	 */
-	public SkillType getSkillType(Integer id);
+	public SkillType getSkillType(int id);
 	
 	/**
 	 * Creates a new skillType
@@ -49,6 +49,6 @@ public interface SkillTypeService {
 	 * Removes skill with specified Id
 	 * @param id primary key of skill to review
 	 */
-	public void deleteSkillType(Integer id);
+	public void deleteSkillType(int id);
 
 }

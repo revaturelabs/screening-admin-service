@@ -1,135 +1,117 @@
 package com.revature.caliber.beans;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+import javax.persistence.*;
+import java.util.Objects;
 
 
 /**
- * 
  * @author Ethan Conner | 1805-WVU-AUG3 | Richard Orr
- * 
- * POJO for the weight object
+ * @author Jeremy Straus | 1807-QC | Emily Higgins
+ * @author Rishabh Rana | 1807-QC | Emily Higgins
+ * @author Alpha Barry | 1807-QC | Emily Higgins
+ * @author Omar Guzman | 1807-QC | Emily Higgins
  *
+ * POJO for the weight object
  */
 @ApiModel(value = "Weight", description = "Weights for Buckets within a SkillType, determining how a Bucket contributes to the final score")
 @Entity
-@Table(name = "weight")
+@Table(name = "WEIGHT")
 public class Weight {
-	
-	@ApiModelProperty(value = "The weightId - primary key for the table")
-	@Id
-	@Column(name= "weight_id")
-	private long weightId;
-	
-	@ApiModelProperty(value = "The actual weight needed for calculation")
-	@Column(name = "weight")
-	private int weight;
-	
-	@ApiModelProperty(value="the SkillType Id")
-	@Column(name="skill_type_id")
-	private int skillTypeId;
-	
-	@ApiModelProperty(value="The Bucket Id")
-	@Column(name = "bucket_id")
-	private int bucketId;
 
-	public Weight() {
-		super();
-	}
+    @ApiModelProperty(value = "The weightId - primary key for the table")
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "WEIGHT_ID")
+    private long weightId;
 
-	public Weight(int weightId, int weight, int skillTypeId, int bucketId) {
-		super();
-		this.weightId = weightId;
-		this.weight = weight;
-		this.skillTypeId = skillTypeId;
-		this.bucketId = bucketId;
-	}
+    @ApiModelProperty(value = "The actual weight needed for calculation")
+    @Column(name = "WEIGHT_VALUE")
+    private int weightValue;
 
-	/**
-	 * Getters and setters
-	 */
-	public long getWeightId() {
-		return weightId;
-	}
+    @ApiModelProperty(value = "the SkillType Id")
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "SKILL_TYPE_ID")
+    private SkillType skillType;
 
-	public void setWeightId(long weightId) {
-		this.weightId = weightId;
-	}
+    @ApiModelProperty(value = "The Bucket Id")
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "BUCKET_ID")
+    private Bucket bucket;
 
-	public int getWeight() {
-		return weight;
-	}
+    public Weight() {
+        super();
+    }
 
-	public void setWeight(int weight) {
-		this.weight = weight;
-	}
+    public Weight(int weightId, int weightValue, SkillType skillType, Bucket bucket) {
+        super();
+        this.weightId = weightId;
+        this.weightValue = weightValue;
+        this.skillType = skillType;
+        this.bucket = bucket;
+    }
 
-	public int getSkillTypeId() {
-		return skillTypeId;
-	}
+    /**
+     * Getters and setters
+     */
+    public long getWeightId() {
+        return weightId;
+    }
 
-	public void setSkillTypeId(int skillTypeId) {
-		this.skillTypeId = skillTypeId;
-	}
+    public void setWeightId(long weightId) {
+        this.weightId = weightId;
+    }
 
-	public int getBucketId() {
-		return bucketId;
-	}
+    public int getWeightValue() {
+        return weightValue;
+    }
 
-	public void setBucketId(int bucketId) {
-		this.bucketId = bucketId;
-	}
+    public void setWeightValue(int weightValue) {
+        this.weightValue = weightValue;
+    }
 
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Weight [weightId=");
-		builder.append(weightId);
-		builder.append(", weight=");
-		builder.append(weight);
-		builder.append(", skillTypeId=");
-		builder.append(skillTypeId);
-		builder.append(", bucketId=");
-		builder.append(bucketId);
-		builder.append("]");
-		return builder.toString();
-	}
+    public SkillType getSkillType() {
+        return skillType;
+    }
+
+    public void setSkillType(SkillType skillType) {
+        this.skillType = skillType;
+    }
+
+    public Bucket getBucket() {
+        return bucket;
+    }
+
+    public void setBucket(Bucket bucket) {
+        this.bucket = bucket;
+    }
 
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + bucketId;
-		result = prime * result + skillTypeId;
-		result = prime * result + weight;
-		result = prime * result + (int) (weightId ^ (weightId >>> 32));
-		return result;
-	}
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Weight weight1 = (Weight) o;
+        return getWeightId() == weight1.getWeightId() &&
+                getWeightValue() == weight1.getWeightValue() &&
+                getSkillType() == weight1.getSkillType() &&
+                getBucket() == weight1.getBucket();
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Weight other = (Weight) obj;
-		if (bucketId != other.bucketId)
-			return false;
-		if (skillTypeId != other.skillTypeId)
-			return false;
-		if (weight != other.weight)
-			return false;
-		if (weightId != other.weightId)
-			return false;
-		return true;
-	}
+    @Override
+    public int hashCode() {
+        return Objects.hash(getWeightId(), getWeightValue(), getSkillType(), getBucket());
+    }
+
+    @Override
+    public String toString() {
+        return "Weight{" +
+                "weightId=" + weightId +
+                ", weightValue=" + weightValue +
+                ", skillType=" + skillType +
+                ", bucket=" + bucket +
+                '}';
+    }
 }
