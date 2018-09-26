@@ -14,6 +14,7 @@ import java.util.List;
  * @author Ethan Conner | 1805-WVU -MAY29 | Richard Orr
  * @author Adil Iqbal | 1805-WVU -MAY29 | Richard Orr
  * @author Isaac Pawling | 1805-WVU | Richard Orr
+ * @author Jeremy Straus | 1807-QC | Emily Higgins
  */
 @Repository
 public interface QuestionDAO extends JpaRepository<Question, Integer> {
