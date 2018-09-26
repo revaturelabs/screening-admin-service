@@ -27,12 +27,12 @@ public class Weight {
     private long weightId;
 
     @ApiModelProperty(value = "The actual weight needed for calculation")
-    @Column(name = "WEIGHT")
+    @Column(name = "WEIGHT_VALUE")
     private int weightValue;
 
     @ApiModelProperty(value = "the SkillType Id")
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "SKILLTYPE_ID")
+    @JoinColumn(name = "SKILL_TYPE_ID")
     private SkillType skillType;
 
     @ApiModelProperty(value = "The Bucket Id")
