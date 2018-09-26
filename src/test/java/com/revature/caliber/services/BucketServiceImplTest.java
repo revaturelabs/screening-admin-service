@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
-
 import com.revature.caliber.beans.Bucket;
 
 /**
@@ -26,8 +25,9 @@ public class BucketServiceImplTest {
 
 	@Test
 	public void testCreateBucketFirst() {
-		System.out.println("inside bucket");
 		Bucket bucket = new Bucket();
+		System.out.println("this is our bucket--> " + bucket.toString());
+		System.out.println("Bucket Method "+ bucketService.getAllBuckets().size());
 		int before = bucketService.getAllBuckets().size();
 		System.out.println("this is before  " + before);
 		bucketService.createBucket(bucket);
@@ -39,12 +39,12 @@ public class BucketServiceImplTest {
 	@Test
 	public void testCreateBucket() {
 		this.entityManager.persist(new Bucket(1000,"Test",true));
-		
 		assertEquals(1000, bucketService.getBucketById(1000).getBucketId());
 	}
 	
 	@Test
 	public void testCreateNullBucket() {
+		System.out.println("Null Bucket Test");
 		assertEquals(null, bucketService.createBucket(null));
 	}
 
