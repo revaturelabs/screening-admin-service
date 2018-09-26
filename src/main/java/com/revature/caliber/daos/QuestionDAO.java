@@ -1,11 +1,10 @@
 package com.revature.caliber.daos;
 
-import java.util.List;
+import com.revature.caliber.beans.Question;
 import org.springframework.data.jpa.repository.JpaRepository;
-
 import org.springframework.stereotype.Repository;
 
-import com.revature.caliber.beans.Question;
+import java.util.List;
 
 /**
  * Repository that contains methods used to fetch and manipulate Questions
@@ -26,7 +25,12 @@ public interface QuestionDAO extends JpaRepository<Question, Integer> {
 	 *            - id of Bucket
 	 * @return list of questions in the specified bucket
 	 */
-	public List<Question> findByBucketId(Integer bucketId);
+	List<Question> findAllByBucketBucketId(int bucketId);
 
-	public void deleteByBucketId(int intValue);
+	/**
+	 * Delete all questions with matching bucket Id
+	 *
+	 * @param bucketId ID of bucket to filter by
+	 */
+	void deleteByBucketBucketId(int bucketId);
 }
