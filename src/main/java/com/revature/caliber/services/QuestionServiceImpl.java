@@ -29,33 +29,42 @@ public class QuestionServiceImpl implements QuestionService {
 	public Question create(Question question) {
 		return questionDao.save(question);	
 	}
-	
+
+	@Override
 	public List<Question> getAllQuestions() {
 		return questionDao.findAll();
 	}
-	
+
+	@Override
 	public List<Question> getQuestionsByBucket(int bucketId) {
-		return questionDao.findByBucketId(bucketId);
+		return questionDao.findAllByBucketBucketId(bucketId);
 	}
+
 	@Transactional
 	@Override
 	public void deleteByQuestionId(int questionId) {
 		questionDao.deleteById(questionId);
 	}
+
 	@Override
 	@Transactional
 	public Question updateQuestion(Question question) {
 		return questionDao.save(question);
 	}
+
 	@Override
 	@Transactional
-	public void toggleQuestionStatus(boolean isActive, int questionId) {
+	public void toggleQuestionStatus(int questionId) {
 		if (questionDao.findById(questionId).isPresent()) {
 			Question q = questionDao.findById(questionId).get();
-			q.setIsActive(isActive);
+			q.setIsActive(!q.getIsActive());
 			questionDao.save(q);
 		}
 
 	}
 
+	@Override
+	public void deleteByBucketId(int bucketId) {
+		questionDao.deleteByBucketBucketId(bucketId);
+	}
 }

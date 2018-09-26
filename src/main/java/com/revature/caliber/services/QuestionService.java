@@ -26,42 +26,47 @@ public interface QuestionService {
 	 * @param question transient question to be persisted
 	 * @return Question
 	 */
-	public Question create(Question question);
+	Question create(Question question);
 	
 	/**
 	 * Gets all questions
 	 * 
 	 * @return Question List 
 	 */
-	public List<Question> getAllQuestions();
+	List<Question> getAllQuestions();
 	
 	/**
 	 * Gets questions based on bucketId
 	 * @param bucketId of bucket
 	 * @return List of questions in the specified bucket
 	 */
-	public List<Question> getQuestionsByBucket(int bucketId);
+	List<Question> getQuestionsByBucket(int bucketId);
 	
 	/**
 	 * Delete question by id
 	 * @param questionId Id of question
 	 * No return
 	 */
-	public void deleteByQuestionId(int questionId);
+	void deleteByQuestionId(int questionId);
 	
 	/**
 	 * update question
 	 * @param question - a Question object
 	 * @return updated Question object
 	 */
-	public Question updateQuestion(Question question);
+	Question updateQuestion(Question question);
 	
 	/**
-	 * change the status of the question
-	 * @param isActive - boolean determining if question is active
+	 * Toggle the status of the question
 	 * @param questionId - Id of question
-	 * No return
+	 * No returns
 	 */
-	public void toggleQuestionStatus(boolean isActive, int questionId);
+	void toggleQuestionStatus(int questionId);
+
+    /**
+     * Delete all questions associated with a specific bucket
+     * @param bucketId Id of bucket to filter by
+     */
+	void deleteByBucketId(int bucketId);
 
 }
