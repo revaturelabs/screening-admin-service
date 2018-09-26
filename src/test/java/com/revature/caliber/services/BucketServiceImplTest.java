@@ -1,11 +1,14 @@
 package com.revature.caliber.services;
 
 import static org.junit.Assert.*;
+
+import com.revature.caliber.Application;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.revature.caliber.beans.Bucket;
@@ -16,11 +19,11 @@ import com.revature.caliber.beans.Bucket;
  * @author Alpha Barry | 1807-QC | Emily Higgins
  */
 @RunWith(SpringRunner.class)
-@DataJpaTest
+@SpringBootTest(classes = Application.class)
 public class BucketServiceImplTest {
-	@Autowired
-	TestEntityManager entityManager;
-	
+//	@Autowired
+//	TestEntityManager entityManager;
+
 	@Autowired
 	BucketServiceImpl bucketService;
 
@@ -28,6 +31,7 @@ public class BucketServiceImplTest {
 	public void testCreateBucketFirst() {
 		System.out.println("inside bucket");
 		Bucket bucket = new Bucket();
+		System.out.println(bucketService.getAllBuckets());
 		int before = bucketService.getAllBuckets().size();
 		System.out.println("this is before  " + before);
 		bucketService.createBucket(bucket);
@@ -35,14 +39,14 @@ public class BucketServiceImplTest {
 		System.out.println(before +"  "+after);
 		assertEquals(before+1, after);
 	}
-	
+
 	@Test
 	public void testCreateBucket() {
-		this.entityManager.persist(new Bucket(1000,"Test",true));
-		
+//		this.entityManager.persist(new Bucket(1000,"Test",true));
+
 		assertEquals(1000, bucketService.getBucketById(1000).getBucketId());
 	}
-	
+
 	@Test
 	public void testCreateNullBucket() {
 		assertEquals(null, bucketService.createBucket(null));
