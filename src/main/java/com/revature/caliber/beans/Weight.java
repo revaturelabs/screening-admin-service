@@ -22,6 +22,7 @@ import java.util.Objects;
 public class Weight {
 
     @ApiModelProperty(value = "The weightId - primary key for the table")
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "WEIGHT_ID")
     private long weightId;
