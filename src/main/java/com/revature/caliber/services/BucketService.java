@@ -1,11 +1,9 @@
 package com.revature.caliber.services;
 
-import java.util.List;
+import com.revature.caliber.beans.Bucket;
 import io.swagger.annotations.ApiModel;
 
-
-
-import com.revature.caliber.beans.Bucket;
+import java.util.List;
 
 
 /**
@@ -39,17 +37,17 @@ public interface BucketService {
 	
 	/**
 	 * Gets a bucket by its Id
-	 * @param bucketId
+	 * @param bucketId Id of bucket to filter by
 	 * @return bucket or null if id is not found
 	 */
-	public Bucket getBucketById(Integer bucketId); 
+	public Bucket getBucketById(int bucketId);
 	
 	/**
 	 * Removes a bucket with the specified Id
 	 * @param bucketId - id of the bucket to be deleted
 	 * No return
 	 */
-	public void deleteBucket(Integer bucketID);
+	public void deleteBucket(int bucketId);
 
 	
 		

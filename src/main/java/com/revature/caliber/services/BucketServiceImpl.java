@@ -1,15 +1,13 @@
 package com.revature.caliber.services;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.transaction.Transactional;
-
+import com.revature.caliber.beans.Bucket;
+import com.revature.caliber.daos.BucketDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.revature.caliber.beans.Bucket;
-import com.revature.caliber.daos.BucketDAO;
+import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -45,13 +43,13 @@ public class BucketServiceImpl implements BucketService {
 	
 	@Override
 	@Transactional
-	public void deleteBucket(Integer bucketId) {
-		bucketDAO.delete(bucketId);
+	public void deleteBucket(int bucketId) {
+		bucketDAO.deleteById(bucketId);
 	}
 	
 	@Override
-	public Bucket getBucketById(Integer bucketId) {
-		return bucketDAO.findOne(bucketId);
+	public Bucket getBucketById(int bucketId) {
+		return bucketDAO.findById(bucketId).orElse(new Bucket());
 	}
 	
 }

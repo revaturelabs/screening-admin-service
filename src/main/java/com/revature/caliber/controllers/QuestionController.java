@@ -74,7 +74,7 @@ public class QuestionController {
 	}
 	
 	/**
-	 * @param bucketId of bucket
+	 * @param question Question object to add to the database
 	 * @return Question List and http status code 201
 	 */
 	@ApiOperation(value = "Adds a new Question", response = Question.class)

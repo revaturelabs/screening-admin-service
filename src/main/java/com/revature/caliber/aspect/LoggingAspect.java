@@ -2,7 +2,8 @@ package com.revature.caliber.aspect;
 
 import java.util.Arrays;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -31,7 +32,7 @@ public class LoggingAspect {
     @Around("everything()")
     public Object log(ProceedingJoinPoint pjp) {
         Object obj = null;
-        log = Logger.getLogger(pjp.getTarget().getClass());
+        log = LogManager.getLogger(pjp.getTarget().getClass());
         log.info("Method with signature: "+pjp.getSignature());
         log.info("With arguments: "+Arrays.toString(pjp.getArgs()));
      
