@@ -11,6 +11,12 @@ import org.springframework.transaction.annotation.Transactional;
 import com.revature.caliber.beans.Bucket;
 import com.revature.caliber.beans.Question;
 
+/**
+ * Bucket Tests using JUnit
+ * @author Omar Guzman | 1807-QC | Emily Higgins
+ * 
+ */
+
 public class QuestionServiceImplTest {
 
 	@Autowired
