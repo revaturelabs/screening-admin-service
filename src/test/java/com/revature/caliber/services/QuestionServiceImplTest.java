@@ -1,22 +1,27 @@
 package com.revature.caliber.services;
 
-import static org.junit.Assert.*;
+import com.revature.caliber.Application;
+import com.revature.caliber.beans.Bucket;
+import com.revature.caliber.beans.Question;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
-import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
-
-import com.revature.caliber.beans.Bucket;
-import com.revature.caliber.beans.Question;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Question Tests using JUnit
+ *
  * @author Omar Guzman | 1807-QC | Emily Higgins
- * 
  */
 
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = Application.class)
 public class QuestionServiceImplTest {
 
 	@Autowired
@@ -32,7 +37,7 @@ public class QuestionServiceImplTest {
 		int before = questionService.getAllQuestions().size();
 		questionService.create(question);
 		int after = questionService.getAllQuestions().size();
-		questionService.deleteByQuestionId(question.getQuestionId());
+
 		assertEquals(before + 1, after);
 	}
 
@@ -44,24 +49,18 @@ public class QuestionServiceImplTest {
 
 	@Test
 	public void testGetQuestionsByBucket() {
-		Question question1 = new Question();
-		Question question2 = new Question();
+		Question question1 = questionService.create(new Question());
+		Question question2 = questionService.create(new Question());
 		Bucket bucket = new Bucket(99999, "Test Bucket", false);
+		bucket = bucketService.createBucket(bucket);
 
-		question1.setQuestionId(99999);
-		question2.setQuestionId(99998);
-		
 		question1.setBucket(bucket);
 		question2.setBucket(bucket);
 
-		bucketService.createBucket(bucket);
-		questionService.create(question1);
-		questionService.create(question2);
-		int qListSize = questionService.getQuestionsByBucket(bucket.getBucketId()).size();
+		questionService.updateQuestion(question1);
+		questionService.updateQuestion(question2);
 
-		bucketService.deleteBucket(bucket.getBucketId());
-		questionService.deleteByQuestionId(question1.getQuestionId());
-		questionService.deleteByQuestionId(question2.getQuestionId());
+		int qListSize = questionService.getQuestionsByBucket(bucket.getBucketId()).size();
 
 		assertEquals(2, qListSize);
 	}
@@ -69,9 +68,8 @@ public class QuestionServiceImplTest {
 	@Test
 	public void testDeleteByQuestionId() {
 		Question question = new Question();
-		question.setQuestionId(99999);
 		int before = questionService.getAllQuestions().size();
-		questionService.create(question);
+		question = questionService.create(question);
 		int after = questionService.getAllQuestions().size();
 		questionService.deleteByQuestionId(question.getQuestionId());
 
@@ -95,7 +93,6 @@ public class QuestionServiceImplTest {
 			if (question.getQuestionId() == qList.get(i).getQuestionId())
 				question = qList.get(i);
 
-		questionService.deleteByQuestionId(question.getQuestionId());
 		boolean activeAfter = question.getIsActive();
 
 		assertEquals(activeBefore, !activeAfter);
@@ -104,11 +101,9 @@ public class QuestionServiceImplTest {
 	@Test
 	public void testToggleQuestionStatus() {
 		Question question = new Question();
-		question.setQuestionId(99999);
-		question.setIsActive(true);
-		questionService.create(question);
+		question.setIsActive(false);
+		question = questionService.create(question);
 		questionService.toggleQuestionStatus(question.getQuestionId());
-		questionService.deleteByQuestionId(question.getQuestionId());
-		assertEquals(true, question.getIsActive());
+		assertTrue(questionService.getByQustionId(question.getQuestionId()).getIsActive());
 	}
 }

@@ -1,34 +1,25 @@
 package com.revature.caliber.services;
 
-import static org.junit.Assert.*;
-
 import com.revature.caliber.Application;
+import com.revature.caliber.beans.Bucket;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringBootConfiguration;
-import org.springframework.boot.autoconfigure.AutoConfigurationPackage;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
-import com.revature.caliber.beans.Bucket;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * Bucket Tests using JUnit
+ *
  * @author Rishabh Rana | 1807-QC | Emily Higgins
  * @author Alpha Barry | 1807-QC | Emily Higgins
  */
 @RunWith(SpringRunner.class)
-@DataJpaTest
-@ContextConfiguration(classes = {Application.class})
-//@SpringBootConfiguration
-//@AutoConfigurationPackage
+@SpringBootTest(classes = Application.class)
+
 public class BucketServiceImplTest {
-	@Autowired
-	TestEntityManager entityManager;
 
 	@Autowired
 	BucketServiceImpl bucketService;
@@ -36,21 +27,17 @@ public class BucketServiceImplTest {
 	@Test
 	public void testCreateBucketFirst() {
 		Bucket bucket = new Bucket();
-		System.out.println("this is our bucket--> " + bucket.toString());
-		System.out.println("Bucket Method "+ bucketService.getAllBuckets().size());
 		int before = bucketService.getAllBuckets().size();
-		System.out.println("this is before  " + before);
 		bucketService.createBucket(bucket);
 		int after = bucketService.getAllBuckets().size();
-		System.out.println(before +"  "+after);
-		assertEquals(before+1, after);
+		assertEquals(before + 1, after);
 	}
 
-	@Test
+	/*@Test
 	public void testCreateBucket() {
-		this.entityManager.persist(new Bucket(1000,"Test",true));
+//		this.entityManager.persist(new Bucket(1000,"Test",true));
 		assertEquals(1000, bucketService.getBucketById(1000).getBucketId());
-	}
+	}*/
 
 	@Test
 	public void testCreateNullBucket() {
@@ -63,16 +50,16 @@ public class BucketServiceImplTest {
 		Bucket bucket = new Bucket();
 		int maxB = bucketService.getAllBuckets().size();
 		bucketService.createBucket(bucket);
-		assertEquals((maxB +1), bucketService.getAllBuckets().size());
+		assertEquals((maxB + 1), bucketService.getAllBuckets().size());
 	}
 
 	@Test
 	public void testUpdateBucket() {
 		Bucket bucket = new Bucket();
-		bucketService.createBucket(bucket);
 		String des = bucket.getBucketDescription();
 		String newDes = "new Description";
 		bucket.setBucketDescription(newDes);
+		bucketService.createBucket(bucket);
 		assertEquals(newDes, bucketService.getBucketById(bucket.getBucketId()).getBucketDescription());
 	}
 
@@ -90,7 +77,7 @@ public class BucketServiceImplTest {
 	public void testGetBucketById() {
 		Bucket bucket = new Bucket();
 		int id = bucketService.createBucket(bucket).getBucketId();
-		assertEquals(id, bucketService.getBucketById(id));
+		assertEquals(id, bucketService.getBucketById(id).getBucketId());
 	}
 
 }

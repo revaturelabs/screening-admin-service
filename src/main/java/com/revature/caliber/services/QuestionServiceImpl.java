@@ -47,6 +47,11 @@ public class QuestionServiceImpl implements QuestionService {
 	}
 
 	@Override
+	public Question getByQustionId(int questionId) {
+		return questionDao.findById(questionId).orElse(null);
+	}
+
+	@Override
 	@Transactional
 	public Question updateQuestion(Question question) {
 		return questionDao.save(question);
