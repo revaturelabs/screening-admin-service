@@ -18,7 +18,7 @@ import com.revature.caliber.beans.Bucket;
  * @author Alpha Barry | 1807-QC | Emily Higgins
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = Application.class)
+@DataJpaTest
 public class BucketServiceImplTest {
 	@Autowired
 	TestEntityManager entityManager;
