@@ -26,14 +26,11 @@ public class BucketServiceImplTest {
 	BucketServiceImpl bucketService;
 
 	@Test
-	public void testCreateBucketFirst() {
-		System.out.println("hello");
-		
+	public void testCreateBucketFirst() {	
 		Bucket bucket = new Bucket();
 		int before = bucketService.getAllBuckets().size();
 		bucketService.createBucket(bucket);
 		int after = bucketService.getAllBuckets().size();
-
 		assertEquals(before + 1, after);
 	}
 
