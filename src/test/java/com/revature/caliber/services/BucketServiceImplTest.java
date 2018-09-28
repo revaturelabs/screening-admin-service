@@ -6,9 +6,13 @@ import com.revature.caliber.Application;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringBootConfiguration;
+import org.springframework.boot.autoconfigure.AutoConfigurationPackage;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
 import com.revature.caliber.beans.Bucket;
 
@@ -19,6 +23,9 @@ import com.revature.caliber.beans.Bucket;
  */
 @RunWith(SpringRunner.class)
 @DataJpaTest
+@ContextConfiguration(classes = {Application.class})
+//@SpringBootConfiguration
+//@AutoConfigurationPackage
 public class BucketServiceImplTest {
 	@Autowired
 	TestEntityManager entityManager;
