@@ -15,4 +15,12 @@ spring:
     password:
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+eureka:
+  client:
+    enabled: false

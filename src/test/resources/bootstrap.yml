@@ -15,4 +15,7 @@ spring:
     password:
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
+eureka:
+  client:
+    enabled: false
