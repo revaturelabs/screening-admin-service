@@ -28,7 +28,6 @@ public class WeightServiceImpl implements WeightService {
     @Transactional
     public void update(Weight weight) {
         wd.save(weight);
-
     }
 
     @Override

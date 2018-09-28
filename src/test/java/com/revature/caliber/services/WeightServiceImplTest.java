@@ -28,11 +28,11 @@ public class WeightServiceImplTest {
 	@Test
 	public void testUpdate() {
 		Weight weight = new Weight();
-		int val = weight.getWeightValue();
+		weightService.create(weight);
 		int newVal = 800;
 		weight.setWeightValue(newVal);
-		weightService.create(weight);
-		assertEquals(val, weightService.get(weight.getWeightId()).getWeightValue());
+		weightService.update(weight);
+		assertEquals(newVal, weightService.get(weight.getWeightId()).getWeightValue());
 	}
 
 	@Test
