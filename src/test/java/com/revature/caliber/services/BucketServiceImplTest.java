@@ -17,29 +17,20 @@ import static org.junit.Assert.assertEquals;
  * @author Alpha Barry | 1807-QC | Emily Higgins
  */
 @RunWith(SpringRunner.class)
-
 @SpringBootTest(classes = Application.class)
-
 public class BucketServiceImplTest {
 
 	@Autowired
 	BucketServiceImpl bucketService;
 
 	@Test
-	public void testCreateBucketFirst() {	
+	public void testCreateBucketFirst() {
 		Bucket bucket = new Bucket();
 		int before = bucketService.getAllBuckets().size();
 		bucketService.createBucket(bucket);
 		int after = bucketService.getAllBuckets().size();
 		assertEquals(before + 1, after);
 	}
-
-	@Test
-	public void testCreateBucket() {
-//		this.entityManager.persist(new Bucket(1000,"Test",true));
-		assertEquals(1000, bucketService.getBucketById(1000).getBucketId());
-	}
-
 
 	@Test
 	public void testCreateNullBucket() {
