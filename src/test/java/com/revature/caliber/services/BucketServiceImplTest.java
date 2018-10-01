@@ -53,7 +53,6 @@ public class BucketServiceImplTest {
 	@Test
 	public void testUpdateBucket() {
 		Bucket bucket = new Bucket();
-		String des = bucket.getBucketDescription();
 		String newDes = "new Description";
 		bucket.setBucketDescription(newDes);
 		bucketService.createBucket(bucket);
