@@ -15,6 +15,8 @@ import java.util.List;
  *  
  *  @author adil iqbal 		| 1805-WVU-MAY29 | Richard Orr
  *  @author Theo Thompson 	| 1805-WVU-MAY29 | Richard Orr
+ *  @author Rishabh Rana 	| 1807-QC | Emily Higgins
+ *  @author Alpha Barry 	| 1807-QC | Emily Higgins
  */
 @Service
 public class BucketServiceImpl implements BucketService {
@@ -25,7 +27,12 @@ public class BucketServiceImpl implements BucketService {
 	@Transactional
 	@Override
 	public Bucket createBucket(Bucket bucket) {
-		return bucketDAO.save(bucket);
+		if(bucket != null) {
+			return bucketDAO.save(bucket);
+		} 
+		else {
+			return null;
+		}
 	}
 
 	@Override
@@ -38,7 +45,9 @@ public class BucketServiceImpl implements BucketService {
 	@Override
 	@Transactional
 	public void updateBucket(Bucket bucket) {
-		bucketDAO.save(bucket);
+		if(bucket.getBucketDescription()!="") {
+			bucketDAO.save(bucket);
+		}
 	}
 	
 	@Override
