@@ -76,29 +76,17 @@ public class BucketControllerTest{
 			.statusCode(204);
 	}
 	
-	@Test
-	public void testCreateNullBucket() {
-		Bucket b = null;
-		
-		given()
-			.contentType("application/json")
-			.body(b)
-		.when()
-			.post(host + "/bucket")
-		.then()
-			.statusCode(403);
-	}
 	
 	@Test
 	public void testCreateEmptyBucket() {
 		Bucket b = new Bucket();
-		
 		given()
-			.contentType("application/json")
 			.body(b)
 		.when()
 			.post(host + "/bucket")
 		.then()
-			.statusCode(403);
+			.statusCode(415);
 	}
+	
+
 }

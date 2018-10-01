@@ -50,7 +50,13 @@ public class BucketController {
 	@ApiResponses(value = { @ApiResponse(code = 201, message = "Created bucket returned") } )
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Bucket> createBucket(@Valid @RequestBody Bucket bucket) {
-		return new ResponseEntity<>(this.bucketService.createBucket(bucket), HttpStatus.CREATED);
+		if( bucket.getBucketDescription()!= null) {
+			System.out.println("bucketDescriptionHere-----"+bucket.getBucketDescription());
+			return new ResponseEntity<>(this.bucketService.createBucket(bucket), HttpStatus.CREATED);
+		}else {
+			return new ResponseEntity<>(HttpStatus.UNSUPPORTED_MEDIA_TYPE);
+		}
+		
 
 	}	
 
