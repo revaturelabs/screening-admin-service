@@ -14,8 +14,9 @@ import static org.hamcrest.Matchers.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
-public class BucketControllerTest {
+public class BucketControllerTest{
 
+	private String host = "http://ec2-52-55-27-249.compute-1.amazonaws.com:8181";
 	/*
 	@Test
 	public void test_NumberOfCircuitsFor2017Season_ShouldBe20() {
@@ -30,7 +31,11 @@ public class BucketControllerTest {
 	*/
 	@Test
 	public void testGetAllBuckets() {
-		
+		given()
+		.when()
+			.get(host + "/bucket")
+		.then()
+			.statusCode(200);
 	}
 /*
 	@Test
