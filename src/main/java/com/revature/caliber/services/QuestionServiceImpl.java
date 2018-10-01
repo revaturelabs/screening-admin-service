@@ -47,7 +47,7 @@ public class QuestionServiceImpl implements QuestionService {
 	}
 
 	@Override
-	public Question getByQustionId(int questionId) {
+	public Question getByQuestionId(int questionId) {
 		return questionDao.findById(questionId).orElse(null);
 	}
 
