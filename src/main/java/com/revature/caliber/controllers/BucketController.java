@@ -75,14 +75,17 @@ public class BucketController {
 	 * @return Requested bucket and http status code
 	 */
 	@ApiOperation(value = "Gets a Bucket by bucket id", response = Bucket.class)
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "Requested bucket returned") } )
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "Requested bucket returned"),
+			@ApiResponse(code = 404, message = "Bucket not found")
+	} )
 	@GetMapping(value="/{bucketId}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Bucket> getBucketByBucketId(@PathVariable Integer bucketId) {
 		Bucket bucket = bucketService.getBucketById(bucketId);
-		if (bucket == new Bucket()) {
-			return new ResponseEntity<>(bucket, HttpStatus.OK);
+		if (bucket.equals(new Bucket())) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		} else {
-			return new ResponseEntity<>(bucket, HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(bucket, HttpStatus.OK);
 		}
 
 	}
