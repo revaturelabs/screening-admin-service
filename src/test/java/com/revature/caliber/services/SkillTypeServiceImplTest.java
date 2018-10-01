@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 
 /**
  * SkillTypeService Tests using JUnit
@@ -50,9 +51,10 @@ public class SkillTypeServiceImplTest {
 	@Test
 	public void testUpdateSkillType() {
 		SkillType skillType = new SkillType();
+		skillType = skillTypeService.createSkillType(skillType);
 		String newTitle = "New Title";
 		skillType.setTitle(newTitle);
-		skillTypeService.createSkillType(skillType);
+		skillTypeService.updateSkillType(skillType);
 		assertEquals(newTitle, skillTypeService.getSkillTypeById(skillType.getSkillTypeId()).getTitle());
 	}
 
