@@ -104,6 +104,6 @@ public class QuestionServiceImplTest {
 		question.setIsActive(false);
 		question = questionService.create(question);
 		questionService.toggleQuestionStatus(question.getQuestionId());
-		assertTrue(questionService.getByQustionId(question.getQuestionId()).getIsActive());
+		assertTrue(questionService.getByQuestionId(question.getQuestionId()).getIsActive());
 	}
 }
