@@ -34,8 +34,12 @@ public class BucketServiceImplTest {
 
 	@Test
 	public void testCreateNullBucket() {
-		System.out.println("Null Bucket Test");
-		assertEquals(null, bucketService.createBucket(null));
+		Bucket bucket = null;
+		int before = bucketService.getAllBuckets().size();
+		bucketService.createBucket(bucket);
+		int after = bucketService.getAllBuckets().size();
+		assertEquals(before, after);
+		
 	}
 
 	@Test
