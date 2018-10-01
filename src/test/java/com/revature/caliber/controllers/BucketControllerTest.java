@@ -17,39 +17,36 @@ import static org.hamcrest.Matchers.*;
 public class BucketControllerTest{
 
 	private String host = "http://ec2-52-55-27-249.compute-1.amazonaws.com:8181";
-	/*
+	
 	@Test
-	public void test_NumberOfCircuitsFor2017Season_ShouldBe20() {
-	        
-	    given().
-	    when().
-	        get("http://ergast.com/api/f1/2017/circuits.json").
-	    then().
-	        assertThat().
-	        body("MRData.CircuitTable.Circuits.circuitId",hasSize(20));
-	}
-	*/
-	@Test
-	public void testGetAllBuckets() {
+	public void testGetConnectionToBucketEndpoint() {
 		given()
 		.when()
 			.get(host + "/bucket")
 		.then()
+			.log()
+			.ifValidationFails()
 			.statusCode(200);
+			
 	}
-/*
+
+	@Test
+	public void testGetBucketByBucketId() {
+		given()
+		.when()
+			.get(host + "/bucket/{bucketId}", 404)
+		.then()
+			.body("bucketId", equalTo(404));
+	}
+	
 	@Test
 	public void testCreateBucket() {
 		fail("Not yet implemented");
 	}
 
+	/*
 	@Test
 	public void testUpdateBucket() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetBucketByBucketId() {
 		fail("Not yet implemented");
 	}
 
