@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.revature.caliber.Application;
+import com.revature.caliber.beans.Bucket;
 
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
@@ -36,20 +37,29 @@ public class BucketControllerTest{
 		.when()
 			.get(host + "/bucket/{bucketId}", 404)
 		.then()
-			.body("bucketId", equalTo(404));
+			.body("bucketId", equalTo(404))
+			.statusCode(200);
 	}
 	
 	@Test
 	public void testCreateBucket() {
-		fail("Not yet implemented");
+		Bucket b = new Bucket(417, "Rest Assured Test Bucket", true);
+		
+		given()
+			.contentType("application/json")
+			.body(b)
+		.when()
+			.post(host + "/bucket")
+		.then()
+			.statusCode(201);
 	}
 
-	/*
 	@Test
 	public void testUpdateBucket() {
 		fail("Not yet implemented");
 	}
 
+	/*
 	@Test
 	public void testDeleteBucket() {
 		fail("Not yet implemented");
