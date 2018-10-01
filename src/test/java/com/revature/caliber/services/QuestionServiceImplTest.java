@@ -87,11 +87,6 @@ public class QuestionServiceImplTest {
 
 		question.setIsActive(false);
 		questionService.updateQuestion(question);
-		List<Question> qList = questionService.getAllQuestions();
-
-		for (int i = 0; i < qList.size(); i++)
-			if (question.getQuestionId() == qList.get(i).getQuestionId())
-				question = qList.get(i);
 
 		boolean activeAfter = question.getIsActive();
 
