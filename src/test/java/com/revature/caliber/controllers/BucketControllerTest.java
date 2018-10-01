@@ -70,11 +70,35 @@ public class BucketControllerTest{
 	@Test
 	public void testDeleteBucket() {
 		given()
-			.pathParam("bucketId", 404)
 		.when()
-			.delete(host + "/bucket/{bucketId}")
+			.delete(host + "/bucket/{bucketId}" , 404)
 		.then()
 			.statusCode(204);
 	}
-
+	
+	@Test
+	public void testCreateNullBucket() {
+		Bucket b = null;
+		
+		given()
+			.contentType("application/json")
+			.body(b)
+		.when()
+			.post(host + "/bucket")
+		.then()
+			.statusCode(403);
+	}
+	
+	@Test
+	public void testCreateEmptyBucket() {
+		Bucket b = new Bucket();
+		
+		given()
+			.contentType("application/json")
+			.body(b)
+		.when()
+			.post(host + "/bucket")
+		.then()
+			.statusCode(403);
+	}
 }
