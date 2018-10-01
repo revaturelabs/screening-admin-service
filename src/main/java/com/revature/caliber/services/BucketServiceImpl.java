@@ -27,7 +27,7 @@ public class BucketServiceImpl implements BucketService {
 	@Transactional
 	@Override
 	public Bucket createBucket(Bucket bucket) {
-		if(bucket != null) {
+		if(bucket != null && bucket != new Bucket()) {
 			return bucketDAO.save(bucket);
 		} 
 		else {
