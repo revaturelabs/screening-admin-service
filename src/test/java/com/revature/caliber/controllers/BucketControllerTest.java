@@ -56,13 +56,25 @@ public class BucketControllerTest{
 
 	@Test
 	public void testUpdateBucket() {
-		fail("Not yet implemented");
+		Bucket b = new Bucket(1, "Updated Rest Assured Test", true);
+		
+		given()
+			.contentType("application/json")
+			.body(b)
+		.when()
+			.put(host + "/bucket/update")
+		.then()
+			.statusCode(200);
 	}
 
-	/*
 	@Test
 	public void testDeleteBucket() {
-		fail("Not yet implemented");
-	}*/
+		given()
+			.pathParam("bucketId", 404)
+		.when()
+			.delete(host + "/bucket/{bucketId}")
+		.then()
+			.statusCode(204);
+	}
 
 }
