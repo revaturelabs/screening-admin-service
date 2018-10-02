@@ -8,9 +8,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import java.util.List;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -78,24 +75,12 @@ public class QuestionServiceImplTest {
 
 	@Test
 	public void testUpdateQuestion() {
-		Question question = new Question();
-
-		question.setQuestionId(99999);
-		question.setIsActive(true);
-		boolean activeBefore = question.getIsActive();
-		questionService.create(question);
-
-		question.setIsActive(false);
-		questionService.updateQuestion(question);
-		List<Question> qList = questionService.getAllQuestions();
-
-		for (int i = 0; i < qList.size(); i++)
-			if (question.getQuestionId() == qList.get(i).getQuestionId())
-				question = qList.get(i);
-
-		boolean activeAfter = question.getIsActive();
-
-		assertEquals(activeBefore, !activeAfter);
+		Question question = new Question(50, new Bucket(), false, "Question Test Before", "Test", "Test", "Test", "Test", "Test");
+		question = questionService.create(question);
+		String updateText = "Question Test After";
+		question.setQuestionText(updateText);
+		question = questionService.updateQuestion(question);
+		assertEquals(updateText,question.getQuestionText());
 	}
 
 	@Test
