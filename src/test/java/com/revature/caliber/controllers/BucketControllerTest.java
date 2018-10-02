@@ -43,6 +43,16 @@ public class BucketControllerTest {
 	}
 
 	@Test
+	public void testGetBucketByBucketIdBadId() {
+		given()
+				.port(port)
+				.when()
+				.get("/bucket/{bucketId}", -1)
+				.then()
+				.statusCode(404);
+	}
+
+	@Test
 	public void testCreateBucket() {
 		Bucket b = new Bucket(417, "Rest Assured Test Bucket", true);
 
@@ -54,6 +64,20 @@ public class BucketControllerTest {
 				.post("/bucket")
 				.then()
 				.statusCode(201);
+	}
+
+	@Test
+	public void testCreateBucketBadData() {
+		Bucket b = new Bucket(4321890, "", false);
+
+		given()
+				.port(port)
+				.contentType("application/json")
+				.body(b)
+				.when()
+				.post("/bucket")
+				.then()
+				.statusCode(415);
 	}
 
 	@Test
