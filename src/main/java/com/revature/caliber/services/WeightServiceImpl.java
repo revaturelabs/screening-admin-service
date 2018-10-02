@@ -57,4 +57,10 @@ public class WeightServiceImpl implements WeightService {
     public Weight get(int skillTypeId, int bucketId) {
         return wd.getBySkillTypeSkillTypeIdAndBucketBucketId(skillTypeId, bucketId);
     }
+
+	@Override
+	public void deleteAllBySkillTypeSkillTypeId(int skillTypeId) {
+		wd.deleteAllBySkillTypeSkillTypeId(skillTypeId);
+		
+	}
 }
