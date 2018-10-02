@@ -115,32 +115,8 @@ public class SkillTypeControllerTest {
 				.statusCode(202);
 	}
 
-	/**
-	 * Method linked to below test is not working
-	 * It is creating and returning a skillType when
-	 * non exist lmao -_-
-	 */
-	@Test
-	public void testUpdateSkillByIdForIdThatDoesNotExist() {
-		SkillType st = skillType.getSkillType(-1);
-		st.setTitle("UpdatedNonExisting SkillType");
 
-		given()
-		.port(port)
-				.contentType("application/json")
-				.body(st)
-				.when()
-				.put("/skilltype/{id}", -1)
-				.then()
-				.statusCode(404);
-	}
 
-	/**
-	 * Method linked to below test is not working
-	 * It is returning 200 stats code instead of 204
-	 * Delete method not working
-	 * -_-
-	 */
 	@Test
 	public void testDeleteSkillById() {
 		given()

@@ -128,7 +128,6 @@ public class SkillTypeController {
 			@ApiResponse(code = 404, message = "SkillType not found") } )
 	public ResponseEntity<Void> deleteSkillById(@PathVariable(value="id") Integer id) {
 		SkillType sType = skillService.getSkillType(id);
-		System.out.println(sType);
 		if (sType != null) {
 			skillService.deleteSkillType(id);
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);

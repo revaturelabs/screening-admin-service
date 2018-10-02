@@ -64,4 +64,6 @@ public interface WeightService {
      * @return weight object with matching skillTypeId and bucketId
      */
     Weight get(int skillTypeId, int bucketId);
+    
+    void deleteAllBySkillTypeSkillTypeId(int skillTypeId);
 }

@@ -14,7 +14,7 @@ import java.util.List;
 @Repository
 public interface WeightDAO extends JpaRepository<Weight, Long> {
 
-    void deleteBySkillTypeSkillTypeId(int skillTypeId);
+    void deleteAllBySkillTypeSkillTypeId(int skillTypeId);
 
     List<Weight> getAllBySkillTypeSkillTypeId(int skillTypeId);
 
