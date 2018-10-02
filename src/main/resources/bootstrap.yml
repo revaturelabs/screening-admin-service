@@ -16,6 +16,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+<<<<<<< HEAD
 
   h2:
     console:
@@ -24,3 +25,5 @@ spring:
 eureka:
   client:
     enabled: false
+=======
+>>>>>>> 323547813bd2c7be8c446b1f4c6725e2ee9e12dd
