@@ -91,4 +91,12 @@ public class QuestionServiceImplTest {
 		questionService.toggleQuestionStatus(question.getQuestionId());
 		assertTrue(questionService.getByQuestionId(question.getQuestionId()).getIsActive());
 	}
+	
+	@Test
+	public void testDeleteByBucketId() {
+		int total = questionService.getAllQuestions().size();
+		questionService.deleteByBucketId(406);
+		int after = questionService.getAllQuestions().size();
+		assertEquals((total-3), after);
+	}
 }
