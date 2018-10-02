@@ -24,8 +24,6 @@ import static org.hamcrest.Matchers.equalTo;
 @SpringBootTest(classes = {Application.class}, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class SkillTypeControllerTest {
 
-
-
 	@Autowired
 	SkillTypeServiceImpl skillType;
 	@LocalServerPort
@@ -35,41 +33,41 @@ public class SkillTypeControllerTest {
 	@Test
 	public void testGetSkills() {
 		given()
-				.port(port)
-				.when()
-				.get("/skilltype")
-				.then()
-				.statusCode(200);
+			.port(port)
+		.when()
+			.get("/skilltype")
+		.then()
+			.statusCode(200);
 	}
 
 	@Test
 	public void testGetActiveSkills() {
 		given()
-				.when()
-				.get(host + "/skilltype/active")
-				.then()
-				.statusCode(200);
+		.port(port)
+		.when()
+			.get("/skilltype/active")
+		.then()
+			.statusCode(200);
 	}
 
 	@Test
 	public void testGetSkillById() {
 		given()
+				.port(port)
 				.when()
-				.get(host + "/skilltype/{id}", 51)
+				.get( "/skilltype/{id}", 51)
 				.then()
 				.body("skillTypeId", equalTo(51))
 				.statusCode(200);
 	}
 
-	/**
-	 * This methob below is not working
-	 * It is returning a 200 regardless of the ID
-	 */
+	
 	@Test
 	public void testGetSkillByIdForIdThatDoesNotExist() {
 		given()
+		.port(port)
 				.when()
-				.get(host + "/skilltype/{id}", -1)
+				.get( "/skilltype/{id}", -1)
 				.then()
 				.statusCode(404);
 	}
@@ -79,10 +77,11 @@ public class SkillTypeControllerTest {
 		SkillType st = new SkillType("Charisma", true);
 
 		given()
+		.port(port)
 				.contentType("application/json")
 				.body(st)
 				.when()
-				.post(host + "/skilltype")
+				.post( "/skilltype")
 				.then()
 				.statusCode(201);
 	}
@@ -92,10 +91,11 @@ public class SkillTypeControllerTest {
 		SkillType st = new SkillType("", true);
 
 		given()
+		.port(port)
 				.contentType("application/json")
 				.body(st)
 				.when()
-				.post(host + "/skilltype")
+				.post( "/skilltype")
 				.then()
 				.statusCode(406);
 	}
@@ -106,10 +106,11 @@ public class SkillTypeControllerTest {
 		st.setTitle("Updated SkillType");
 
 		given()
+		.port(port)
 				.contentType("application/json")
 				.body(st)
 				.when()
-				.put(host + "/skilltype/{id}", 51)
+				.put("/skilltype/{id}", 51)
 				.then()
 				.statusCode(202);
 	}
@@ -125,10 +126,11 @@ public class SkillTypeControllerTest {
 		st.setTitle("UpdatedNonExisting SkillType");
 
 		given()
+		.port(port)
 				.contentType("application/json")
 				.body(st)
 				.when()
-				.put(host + "/skilltype/{id}", -1)
+				.put("/skilltype/{id}", -1)
 				.then()
 				.statusCode(404);
 	}
@@ -142,8 +144,9 @@ public class SkillTypeControllerTest {
 	@Test
 	public void testDeleteSkillById() {
 		given()
+		.port(port)
 				.when()
-				.delete(host + "/skilltype/{id}", 56)
+				.delete("/skilltype/{id}", 56)
 				.then()
 				.statusCode(204);
 	}
@@ -151,8 +154,9 @@ public class SkillTypeControllerTest {
 	@Test
 	public void testDeleteSkillByIdForIdThatDoesNotExist() {
 		given()
+		.port(port)
 				.when()
-				.delete(host + "/skilltype/{id}", -1)
+				.delete("/skilltype/{id}", -1)
 				.then()
 				.statusCode(404);
 	}
