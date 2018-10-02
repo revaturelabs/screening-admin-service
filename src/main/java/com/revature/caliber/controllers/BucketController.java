@@ -17,7 +17,6 @@ import java.util.List;
 	
 /**
  * Controller for the bucket
- * 
  * @author Adil Iqbal 	| 1805-WVU-MAY29 | Richard Orr
  * @author Theo Thompson| 1805-WVU-MAY29 | Richard Orr
  * @author Josh Dughi 	| 1803-USF-MAR26 | Wezley Singleton

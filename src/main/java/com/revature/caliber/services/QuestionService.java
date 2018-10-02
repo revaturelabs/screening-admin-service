@@ -48,6 +48,13 @@ public interface QuestionService {
 	 * No return
 	 */
 	void deleteByQuestionId(int questionId);
+
+	/**
+	 * Get question by questionId
+	 * @param questionId Id of the question to filter by
+	 * @return Question object with matching questionId
+	 */
+	Question getByQuestionId(int questionId);
 	
 	/**
 	 * update question
