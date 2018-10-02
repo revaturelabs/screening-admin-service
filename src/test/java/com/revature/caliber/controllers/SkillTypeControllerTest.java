@@ -13,6 +13,13 @@ import com.revature.caliber.beans.SkillType;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
+/**
+ * Tests for the SkillType Controller
+ * 
+ * @author Rishabh Rana | 1807-QC | Emily Higgins
+ */
+
+
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
 public class SkillTypeControllerTest {
