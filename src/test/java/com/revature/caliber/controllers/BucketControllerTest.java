@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.revature.caliber.Application;
@@ -14,16 +15,19 @@ import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = Application.class)
+@SpringBootTest(classes = {Application.class}, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class BucketControllerTest{
 
-	private String host = "http://ec2-52-55-27-249.compute-1.amazonaws.com:8181";
+	@LocalServerPort
+	private int port;
+	private String host = "http://localhost:" + port;
 	
 	@Test
 	public void testGetConnectionToBucketEndpoint() {
 		given()
+		.port(port)
 		.when()
-			.get(host + "/bucket")
+			.get("/bucket")
 		.then()
 			.log()
 			.ifValidationFails()
