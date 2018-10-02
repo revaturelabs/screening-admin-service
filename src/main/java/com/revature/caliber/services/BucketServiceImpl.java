@@ -45,7 +45,7 @@ public class BucketServiceImpl implements BucketService {
 	@Override
 	@Transactional
 	public void updateBucket(Bucket bucket) {
-		if(bucket.getBucketDescription()!="") {
+		if(!bucket.getBucketDescription().isEmpty()) {
 			bucketDAO.save(bucket);
 		}
 	}
