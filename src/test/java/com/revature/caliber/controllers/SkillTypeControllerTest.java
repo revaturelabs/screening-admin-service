@@ -33,21 +33,21 @@ public class SkillTypeControllerTest {
 	@Test
 	public void testGetSkills() {
 		given()
-			.port(port)
-		.when()
-			.get("/skilltype")
-		.then()
-			.statusCode(200);
+				.port(port)
+				.when()
+				.get("/skilltype")
+				.then()
+				.statusCode(200);
 	}
 
 	@Test
 	public void testGetActiveSkills() {
 		given()
-		.port(port)
-		.when()
-			.get("/skilltype/active")
-		.then()
-			.statusCode(200);
+				.port(port)
+				.when()
+				.get("/skilltype/active")
+				.then()
+				.statusCode(200);
 	}
 
 	@Test
@@ -55,19 +55,19 @@ public class SkillTypeControllerTest {
 		given()
 				.port(port)
 				.when()
-				.get( "/skilltype/{id}", 51)
+				.get("/skilltype/{id}", 51)
 				.then()
 				.body("skillTypeId", equalTo(51))
 				.statusCode(200);
 	}
 
-	
+
 	@Test
 	public void testGetSkillByIdForIdThatDoesNotExist() {
 		given()
-		.port(port)
+				.port(port)
 				.when()
-				.get( "/skilltype/{id}", -1)
+				.get("/skilltype/{id}", -1)
 				.then()
 				.statusCode(404);
 	}
@@ -77,11 +77,11 @@ public class SkillTypeControllerTest {
 		SkillType st = new SkillType("Charisma", true);
 
 		given()
-		.port(port)
+				.port(port)
 				.contentType("application/json")
 				.body(st)
 				.when()
-				.post( "/skilltype")
+				.post("/skilltype")
 				.then()
 				.statusCode(201);
 	}
@@ -91,11 +91,11 @@ public class SkillTypeControllerTest {
 		SkillType st = new SkillType("", true);
 
 		given()
-		.port(port)
+				.port(port)
 				.contentType("application/json")
 				.body(st)
 				.when()
-				.post( "/skilltype")
+				.post("/skilltype")
 				.then()
 				.statusCode(406);
 	}
@@ -106,7 +106,7 @@ public class SkillTypeControllerTest {
 		st.setTitle("Updated SkillType");
 
 		given()
-		.port(port)
+				.port(port)
 				.contentType("application/json")
 				.body(st)
 				.when()
@@ -116,11 +116,10 @@ public class SkillTypeControllerTest {
 	}
 
 
-
 	@Test
 	public void testDeleteSkillById() {
 		given()
-		.port(port)
+				.port(port)
 				.when()
 				.delete("/skilltype/{id}", 56)
 				.then()
@@ -130,7 +129,7 @@ public class SkillTypeControllerTest {
 	@Test
 	public void testDeleteSkillByIdForIdThatDoesNotExist() {
 		given()
-		.port(port)
+				.port(port)
 				.when()
 				.delete("/skilltype/{id}", -1)
 				.then()
