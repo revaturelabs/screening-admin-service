@@ -25,7 +25,7 @@ import static org.hamcrest.Matchers.*;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
 public class SkillTypeControllerTest {
-	//private String host ="http://ec2-52-55-27-249.compute-1.amazonaws.com:8181"; 
+	
 	private String host = "http://localhost:8181";
 	@Autowired
 	SkillTypeServiceImpl skillType;
