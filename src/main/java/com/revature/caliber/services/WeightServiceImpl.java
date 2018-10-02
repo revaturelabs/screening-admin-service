@@ -33,7 +33,11 @@ public class WeightServiceImpl implements WeightService {
     @Override
     @Transactional
     public Weight create(Weight weight) {
-        return wd.save(weight);
+        if(weight != null) {
+        	return wd.save(weight);
+        }else {
+        	return null;
+        }
     }
 
     @Override
