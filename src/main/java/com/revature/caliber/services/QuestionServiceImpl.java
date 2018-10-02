@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,6 +24,9 @@ public class QuestionServiceImpl implements QuestionService {
 	
 	@Autowired
 	private QuestionDAO questionDao;
+	
+	@Autowired
+	QuestionServiceImpl qService;
 	
 	@Transactional
 	@Override
@@ -47,7 +51,7 @@ public class QuestionServiceImpl implements QuestionService {
 	}
 
 	@Override
-	public Question getByQustionId(int questionId) {
+	public Question getByQuestionId(int questionId) {
 		return questionDao.findById(questionId).orElse(null);
 	}
 
@@ -69,7 +73,15 @@ public class QuestionServiceImpl implements QuestionService {
 	}
 
 	@Override
+	@Transactional
 	public void deleteByBucketId(int bucketId) {
-		questionDao.deleteByBucketBucketId(bucketId);
+		List<Question> q = new ArrayList<Question>();
+		q.addAll(qService.getQuestionsByBucket(bucketId));
+		
+		for (Question question : q) {
+			System.out.println(question.getQuestionId());
+			qService.deleteByQuestionId(question.getQuestionId());
+		}
+		
 	}
 }

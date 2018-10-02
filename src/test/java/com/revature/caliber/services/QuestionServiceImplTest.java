@@ -8,6 +8,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -75,7 +76,7 @@ public class QuestionServiceImplTest {
 
 	@Test
 	public void testUpdateQuestion() {
-		Question question = new Question(50, new Bucket(), false, "Question Test Before", "Test", "Test", "Test", "Test", "Test");
+		Question question = new Question(50, null, false, "Question Test Before", "Test", "Test", "Test", "Test", "Test");
 		question = questionService.create(question);
 		String updateText = "Question Test After";
 		question.setQuestionText(updateText);
@@ -89,6 +90,14 @@ public class QuestionServiceImplTest {
 		question.setIsActive(false);
 		question = questionService.create(question);
 		questionService.toggleQuestionStatus(question.getQuestionId());
-		assertTrue(questionService.getByQustionId(question.getQuestionId()).getIsActive());
+		assertTrue(questionService.getByQuestionId(question.getQuestionId()).getIsActive());
+	}
+	
+	@Test
+	public void testDeleteByBucketId() {
+		int total = questionService.getAllQuestions().size();
+		questionService.deleteByBucketId(406);
+		int after = questionService.getAllQuestions().size();
+		assertEquals((total-3), after);
 	}
 }
