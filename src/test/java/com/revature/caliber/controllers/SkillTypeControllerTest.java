@@ -53,6 +53,15 @@ public class SkillTypeControllerTest {
 			.body("skillTypeId", equalTo(51))
 			.statusCode(200);
 	}
+	
+	@Test
+	public void testGetSkillByIdForIdThatDoesNotExist() {
+		given()
+		.when()
+			.get(host + "/skilltype/{id}", -1)
+		.then()
+			.statusCode(404);
+	}
 
 	@Test
 	public void testCreateSkill() {
