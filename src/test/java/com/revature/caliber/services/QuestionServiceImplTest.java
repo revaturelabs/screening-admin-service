@@ -8,6 +8,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -75,7 +76,7 @@ public class QuestionServiceImplTest {
 
 	@Test
 	public void testUpdateQuestion() {
-		Question question = new Question(50, new Bucket(), false, "Question Test Before", "Test", "Test", "Test", "Test", "Test");
+		Question question = new Question(50, null, false, "Question Test Before", "Test", "Test", "Test", "Test", "Test");
 		question = questionService.create(question);
 		String updateText = "Question Test After";
 		question.setQuestionText(updateText);
