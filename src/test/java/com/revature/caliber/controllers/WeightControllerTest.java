@@ -9,6 +9,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.revature.caliber.Application;
+import com.revature.caliber.beans.Bucket;
+import com.revature.caliber.beans.SkillType;
 import com.revature.caliber.beans.Weight;
 import com.revature.caliber.services.WeightServiceImpl;
 
@@ -33,6 +35,10 @@ public class WeightControllerTest {
 			.statusCode(200);
 	}
 
+	/**Method below is not working
+	status code is 404 regardless of
+	the outcome of the process*/
+	
 	@Test
 	public void testGetWeightFromId() {
 		given()
@@ -40,6 +46,14 @@ public class WeightControllerTest {
 			.get(host + "/weight/{weightId}", 51404)
 		.then()
 			.statusCode(200);
+	}
+	@Test
+	public void testGetNotExistingWeightFromId() {
+		given()
+		.when()
+		.get(host + "/weight/{weightId}", -1)
+		.then()
+		.statusCode(404);
 	}
 
 
@@ -60,12 +74,29 @@ public class WeightControllerTest {
 
 	@Test
 	public void testCreate() {
-		fail("Not yet implemented");
+		Weight w = new Weight(800, 600, new SkillType(), new Bucket());
+		given().
+			contentType("application/json")
+			.body(w)
+		.when()
+			.post(host+"/weight/new")
+		.then()
+			.statusCode(201);
+		
+		
 	}
 
+	/**This method below is not working
+	When trying to access uri weight/delete/(id), 
+	we get redirected to a white label page and 
+	test is returning 200 code -_- */
 	@Test
 	public void testDelete() {
-		fail("Not yet implemented");
+		given()
+		.when()
+			.delete(host + "/weight/delete/{weightId}", 51404)
+		.then()
+			.statusCode(204);
 	}
 
 }

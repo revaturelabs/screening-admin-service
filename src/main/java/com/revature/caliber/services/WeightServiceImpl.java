@@ -51,6 +51,7 @@ public class WeightServiceImpl implements WeightService {
     @Override
     public Weight get(long weightId) {
         return wd.findById(weightId).orElse(new Weight());
+       
     }
 
     @Override
