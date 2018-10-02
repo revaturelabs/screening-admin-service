@@ -4,11 +4,13 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.revature.caliber.Application;
 import com.revature.caliber.beans.SkillType;
+import com.revature.caliber.services.SkillTypeServiceImpl;
 
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
@@ -25,6 +27,8 @@ import static org.hamcrest.Matchers.*;
 public class SkillTypeControllerTest {
 
 	private String host = "http://ec2-52-55-27-249.compute-1.amazonaws.com:8181";
+	@Autowired
+	SkillTypeServiceImpl skillType;
 	
 	@Test
 	public void testGetSkills() {
@@ -54,6 +58,8 @@ public class SkillTypeControllerTest {
 			.statusCode(200);
 	}
 	
+	/**This methob below is not working
+	It is returning a 200 regardless of the ID*/
 	@Test
 	public void testGetSkillByIdForIdThatDoesNotExist() {
 		given()
@@ -91,7 +97,8 @@ public class SkillTypeControllerTest {
 
 	@Test
 	public void testUpdateSkillById() {
-		SkillType st = new SkillType("Test Update", true);
+		SkillType st = skillType.getSkillType(51);
+		st.setTitle("Updated SkillType");
 		
 		given()
 			.contentType("application/json")
@@ -102,9 +109,13 @@ public class SkillTypeControllerTest {
 			.statusCode(202);
 	}
 
+/**	Method linked to below test is not working
+	It is creating and returning a skillType when
+	non exist lmao -_- */
 	@Test
 	public void testUpdateSkillByIdForIdThatDoesNotExist() {
-		SkillType st = new SkillType("Test Update", true);
+		SkillType st = skillType.getSkillType(-1);
+		st.setTitle("UpdatedNonExisting SkillType");
 		
 		given()
 			.contentType("application/json")
@@ -115,6 +126,10 @@ public class SkillTypeControllerTest {
 			.statusCode(404);
 	}
 	
+	/**	Method linked to below test is not working
+	It is returning 200 stats code instead of 204 
+	Delete method not working
+	-_- */
 	@Test
 	public void testDeleteSkillById() {
 		given()

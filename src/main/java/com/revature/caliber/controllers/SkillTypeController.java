@@ -77,7 +77,10 @@ public class SkillTypeController {
 		if ((skill = skillService.getSkillType(id)) == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
+			
 		return new ResponseEntity<>(skill, HttpStatus.OK);
+		
+		
 	}
 	
 	
