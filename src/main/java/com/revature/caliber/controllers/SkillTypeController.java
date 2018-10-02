@@ -73,12 +73,14 @@ public class SkillTypeController {
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Requested SkillType returned"),
 			@ApiResponse(code = 404, message = "Requested SkillType not found") } )
 	public ResponseEntity<SkillType> getSkillById(@PathVariable(value="id") Integer id) {
-		SkillType skill = null;
-		if ((skill = skillService.getSkillType(id)) == null) {
+		SkillType skill = skillService.getSkillType(id);
+		if (skill == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}else {
+			return new ResponseEntity<>(skill, HttpStatus.OK);
 		}
 			
-		return new ResponseEntity<>(skill, HttpStatus.OK);
+	
 		
 		
 	}

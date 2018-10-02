@@ -36,7 +36,7 @@ public class SkillTypeServiceImpl implements SkillTypeService {
 
 	@Override
 	public SkillType getSkillType(int id) {
-		return skillTypeDao.findById(id).orElse(new SkillType());
+		return skillTypeDao.findById(id).orElse(null);
 	}
 
 	@Override
