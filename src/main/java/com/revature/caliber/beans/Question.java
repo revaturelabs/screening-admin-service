@@ -30,7 +30,7 @@ public class Question implements Serializable {
     private int questionId;
 
     @ApiModelProperty(value = "Bucket id")
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "BUCKET_ID")
     private Bucket bucket;
 
