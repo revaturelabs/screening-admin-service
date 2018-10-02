@@ -69,6 +69,17 @@ public class WeightServiceImplTest {
 		int after = weightService.getAllWeights().size();
 		assertEquals(before, after);
 	}
+	
+	@Test
+	public void getAllWeightBySkillTypeId() {
+		int actual = weightService.getAllWeightsBySkillTypeID(51).size();
+		assertEquals(2, actual);
+	}
+	
+	@Test
+	public void getWithSkillTypeAndBucketId() {
+		assertEquals(51404, weightService.get(51, 404).getWeightId());
+	}
 
 
 }
