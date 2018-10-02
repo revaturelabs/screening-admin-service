@@ -52,11 +52,11 @@ public class BucketServiceImplTest {
 
 	@Test
 	public void testUpdateBucket() {
-		Bucket bucket = new Bucket();
-		String newDes = "new Description";
-		bucket.setBucketDescription(newDes);
-		bucketService.createBucket(bucket);
-		assertEquals(newDes, bucketService.getBucketById(bucket.getBucketId()).getBucketDescription());
+		Bucket b = bucketService.getBucketById(404);
+		String newDes = "Updated Description Test";
+		b.setBucketDescription(newDes);
+	    bucketService.updateBucket(b);
+		assertEquals(newDes, bucketService.getBucketById(404).getBucketDescription());
 	}
 
 	@Test
