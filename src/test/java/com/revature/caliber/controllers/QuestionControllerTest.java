@@ -38,19 +38,19 @@ public class QuestionControllerTest {
 		given()
 	       .when().delete(url + "/question/deleteByBucket/" + 404)
 	       .then().log().ifError()
-	       .assertThat().statusCode(200);
+	       .assertThat().statusCode(204);
 	}
 
 	@Test
 	public void testCreate() {
 		//fail("Not yet implemented");
-		Question question = new Question();
+		Question question = new Question(99999, new Bucket(), false, "Test", "Test", "Test", "Test", "Test", "Test");
 		
 		given()
 			.contentType("application/json")
 			.body(question)
 		.when()
-			.post(url + "/new")
+			.post(url + "/question/new")
 		.then()
 			.statusCode(201);
 	}
@@ -71,10 +71,12 @@ public class QuestionControllerTest {
 	@Test
 	public void testDeleteByQuestionId() {
 		int questionId = 1007;
+		
 		given()
-	       .when().delete(url + "/question/delete/" + questionId)
-	       .then().log().ifError()
-	       .assertThat().statusCode(200);
+		.when()
+			.delete(url + "/question/deleteByBucket/{bucketId}" , questionId)
+		.then()
+			.statusCode(204);
 	}
 
 	@Test
