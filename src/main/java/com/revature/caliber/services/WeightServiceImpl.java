@@ -47,7 +47,7 @@ public class WeightServiceImpl implements WeightService {
     }
 
     @Override
-    public List<Weight> getAllBucketsBySkillTypeID(int skillTypeId) {
+    public List<Weight> getAllWeightsBySkillTypeID(int skillTypeId) {
         return wd.getAllBySkillTypeSkillTypeId(skillTypeId);
     }
 
