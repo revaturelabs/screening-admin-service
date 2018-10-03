@@ -67,11 +67,16 @@ public class SkillTypeController {
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Requested SkillType returned"),
 			@ApiResponse(code = 404, message = "Requested SkillType not found") } )
 	public ResponseEntity<SkillType> getSkillById(@PathVariable(value="id") Integer id) {
-		SkillType skill = null;
-		if ((skill = skillService.getSkillType(id)) == null) {
+		SkillType skill = skillService.getSkillType(id);
+		if (skill == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}else {
+			return new ResponseEntity<>(skill, HttpStatus.OK);
 		}
-		return new ResponseEntity<>(skill, HttpStatus.OK);
+			
+	
+		
+		
 	}
 	
 	
@@ -122,10 +127,14 @@ public class SkillTypeController {
 	@ApiResponses(value = { @ApiResponse(code = 204, message = "SkillType deleted"),
 			@ApiResponse(code = 404, message = "SkillType not found") } )
 	public ResponseEntity<Void> deleteSkillById(@PathVariable(value="id") Integer id) {
-		if (skillService.getSkillType(id) == null) {
+		SkillType sType = skillService.getSkillType(id);
+		if (sType != null) {
+			skillService.deleteSkillType(id);
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+			
+		}else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		skillService.deleteSkillType(id);
-		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		
 	}
 }
