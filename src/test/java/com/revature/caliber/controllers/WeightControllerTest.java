@@ -89,12 +89,7 @@ public class WeightControllerTest {
 
 	}
 
-	/**
-	 * This method below is not working
-	 * When trying to access uri weight/delete/(id),
-	 * we get redirected to a white label page and
-	 * test is returning 200 code -_-
-	 */
+
 	@Test
 	public void testDelete() {
 		given()
@@ -103,6 +98,16 @@ public class WeightControllerTest {
 				.delete("/weight/delete/{weightId}", 51404)
 				.then()
 				.statusCode(204);
+	}
+	
+	@Test
+	public void testGetBySkillTypeAndWeight() {
+		given()
+			.port(port)
+		.when()
+			.get("/weight/{skillTypeId}/{bucketId}", 51,404)
+		.then()
+			.statusCode(200);
 	}
 
 }
