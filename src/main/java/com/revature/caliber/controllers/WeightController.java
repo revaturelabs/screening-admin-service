@@ -57,10 +57,26 @@ public class WeightController {
         return new ResponseEntity<>(ws.get(skillTypeId, bucketId), HttpStatus.OK);
     }
 
-    /**
-     * Returns weight from weight Id
-     */
-    @ApiOperation(value = "Gets a weight based on weight Id", response = Weight.class)
+	/**
+	 * Get a list of weights based on their SkillTypes
+	 *
+	 * @param skillTypeId Id of the SkillType to filter by
+	 * @return List of Weights with matching SkillTypes
+	 */
+	@ApiOperation(value = "Get a list of weights based on their skillTypes", response = Weight.class, responseContainer = "List")
+	@ApiResponses(value = {@ApiResponse(code = 200, message = "List of weights returned")})
+	@GetMapping("/getBySkillType/{skillTypeId}")
+	public ResponseEntity<List<Weight>> getWeightBySkillType(@PathVariable int skillTypeId) {
+		return new ResponseEntity<>(ws.getAllWeightsBySkillTypeID(skillTypeId), HttpStatus.OK);
+	}
+
+	/**
+	 * Get a weight by its Id
+	 *
+	 * @param weightId Id of the weight to filter by
+	 * @return Weight object with matching Id
+	 */
+	@ApiOperation(value = "Gets a weight based on weight Id", response = Weight.class)
     @GetMapping("/{weightId}")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Requested weight returned")})
     public ResponseEntity<Weight> getWeightFromId(@PathVariable(value = "weightId") int weightId) {
