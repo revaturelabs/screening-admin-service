@@ -48,7 +48,28 @@ public class QuestionController {
 	@GetMapping("/all")
 	public ResponseEntity<List<Question>> getQuestions() {
 		return new ResponseEntity<>(qs.getAllQuestions(), HttpStatus.OK);
-	}	
+	}
+
+	/**
+	 * Get a question by its Id
+	 *
+	 * @param questionId Id to filter by
+	 * @return Question object with matching questionId
+	 */
+	@ApiOperation(value = "Get a question by its Id", response = Question.class)
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "Question found"),
+			@ApiResponse(code = 404, message = "Question not found")
+	})
+	@GetMapping("/{questionId}")
+	public ResponseEntity<Question> getQuestionById(@PathVariable int questionId) {
+		Question question = qs.getByQuestionId(questionId);
+		if (question != null && !question.equals(new Question())) {
+			return new ResponseEntity<>(qs.getByQuestionId(questionId), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
 	
 	/**
 	 * Find all questions associated with a specific bucket
