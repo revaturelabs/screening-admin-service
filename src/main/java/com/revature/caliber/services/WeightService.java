@@ -55,7 +55,6 @@ public interface WeightService {
 	 * @return weight object
 	 */
 	Weight get(long weightId);
-
 	/**
 	 * Get a weight by its skillTypeId and bucketId
 	 *

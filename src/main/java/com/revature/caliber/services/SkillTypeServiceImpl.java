@@ -19,6 +19,7 @@ public class SkillTypeServiceImpl implements SkillTypeService {
 
 	@Autowired
 	private SkillTypeDAO skillTypeDao;
+
 	
 	@Autowired
 	private WeightService ws;
@@ -36,7 +37,7 @@ public class SkillTypeServiceImpl implements SkillTypeService {
 
 	@Override
 	public SkillType getSkillType(int id) {
-		return skillTypeDao.findById(id).orElse(new SkillType());
+		return skillTypeDao.findById(id).orElse(null);
 	}
 
 	@Override
@@ -48,6 +49,7 @@ public class SkillTypeServiceImpl implements SkillTypeService {
 	@Override
 	@Transactional
 	public void deleteSkillType(int id) {
+		ws.deleteAllBySkillTypeSkillTypeId(id);
 		skillTypeDao.deleteById(id);
 	}
 
