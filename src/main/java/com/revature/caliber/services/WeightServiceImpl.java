@@ -54,6 +54,7 @@ public class WeightServiceImpl implements WeightService {
     @Override
     public Weight get(long weightId) {
         return wd.findById(weightId).orElse(new Weight());
+       
     }
 
     @Override
@@ -62,8 +63,7 @@ public class WeightServiceImpl implements WeightService {
     }
 
 	@Override
-	public void deleteAllBySkillTypeSkillTypeId(int skillTypeId) {
-		wd.deleteAllBySkillTypeSkillTypeId(skillTypeId);
-		
+	public void deleteAllByBucketId(int bucketId) {
+		wd.deleteAllByBucketBucketId(bucketId);
 	}
 }
