@@ -1,8 +1,6 @@
 package com.revature.caliber.controllers;
 
 import com.revature.caliber.Application;
-import com.revature.caliber.beans.Bucket;
-import com.revature.caliber.beans.SkillType;
 import com.revature.caliber.beans.Weight;
 import com.revature.caliber.services.WeightServiceImpl;
 import org.junit.Test;
@@ -78,7 +76,7 @@ public class WeightControllerTest {
 
 	@Test
 	public void testCreate() {
-		Weight w = new Weight(800, 600, new SkillType(), new Bucket());
+		Weight w = new Weight(800, 600, null, null);
 		given()
 				.port(port)
 				.contentType("application/json")
