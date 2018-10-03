@@ -46,7 +46,7 @@ public interface WeightService {
      * @param SkillTypeID ID of SkillType to filter by
      * @return List of weights
      */
-    List<Weight> getAllBucketsBySkillTypeID(int SkillTypeID);
+    List<Weight> getAllWeightsBySkillTypeID(int SkillTypeID);
 
     /**
      * Get a weight by its Id

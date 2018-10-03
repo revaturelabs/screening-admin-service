@@ -28,13 +28,16 @@ public class WeightServiceImpl implements WeightService {
     @Transactional
     public void update(Weight weight) {
         wd.save(weight);
-
     }
 
     @Override
     @Transactional
     public Weight create(Weight weight) {
-        return wd.save(weight);
+        if(weight != null) {
+        	return wd.save(weight);
+        }else {
+        	return null;
+        }
     }
 
     @Override
@@ -44,7 +47,7 @@ public class WeightServiceImpl implements WeightService {
     }
 
     @Override
-    public List<Weight> getAllBucketsBySkillTypeID(int skillTypeId) {
+    public List<Weight> getAllWeightsBySkillTypeID(int skillTypeId) {
         return wd.getAllBySkillTypeSkillTypeId(skillTypeId);
     }
 
