@@ -51,4 +51,11 @@ public interface SkillTypeService {
 	 */
 	public void deleteSkillType(int id);
 
+	
+	/**
+	 * Gets the skill by its id
+	 * @param id primary key of skill to get
+	 */
+	public SkillType getSkillTypeById(int skillTypeId);
+
 }

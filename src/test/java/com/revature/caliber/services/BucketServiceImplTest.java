@@ -18,7 +18,6 @@ import static org.junit.Assert.assertEquals;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
-
 public class BucketServiceImplTest {
 
 	@Autowired
@@ -33,16 +32,14 @@ public class BucketServiceImplTest {
 		assertEquals(before + 1, after);
 	}
 
-	/*@Test
-	public void testCreateBucket() {
-//		this.entityManager.persist(new Bucket(1000,"Test",true));
-		assertEquals(1000, bucketService.getBucketById(1000).getBucketId());
-	}*/
-
 	@Test
 	public void testCreateNullBucket() {
-		System.out.println("Null Bucket Test");
-		assertEquals(null, bucketService.createBucket(null));
+		Bucket bucket = null;
+		int before = bucketService.getAllBuckets().size();
+		bucketService.createBucket(bucket);
+		int after = bucketService.getAllBuckets().size();
+		assertEquals(before, after);
+		
 	}
 
 	@Test
@@ -55,12 +52,11 @@ public class BucketServiceImplTest {
 
 	@Test
 	public void testUpdateBucket() {
-		Bucket bucket = new Bucket();
-		String des = bucket.getBucketDescription();
-		String newDes = "new Description";
-		bucket.setBucketDescription(newDes);
-		bucketService.createBucket(bucket);
-		assertEquals(newDes, bucketService.getBucketById(bucket.getBucketId()).getBucketDescription());
+		Bucket b = bucketService.getBucketById(404);
+		String newDes = "Updated Description Test";
+		b.setBucketDescription(newDes);
+	    bucketService.updateBucket(b);
+		assertEquals(newDes, bucketService.getBucketById(404).getBucketDescription());
 	}
 
 	@Test
