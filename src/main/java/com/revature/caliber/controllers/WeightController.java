@@ -22,6 +22,7 @@ import java.util.List;
  * @author Jeremy Straus | 1807-QC | Emily Higgins
  */
 @RestController
+@CrossOrigin
 @RequestMapping(value = "/weight")
 @ApiModel(value = "SkillTypeController", description = "A rest controller to handle HTTP Requests for CRUD operations on weights")
 public class WeightController {

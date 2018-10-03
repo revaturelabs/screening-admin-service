@@ -54,7 +54,7 @@ public interface QuestionService {
 	 * @param questionId Id of the question to filter by
 	 * @return Question object with matching questionId
 	 */
-	Question getByQustionId(int questionId);
+	Question getByQuestionId(int questionId);
 	
 	/**
 	 * update question

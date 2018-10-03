@@ -1,5 +1,6 @@
 package com.revature.caliber.services;
 
+import com.revature.caliber.beans.Question;
 import com.revature.caliber.beans.SkillType;
 import com.revature.caliber.daos.SkillTypeDAO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,5 +56,8 @@ public class SkillTypeServiceImpl implements SkillTypeService {
 		return skillTypeDao.findAllByIsActive(b);
 	}
 
-
+	@Override
+	public SkillType getSkillTypeById(int skillTypeId) {
+		return skillTypeDao.findById(skillTypeId).orElse(null);
+	}
 }
