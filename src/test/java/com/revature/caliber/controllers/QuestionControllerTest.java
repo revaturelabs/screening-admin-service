@@ -41,7 +41,7 @@ public class QuestionControllerTest {
 	public void testDeleteByBucket() {
 		given()
 				.port(port)
-				.when().delete("/question/deleteByBucket/" + 404)
+				.when().delete("/question/deleteByBucket/{bucketId}", 404)
 				.then().log().ifError()
 				.assertThat().statusCode(204);
 	}
@@ -76,14 +76,14 @@ public class QuestionControllerTest {
 
 	@Test
 	public void testDeleteByQuestionId() {
-		int questionId = 1007;
+		int questionId = 1008;
 
 		given()
 				.port(port)
 				.when()
-				.delete("/question/deleteByBucket/{bucketId}", questionId)
+				.delete("/question/delete/{id}", questionId)
 				.then()
-				.statusCode(204);
+				.statusCode(200);
 	}
 
 	@Test
@@ -100,4 +100,5 @@ public class QuestionControllerTest {
 				.assertThat()
 				.statusCode(204);
 	}
+	
 }
