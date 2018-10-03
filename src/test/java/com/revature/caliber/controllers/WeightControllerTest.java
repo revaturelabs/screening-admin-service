@@ -1,0 +1,106 @@
+package com.revature.caliber.controllers;
+
+import com.revature.caliber.Application;
+import com.revature.caliber.beans.Weight;
+import com.revature.caliber.services.WeightServiceImpl;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.test.context.junit4.SpringRunner;
+
+import static io.restassured.RestAssured.given;
+
+
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = Application.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+public class WeightControllerTest {
+	@LocalServerPort
+	int port;
+
+	@Autowired
+	WeightServiceImpl weightService;
+
+	@Test
+	public void testGetWeights() {
+		given()
+				.port(port)
+				.when()
+				.get("/weight")
+				.then()
+				.statusCode(200);
+	}
+
+	@Test
+	public void testGetWeightFromId() {
+		given()
+				.port(port)
+				.when()
+				.get("/weight/{weightId}", 51404)
+				.then()
+				.statusCode(200);
+	}
+
+	@Test
+	public void testGetNotExistingWeightFromId() {
+		given()
+				.port(port)
+				.when()
+				.get("/weight/{weightId}", -1)
+				.then()
+				.statusCode(404);
+	}
+
+
+	@Test
+	public void testUpdateWeight() {
+		Weight w = weightService.get(51404);
+		w.setWeightValue(500);
+
+		given()
+				.port(port)
+				.contentType("application/json")
+				.body(w)
+				.when()
+				.put("/weight/update")
+				.then()
+				.statusCode(204);
+	}
+
+	@Test
+	public void testCreate() {
+		Weight w = new Weight(800, 600, null, null);
+		given()
+				.port(port)
+				.contentType("application/json")
+				.body(w)
+				.when()
+				.post("/weight/new")
+				.then()
+				.statusCode(201);
+
+
+	}
+
+	@Test
+	public void testDelete() {
+		given()
+				.port(port)
+				.when()
+				.delete("/weight/delete/{weightId}", 51404)
+				.then()
+				.statusCode(204);
+	}
+
+	@Test
+	public void testGetBySkillTypeAndWeight() {
+		given()
+				.port(port)
+				.when()
+				.get("/weight/{skillTypeId}/{bucketId}", 51, 404)
+				.then()
+				.statusCode(200);
+	}
+
+}
