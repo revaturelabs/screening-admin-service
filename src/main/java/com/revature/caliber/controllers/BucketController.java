@@ -48,10 +48,19 @@ public class BucketController {
 	 * @return Detached bucket (w/ updated Id) and http status code
 	 */
 	@ApiOperation(value = "Adds a new Bucket", response = Bucket.class)
-	@ApiResponses(value = { @ApiResponse(code = 201, message = "Created bucket returned") } )
+	@ApiResponses(value = {
+			@ApiResponse(code = 201, message = "Created bucket returned"),
+			@ApiResponse(code = 415, message = "Unsupported Media")
+	})
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Bucket> createBucket(@Valid @RequestBody Bucket bucket) {
-		return new ResponseEntity<>(this.bucketService.createBucket(bucket), HttpStatus.CREATED);
+		if (bucket != null && !bucket.getBucketDescription().equals("")) {
+			System.out.println("bucketDescriptionHere-----"+bucket.getBucketDescription());
+			return new ResponseEntity<>(this.bucketService.createBucket(bucket), HttpStatus.CREATED);
+		}else {
+			return new ResponseEntity<>(HttpStatus.UNSUPPORTED_MEDIA_TYPE);
+		}
+		
 
 	}	
 

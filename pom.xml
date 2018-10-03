@@ -91,15 +91,8 @@
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>2.9.2</version>
 		</dependency>
-
-		<!-- RestAssured Dependencies -->
-		<!-- https://mvnrepository.com/artifact/com.jayway.restassured/rest-assured -->
-		<dependency>
-			<groupId>com.jayway.restassured</groupId>
-			<artifactId>rest-assured</artifactId>
-			<version>2.9.0</version>
-			<scope>test</scope>
-		</dependency>
+				
+	<!-- RestAssured Dependencies -->
 		<dependency>
 			<groupId>io.rest-assured</groupId>
 			<artifactId>rest-assured</artifactId>

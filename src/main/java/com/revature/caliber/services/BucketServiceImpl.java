@@ -23,6 +23,12 @@ public class BucketServiceImpl implements BucketService {
 
 	@Autowired
 	BucketDAO bucketDAO;
+
+	@Autowired
+	QuestionService questionService;
+
+	@Autowired
+	WeightService weightService;
 	
 	@Transactional
 	@Override
@@ -53,6 +59,8 @@ public class BucketServiceImpl implements BucketService {
 	@Override
 	@Transactional
 	public void deleteBucket(int bucketId) {
+		weightService.deleteAllByBucketId(bucketId);
+		questionService.deleteByBucketId(bucketId);
 		bucketDAO.deleteById(bucketId);
 	}
 	
