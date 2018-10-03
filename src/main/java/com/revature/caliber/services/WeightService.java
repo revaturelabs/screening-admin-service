@@ -71,4 +71,11 @@ public interface WeightService {
 	 * @param bucketId BucketId to filter by
 	 */
 	void deleteAllByBucketId(int bucketId);
+
+	/**
+	 * Delete all Buckets with matching SkillTypeId
+	 *
+	 * @param skillTypeId Id of SkillType to filter by
+	 */
+	void deleteAllBySkillTypeSkillTypeId(int skillTypeId);
 }
