@@ -18,9 +18,9 @@ import static io.restassured.RestAssured.given;
 public class WeightControllerTest {
 	@LocalServerPort
 	int port;
+
 	@Autowired
 	WeightServiceImpl weightService;
-	private String host = "http://ec2-52-55-27-249.compute-1.amazonaws.com:8181";
 
 	@Test
 	public void testGetWeights() {
@@ -31,12 +31,6 @@ public class WeightControllerTest {
 				.then()
 				.statusCode(200);
 	}
-
-	/**
-	 * Method below is not working
-	 * status code is 404 regardless of
-	 * the outcome of the process
-	 */
 
 	@Test
 	public void testGetWeightFromId() {
@@ -89,7 +83,6 @@ public class WeightControllerTest {
 
 	}
 
-
 	@Test
 	public void testDelete() {
 		given()
@@ -99,15 +92,15 @@ public class WeightControllerTest {
 				.then()
 				.statusCode(204);
 	}
-	
+
 	@Test
 	public void testGetBySkillTypeAndWeight() {
 		given()
-			.port(port)
-		.when()
-			.get("/weight/{skillTypeId}/{bucketId}", 51,404)
-		.then()
-			.statusCode(200);
+				.port(port)
+				.when()
+				.get("/weight/{skillTypeId}/{bucketId}", 51, 404)
+				.then()
+				.statusCode(200);
 	}
 
 }
