@@ -16,11 +16,4 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-  h2:
-    console:
-      enabled: true
-      path: /h2-console
-eureka:
-  client:
-    enabled: false
 

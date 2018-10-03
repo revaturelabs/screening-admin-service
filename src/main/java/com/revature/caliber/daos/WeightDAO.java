@@ -19,4 +19,6 @@ public interface WeightDAO extends JpaRepository<Weight, Long> {
     List<Weight> getAllBySkillTypeSkillTypeId(int skillTypeId);
 
     Weight getBySkillTypeSkillTypeIdAndBucketBucketId(int skillTypeId, int bucketId);
+
+    void deleteAllByBucketBucketId(int bucketId);
 }
