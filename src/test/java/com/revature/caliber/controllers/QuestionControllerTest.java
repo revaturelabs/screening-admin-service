@@ -104,5 +104,28 @@ public class QuestionControllerTest {
 				.assertThat()
 				.statusCode(204);
 	}
-	
+
+	@Test
+	public void testGetQuestionById() {
+		given()
+				.port(port)
+				.when()
+				.get("/question/{questionId}", 10010)
+				.then()
+				.log()
+				.ifError()
+				.assertThat()
+				.statusCode(200);
+	}
+
+	@Test
+	public void testGetQuestionBadId() {
+		given()
+				.port(port)
+				.when()
+				.get("/question/{questionId}", -1)
+				.then()
+				.assertThat()
+				.statusCode(404);
+	}
 }

@@ -64,7 +64,7 @@ public class QuestionController {
 	@GetMapping("/{questionId}")
 	public ResponseEntity<Question> getQuestionById(@PathVariable int questionId) {
 		Question question = qs.getByQuestionId(questionId);
-		if (question != null && !question.equals(new Question())) {
+		if (question != null && !(question.equals(new Question()))) {
 			return new ResponseEntity<>(qs.getByQuestionId(questionId), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);

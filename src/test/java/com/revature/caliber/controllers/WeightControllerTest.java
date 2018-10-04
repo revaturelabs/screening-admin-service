@@ -107,4 +107,13 @@ public class WeightControllerTest {
 				.statusCode(200);
 	}
 
+	@Test
+	public void testGetWeightBySkillType() {
+		given()
+				.port(port)
+				.when()
+				.get("/weight/getBySkillType/{skillTypeId}", 51)
+				.then()
+				.statusCode(200);
+	}
 }
