@@ -1,25 +1,18 @@
 package com.revature.caliber.controllers;
 
-import java.util.List;
-
-import javax.validation.Valid;
-
-import org.springframework.http.HttpStatus;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.revature.caliber.beans.SkillType;
 import com.revature.caliber.services.SkillTypeService;
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.List;
 
 /**
  * Controller that handles mapping for SkillType manipulation
@@ -27,6 +20,7 @@ import io.swagger.annotations.ApiResponses;
  * @author Isaac Pawling | 1805-WVU | Richard Orr
  */
 @RestController
+@CrossOrigin
 @RequestMapping(value = "/skilltype")
 @ApiModel(value = "SkillTypeController", description = "A rest controller to handle HTTP Requests made to /skilltype")
 public class SkillTypeController {
@@ -45,7 +39,7 @@ public class SkillTypeController {
 	    responseContainer = "List")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "All SkillTypes returned") } )
 	public ResponseEntity<List<SkillType>> getSkills() {
-		return new ResponseEntity<>(skillService.getSkillTypes(), HttpStatus.OK);
+		return new ResponseEntity<>(skillService.getAllSkillTypes(), HttpStatus.OK);
 	}
 	
 	/**
@@ -73,11 +67,16 @@ public class SkillTypeController {
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Requested SkillType returned"),
 			@ApiResponse(code = 404, message = "Requested SkillType not found") } )
 	public ResponseEntity<SkillType> getSkillById(@PathVariable(value="id") Integer id) {
-		SkillType skill = null;
-		if ((skill = skillService.getSkillType(id)) == null) {
+		SkillType skill = skillService.getSkillType(id);
+		if (skill == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}else {
+			return new ResponseEntity<>(skill, HttpStatus.OK);
 		}
-		return new ResponseEntity<>(skill, HttpStatus.OK);
+			
+	
+		
+		
 	}
 	
 	
@@ -128,10 +127,14 @@ public class SkillTypeController {
 	@ApiResponses(value = { @ApiResponse(code = 204, message = "SkillType deleted"),
 			@ApiResponse(code = 404, message = "SkillType not found") } )
 	public ResponseEntity<Void> deleteSkillById(@PathVariable(value="id") Integer id) {
-		if (skillService.getSkillType(id) == null) {
+		SkillType sType = skillService.getSkillType(id);
+		if (sType != null) {
+			skillService.deleteSkillType(id);
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+			
+		}else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		skillService.deleteSkillType(id);
-		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		
 	}
 }

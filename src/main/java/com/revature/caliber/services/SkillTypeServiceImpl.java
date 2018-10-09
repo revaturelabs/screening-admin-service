@@ -1,14 +1,13 @@
 package com.revature.caliber.services;
 
-import java.util.List;
-
-import javax.transaction.Transactional;
-
+import com.revature.caliber.beans.Question;
+import com.revature.caliber.beans.SkillType;
+import com.revature.caliber.daos.SkillTypeDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.revature.caliber.beans.SkillType;
-import com.revature.caliber.daos.SkillTypeDAO;
+import javax.transaction.Transactional;
+import java.util.List;
 
 /**
  * Implementation for the SkillType service interface
@@ -20,12 +19,13 @@ public class SkillTypeServiceImpl implements SkillTypeService {
 
 	@Autowired
 	private SkillTypeDAO skillTypeDao;
+
 	
 	@Autowired
 	private WeightService ws;
 	
 	@Override
-	public List<SkillType> getSkillTypes() {
+	public List<SkillType> getAllSkillTypes() {
 		return skillTypeDao.findAll();
 	}
 
@@ -36,8 +36,8 @@ public class SkillTypeServiceImpl implements SkillTypeService {
 	}
 
 	@Override
-	public SkillType getSkillType(Integer id) {
-		return skillTypeDao.findOne(id);
+	public SkillType getSkillType(int id) {
+		return skillTypeDao.findById(id).orElse(null);
 	}
 
 	@Override
@@ -48,8 +48,9 @@ public class SkillTypeServiceImpl implements SkillTypeService {
 
 	@Override
 	@Transactional
-	public void deleteSkillType(Integer id) {
-		skillTypeDao.delete(id.intValue());
+	public void deleteSkillType(int id) {
+		ws.deleteAllBySkillTypeSkillTypeId(id);
+		skillTypeDao.deleteById(id);
 	}
 
 	@Override
@@ -57,5 +58,8 @@ public class SkillTypeServiceImpl implements SkillTypeService {
 		return skillTypeDao.findAllByIsActive(b);
 	}
 
-
+	@Override
+	public SkillType getSkillTypeById(int skillTypeId) {
+		return skillTypeDao.findById(skillTypeId).orElse(null);
+	}
 }

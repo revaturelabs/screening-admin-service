@@ -1,38 +1,28 @@
 package com.revature.caliber.controllers;
 
-import java.util.List;
-
-import javax.validation.Valid;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.revature.caliber.beans.Bucket;
 import com.revature.caliber.services.BucketService;
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.List;
 	
 /**
  * Controller for the bucket
- * 
  * @author Adil Iqbal 	| 1805-WVU-MAY29 | Richard Orr
  * @author Theo Thompson| 1805-WVU-MAY29 | Richard Orr
  * @author Josh Dughi 	| 1803-USF-MAR26 | Wezley Singleton
  */
 @RestController
+@CrossOrigin
 @RequestMapping(value="/bucket")
 @ApiModel(value = "BucketController", description = "A rest controller to handle HTTP Requests made to /bucket")
 public class BucketController {
@@ -58,10 +48,19 @@ public class BucketController {
 	 * @return Detached bucket (w/ updated Id) and http status code
 	 */
 	@ApiOperation(value = "Adds a new Bucket", response = Bucket.class)
-	@ApiResponses(value = { @ApiResponse(code = 201, message = "Created bucket returned") } )
+	@ApiResponses(value = {
+			@ApiResponse(code = 201, message = "Created bucket returned"),
+			@ApiResponse(code = 415, message = "Unsupported Media")
+	})
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Bucket> createBucket(@Valid @RequestBody Bucket bucket) {
-		return new ResponseEntity<>(this.bucketService.createBucket(bucket), HttpStatus.CREATED);
+		if (bucket != null && !bucket.getBucketDescription().equals("")) {
+			System.out.println("bucketDescriptionHere-----"+bucket.getBucketDescription());
+			return new ResponseEntity<>(this.bucketService.createBucket(bucket), HttpStatus.CREATED);
+		}else {
+			return new ResponseEntity<>(HttpStatus.UNSUPPORTED_MEDIA_TYPE);
+		}
+		
 
 	}	
 
@@ -72,7 +71,7 @@ public class BucketController {
 	 */
 	@ApiOperation(value = "Updates a Bucket", response = Bucket.class)
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Bucket updated") } )
-	@PutMapping(value = "/{bucketId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@PutMapping(value = "/update", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Bucket> updateBucket(@Valid @RequestBody Bucket bucket) {
 		bucketService.updateBucket(bucket);
 		return new ResponseEntity<>(bucket, HttpStatus.OK);
@@ -84,11 +83,19 @@ public class BucketController {
 	 * @return Requested bucket and http status code
 	 */
 	@ApiOperation(value = "Gets a Bucket by bucket id", response = Bucket.class)
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "Requested bucket returned") } )
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "Requested bucket returned"),
+			@ApiResponse(code = 404, message = "Bucket not found")
+	} )
 	@GetMapping(value="/{bucketId}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Bucket> getBucketByBucketId(@PathVariable Integer bucketId) {
 		Bucket bucket = bucketService.getBucketById(bucketId);
-		return new ResponseEntity<>(bucket, HttpStatus.OK);
+		if (bucket.equals(new Bucket())) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		} else {
+			return new ResponseEntity<>(bucket, HttpStatus.OK);
+		}
+
 	}
 	
 	/**

@@ -1,15 +1,13 @@
 package com.revature.caliber.services;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.transaction.Transactional;
-
+import com.revature.caliber.beans.Bucket;
+import com.revature.caliber.daos.BucketDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.revature.caliber.beans.Bucket;
-import com.revature.caliber.daos.BucketDAO;
+import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -17,17 +15,30 @@ import com.revature.caliber.daos.BucketDAO;
  *  
  *  @author adil iqbal 		| 1805-WVU-MAY29 | Richard Orr
  *  @author Theo Thompson 	| 1805-WVU-MAY29 | Richard Orr
+ *  @author Rishabh Rana 	| 1807-QC | Emily Higgins
+ *  @author Alpha Barry 	| 1807-QC | Emily Higgins
  */
 @Service
 public class BucketServiceImpl implements BucketService {
 
 	@Autowired
 	BucketDAO bucketDAO;
+
+	@Autowired
+	QuestionService questionService;
+
+	@Autowired
+	WeightService weightService;
 	
 	@Transactional
 	@Override
 	public Bucket createBucket(Bucket bucket) {
-		return bucketDAO.save(bucket);
+		if(bucket != null && bucket != new Bucket()) {
+			return bucketDAO.save(bucket);
+		} 
+		else {
+			return null;
+		}
 	}
 
 	@Override
@@ -40,18 +51,22 @@ public class BucketServiceImpl implements BucketService {
 	@Override
 	@Transactional
 	public void updateBucket(Bucket bucket) {
-		bucketDAO.save(bucket);
+		if(!bucket.getBucketDescription().isEmpty()) {
+			bucketDAO.save(bucket);
+		}
 	}
 	
 	@Override
 	@Transactional
-	public void deleteBucket(Integer bucketId) {
-		bucketDAO.delete(bucketId);
+	public void deleteBucket(int bucketId) {
+		weightService.deleteAllByBucketId(bucketId);
+		questionService.deleteByBucketId(bucketId);
+		bucketDAO.deleteById(bucketId);
 	}
 	
 	@Override
-	public Bucket getBucketById(Integer bucketId) {
-		return bucketDAO.findOne(bucketId);
+	public Bucket getBucketById(int bucketId) {
+		return bucketDAO.findById(bucketId).orElse(new Bucket());
 	}
 	
 }
