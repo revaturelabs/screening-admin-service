@@ -53,6 +53,6 @@ public class LoggingAspect {
      * All spring bean methods in the application are matched. 
      * @author Isaac Pawling | 1805-WVU | Richard Orr
      */
-    @Pointcut("execution(* com.revature.caliber..*(..))")
+    @Pointcut("execution(* com.revature.screenforce..*(..))")
     public void everything() { /* Empty method for Aspect Pointcut */ }
 }
