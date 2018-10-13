@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+	<Appenders>
+		<Console name="console" target="SYSTEM_OUT">
+			<!-- Ref for pattern https://logging.apache.org/log4j/2.x/manual/layouts.html -->
+			<PatternLayout>
+				<Pattern>%d %-5p [%t] %C{2} (%F:%L) - %m%n</Pattern>
+			</PatternLayout>
+		</Console>
+		<!-- http://logging.apache.org/log4j/2.x/manual/appenders.html#RollingFileAppender -->
+		<!-- log.gz is compressed logs -->
+		<RollingFile name="error" fileName="logs/app-error.log"
+			filePattern="logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-error.log.gz">
+			<PatternLayout>
+				<Pattern>%d [%t] %p %c - %m%n</Pattern>
+			</PatternLayout>
+			<!-- file size for a log is limit to 50MB -->
+			<Policies>
+				<OnStartupTriggeringPolicy />
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="50 MB" />
+			</Policies>
+			<!-- maximum of 10 files for each log -->
+			<DefaultRolloverStrategy max="20" />
+		</RollingFile>
+		<RollingFile name="debug" fileName="logs/app-debug.log"
+			filePattern="logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-debug.log.gz">
+			<PatternLayout>
+				<Pattern>%d [%t] %p %c - %m%n</Pattern>
+			</PatternLayout>
+			<Policies>
+				<OnStartupTriggeringPolicy />
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="50 MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="20" />
+		</RollingFile>
+		<RollingFile name="fatal" fileName="logs/app-fatal.log"
+			filePattern="logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-fatal.log.gz">
+			<PatternLayout>
+				<Pattern>%d [%t] %p %c - %m%n</Pattern>
+			</PatternLayout>
+			<Policies>
+				<OnStartupTriggeringPolicy />
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="50 MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="20" />
+		</RollingFile>
+	</Appenders>
+	<Loggers>
+		<Root level="all">
+			<AppenderRef ref="console" level="info" />
+			<AppenderRef ref="error" level="error" />
+			<AppenderRef ref="debug" level="debug" />
+			<AppenderRef ref="fatal" level="fatal" />
+		</Root>
+	</Loggers>
+</Configuration>
