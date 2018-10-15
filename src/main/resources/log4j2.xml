@@ -23,6 +23,30 @@
 			<!-- maximum of 10 files for each log -->
 			<DefaultRolloverStrategy max="20" />
 		</RollingFile>
+		<RollingFile name="trace" fileName="logs/app-trace.log"
+			filePattern="logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-trace.log.gz">
+			<PatternLayout>
+				<Pattern>%d [%t] %p %c - %m%n</Pattern>
+			</PatternLayout>
+			<Policies>
+				<OnStartupTriggeringPolicy />
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="100 MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="20" />
+		</RollingFile>
+		<RollingFile name="info" fileName="logs/app-info.log"
+			filePattern="logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-info.log.gz">
+			<PatternLayout>
+				<Pattern>%d [%t] %p %c - %m%n</Pattern>
+			</PatternLayout>
+			<Policies>
+				<OnStartupTriggeringPolicy />
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="50 MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="20" />
+		</RollingFile>
 		<RollingFile name="debug" fileName="logs/app-debug.log"
 			filePattern="logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-debug.log.gz">
 			<PatternLayout>
@@ -51,6 +75,8 @@
 	<Loggers>
 		<Root level="all">
 			<AppenderRef ref="console" level="info" />
+			<AppenderRef ref="trace" level="trace" />
+			<AppenderRef ref="info" level="info" />
 			<AppenderRef ref="error" level="error" />
 			<AppenderRef ref="debug" level="debug" />
 			<AppenderRef ref="fatal" level="fatal" />
