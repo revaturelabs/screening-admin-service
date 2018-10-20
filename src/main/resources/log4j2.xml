@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration>
 	<Appenders>
-		<Socket name="socket" host="34.207.200.7" port="15000">
+		<Socket name="socket" host="34.207.200.7" port="14999">
 			<PatternLayout pattern="%p: %m%n" charset="UTF-8" />
 		</Socket>
-		<Http name="http" url="34.207.200.7:8080"
-			token="eabf6dd8-01fa-4095-90e5-5beb037b0757">
-			<PatternLayout pattern="%m" />
-		</Http>
+<!-- 		<Http name="http" url="34.207.200.7:8080" -->
+<!-- 			token="cfd1e520-6a2e-40ed-ba87-606d208a61ce"> -->
+<!-- 			<PatternLayout pattern="%m" /> -->
+<!-- 		</Http> -->
 		<Console name="console" target="SYSTEM_OUT">
 			<!-- Ref for pattern https://logging.apache.org/log4j/2.x/manual/layouts.html -->
 			<PatternLayout>
@@ -92,7 +92,7 @@
 		<!-- Custom Logger for Splunk -->
 		<Logger name="splunk.logger" additivity="false" level="info">
 			<AppenderRef ref="socket" />
-			<AppenderRef ref="http" />
+<!-- 			<AppenderRef ref="http" /> -->
 		</Logger>
 	</Loggers>
 </Configuration>
