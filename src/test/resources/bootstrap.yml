@@ -5,9 +5,13 @@ spring:
   cloud:
     config:
       enabled: false
+# H2
   jpa:
     hibernate:
       ddl-auto: create-drop
 eureka:
   client:
-    enabled: false
+     enabled: false
+     
+server:
+  port: 8182

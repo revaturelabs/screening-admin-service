@@ -2,6 +2,7 @@
 <Configuration>
 	<Appenders>
 		<!-- Port should be change according the the Input config in Splunk -->
+		<!--  env ${SPLUNK_URL} -->
 		<Socket name="socket" host="${env:SPLUNK_URL}" port="14999">
 			<PatternLayout pattern="%p: %m%n" charset="UTF-8" />
 		</Socket>
