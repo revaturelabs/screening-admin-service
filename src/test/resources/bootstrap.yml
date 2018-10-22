@@ -2,6 +2,9 @@
 spring:
   application:
     name: screening-admin-service
+  cloud:
+    config:
+      enabled: false
   jpa:
     hibernate:
       ddl-auto: create-drop
