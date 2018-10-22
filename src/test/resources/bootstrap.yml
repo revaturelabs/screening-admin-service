@@ -4,11 +4,14 @@ spring:
     name: screening-admin-service
   cloud:
     config:
-      uri: ${SCREENFORCE_CONFIG_SERVER_URL}
-      fail-fast: true
+      enabled: false
+# H2
   jpa:
     hibernate:
       ddl-auto: create-drop
 eureka:
   client:
-    enabled: false
+     enabled: false
+     
+server:
+  port: 8182
