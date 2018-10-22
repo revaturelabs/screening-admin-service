@@ -79,12 +79,13 @@ public class SkillType implements Serializable {
 		this.title = title;
 	}
 
+
 	public boolean isActive() {
 		return isActive;
 	}
 
-	public void setActive(boolean active) {
-		isActive = active;
+	public void setActive(boolean isActive) {
+		this.isActive = isActive;
 	}
 
 	@Override
