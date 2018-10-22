@@ -73,11 +73,7 @@ public class SkillTypeController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}else {
 			return new ResponseEntity<>(skill, HttpStatus.OK);
-		}
-			
-	
-		
-		
+		}			
 	}
 	
 	
