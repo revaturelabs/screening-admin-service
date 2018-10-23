@@ -144,22 +144,4 @@ public class QuestionController {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 	}
-	
-	/**
-	 * Toggles question isActive status
-	 * @param questionId - id of question to remove
-	 * @return http status code 204
-	 */
-	@ApiOperation(value = "Sets Question to active state", response = void.class)
-	@ApiResponses(value = { @ApiResponse(code = 204, message = "Question toggled") } )
-	@PutMapping("/toggle/{id}")
-	public ResponseEntity<Void> activateQuestion(@PathVariable(value="id") int questionId) {
-		if (qs.existsById(questionId)) {
-			qs.toggleQuestionStatus(questionId);
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-		} else {
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		}
-		
-	}
 }

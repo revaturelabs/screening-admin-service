@@ -90,16 +90,6 @@ public class QuestionControllerTest {
 	}
 
 	@Test
-	public void testActivateQuestion() {
-		given()
-				.port(port)
-				.when()
-				.put("/question/toggle/{id}", 10007)
-				.then()
-				.statusCode(204);
-	}
-
-	@Test
 	public void testGetQuestionById() {
 		given()
 				.port(port)
