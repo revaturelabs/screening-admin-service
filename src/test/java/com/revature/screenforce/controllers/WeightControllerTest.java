@@ -71,6 +71,20 @@ public class WeightControllerTest {
 				.then()
 				.statusCode(204);
 	}
+	
+	@Test
+	public void testUpdateWeightFail() {
+		Weight w = weightService.get(51404);
+		w.setWeightValue(500);
+		given()
+				.port(port)
+				.contentType("application/json")
+				.body(w)
+				.when()
+				.put("/weight/{weightId}", -1)
+				.then()
+				.statusCode(404);
+	}
 
 	@Test
 	public void testCreate() {
@@ -93,6 +107,16 @@ public class WeightControllerTest {
 				.delete("/weight/{weightId}", 51404)
 				.then()
 				.statusCode(204);
+	}
+	
+	@Test
+	public void testDeleteBadId() {
+		given()
+				.port(port)
+				.when()
+				.delete("/weight/{weightId}", -1)
+				.then()
+				.statusCode(404);
 	}
 
 	@Test

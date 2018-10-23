@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.revature.screenforce.beans.Question;
+import com.revature.screenforce.services.BucketService;
 import com.revature.screenforce.services.QuestionService;
 
 import javax.validation.Valid;
@@ -37,6 +38,9 @@ public class QuestionController {
 
 	@Autowired
 	private QuestionService qs;
+	
+	@Autowired
+	private BucketService bs;
 
 	/**
 	 * Get all questions
@@ -76,23 +80,43 @@ public class QuestionController {
 	 * Find all questions associated with a specific bucket
 	 * @param bucketId Id of bucket to filter by
 	 * @return List of questions associated with bucket of given id
+	 * 
+	 * For the getByBucket method, it should be done using a params. rather than an endpoint. 
 	 */
 	@ApiOperation(value = "Find list of Questions by bucketId",
 		notes = "Each question belongs to a particular bucket that classifies subject matter",
 	    response = Question.class,
 	    responseContainer = "List")
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "Response is empty if bucketId is not found") } )
+	@ApiResponses(value = { 
+			@ApiResponse(code = 200, message = "Success, bucketId found with Question Associated"),
+			@ApiResponse(code = 404, message = "bucketId is not found")} )
 	@GetMapping("/getByBucket/{bucketId}")
 	public ResponseEntity<List<Question>> getBucketQuestions(@PathVariable(value="bucketId") int bucketId) {
-		return new ResponseEntity<>(qs.getQuestionsByBucket(bucketId), HttpStatus.OK);
+		if (bs.existsById(bucketId)) {
+			return new ResponseEntity<>(qs.getQuestionsByBucket(bucketId), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		
 	}
-
+	/**
+	 * 
+	 * @param bucketId
+	 * @return Void
+	 * 
+	 */
 	@ApiOperation(value = "Delete all questions associated with a bucketId")
-	@ApiResponse(code = 204, message = "Deleted associated questions")
+	@ApiResponses(value = { 
+			@ApiResponse(code = 200, message = "bucketId found, deleted all question"),
+			@ApiResponse(code = 404, message = "bucketId is not found")} )
 	@DeleteMapping("/deleteByBucket/{bucketId}")
 	public ResponseEntity<Void> deleteByBucket(@PathVariable(value = "bucketId") int bucketId){
-		qs.deleteByBucketId(bucketId);
-		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		if(bs.existsById(bucketId)) {
+			qs.deleteByBucketId(bucketId);
+			return new ResponseEntity<>(HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
 	}
 	
 	/**
@@ -109,7 +133,7 @@ public class QuestionController {
 	
 	/**
 	 * Updates a number of fields for a specific question
-	 * @param question updated question object
+	 * @param updated question object
 	 * @return updated question and http status code 200
 	 */
 	@ApiOperation(value = "Updates question", response = Question.class)

@@ -13,6 +13,8 @@ import com.revature.screenforce.beans.Bucket;
 import com.revature.screenforce.services.BucketServiceImpl;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Bucket Tests using JUnit
@@ -82,4 +84,14 @@ public class BucketServiceImplTest {
 		assertEquals(id, bucketService.getBucketById(id).getBucketId());
 	}
 
+	@Test
+	public void testExistById() {
+		assertTrue(bucketService.existsById(406));
+	}
+	
+
+	@Test
+	public void testExistByIdFail() {
+		assertFalse(bucketService.existsById(4061));
+	}
 }

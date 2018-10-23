@@ -108,7 +108,9 @@ public class BucketController {
 	 * @return http status 204
 	 */
 	@ApiOperation(value = "Deletes a Bucket")
-	@ApiResponses(value = { @ApiResponse(code = 204, message = "Bucket deleted") } )
+	@ApiResponses(value = { 
+			@ApiResponse(code = 204, message = "Bucket deleted"),
+			@ApiResponse(code = 404, message = "Bucket Not Found, Nothing is Deleted") } )
 	@DeleteMapping(value="/{bucketId}")
 	public ResponseEntity<Void> deleteBucket(@PathVariable Integer bucketId){
 		if (bucketService.existsById(bucketId)) {

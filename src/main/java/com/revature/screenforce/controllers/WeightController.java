@@ -98,13 +98,15 @@ public class WeightController {
      */
     @ApiOperation(value = "Update a weight", response = Void.class)
     @PutMapping(value = "/{weightId}")
-    @ApiResponses(value = {@ApiResponse(code = 204, message = "Weight updated")})
+    @ApiResponses(value = {
+    		@ApiResponse(code = 204, message = "Weight updated"),
+    		@ApiResponse(code = 404, message = "Weight ID not found, nothing is updated") })
     public ResponseEntity<Void> updateWeight(@PathVariable(value = "weightId") long weightId, @RequestBody Weight weight) {
         if (ws.existsById(weightId)) {
         	ws.update(weight);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
-        	return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        	return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     	
     }
@@ -126,14 +128,15 @@ public class WeightController {
      */
     @ApiOperation(value = "Deletes a Weight", response = Void.class)
     @DeleteMapping(value = "/{weightId}")
-    @ApiResponses(value = {@ApiResponse(code = 204, message = "Weight deleted")})
+    @ApiResponses(value = {
+    		@ApiResponse(code = 204, message = "Weight deleted"),
+    		@ApiResponse(code = 404, message = "Weight ID not found, nothing is deleted") })
     public ResponseEntity<Void> delete(@PathVariable(value = "weightId") long weightId) {
         if (ws.existsById(weightId)) {
         	ws.deleteById(weightId);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
-        	return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        	return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-
     }
 }

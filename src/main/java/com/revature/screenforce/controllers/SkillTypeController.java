@@ -104,14 +104,16 @@ public class SkillTypeController {
 	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
 	@ApiOperation(value = "Puts a SkillType by id",
 	    response = SkillType.class)
-	@ApiResponses(value = { @ApiResponse(code = 202, message = "SkillType updated"),
+	@ApiResponses(value = { 
+			@ApiResponse(code = 202, message = "SkillType updated"),
 			@ApiResponse(code = 404, message = "SkillType not found") } )
-	public ResponseEntity<Void> putSkillById(@Valid @RequestBody SkillType s) {
-		if (skillService.getSkillType(s.getSkillTypeId()) == null) {
+	public ResponseEntity<Void> putSkillById(@PathVariable(value="id") int id, @RequestBody SkillType s) {
+		if (skillService.existsById(id)) {
+			skillService.updateSkillType(s);
+			return new ResponseEntity<>(HttpStatus.ACCEPTED);
+		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		skillService.updateSkillType(s);
-		return new ResponseEntity<>(HttpStatus.ACCEPTED);
 	}
 	
 	/**
@@ -133,6 +135,5 @@ public class SkillTypeController {
 		}else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		
 	}
 }

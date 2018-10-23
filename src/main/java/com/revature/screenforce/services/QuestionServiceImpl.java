@@ -64,16 +64,6 @@ public class QuestionServiceImpl implements QuestionService {
 
 	@Override
 	@Transactional
-	public void toggleQuestionStatus(int questionId) {
-		if (questionDao.existsById(questionId)) {
-			Question q = questionDao.getOne(questionId);
-			q.setIsActive(!q.getIsActive());
-			questionDao.save(q);
-		}
-	}
-
-	@Override
-	@Transactional
 	public void deleteByBucketId(int bucketId) {
 		List<Question> q = new ArrayList<Question>();
 		q.addAll(qService.getQuestionsByBucket(bucketId));
