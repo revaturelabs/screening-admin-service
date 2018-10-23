@@ -43,7 +43,7 @@ public class WeightServiceImpl implements WeightService {
 
     @Override
     @Transactional
-    public void deleteById(long weightId) {
+    public void deleteById(int weightId) {
         wd.deleteById(weightId);
     }
 
@@ -53,7 +53,7 @@ public class WeightServiceImpl implements WeightService {
     }
 
     @Override
-    public Weight get(long weightId) {
+    public Weight get(int weightId) {
         return wd.findById(weightId).orElse(new Weight());
        
     }
@@ -74,7 +74,7 @@ public class WeightServiceImpl implements WeightService {
     }
 
 	@Override
-	public boolean existsById(long id) {
+	public boolean existsById(int id) {
 		return wd.existsById(id);
 	}
 }

@@ -39,7 +39,7 @@ public interface WeightService {
 	 *
 	 * @param weightId No return
 	 */
-	void deleteById(long weightId);
+	void deleteById(int weightId);
 
 	/**
 	 * Gets a list of buckets by SkillType
@@ -55,7 +55,7 @@ public interface WeightService {
 	 * @param weightId ID of the weight to filter by
 	 * @return weight object
 	 */
-	Weight get(long weightId);
+	Weight get(int weightId);
 	/**
 	 * Get a weight by its skillTypeId and bucketId
 	 *
@@ -83,5 +83,5 @@ public interface WeightService {
 	 * Check if id exist
 	 * @param id
 	 */
-	public boolean existsById(long id);
+	public boolean existsById(int id);
 }
