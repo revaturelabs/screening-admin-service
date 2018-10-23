@@ -4,7 +4,6 @@ import io.swagger.annotations.ApiModel;
 
 import java.util.List;
 
-import com.revature.screenforce.beans.SkillType;
 import com.revature.screenforce.beans.Weight;
 
 /**
@@ -48,7 +47,7 @@ public interface WeightService {
 	 * @param SkillTypeID ID of SkillType to filter by
 	 * @return List of weights
 	 */
-	List<Weight> getAllWeightsBySkillTypeID(int SkillTypeID);
+	List<Weight> getAllWeightsBySkillTypeID(int skillTypeID);
 
 	/**
 	 * Get a weight by its Id

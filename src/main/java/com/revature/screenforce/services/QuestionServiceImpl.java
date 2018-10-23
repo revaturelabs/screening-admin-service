@@ -69,7 +69,6 @@ public class QuestionServiceImpl implements QuestionService {
 		q.addAll(qService.getQuestionsByBucket(bucketId));
 		
 		for (Question question : q) {
-			System.out.println(question.getQuestionId());
 			qService.deleteByQuestionId(question.getQuestionId());
 		}
 	}

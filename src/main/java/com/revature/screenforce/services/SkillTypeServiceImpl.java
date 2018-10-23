@@ -3,7 +3,6 @@ package com.revature.screenforce.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.revature.screenforce.beans.Question;
 import com.revature.screenforce.beans.SkillType;
 import com.revature.screenforce.daos.SkillTypeDAO;
 

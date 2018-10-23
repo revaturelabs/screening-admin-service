@@ -5,7 +5,6 @@ import io.swagger.annotations.ApiModel;
 import java.util.List;
 
 import com.revature.screenforce.beans.Question;
-import com.revature.screenforce.beans.SkillType;
 
 /**
  * Interface that contains associated with the Question POJO
