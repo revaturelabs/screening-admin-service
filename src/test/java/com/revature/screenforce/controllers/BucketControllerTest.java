@@ -33,7 +33,6 @@ public class BucketControllerTest {
 				.log()
 				.ifValidationFails()
 				.statusCode(200);
-
 	}
 
 	@Test
@@ -94,9 +93,23 @@ public class BucketControllerTest {
 				.contentType("application/json")
 				.body(b)
 				.when()
-				.put("/bucket/update")
+				.put("/bucket/416")
 				.then()
 				.statusCode(200);
+	}
+	
+	@Test
+	public void testUpdateBucketFail() {
+		Bucket b = new Bucket(1, "Updated Rest Assured Test", true);
+
+		given()
+				.port(port)
+				.contentType("application/json")
+				.body(b)
+				.when()
+				.put("/bucket/1")
+				.then()
+				.statusCode(400);
 	}
 
 	@Test

@@ -46,7 +46,7 @@ public class QuestionController {
 			response = Question.class,
 		    responseContainer = "List")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "All questions returned") } )
-	@GetMapping("/all")
+	@GetMapping()
 	public ResponseEntity<List<Question>> getQuestions() {
 		return new ResponseEntity<>(qs.getAllQuestions(), HttpStatus.OK);
 	}
@@ -102,7 +102,7 @@ public class QuestionController {
 	 */
 	@ApiOperation(value = "Adds a new Question", response = Question.class)
 	@ApiResponses(value = { @ApiResponse(code = 201, message = "New question created") } )
-	@PostMapping(value = "/new" ,consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Question> create(@Valid @RequestBody Question question) {
 		return new ResponseEntity<>(this.qs.create(question), HttpStatus.CREATED);
 	}
@@ -113,11 +113,17 @@ public class QuestionController {
 	 * @return updated question and http status code 200
 	 */
 	@ApiOperation(value = "Updates question", response = Question.class)
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "Question updated") } )
-	@PutMapping(value = "/update" , consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Question> updateQuestion(@Valid @RequestBody Question question) {
-		qs.updateQuestion(question);
-		return new ResponseEntity<>(question, HttpStatus.OK);
+	@ApiResponses(value = { 
+			@ApiResponse(code = 200, message = "Question updated"),
+			@ApiResponse(code = 400, message = "Bad Request, Question is not updated") } )
+	@PutMapping(value = "/{id}" , consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Question> updateQuestion(@PathVariable(value = "id") int id, @RequestBody Question question) {
+		if (qs.existsById(id)) {
+			qs.updateQuestion(question);
+			return new ResponseEntity<>(question, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
 	}
 	
 	/**
@@ -126,11 +132,17 @@ public class QuestionController {
 	 * @return http status code 200
 	 */
 	@ApiOperation(value = "Deletes a question")
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "Question deleted") } )
-	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<Void> deleteByQuestionId(@PathVariable(value="id") Integer questionId) {
-		qs.deleteByQuestionId(questionId);
-		return new ResponseEntity<>(HttpStatus.OK);
+	@ApiResponses(value = { 
+			@ApiResponse(code = 200, message = "Question deleted"),
+			@ApiResponse(code = 400, message = "Bad Request, QuestionID not found") } )
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Void> deleteByQuestionId(@PathVariable(value="id") int id) {
+		if (qs.existsById(id)) {
+			qs.deleteByQuestionId(id);
+			return new ResponseEntity<>(HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
 	}
 	
 	/**
@@ -141,8 +153,13 @@ public class QuestionController {
 	@ApiOperation(value = "Sets Question to active state", response = void.class)
 	@ApiResponses(value = { @ApiResponse(code = 204, message = "Question toggled") } )
 	@PutMapping("/toggle/{id}")
-	public ResponseEntity<Void> activateQuestion(@PathVariable(value="id") Integer questionId) {
-		qs.toggleQuestionStatus(questionId);
-		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	public ResponseEntity<Void> activateQuestion(@PathVariable(value="id") int questionId) {
+		if (qs.existsById(questionId)) {
+			qs.toggleQuestionStatus(questionId);
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		} else {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		
 	}
 }

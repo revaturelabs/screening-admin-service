@@ -65,12 +65,11 @@ public class QuestionServiceImpl implements QuestionService {
 	@Override
 	@Transactional
 	public void toggleQuestionStatus(int questionId) {
-		if (questionDao.findById(questionId).isPresent()) {
-			Question q = questionDao.findById(questionId).get();
+		if (questionDao.existsById(questionId)) {
+			Question q = questionDao.getOne(questionId);
 			q.setIsActive(!q.getIsActive());
 			questionDao.save(q);
 		}
-
 	}
 
 	@Override
@@ -83,6 +82,10 @@ public class QuestionServiceImpl implements QuestionService {
 			System.out.println(question.getQuestionId());
 			qService.deleteByQuestionId(question.getQuestionId());
 		}
-		
+	}
+
+	@Override
+	public boolean existsById(int id) {
+		return questionDao.existsById(id);
 	}
 }

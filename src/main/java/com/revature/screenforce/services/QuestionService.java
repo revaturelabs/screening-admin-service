@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModel;
 import java.util.List;
 
 import com.revature.screenforce.beans.Question;
+import com.revature.screenforce.beans.SkillType;
 
 /**
  * Interface that contains associated with the Question POJO
@@ -76,5 +77,10 @@ public interface QuestionService {
      * @param bucketId Id of bucket to filter by
      */
 	void deleteByBucketId(int bucketId);
-
+	
+	/**
+	 * Check if id exist
+	 * @param id
+	 */
+	public boolean existsById(int id);
 }
