@@ -4,6 +4,7 @@ import io.swagger.annotations.ApiModel;
 
 import java.util.List;
 
+import com.revature.screenforce.beans.SkillType;
 import com.revature.screenforce.beans.Weight;
 
 /**
@@ -78,4 +79,10 @@ public interface WeightService {
 	 * @param skillTypeId Id of SkillType to filter by
 	 */
 	void deleteAllBySkillTypeSkillTypeId(int skillTypeId);
+	
+	/**
+	 * Check if id exist
+	 * @param id
+	 */
+	public boolean existsById(long id);
 }

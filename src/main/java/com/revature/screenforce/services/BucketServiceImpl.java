@@ -69,5 +69,10 @@ public class BucketServiceImpl implements BucketService {
 	public Bucket getBucketById(int bucketId) {
 		return bucketDAO.findById(bucketId).orElse(new Bucket());
 	}
+
+	@Override
+	public boolean existsById(int bid) {
+		return bucketDAO.existsById(bid);
+	}
 	
 }

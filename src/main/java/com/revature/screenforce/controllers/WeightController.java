@@ -97,11 +97,16 @@ public class WeightController {
      * @return no content
      */
     @ApiOperation(value = "Update a weight", response = Void.class)
-    @PutMapping(value = "/update")
+    @PutMapping(value = "/{weightId}")
     @ApiResponses(value = {@ApiResponse(code = 204, message = "Weight updated")})
-    public ResponseEntity<Void> updateWeight(@Valid @RequestBody Weight weight) {
-        ws.update(weight);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    public ResponseEntity<Void> updateWeight(@PathVariable(value = "weightId") long weightId, @RequestBody Weight weight) {
+        if (ws.existsById(weightId)) {
+        	ws.update(weight);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+        	return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    	
     }
 
     /**
@@ -109,7 +114,7 @@ public class WeightController {
      * @return persisted weight with ID created
      */
     @ApiOperation(value = "Adds a new Weight", response = Weight.class)
-    @PostMapping(value = "/new", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiResponses(value = {@ApiResponse(code = 201, message = "Weight created and returned w/ updated id")})
     public ResponseEntity<Weight> create(@Valid @RequestBody Weight weight) {
         return new ResponseEntity<>(ws.create(weight), HttpStatus.CREATED);
@@ -120,10 +125,15 @@ public class WeightController {
      * @return Void
      */
     @ApiOperation(value = "Deletes a Weight", response = Void.class)
-    @DeleteMapping(value = "/delete/{weightId}")
+    @DeleteMapping(value = "/{weightId}")
     @ApiResponses(value = {@ApiResponse(code = 204, message = "Weight deleted")})
-    public ResponseEntity<Void> delete(@PathVariable(value = "weightId") int weightId) {
-        ws.deleteById(weightId);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    public ResponseEntity<Void> delete(@PathVariable(value = "weightId") long weightId) {
+        if (ws.existsById(weightId)) {
+        	ws.deleteById(weightId);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+        	return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
     }
 }

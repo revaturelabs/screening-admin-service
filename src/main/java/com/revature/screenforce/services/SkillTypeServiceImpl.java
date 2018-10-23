@@ -63,4 +63,9 @@ public class SkillTypeServiceImpl implements SkillTypeService {
 	public SkillType getSkillTypeById(int skillTypeId) {
 		return skillTypeDao.findById(skillTypeId).orElse(null);
 	}
+
+	@Override
+	public boolean existsById(int id) {
+		return skillTypeDao.existsById(id);
+	}
 }
