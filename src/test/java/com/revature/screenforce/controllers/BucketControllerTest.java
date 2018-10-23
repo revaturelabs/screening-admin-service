@@ -121,7 +121,16 @@ public class BucketControllerTest {
 				.then()
 				.statusCode(204);
 	}
-
+	
+	@Test
+	public void testDeleteBucketFail() {
+		given()
+				.port(port)
+				.when()
+				.delete("/bucket/{bucketId}", 4014)
+				.then()
+				.statusCode(404);
+	}
 
 	@Test
 	public void testCreateEmptyBucket() {
@@ -134,6 +143,4 @@ public class BucketControllerTest {
 				.then()
 				.statusCode(415);
 	}
-
-
 }

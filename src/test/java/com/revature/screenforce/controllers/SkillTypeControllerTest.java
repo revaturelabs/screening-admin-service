@@ -120,6 +120,20 @@ public class SkillTypeControllerTest {
 				.statusCode(202);
 	}
 
+	@Test
+	public void testUpdateSkillBadId() {
+		SkillType st = skillType.getSkillType(51);
+		st.setTitle("Updated SkillType");
+		
+		given()
+				.port(port)
+				.contentType("application/json")
+				.body(st)
+				.when()
+				.put("/skilltype/{id}", -1)
+				.then()
+				.statusCode(404);
+	}
 
 	@Test
 	public void testDeleteSkillById() {

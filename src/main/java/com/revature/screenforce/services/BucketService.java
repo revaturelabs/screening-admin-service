@@ -55,6 +55,4 @@ public interface BucketService {
 	 * @param bucketId
 	 */
 	public boolean existsById(int bid);
-	
-		
 }

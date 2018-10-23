@@ -13,6 +13,7 @@ import com.revature.screenforce.beans.Weight;
 import com.revature.screenforce.services.WeightServiceImpl;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * SkillTypeService Tests using JUnit
@@ -87,5 +88,8 @@ public class WeightServiceImplTest {
 		assertEquals(51404, weightService.get(51, 404).getWeightId());
 	}
 
-
+	@Test
+	public void testExistById() {
+		assertTrue(weightService.existsById(51404));
+	}
 }

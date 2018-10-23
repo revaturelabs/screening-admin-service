@@ -41,15 +41,17 @@ public class QuestionControllerTest {
 				.then()
 				.statusCode(200);
 	}
-
+	
 	@Test
-	public void testDeleteByBucketFail() {
+	public void testGetBucketQuestionsFail() {
 		given()
 				.port(port)
-				.when().delete("/question/{bucketId}", 406)
+				.when()
+				.get("/question/getByBucket/{bucketId}", -2)
 				.then()
-				.statusCode(400);
+				.statusCode(404);
 	}
+
 
 	@Test
 	public void testCreate() {
@@ -78,6 +80,20 @@ public class QuestionControllerTest {
 				.then()
 				.statusCode(200);
 	}
+	
+	@Test
+	public void testUpdateQuestionBadId() {
+		Question question = new Question(10007, null, false, "Test", "Test", "Test", "Test", "Test", "Test");
+
+		given()
+				.port(port)
+				.contentType("application/json")
+				.body(question)
+				.when()
+				.put("/question/{bucketId}", -1)
+				.then()
+				.statusCode(400);
+	}
 
 	@Test
 	public void testDeleteByQuestionId() {
@@ -87,6 +103,16 @@ public class QuestionControllerTest {
 				.delete("/question/{id}", 10008)
 				.then()
 				.statusCode(200);
+	}
+	
+	@Test
+	public void testDeleteByQuestionBadId() {
+		given()
+				.port(port)
+				.when()
+				.delete("/question/{id}", -2)
+				.then()
+				.statusCode(400);
 	}
 
 	@Test
@@ -112,4 +138,25 @@ public class QuestionControllerTest {
 				.assertThat()
 				.statusCode(404);
 	}
+	
+	@Test
+	public void deleteByBucket() {
+		given()
+				.port(port)
+				.when()
+				.delete("/question/deleteByBucket/{bucketId}", 410)
+				.then()
+				.statusCode(200);
+	}
+	
+	@Test
+	public void testDeleteByBucketFail() {
+		given()
+				.port(port)
+				.when()
+				.delete("/question/deleteByBucket/{bucketId}", 4061)
+				.then()
+				.statusCode(404);
+	}
+
 }
