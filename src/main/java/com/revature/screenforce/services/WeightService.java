@@ -83,5 +83,5 @@ public interface WeightService {
 	 * Check if id exist
 	 * @param id
 	 */
-	public boolean existsById(long id);
+	public boolean existsById(int id);
 }

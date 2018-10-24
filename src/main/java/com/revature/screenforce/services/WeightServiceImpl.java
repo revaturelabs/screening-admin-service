@@ -74,7 +74,7 @@ public class WeightServiceImpl implements WeightService {
     }
 
 	@Override
-	public boolean existsById(long id) {
+	public boolean existsById(int id) {
 		return wd.existsById(id);
 	}
 }
