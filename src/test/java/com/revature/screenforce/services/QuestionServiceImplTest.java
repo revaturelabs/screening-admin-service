@@ -15,6 +15,7 @@ import com.revature.screenforce.services.BucketServiceImpl;
 import com.revature.screenforce.services.QuestionServiceImpl;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -92,19 +93,21 @@ public class QuestionServiceImplTest {
 	}
 
 	@Test
-	public void testToggleQuestionStatus() {
-		Question question = new Question();
-		question.setIsActive(false);
-		question = questionService.create(question);
-		questionService.toggleQuestionStatus(question.getQuestionId());
-		assertTrue(questionService.getByQuestionId(question.getQuestionId()).getIsActive());
-	}
-	
-	@Test
 	public void testDeleteByBucketId() {
 		int total = questionService.getAllQuestions().size();
 		questionService.deleteByBucketId(406);
 		int after = questionService.getAllQuestions().size();
 		assertEquals((total-3), after);
+	}
+	
+	@Test
+	public void testExistById() {
+		int id = 10001;
+		assertTrue(questionService.existsById(id));
+	}
+	
+	@Test
+	public void testExistByIdFail() {
+		assertFalse(questionService.existsById(-1));
 	}
 }

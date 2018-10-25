@@ -56,13 +56,10 @@ public class BucketController {
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Bucket> createBucket(@Valid @RequestBody Bucket bucket) {
 		if (bucket != null && !bucket.getBucketDescription().equals("")) {
-			System.out.println("bucketDescriptionHere-----"+bucket.getBucketDescription());
 			return new ResponseEntity<>(this.bucketService.createBucket(bucket), HttpStatus.CREATED);
 		}else {
 			return new ResponseEntity<>(HttpStatus.UNSUPPORTED_MEDIA_TYPE);
 		}
-		
-
 	}	
 
 	/**
@@ -71,11 +68,18 @@ public class BucketController {
 	 * @return Updated bucket and http status code
 	 */
 	@ApiOperation(value = "Updates a Bucket", response = Bucket.class)
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "Bucket updated") } )
-	@PutMapping(value = "/update", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Bucket> updateBucket(@Valid @RequestBody Bucket bucket) {
-		bucketService.updateBucket(bucket);
-		return new ResponseEntity<>(bucket, HttpStatus.OK);
+	@ApiResponses(value = { 
+			@ApiResponse(code = 200, message = "Bucket updated"),
+			@ApiResponse(code = 400, message = "Bad Request, Bucket not updated")
+			} )
+	@PutMapping(value = "/{bucketId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Bucket> updateBucket(@PathVariable(value = "bucketId") int bucketId, @RequestBody Bucket bucket) {
+		if (bucketService.existsById(bucketId)) {
+			bucketService.updateBucket(bucket);
+			return new ResponseEntity<>(bucket, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
 	}
 	
 	/**
@@ -96,7 +100,6 @@ public class BucketController {
 		} else {
 			return new ResponseEntity<>(bucket, HttpStatus.OK);
 		}
-
 	}
 	
 	/**
@@ -105,12 +108,17 @@ public class BucketController {
 	 * @return http status 204
 	 */
 	@ApiOperation(value = "Deletes a Bucket")
-	@ApiResponses(value = { @ApiResponse(code = 204, message = "Bucket deleted") } )
+	@ApiResponses(value = { 
+			@ApiResponse(code = 204, message = "Bucket deleted"),
+			@ApiResponse(code = 404, message = "Bucket Not Found, Nothing is Deleted") } )
 	@DeleteMapping(value="/{bucketId}")
 	public ResponseEntity<Void> deleteBucket(@PathVariable Integer bucketId){
-		bucketService.deleteBucket(bucketId);
-		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-	}
-	
+		if (bucketService.existsById(bucketId)) {
+			bucketService.deleteBucket(bucketId);
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}	
 }
 	

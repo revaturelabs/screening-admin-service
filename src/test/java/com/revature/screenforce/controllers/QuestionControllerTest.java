@@ -27,7 +27,7 @@ public class QuestionControllerTest {
 		given()
 				.port(port)
 				.when()
-				.get("/question/all")
+				.get("/question")
 				.then()
 				.statusCode(200);
 	}
@@ -41,15 +41,17 @@ public class QuestionControllerTest {
 				.then()
 				.statusCode(200);
 	}
-
+	
 	@Test
-	public void testDeleteByBucket() {
+	public void testGetBucketQuestionsFail() {
 		given()
 				.port(port)
-				.when().delete("/question/deleteByBucket/{bucketId}", 404)
-				.then().log().ifError()
-				.assertThat().statusCode(204);
+				.when()
+				.get("/question/getByBucket/{bucketId}", -2)
+				.then()
+				.statusCode(404);
 	}
+
 
 	@Test
 	public void testCreate() {
@@ -60,50 +62,57 @@ public class QuestionControllerTest {
 				.contentType("application/json")
 				.body(question)
 				.when()
-				.post("/question/new")
+				.post("/question")
 				.then()
 				.statusCode(201);
 	}
 
 	@Test
 	public void testUpdateQuestion() {
-		Question question = new Question(1007, null, false, "Test", "Test", "Test", "Test", "Test", "Test");
+		Question question = new Question(10007, null, false, "Test", "Test", "Test", "Test", "Test", "Test");
 
 		given()
 				.port(port)
 				.contentType("application/json")
 				.body(question)
 				.when()
-				.put("/question/update")
+				.put("/question/{bucketId}", 10007)
 				.then()
 				.statusCode(200);
+	}
+	
+	@Test
+	public void testUpdateQuestionBadId() {
+		Question question = new Question(10007, null, false, "Test", "Test", "Test", "Test", "Test", "Test");
+
+		given()
+				.port(port)
+				.contentType("application/json")
+				.body(question)
+				.when()
+				.put("/question/{bucketId}", -1)
+				.then()
+				.statusCode(400);
 	}
 
 	@Test
 	public void testDeleteByQuestionId() {
-		int questionId = 1008;
-
 		given()
 				.port(port)
 				.when()
-				.delete("/question/delete/{id}", questionId)
+				.delete("/question/{id}", 10008)
 				.then()
 				.statusCode(200);
 	}
-
+	
 	@Test
-	public void testActivateQuestion() {
-		int questionId = 1007;
-
+	public void testDeleteByQuestionBadId() {
 		given()
 				.port(port)
 				.when()
-				.put("/question/toggle/" + questionId)
+				.delete("/question/{id}", -2)
 				.then()
-				.log()
-				.ifError()
-				.assertThat()
-				.statusCode(204);
+				.statusCode(400);
 	}
 
 	@Test
@@ -129,4 +138,25 @@ public class QuestionControllerTest {
 				.assertThat()
 				.statusCode(404);
 	}
+	
+	@Test
+	public void deleteByBucket() {
+		given()
+				.port(port)
+				.when()
+				.delete("/question/deleteByBucket/{bucketId}", 410)
+				.then()
+				.statusCode(200);
+	}
+	
+	@Test
+	public void testDeleteByBucketFail() {
+		given()
+				.port(port)
+				.when()
+				.delete("/question/deleteByBucket/{bucketId}", 4061)
+				.then()
+				.statusCode(404);
+	}
+
 }

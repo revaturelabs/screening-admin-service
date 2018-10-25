@@ -73,11 +73,7 @@ public class SkillTypeController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}else {
 			return new ResponseEntity<>(skill, HttpStatus.OK);
-		}
-			
-	
-		
-		
+		}			
 	}
 	
 	
@@ -90,7 +86,8 @@ public class SkillTypeController {
 	@RequestMapping(method=RequestMethod.POST)
 	@ApiOperation(value = "Creates a SkillType",
 	    response = SkillType.class)
-	@ApiResponses(value = { @ApiResponse(code = 201, message = "SkillType created"),
+	@ApiResponses(value = { 
+			@ApiResponse(code = 201, message = "SkillType created"),
 			@ApiResponse(code = 406, message = "SkillType must have a title") } )
 	public ResponseEntity<SkillType> postSkill(@Valid @RequestBody SkillType s) {
 		if (s.getTitle().equals("")) {
@@ -107,14 +104,16 @@ public class SkillTypeController {
 	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
 	@ApiOperation(value = "Puts a SkillType by id",
 	    response = SkillType.class)
-	@ApiResponses(value = { @ApiResponse(code = 202, message = "SkillType updated"),
+	@ApiResponses(value = { 
+			@ApiResponse(code = 202, message = "SkillType updated"),
 			@ApiResponse(code = 404, message = "SkillType not found") } )
-	public ResponseEntity<Void> putSkillById(@Valid @RequestBody SkillType s) {
-		if (skillService.getSkillType(s.getSkillTypeId()) == null) {
+	public ResponseEntity<Void> putSkillById(@PathVariable(value="id") int id, @RequestBody SkillType s) {
+		if (skillService.existsById(id)) {
+			skillService.updateSkillType(s);
+			return new ResponseEntity<>(HttpStatus.ACCEPTED);
+		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		skillService.updateSkillType(s);
-		return new ResponseEntity<>(HttpStatus.ACCEPTED);
 	}
 	
 	/**
@@ -125,17 +124,16 @@ public class SkillTypeController {
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
 	@ApiOperation(value = "Deletes a SkillType by id",
 	    response = SkillType.class)
-	@ApiResponses(value = { @ApiResponse(code = 204, message = "SkillType deleted"),
+	@ApiResponses(value = { 
+			@ApiResponse(code = 204, message = "SkillType deleted"),
 			@ApiResponse(code = 404, message = "SkillType not found") } )
-	public ResponseEntity<Void> deleteSkillById(@PathVariable(value="id") Integer id) {
+	public ResponseEntity<Void> deleteSkillById(@PathVariable(value="id") int id) {
 		SkillType sType = skillService.getSkillType(id);
 		if (sType != null) {
 			skillService.deleteSkillType(id);
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-			
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);	
 		}else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		
 	}
 }

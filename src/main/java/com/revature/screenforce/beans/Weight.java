@@ -25,7 +25,7 @@ public class Weight {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "WEIGHT_ID")
-    private long weightId;
+    private int weightId;
 
     @ApiModelProperty(value = "The actual weight needed for calculation")
     @Column(name = "WEIGHT_VALUE")
@@ -56,11 +56,11 @@ public class Weight {
     /**
      * Getters and setters
      */
-    public long getWeightId() {
+    public int getWeightId() {
         return weightId;
     }
 
-    public void setWeightId(long weightId) {
+    public void setWeightId(int weightId) {
         this.weightId = weightId;
     }
 

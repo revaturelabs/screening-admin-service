@@ -3,7 +3,6 @@ package com.revature.screenforce.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.revature.screenforce.beans.Question;
 import com.revature.screenforce.beans.SkillType;
 import com.revature.screenforce.daos.SkillTypeDAO;
 
@@ -62,5 +61,10 @@ public class SkillTypeServiceImpl implements SkillTypeService {
 	@Override
 	public SkillType getSkillTypeById(int skillTypeId) {
 		return skillTypeDao.findById(skillTypeId).orElse(null);
+	}
+
+	@Override
+	public boolean existsById(int id) {
+		return skillTypeDao.existsById(id);
 	}
 }
