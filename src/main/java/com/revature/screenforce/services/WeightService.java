@@ -47,7 +47,7 @@ public interface WeightService {
 	 * @param SkillTypeID ID of SkillType to filter by
 	 * @return List of weights
 	 */
-	List<Weight> getAllWeightsBySkillTypeID(int SkillTypeID);
+	List<Weight> getAllWeightsBySkillTypeID(int skillTypeID);
 
 	/**
 	 * Get a weight by its Id
@@ -78,4 +78,10 @@ public interface WeightService {
 	 * @param skillTypeId Id of SkillType to filter by
 	 */
 	void deleteAllBySkillTypeSkillTypeId(int skillTypeId);
+	
+	/**
+	 * Check if id exist
+	 * @param id
+	 */
+	public boolean existsById(int id);
 }

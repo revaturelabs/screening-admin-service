@@ -50,6 +50,9 @@ public interface BucketService {
 	 */
 	public void deleteBucket(int bucketId);
 
-	
-		
+	/**
+	 * Check if id exist
+	 * @param bucketId
+	 */
+	public boolean existsById(int bid);
 }

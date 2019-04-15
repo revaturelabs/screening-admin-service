@@ -62,15 +62,28 @@ public class WeightControllerTest {
 	public void testUpdateWeight() {
 		Weight w = weightService.get(51404);
 		w.setWeightValue(500);
-
 		given()
 				.port(port)
 				.contentType("application/json")
 				.body(w)
 				.when()
-				.put("/weight/update")
+				.put("/weight/{weightId}", 51404)
 				.then()
 				.statusCode(204);
+	}
+	
+	@Test
+	public void testUpdateWeightFail() {
+		Weight w = weightService.get(51404);
+		w.setWeightValue(500);
+		given()
+				.port(port)
+				.contentType("application/json")
+				.body(w)
+				.when()
+				.put("/weight/{weightId}", -1)
+				.then()
+				.statusCode(404);
 	}
 
 	@Test
@@ -81,11 +94,9 @@ public class WeightControllerTest {
 				.contentType("application/json")
 				.body(w)
 				.when()
-				.post("/weight/new")
+				.post("/weight")
 				.then()
 				.statusCode(201);
-
-
 	}
 
 	@Test
@@ -93,9 +104,19 @@ public class WeightControllerTest {
 		given()
 				.port(port)
 				.when()
-				.delete("/weight/delete/{weightId}", 51404)
+				.delete("/weight/{weightId}", 51404)
 				.then()
 				.statusCode(204);
+	}
+	
+	@Test
+	public void testDeleteBadId() {
+		given()
+				.port(port)
+				.when()
+				.delete("/weight/{weightId}", -1)
+				.then()
+				.statusCode(404);
 	}
 
 	@Test

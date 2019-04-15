@@ -72,4 +72,9 @@ public class WeightServiceImpl implements WeightService {
     public void deleteAllBySkillTypeSkillTypeId(int skillTypeId) {
         wd.deleteAllBySkillTypeSkillTypeId(skillTypeId);
     }
+
+	@Override
+	public boolean existsById(int id) {
+		return wd.existsById(id);
+	}
 }

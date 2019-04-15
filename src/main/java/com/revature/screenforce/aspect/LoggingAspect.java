@@ -17,8 +17,6 @@ import org.springframework.stereotype.Component;
 @Component
 @Aspect
 public class LoggingAspect {
-    private Logger log;
-    
     /*
      * Applies advice to join points matched by everything()
      * Logs the method called and the parameters passed.
@@ -30,15 +28,15 @@ public class LoggingAspect {
      * @author Isaac Pawling | 1805-WVU | Richard Orr
      */
     @Around("everything()")
-    public Object log(ProceedingJoinPoint pjp) {
+    public Object log(ProceedingJoinPoint pjp) throws Throwable {
         Object obj = null;
-        log = LogManager.getLogger(pjp.getTarget().getClass());
+        Logger log = LogManager.getLogger(pjp.getTarget().getClass());
         log.info("Method with signature: "+pjp.getSignature());
         log.info("With arguments: "+Arrays.toString(pjp.getArgs()));
      
         try {
             obj = pjp.proceed();
-        } catch (Throwable e) {
+        } catch (Exception e) {
             log.error(e.getMessage());
             for(StackTraceElement s : e.getStackTrace()) {
                 log.warn(s);
@@ -53,6 +51,6 @@ public class LoggingAspect {
      * All spring bean methods in the application are matched. 
      * @author Isaac Pawling | 1805-WVU | Richard Orr
      */
-    @Pointcut("execution(* com.revature.caliber..*(..))")
+    @Pointcut("execution(* com.revature.screenforce..*(..))")
     public void everything() { /* Empty method for Aspect Pointcut */ }
 }

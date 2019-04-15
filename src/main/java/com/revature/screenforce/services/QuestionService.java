@@ -63,18 +63,16 @@ public interface QuestionService {
 	 * @return updated Question object
 	 */
 	Question updateQuestion(Question question);
-	
-	/**
-	 * Toggle the status of the question
-	 * @param questionId - Id of question
-	 * No returns
-	 */
-	void toggleQuestionStatus(int questionId);
 
     /**
      * Delete all questions associated with a specific bucket
      * @param bucketId Id of bucket to filter by
      */
 	void deleteByBucketId(int bucketId);
-
+	
+	/**
+	 * Check if id exist
+	 * @param id
+	 */
+	public boolean existsById(int id);
 }

@@ -13,6 +13,8 @@ import com.revature.screenforce.beans.SkillType;
 import com.revature.screenforce.services.SkillTypeService;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * SkillTypeService Tests using JUnit
@@ -81,4 +83,13 @@ public class SkillTypeServiceImplTest {
 		assertEquals(activeSkillTypes+1, skillTypeService.getActiveSkillTypes(true).size());
 	}
 
+	@Test
+	public void testExistById() {
+		assertTrue(skillTypeService.existsById(51));
+	}
+	
+	@Test
+	public void testExistByIdFail() {
+		assertFalse(skillTypeService.existsById(511));
+	}
 }
