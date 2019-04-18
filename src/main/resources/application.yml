@@ -36,9 +36,9 @@ info:
 eureka:
     client:
         service-url:
-            defaultZone: ${CALIBER_EUREKA_SERVER_URL}
+            defaultZone: ${SCREENFORCE_EUREKA_SERVER_URL}
     instance:
-   #  hostName: ${CALIBER_INSTANCE_HOSTNAME:localhost}
-   #  statusPageUrl: http://${CALIBER_INSTANCE_HOSTNAME:localhost}:${server.port}/info
-   #  healthCheckUrl: http://${CALIBER_INSTANCE_HOSTNAME:localhost}:${server.port}/health
+   #  hostName: ${SCREENFORCE_INSTANCE_HOSTNAME:localhost}
+   #  statusPageUrl: http://${SCREENFORCE_INSTANCE_HOSTNAME:localhost}:${server.port}/info
+   #  healthCheckUrl: http://${SCREENFORCE_INSTANCE_HOSTNAME:localhost}:${server.port}/health
 
