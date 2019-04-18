@@ -1,0 +1,44 @@
+spring:
+   #Configure Test H2 Database
+    datasource:
+        driver-class-name: org.h2.Driver
+        platform: h2
+        url: jdbc:h2:mem:data;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;
+        username: sa
+        password:
+    jpa:
+        hibernate:
+            ddl-auto: update
+server:
+    port: 8182
+
+security:
+    basic:
+        enabled: false
+
+management:
+    security:
+        enabled: false
+
+
+   #  endpoints:
+   #    web:
+   #      cors:
+   #        allow-credentials: true
+   #        allowed-headers: *
+   #        allowed-methods: *
+   #        allowed-origins: http://ec2-35-183-67-26.ca-central-1.compute.amazonaws.com:4200/
+   #        max-age: 1800s
+
+info:
+    component: Screening Admin Service
+
+eureka:
+    client:
+        service-url:
+            defaultZone: ${CALIBER_EUREKA_SERVER_URL}
+    instance:
+   #  hostName: ${CALIBER_INSTANCE_HOSTNAME:localhost}
+   #  statusPageUrl: http://${CALIBER_INSTANCE_HOSTNAME:localhost}:${server.port}/info
+   #  healthCheckUrl: http://${CALIBER_INSTANCE_HOSTNAME:localhost}:${server.port}/health
+
