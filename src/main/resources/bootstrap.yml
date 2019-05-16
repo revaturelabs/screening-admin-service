@@ -1,0 +1,8 @@
+spring:
+   #Spring Configuration
+    application:
+        name: screening-admin-service
+   # cloud:
+   #  config:
+   #    uri: ${SCREENFORCE_CONFIG_SERVER_URL}
+   #    fail-fast: true
