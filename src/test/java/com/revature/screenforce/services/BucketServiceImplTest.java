@@ -8,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.revature.screenforce.Application;
+import com.revature.screenforce.ScreeningAdminServiceApplication;
 import com.revature.screenforce.beans.Bucket;
 import com.revature.screenforce.services.BucketServiceImpl;
 
@@ -23,7 +23,7 @@ import static org.junit.Assert.assertTrue;
  * @author Alpha Barry | 1807-QC | Emily Higgins
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = Application.class)
+@SpringBootTest(classes = ScreeningAdminServiceApplication.class)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_CLASS)
 @AutoConfigureTestDatabase
 public class BucketServiceImplTest {

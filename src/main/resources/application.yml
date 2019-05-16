@@ -1,0 +1,35 @@
+#Spring Configuration
+spring:
+  application:
+    name: screening-admin-service
+  datasource:
+    driver-class-name: org.h2.Driver
+    platform: h2
+    url: jdbc:h2:mem:data;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update
+      
+eureka:
+  client:
+    service-url:
+      defaultZone: ${SCREENFORCE_EUREKA_SERVER_URL}
+
+server:
+  port: 8181
+
+#  endpoints:
+#    web:
+#      cors:
+#        allow-credentials: true
+#        allowed-headers: *
+#        allowed-methods: *
+#        allowed-origins: http://ec2-35-183-67-26.ca-central-1.compute.amazonaws.com:4200
+#        max-age: 1800s
+        
+  
+
+  
+ 

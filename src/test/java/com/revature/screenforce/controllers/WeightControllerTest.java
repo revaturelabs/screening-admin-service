@@ -9,7 +9,7 @@ import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.revature.screenforce.Application;
+import com.revature.screenforce.ScreeningAdminServiceApplication;
 import com.revature.screenforce.beans.Weight;
 import com.revature.screenforce.services.WeightServiceImpl;
 
@@ -17,7 +17,7 @@ import static io.restassured.RestAssured.given;
 
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = Application.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(classes = ScreeningAdminServiceApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_CLASS)
 @AutoConfigureTestDatabase
 public class WeightControllerTest {

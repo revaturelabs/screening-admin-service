@@ -10,11 +10,11 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 @EnableZuulProxy
 @SpringBootApplication
-public class Application {
+public class ScreeningAdminServiceApplication {
 
 	public static void main(String[] args) {
 		
-		SpringApplication.run(Application.class, args);
+		SpringApplication.run(ScreeningAdminServiceApplication.class, args);
 	}
 	
 }
