@@ -1,5 +1,5 @@
 #Spring Configuration
-spring:
+spring: 
   application:
     name: screening-admin-service
   datasource:
@@ -11,7 +11,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-
+      
 eureka:
   client:
     service-url:
@@ -19,6 +19,7 @@ eureka:
 
 server:
   port: 8181
+  
 
 #  endpoints:
 #    web:
