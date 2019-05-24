@@ -46,18 +46,20 @@ public class LoggingAspect {
 //        return obj;
 //    }
 //    
-//	@AfterThrowing(pointcut = "within(*)", throwing = "t")
-//    public void logAfterThrow(JoinPoint jp, Throwable t) {
-//        Logger log = LogManager.getLogger(jp.getTarget().getClass());
-//        log.error(jp.getSignature() + " threw " + t.getClass() + " with stack trace " + t.getStackTrace());
-//    }
-//    @AfterReturning(pointcut = "within(com.revature.screenforce.*)")
-//    public void logAfter(JoinPoint jp) {
-//        Logger log = LogManager.getLogger(jp.getTarget().getClass());
-//        log.info("Method with signature: "+jp.getSignature());
-//       log.info("With arguments: "+Arrays.toString(jp.getArgs()));
-//    }
-//    
+
+	@AfterThrowing(pointcut = "execution(* com.revature.screenforce..*(..)))", throwing = "t")
+    public void logAfterThrow(JoinPoint jp, Throwable t) {
+        Logger log = LogManager.getLogger(jp.getTarget().getClass());
+        log.error(jp.getSignature() + " threw " + t.getClass() + " with stack trace " + t.getStackTrace());
+    }
+    @AfterReturning(pointcut = "execution(* com.revature.screenforce..*(..))")
+    public void logAfter(JoinPoint jp) {
+        Logger log = LogManager.getLogger(jp.getTarget().getClass());
+        log.info("Method with signature: "+jp.getSignature());
+        log.info("With arguments: "+Arrays.toString(jp.getArgs()));
+    }
+	
+	
     /**
      * Specifies the predicate to match join points.
      * All spring bean methods in the application are matched. 
