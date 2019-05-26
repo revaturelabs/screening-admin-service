@@ -1,5 +1,8 @@
+
 #Spring Configuration
-spring: 
+spring:
+  main:
+    allow-bean-definition-overriding: true
   application:
     name: screening-admin-service
   datasource:
@@ -11,7 +14,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-      
+
 eureka:
   client:
     service-url:
@@ -19,15 +22,7 @@ eureka:
 
 server:
   port: 8181
-  
 
-#  endpoints:
-#    web:
-#      cors:
-#        allow-credentials: true
-#        allowed-headers: *
-#        allowed-methods: *
-#        allowed-origins: http://ec2-35-183-67-26.ca-central-1.compute.amazonaws.com:4200
-#        max-age: 1800s
+
 
 
