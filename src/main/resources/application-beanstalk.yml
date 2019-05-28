@@ -16,12 +16,7 @@ spring:
 
 eureka:
   client:
-    service-url:
-      defaultZone: ${SCREENFORCE_EUREKA_SERVER_URL}
-
+    register-with-eureka: false
+    
 server:
-  port: 8181
-
-
-
-
+  port: 5000
