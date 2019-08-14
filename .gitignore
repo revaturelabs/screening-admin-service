@@ -95,3 +95,8 @@ Servers/
 #mac stuff
 *.DS_Store
 /screening-admin-service.iml
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
