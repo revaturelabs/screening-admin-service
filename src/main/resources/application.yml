@@ -1,7 +1,5 @@
 #Spring Configuration
 spring:
-  main:
-    allow-bean-definition-overriding: true
   application:
     name: screening-admin-service
   datasource:
