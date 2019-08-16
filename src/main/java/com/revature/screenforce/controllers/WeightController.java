@@ -28,8 +28,12 @@ import java.util.List;
 @ApiModel(value = "SkillTypeController", description = "A rest controller to handle HTTP Requests for CRUD operations on weights")
 public class WeightController {
 
-    @Autowired
+    
     private WeightService ws;
+    @Autowired
+    public WeightController(WeightService ws) {
+    	this.ws = ws;
+    }
 
     /**
      * Returns list of all weights in the DB

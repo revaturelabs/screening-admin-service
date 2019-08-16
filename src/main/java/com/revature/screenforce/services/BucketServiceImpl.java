@@ -22,14 +22,16 @@ import java.util.List;
 @Service
 public class BucketServiceImpl implements BucketService {
 
+	//Richard: Swapped field injection with constructor injection
+	private BucketDAO bucketDAO;
+	private QuestionService questionService;
+	private WeightService weightService;
 	@Autowired
-	BucketDAO bucketDAO;
-
-	@Autowired
-	QuestionService questionService;
-
-	@Autowired
-	WeightService weightService;
+	public BucketServiceImpl(BucketDAO bucketDAO, QuestionService questionService, WeightService weightService) {
+		this.bucketDAO = bucketDAO;
+		this.questionService = questionService;
+		this.weightService = weightService;
+	}
 	
 	@Transactional
 	@Override

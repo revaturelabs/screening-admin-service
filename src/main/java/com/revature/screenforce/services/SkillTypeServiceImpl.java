@@ -17,12 +17,14 @@ import java.util.List;
 @Service
 public class SkillTypeServiceImpl implements SkillTypeService {
 
-	@Autowired
+	//Richard: Swapped field injection with constructor injection
 	private SkillTypeDAO skillTypeDao;
-
-	
-	@Autowired
 	private WeightService ws;
+	@Autowired
+	public SkillTypeServiceImpl(SkillTypeDAO skillTypeDao, WeightService ws) {
+		this.skillTypeDao = skillTypeDao;
+		this.ws = ws;
+	}
 	
 	@Override
 	public List<SkillType> getAllSkillTypes() {

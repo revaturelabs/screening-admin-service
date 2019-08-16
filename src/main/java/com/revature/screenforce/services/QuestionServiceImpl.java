@@ -23,11 +23,13 @@ import java.util.List;
 @Service
 public class QuestionServiceImpl implements QuestionService {
 	
-	@Autowired
-	private QuestionDAO questionDao;
+	//Richard: Swapped field injection for constructor injection and cleaned up code with Cody
 	
+	public QuestionDAO questionDao;
 	@Autowired
-	QuestionServiceImpl qService;
+	public QuestionServiceImpl(QuestionDAO questionDao) {
+		this.questionDao = questionDao;
+	}
 	
 	@Transactional
 	@Override
@@ -66,10 +68,10 @@ public class QuestionServiceImpl implements QuestionService {
 	@Transactional
 	public void deleteByBucketId(int bucketId) {
 		List<Question> q = new ArrayList<Question>();
-		q.addAll(qService.getQuestionsByBucket(bucketId));
+		q.addAll(getQuestionsByBucket(bucketId));
 		
 		for (Question question : q) {
-			qService.deleteByQuestionId(question.getQuestionId());
+			deleteByQuestionId(question.getQuestionId());
 		}
 	}
 

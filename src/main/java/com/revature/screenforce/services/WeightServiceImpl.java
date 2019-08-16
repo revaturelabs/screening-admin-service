@@ -17,8 +17,12 @@ import java.util.List;
 @Service
 public class WeightServiceImpl implements WeightService {
 
-    @Autowired
+	//Richard: Swapped field injection for constructor injection.
     private WeightDAO wd;
+    @Autowired
+    public WeightServiceImpl(WeightDAO wd) {
+    	this.wd = wd;
+    }
 
     @Override
     public List<Weight> getAllWeights() {

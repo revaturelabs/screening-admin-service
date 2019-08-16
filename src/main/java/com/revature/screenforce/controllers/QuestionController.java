@@ -35,13 +35,18 @@ import java.util.List;
 @RequestMapping("/question")
 @ApiModel(value = "QuestionController", description = "A rest controller to handle HTTP Requests that return questions")
 public class QuestionController {
-
-	@Autowired
+	
+	//Richard: Swapped field injection for constructor injection
 	private QuestionService qs;
 	
-	@Autowired
 	private BucketService bs;
-
+	
+	@Autowired
+	public QuestionController(QuestionService qs, BucketService bs){
+		this.qs = qs;
+		this.bs = bs;
+	}
+	
 	/**
 	 * Get all questions
 	 * @return A List of all question in the databse
