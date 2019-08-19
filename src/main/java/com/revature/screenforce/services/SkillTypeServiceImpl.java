@@ -17,7 +17,6 @@ import java.util.List;
 @Service
 public class SkillTypeServiceImpl implements SkillTypeService {
 
-	//Richard: Swapped field injection with constructor injection
 	private SkillTypeDAO skillTypeDao;
 	private WeightService ws;
 	@Autowired

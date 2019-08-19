@@ -22,7 +22,6 @@ import java.util.List;
 @Service
 public class BucketServiceImpl implements BucketService {
 
-	//Richard: Swapped field injection with constructor injection
 	private BucketDAO bucketDAO;
 	private QuestionService questionService;
 	private WeightService weightService;

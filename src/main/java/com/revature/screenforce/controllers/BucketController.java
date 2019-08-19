@@ -28,7 +28,6 @@ import java.util.List;
 @ApiModel(value = "BucketController", description = "A rest controller to handle HTTP Requests made to /bucket")
 public class BucketController {
 
-	//Richard: Swapped field injection for constructor injection.
 	private BucketService bucketService;	
 	
 	public BucketController(BucketService bucketService){

@@ -17,7 +17,6 @@ import java.util.List;
 @Service
 public class WeightServiceImpl implements WeightService {
 
-	//Richard: Swapped field injection for constructor injection.
     private WeightDAO wd;
     @Autowired
     public WeightServiceImpl(WeightDAO wd) {

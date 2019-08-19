@@ -23,8 +23,6 @@ import java.util.List;
 @Service
 public class QuestionServiceImpl implements QuestionService {
 	
-	//Richard: Swapped field injection for constructor injection and cleaned up code with Cody
-	
 	public QuestionDAO questionDao;
 	@Autowired
 	public QuestionServiceImpl(QuestionDAO questionDao) {
