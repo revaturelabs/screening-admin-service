@@ -21,15 +21,16 @@ import java.util.List;
  */
 @Service
 public class BucketServiceImpl implements BucketService {
+	private BucketDAO bucketDAO;
+	private QuestionService questionService;
+	private WeightService weightService;
 
 	@Autowired
-	BucketDAO bucketDAO;
-
-	@Autowired
-	QuestionService questionService;
-
-	@Autowired
-	WeightService weightService;
+	public BucketServiceImpl(BucketDAO bd, QuestionService qs, WeightService ws) {
+		this.bucketDAO = bd;
+		this.questionService = qs;
+		this.weightService = ws;
+	}
 	
 	@Transactional
 	@Override
