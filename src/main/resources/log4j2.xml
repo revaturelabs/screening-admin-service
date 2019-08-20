@@ -2,12 +2,11 @@
 <Configuration>
 	<Appenders>
 
-		<Console name="console" target="SYSTEM_OUT">
-			<!-- Ref for pattern https://logging.apache.org/log4j/2.x/manual/layouts.html -->
-			<PatternLayout>
-				<Pattern>%d %-5p [%t] %C{2} (%F:%L) - %m%n</Pattern>
-			</PatternLayout>
-		</Console>
+		<Appender type="File" name="File" fileName="${filename}">
+      		<Layout type="PatternLayout">
+        		<Pattern>%d %p %C{1.} [%t] %m%n</Pattern>
+      		</Layout>
+    	</Appender>
 		<!-- http://logging.apache.org/log4j/2.x/manual/appenders.html#RollingFileAppender -->
 		<!-- log.gz is compressed logs -->
 		<RollingFile name="error" fileName="./logs/app-error.log"
@@ -81,6 +80,7 @@
 			<AppenderRef ref="error" level="error" />
 			<AppenderRef ref="debug" level="debug" />
 			<AppenderRef ref="fatal" level="fatal" />
+			<AppenderRef ref="socket"/>
 		</Root>
 	</Loggers>
 </Configuration>
