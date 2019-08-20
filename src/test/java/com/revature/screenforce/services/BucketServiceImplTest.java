@@ -1,8 +1,12 @@
 package com.revature.screenforce.services;
 
+import com.revature.screenforce.daos.BucketDAO;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
@@ -10,11 +14,14 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.revature.screenforce.Application;
 import com.revature.screenforce.beans.Bucket;
-import com.revature.screenforce.services.BucketServiceImpl;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 
 /**
  * Bucket Tests using JUnit
@@ -27,71 +34,95 @@ import static org.junit.Assert.assertTrue;
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_CLASS)
 @AutoConfigureTestDatabase
 public class BucketServiceImplTest {
+	@Mock BucketDAO bucketDAO;
+	@Mock QuestionService questionService;
+	@Mock WeightService weightService;
+	@InjectMocks private BucketServiceImpl bucketService;
 
-	@Autowired
-	BucketServiceImpl bucketService;
+	@Before
+	public void setup() {
+		MockitoAnnotations.initMocks(this);
+	}
 
 	@Test
 	public void testCreateBucketFirst() {
-		Bucket bucket = new Bucket();
-		int before = bucketService.getAllBuckets().size();
-		bucketService.createBucket(bucket);
-		int after = bucketService.getAllBuckets().size();
-		assertEquals(before + 1, after);
+		when(bucketDAO.save(any(Bucket.class))).thenReturn(new Bucket());
+		assertNotNull(bucketService.createBucket(new Bucket()));
 	}
 
 	@Test
 	public void testCreateNullBucket() {
+		when(bucketDAO.save(any(Bucket.class))).thenReturn(null);
+
 		Bucket bucket = null;
-		int before = bucketService.getAllBuckets().size();
-		bucketService.createBucket(bucket);
-		int after = bucketService.getAllBuckets().size();
-		assertEquals(before, after);
-		
+		assertNull(bucketService.createBucket(bucket));
 	}
 
 	@Test
 	public void testGetAllBuckets() {
-		Bucket bucket = new Bucket();
-		int maxB = bucketService.getAllBuckets().size();
-		bucketService.createBucket(bucket);
-		assertEquals((maxB + 1), bucketService.getAllBuckets().size());
+		List<Bucket> buckets = new ArrayList<>();
+		when(bucketDAO.findAll()).thenReturn(buckets);
+
+		int nBuckets = buckets.size();
+		assertEquals(nBuckets, bucketService.getAllBuckets().size());
 	}
 
 	@Test
 	public void testUpdateBucket() {
+		Bucket bucket = new Bucket();
+		bucket.setBucketId(404);
+		bucket.setBucketDescription("Description");
+		when(bucketDAO.findById(bucket.getBucketId()))
+				.thenReturn(java.util.Optional.of(bucket));
+		when(bucketDAO.save(any(Bucket.class))).thenReturn(bucket);
+
 		Bucket b = bucketService.getBucketById(404);
-		String newDes = "Updated Description Test";
-		b.setBucketDescription(newDes);
+		String description = "Updated Description";
+		b.setBucketDescription(description);
 	    bucketService.updateBucket(b);
-		assertEquals(newDes, bucketService.getBucketById(404).getBucketDescription());
+
+		assertEquals(description, bucketService.getBucketById(404)
+				.getBucketDescription());
 	}
 
 	@Test
-	public void testDeleteBucket() {
+	public void testDeleteBucketById() {
 		Bucket bucket = new Bucket();
-		int before = bucketService.getAllBuckets().size();
-		bucketService.createBucket(bucket);
+		when(bucketDAO.save(bucket)).thenReturn(bucket);
+		when(bucketDAO.findById(any(Integer.class)))
+				.thenReturn(Optional.of(new Bucket()));
+
+		bucket = bucketService.createBucket(bucket);
+		bucket.setBucketId(404);
 		bucketService.deleteBucket(bucket.getBucketId());
-		int after = bucketService.getAllBuckets().size();
-		assertEquals(before, after);
+
+		// getBucketById is set to return new Bucket() if no bucket with ID is
+		// found
+		assertEquals(new Bucket(),
+				bucketService.getBucketById(bucket.getBucketId()));
 	}
 
 	@Test
 	public void testGetBucketById() {
 		Bucket bucket = new Bucket();
-		int id = bucketService.createBucket(bucket).getBucketId();
-		assertEquals(id, bucketService.getBucketById(id).getBucketId());
+		bucket.setBucketId(404);
+		when(bucketDAO.findById(bucket.getBucketId())).
+				thenReturn(java.util.Optional.of(bucket));
+
+		assertEquals(bucket.getBucketId(),
+				bucketService.getBucketById(bucket.getBucketId()).getBucketId());
 	}
 
 	@Test
 	public void testExistById() {
+		when(bucketDAO.existsById(any(Integer.class))).thenReturn(true);
+
 		assertTrue(bucketService.existsById(406));
 	}
-	
 
 	@Test
 	public void testExistByIdFail() {
+		when(bucketDAO.existsById(any(Integer.class))).thenReturn(false);
 		assertFalse(bucketService.existsById(4061));
 	}
 }
