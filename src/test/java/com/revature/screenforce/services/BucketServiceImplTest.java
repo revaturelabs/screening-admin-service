@@ -42,12 +42,14 @@ public class BucketServiceImplTest {
 
 	@Test
 	public void testCreateBucketFirst() {
+		// Mock DAO save()
 		when(bucketDAO.save(any(Bucket.class))).thenReturn(new Bucket());
 		assertNotNull(bucketService.createBucket(new Bucket()));
 	}
 
 	@Test
 	public void testCreateNullBucket() {
+		// Mock DAO save()
 		when(bucketDAO.save(any(Bucket.class))).thenReturn(null);
 
 		Bucket bucket = null;
@@ -57,6 +59,8 @@ public class BucketServiceImplTest {
 	@Test
 	public void testGetAllBuckets() {
 		List<Bucket> buckets = new ArrayList<>();
+
+		// Mock DAO findAll()
 		when(bucketDAO.findAll()).thenReturn(buckets);
 
 		int nBuckets = buckets.size();
@@ -68,6 +72,8 @@ public class BucketServiceImplTest {
 		Bucket bucket = new Bucket();
 		bucket.setBucketId(404);
 		bucket.setBucketDescription("Description");
+
+		// Mock DAO findById() & save()
 		when(bucketDAO.findById(bucket.getBucketId()))
 				.thenReturn(java.util.Optional.of(bucket));
 		when(bucketDAO.save(any(Bucket.class))).thenReturn(bucket);
@@ -84,6 +90,8 @@ public class BucketServiceImplTest {
 	@Test
 	public void testDeleteBucketById() {
 		Bucket bucket = new Bucket();
+
+		// Mock DAO save() & findById()
 		when(bucketDAO.save(bucket)).thenReturn(bucket);
 		when(bucketDAO.findById(any(Integer.class)))
 				.thenReturn(Optional.of(new Bucket()));
@@ -102,6 +110,8 @@ public class BucketServiceImplTest {
 	public void testGetBucketById() {
 		Bucket bucket = new Bucket();
 		bucket.setBucketId(404);
+
+		// Mock DAO findById()
 		when(bucketDAO.findById(bucket.getBucketId())).
 				thenReturn(java.util.Optional.of(bucket));
 
@@ -112,7 +122,6 @@ public class BucketServiceImplTest {
 	@Test
 	public void testExistById() {
 		when(bucketDAO.existsById(any(Integer.class))).thenReturn(true);
-
 		assertTrue(bucketService.existsById(406));
 	}
 
