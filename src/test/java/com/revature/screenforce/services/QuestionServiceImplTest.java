@@ -1,22 +1,26 @@
 package com.revature.screenforce.services;
 
+import com.revature.screenforce.daos.BucketDAO;
+import com.revature.screenforce.daos.QuestionDAO;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.revature.screenforce.Application;
 import com.revature.screenforce.beans.Bucket;
 import com.revature.screenforce.beans.Question;
-import com.revature.screenforce.services.BucketServiceImpl;
-import com.revature.screenforce.services.QuestionServiceImpl;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 
 /**
  * Question Tests using JUnit
@@ -26,88 +30,107 @@ import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
-@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_CLASS)
-@AutoConfigureTestDatabase
 public class QuestionServiceImplTest {
+	@Mock QuestionDAO questionDAO;
+	@Mock BucketDAO bucketDAO;
+	@Mock BucketServiceImpl bucketService;
+	@InjectMocks QuestionServiceImpl questionService;
 
-	@Autowired
-	QuestionServiceImpl questionService;
-
-	@Autowired
-	BucketServiceImpl bucketService;
+	@Before
+	public void setup() {
+		MockitoAnnotations.initMocks(this);
+	}
 
 	@Test
 	public void testCreate() {
-		Question question = new Question();
-		question.setQuestionId(99999);
-		int before = questionService.getAllQuestions().size();
-		questionService.create(question);
-		int after = questionService.getAllQuestions().size();
-
-		assertEquals(before + 1, after);
+		// Mock DAO save()
+		when(questionDAO.save(any(Question.class))).thenReturn(new Question());
+		assertNotNull(questionService.create(new Question()));
 	}
 
 	@Test
 	public void testGetAllQuestions() {
-		int before = questionService.getAllQuestions().size();
-		assertEquals(before, questionService.getAllQuestions().size());
+		// Mock DAO findAll()
+		List<Question> questions = new ArrayList<>();
+		when(questionDAO.findAll()).thenReturn(questions);
+
+		int nQuestions = questions.size();
+		assertEquals(nQuestions, questionService.getAllQuestions().size());
 	}
 
 	@Test
 	public void testGetQuestionsByBucket() {
-		Question question1 = questionService.create(new Question());
-		Question question2 = questionService.create(new Question());
-		Bucket bucket = new Bucket(99999, "Test Bucket", false);
-		bucket = bucketService.createBucket(bucket);
+		// Mock DAO save() question
+		when(questionDAO.save(any(Question.class))).thenReturn(new Question());
+		List<Question> questions = new ArrayList<>();
+		questions.add(questionService.create(new Question()));
 
-		question1.setBucket(bucket);
-		question2.setBucket(bucket);
+		// Mock DAO findAllByBucketId()
+		when(questionDAO.findAllByBucketBucketId(any(Integer.class)))
+				.thenReturn(questions);
 
-		questionService.updateQuestion(question1);
-		questionService.updateQuestion(question2);
-
-		int qListSize = questionService.getQuestionsByBucket(bucket.getBucketId()).size();
-
-		assertEquals(2, qListSize);
+		assertEquals(questions.size(),
+				questionService.getQuestionsByBucket(1).size());
 	}
 
 	@Test
 	public void testDeleteByQuestionId() {
-		Question question = new Question();
-		int before = questionService.getAllQuestions().size();
-		question = questionService.create(question);
-		int after = questionService.getAllQuestions().size();
-		questionService.deleteByQuestionId(question.getQuestionId());
+		// Mock DAO save() question
+		List<Question> questions = new ArrayList<>();
+		Question q1 = new Question(); q1.setQuestionId(1);
+		when(questionDAO.save(any(Question.class))).thenReturn(q1);
+		questions.add(questionService.create(q1));
 
-		assertEquals(before, after - 1);
+		// Mock DAO deleteById() q1
+		questionService.deleteByQuestionId(q1.getQuestionId());
+		questions.remove(q1);
+
+		when(questionDAO.findAll()).thenReturn(questions);
+		assertEquals(questions.size(), questionService.getAllQuestions().size());
 	}
 
 	@Test
 	public void testUpdateQuestion() {
-		Question question = new Question(50, null, false, "Question Test Before", "Test", "Test", "Test", "Test", "Test");
-		question = questionService.create(question);
-		String updateText = "Question Test After";
-		question.setQuestionText(updateText);
-		question = questionService.updateQuestion(question);
-		assertEquals(updateText,question.getQuestionText());
+		// Mock DAO saving question
+		Question q1 = new Question();
+		q1.setQuestionId(1);
+		q1.setIsActive(false);
+		when(questionDAO.save(any(Question.class))).thenReturn(q1);
+
+		q1.setIsActive(true);
+		assertEquals(q1.getIsActive(),
+				questionService.updateQuestion(q1).getIsActive());
 	}
 
 	@Test
 	public void testDeleteByBucketId() {
-		int total = questionService.getAllQuestions().size();
-		questionService.deleteByBucketId(406);
-		int after = questionService.getAllQuestions().size();
-		assertEquals((total-3), after);
+		// Mock DAO findAllByBucketBucketId()
+		Bucket bucket = new Bucket();
+		bucket.setBucketId(406);
+		List<Question> questions = new ArrayList<>();
+		Question q = new Question();
+		q.setBucket(bucket);
+		questions.add(q);
+		when(questionDAO.findAllByBucketBucketId(any(Integer.class)))
+				.thenReturn(questions);
+
+		// Mock DAO deleteByBucketBucketId()
+		questionDAO.deleteByBucketBucketId(bucket.getBucketId());
+		questions.remove(q);
+
+		assertEquals(questions.size(),
+				questionService.getQuestionsByBucket(bucket.getBucketId()).size());
 	}
 	
 	@Test
 	public void testExistById() {
-		int id = 10001;
-		assertTrue(questionService.existsById(id));
+		when(questionDAO.existsById(any(Integer.class))).thenReturn(true);
+		assertTrue(questionService.existsById(384));
 	}
 	
 	@Test
 	public void testExistByIdFail() {
+		when(questionDAO.existsById(any(Integer.class))).thenReturn(false);
 		assertFalse(questionService.existsById(-1));
 	}
 }
