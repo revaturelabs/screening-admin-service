@@ -114,6 +114,14 @@
 			<artifactId>jacoco-maven-plugin</artifactId>
 			<version>0.8.2</version>
 		</dependency>
+		
+		<!-- Added this dependency to fix issue with creating Javadoc -->
+		
+		<dependency>
+    		<groupId>javax.interceptor</groupId>
+    		<artifactId>javax.interceptor-api</artifactId>
+    		<version>1.2</version>
+		</dependency>
 
 	</dependencies>
 	<build>
