@@ -16,13 +16,14 @@ import java.util.List;
  */
 @Service
 public class SkillTypeServiceImpl implements SkillTypeService {
-
-	@Autowired
 	private SkillTypeDAO skillTypeDao;
-
-	
-	@Autowired
 	private WeightService ws;
+
+	@Autowired
+	public SkillTypeServiceImpl(SkillTypeDAO std, WeightService ws) {
+		this.skillTypeDao = std;
+		this.ws = ws;
+	}
 	
 	@Override
 	public List<SkillType> getAllSkillTypes() {
