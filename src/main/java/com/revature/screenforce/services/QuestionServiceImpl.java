@@ -22,12 +22,12 @@ import java.util.List;
 
 @Service
 public class QuestionServiceImpl implements QuestionService {
-	
-	@Autowired
 	private QuestionDAO questionDao;
-	
+
 	@Autowired
-	QuestionServiceImpl qService;
+	QuestionServiceImpl(QuestionDAO qd) {
+		this.questionDao = qd;
+	}
 	
 	@Transactional
 	@Override
@@ -65,11 +65,10 @@ public class QuestionServiceImpl implements QuestionService {
 	@Override
 	@Transactional
 	public void deleteByBucketId(int bucketId) {
-		List<Question> q = new ArrayList<Question>();
-		q.addAll(qService.getQuestionsByBucket(bucketId));
+		List<Question> q = new ArrayList<Question>(this.getQuestionsByBucket(bucketId));
 		
 		for (Question question : q) {
-			qService.deleteByQuestionId(question.getQuestionId());
+			this.deleteByQuestionId(question.getQuestionId());
 		}
 	}
 
