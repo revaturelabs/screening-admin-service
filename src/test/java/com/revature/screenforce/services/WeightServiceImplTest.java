@@ -1,19 +1,25 @@
 package com.revature.screenforce.services;
 
+import com.revature.screenforce.beans.SkillType;
+import com.revature.screenforce.daos.WeightDAO;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.revature.screenforce.Application;
 import com.revature.screenforce.beans.Weight;
-import com.revature.screenforce.services.WeightServiceImpl;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 
 /**
  * SkillTypeService Tests using JUnit
@@ -22,74 +28,118 @@ import static org.junit.Assert.assertTrue;
  * @author Omar Guzman | 1807-QC | Emily Higgins
  */
 
-
-
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
-@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_CLASS)
-@AutoConfigureTestDatabase
 public class WeightServiceImplTest {
+	@Mock WeightDAO weightDAO;
+	@InjectMocks WeightServiceImpl weightService;
 
-	@Autowired
-	WeightServiceImpl weightService;
+	@Before
+	public void setup() {
+		MockitoAnnotations.initMocks(this);
+	}
 	
 	@Test
 	public void testGetAllWeights() {
-		Weight weight = new Weight();
-		int maxW = weightService.getAllWeights().size();
-		weightService.create(weight);
-		assertEquals((maxW + 1), weightService.getAllWeights().size());
+		List<Weight> weights = new ArrayList<>();
+
+		// Mock DAO findAll()
+		when(weightDAO.findAll()).thenReturn(weights);
+
+		int nWeights = weights.size();
+		assertEquals(nWeights, weightService.getAllWeights().size());
 	}
 
 	@Test
 	public void testUpdate() {
 		Weight weight = new Weight();
+		weight.setWeightValue(800);
+
+		// Mock DAO findById() & save()
+		when(weightDAO.findById(any(Integer.class)))
+				.thenReturn(java.util.Optional.of(weight));
+		when(weightDAO.save(any(Weight.class))).thenReturn(weight);
 		weightService.create(weight);
-		int newVal = 800;
-		weight.setWeightValue(newVal);
+		weight.setWeightValue(33);
 		weightService.update(weight);
-		assertEquals(newVal, weightService.get(weight.getWeightId()).getWeightValue());
+
+		assertEquals(weight, weightService.get(weight.getWeightId()));
 	}
 
 	@Test
 	public void testCreate() {
-		Weight weight = new Weight();
-		int id = (int) weightService.create(weight).getWeightId();
-		assertEquals(id, weightService.get(id).getWeightId());
+		// Mock DAO save()
+		when(weightDAO.save(any(Weight.class))).thenReturn(new Weight());
+		assertNotNull(weightService.create(new Weight()));
 	}
 	
 	@Test
 	public void testCreateNull() {
-		Weight weight = null;
-		int before = weightService.getAllWeights().size();
-		weightService.create(weight);
-		int after = weightService.getAllWeights().size();
-		assertEquals(before,after);
+		// Mock DAO save()
+		when(weightDAO.save(any(Weight.class))).thenReturn(null);
+		Weight nullWeight = weightService.create(new Weight());
+
+		assertNull(nullWeight);
 	}
 
 	@Test
 	public void testDeleteById() {
-		Weight weight = new Weight();
-		int before = weightService.getAllWeights().size();
-		weightService.create(weight);
+		// Mock DAO save() & findById()
+		when(weightDAO.save(any(Weight.class))).thenReturn(new Weight());
+		when(weightDAO.findById(any(Integer.class)))
+				.thenReturn(java.util.Optional.of(new Weight()));
+
+		Weight weight = weightService.create(new Weight());
+		weight.setWeightId(33);
+
+		// Mock DAO deleteById()
 		weightService.deleteById(weight.getWeightId());
-		int after = weightService.getAllWeights().size();
-		assertEquals(before, after);
+
+		// getBucketById is set to return new Bucket() if no bucket with ID is
+		// found
+		assertEquals(new Weight(), weightService.get(weight.getWeightId()));
 	}
 	
 	@Test
 	public void getAllWeightBySkillTypeId() {
-		int actual = weightService.getAllWeightsBySkillTypeID(51).size();
-		assertEquals(2, actual);
+		// Mock DAO save()
+		when(weightDAO.save(any(Weight.class))).thenReturn(new Weight());
+		SkillType st1 = new SkillType(); st1.setSkillTypeId(33);
+		SkillType st2 = new SkillType(); st2.setSkillTypeId(33);
+		Weight w1 = weightService.create(new Weight()); w1.setSkillType(st1);
+		Weight w2 = weightService.create(new Weight()); w2.setSkillType(st2);
+
+		// Mock DAO getAllBySkillTypeSkillTypeId()
+		List<Weight> weights = new ArrayList<>();
+		weights.add(w1);
+		weights.add(w2);
+		when(weightDAO.getAllBySkillTypeSkillTypeId(any(Integer.class)))
+				.thenReturn(weights);
+
+		assertEquals(weights.size(),
+				weightService.getAllWeightsBySkillTypeID(33).size());
 	}
 	
 	@Test
 	public void getWithSkillTypeAndBucketId() {
-		assertEquals(51404, weightService.get(51, 404).getWeightId());
+		// Mock DAO getBySkillTypeSkillTypeIdAndBucketBucketId()
+		when(weightDAO.getBySkillTypeSkillTypeIdAndBucketBucketId(
+				any(Integer.class),
+				any(Integer.class)))
+				.thenReturn(new Weight());
+
+		assertEquals(new Weight(), weightService.get(3, 3));
 	}
 
 	@Test
 	public void testExistById() {
+		when(weightDAO.existsById(any(Integer.class))).thenReturn(true);
 		assertTrue(weightService.existsById(51404));
+	}
+
+	@Test
+	public void testExistByIdFail() {
+		when(weightDAO.existsById(any(Integer.class))).thenReturn(false);
+		assertFalse(weightService.existsById(51404));
 	}
 }
