@@ -32,7 +32,7 @@ public class WeightController {
     @Autowired
     public WeightController(WeightService ws) {
     	this.ws = ws;
-	}
+	  }
 
     /**
      * Returns list of all weights in the DB
@@ -43,7 +43,7 @@ public class WeightController {
     @GetMapping()
     @ApiResponses(value = {@ApiResponse(code = 200, message = "All weights returned")})
     public ResponseEntity<List<Weight>> getWeights() {
-        return new ResponseEntity<>(ws.getAllWeights(), HttpStatus.OK);
+        return new ResponseEntity<>(weightService.getAllWeights(), HttpStatus.OK);
     }
 
     /**
@@ -58,7 +58,7 @@ public class WeightController {
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Requested weight returned")})
     public ResponseEntity<Weight> getWeightFromIds(@PathVariable(value = "skillTypeId") int skillTypeId,
                                                    @PathVariable(value = "bucketId") int bucketId) {
-        return new ResponseEntity<>(ws.get(skillTypeId, bucketId), HttpStatus.OK);
+        return new ResponseEntity<>(weightService.get(skillTypeId, bucketId), HttpStatus.OK);
     }
 
 	/**
@@ -71,7 +71,7 @@ public class WeightController {
 	@ApiResponses(value = {@ApiResponse(code = 200, message = "List of weights returned")})
 	@GetMapping("/getBySkillType/{skillTypeId}")
 	public ResponseEntity<List<Weight>> getWeightBySkillType(@PathVariable int skillTypeId) {
-		return new ResponseEntity<>(ws.getAllWeightsBySkillTypeID(skillTypeId), HttpStatus.OK);
+		return new ResponseEntity<>(weightService.getAllWeightsBySkillTypeID(skillTypeId), HttpStatus.OK);
 	}
 
 	/**
@@ -84,7 +84,7 @@ public class WeightController {
     @GetMapping("/{weightId}")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Requested weight returned")})
     public ResponseEntity<Weight> getWeightFromId(@PathVariable(value = "weightId") int weightId) {
-        Weight weight = ws.get(weightId);
+        Weight weight = weightService.get(weightId);
 		if (weight.equals(new Weight())) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
@@ -105,8 +105,8 @@ public class WeightController {
     		@ApiResponse(code = 204, message = "Weight updated"),
     		@ApiResponse(code = 404, message = "Weight ID not found, nothing is updated") })
     public ResponseEntity<Void> updateWeight(@PathVariable(value = "weightId") int weightId, @RequestBody Weight weight) {
-        if (ws.existsById(weightId)) {
-        	ws.update(weight);
+        if (weightService.existsById(weightId)) {
+        	weightService.update(weight);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
         	return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -122,7 +122,7 @@ public class WeightController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiResponses(value = {@ApiResponse(code = 201, message = "Weight created and returned w/ updated id")})
     public ResponseEntity<Weight> create(@Valid @RequestBody Weight weight) {
-        return new ResponseEntity<>(ws.create(weight), HttpStatus.CREATED);
+        return new ResponseEntity<>(weightService.create(weight), HttpStatus.CREATED);
     }
 
     /**
@@ -135,8 +135,8 @@ public class WeightController {
     		@ApiResponse(code = 204, message = "Weight deleted"),
     		@ApiResponse(code = 404, message = "Weight ID not found, nothing is deleted") })
     public ResponseEntity<Void> delete(@PathVariable(value = "weightId") int weightId) {
-        if (ws.existsById(weightId)) {
-        	ws.deleteById(weightId);
+        if (weightService.existsById(weightId)) {
+        	weightService.deleteById(weightId);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
         	return new ResponseEntity<>(HttpStatus.NOT_FOUND);

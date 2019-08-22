@@ -29,7 +29,7 @@ import java.util.List;
 public class BucketController {
 	private BucketService bucketService;
 
-	@Autowired
+  @Autowired
 	public BucketController(BucketService bucketService) {
 		this.bucketService = bucketService;
 	}
