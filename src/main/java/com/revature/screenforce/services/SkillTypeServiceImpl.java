@@ -16,13 +16,13 @@ import java.util.List;
  */
 @Service
 public class SkillTypeServiceImpl implements SkillTypeService {
-	private SkillTypeDAO skillTypeDao;
-	private WeightService ws;
+	private SkillTypeRepository skillTypeRepository;
+	private WeightService weightService;
 
 	@Autowired
-	public SkillTypeServiceImpl(SkillTypeDAO std, WeightService ws) {
-		this.skillTypeDao = std;
-		this.ws = ws;
+	public SkillTypeServiceImpl(SkillTypeRepository skillTypeRepository, WeightService weightService) {
+		this.skillTypeRepository = skillTypeRepository;
+		this.ws = weightService;
 	}
 	
 	@Override
