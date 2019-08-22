@@ -22,7 +22,7 @@ public class SkillTypeServiceImpl implements SkillTypeService {
 	@Autowired
 	public SkillTypeServiceImpl(SkillTypeRepository skillTypeRepository, WeightService weightService) {
 		this.skillTypeRepository = skillTypeRepository;
-		this.ws = weightService;
+		this.weightService = weightService;
 	}
 	
 	@Override
