@@ -30,8 +30,8 @@ public class WeightController {
     private WeightService ws;
 
     @Autowired
-    public WeightController(WeightService ws) {
-    	this.ws = ws;
+    public WeightController(WeightService weightService) {
+    	this.weightService = weightService;
 	  }
 
     /**
