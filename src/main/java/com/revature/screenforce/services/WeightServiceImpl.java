@@ -16,11 +16,11 @@ import java.util.List;
  */
 @Service
 public class WeightServiceImpl implements WeightService {
-    private WeightDAO wd;
+    private WeightRepository weightRepository;
 
     @Autowired
-    public WeightServiceImpl(WeightDAO wd) {
-        this.wd = wd;
+    public WeightServiceImpl(WeightRepository weightRepository) {
+        this.weightRepository = weightRepository;
     }
 
     @Override
