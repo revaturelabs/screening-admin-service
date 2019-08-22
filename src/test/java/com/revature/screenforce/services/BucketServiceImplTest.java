@@ -88,7 +88,7 @@ public class BucketServiceImplTest {
 	}
 
 	@Test
-	public void testDeleteBucketById() {
+	public void testDeleteBucket() {
 		Bucket bucket = new Bucket();
 
 		// Mock DAO save() & findById()
