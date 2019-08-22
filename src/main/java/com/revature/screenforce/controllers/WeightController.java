@@ -32,7 +32,7 @@ public class WeightController {
     @Autowired
     public WeightController(WeightService weightService) {
     	this.weightService = weightService;
-	  }
+    }
 
     /**
      * Returns list of all weights in the DB
