@@ -27,10 +27,10 @@ import java.util.List;
 @RequestMapping(value="/bucket")
 @ApiModel(value = "BucketController", description = "A rest controller to handle HTTP Requests made to /bucket")
 public class BucketController {
+	private BucketService bucketService;
 
-	private BucketService bucketService;	
-	
-	public BucketController(BucketService bucketService){
+  	@Autowired
+	public BucketController(BucketService bucketService) {
 		this.bucketService = bucketService;
 	}
 

@@ -35,17 +35,15 @@ import java.util.List;
 @RequestMapping("/question")
 @ApiModel(value = "QuestionController", description = "A rest controller to handle HTTP Requests that return questions")
 public class QuestionController {
-	
 	private QuestionService questionService;
-	
 	private BucketService bucketService;
-	
+
 	@Autowired
-	public QuestionController(QuestionService questionService, BucketService bucketService){
+	public QuestionController(QuestionService questionService, BucketService bucketService) {
 		this.questionService = questionService;
 		this.bucketService = bucketService;
 	}
-	
+  
 	/**
 	 * Get all questions
 	 * @return A List of all question in the database

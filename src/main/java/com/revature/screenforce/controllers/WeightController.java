@@ -27,9 +27,8 @@ import java.util.List;
 @RequestMapping(value = "/weight")
 @ApiModel(value = "SkillTypeController", description = "A rest controller to handle HTTP Requests for CRUD operations on weights")
 public class WeightController {
-
-    
     private WeightService weightService;
+
     @Autowired
     public WeightController(WeightService weightService) {
     	this.weightService = weightService;

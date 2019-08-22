@@ -16,9 +16,9 @@ import java.util.List;
  */
 @Service
 public class SkillTypeServiceImpl implements SkillTypeService {
-
 	private SkillTypeRepository skillTypeRepository;
 	private WeightService weightService;
+
 	@Autowired
 	public SkillTypeServiceImpl(SkillTypeRepository skillTypeRepository, WeightService weightService) {
 		this.skillTypeRepository = skillTypeRepository;
