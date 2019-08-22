@@ -1,6 +1,6 @@
 package com.revature.screenforce.services;
 
-import com.revature.screenforce.daos.SkillTypeDAO;
+import com.revature.screenforce.repositories.SkillTypeRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,8 +30,8 @@ import static org.mockito.Mockito.when;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
 public class SkillTypeServiceImplTest {
-	@Mock SkillTypeDAO skillTypeDao;
-	@Mock WeightService ws;
+	@Mock SkillTypeRepository skillTypeDao;
+	@Mock WeightService weightService;
 	@InjectMocks SkillTypeServiceImpl skillTypeService;
 
 	@Before
