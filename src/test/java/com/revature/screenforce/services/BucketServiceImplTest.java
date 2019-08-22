@@ -1,6 +1,6 @@
 package com.revature.screenforce.services;
 
-import com.revature.screenforce.daos.BucketDAO;
+import com.revature.screenforce.repositories.BucketRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,7 +30,7 @@ import static org.mockito.Mockito.when;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
 public class BucketServiceImplTest {
-	@Mock BucketDAO bucketDAO;
+	@Mock BucketRepository bucketRepository;
 	@Mock QuestionService questionService;
 	@Mock WeightService weightService;
 	@InjectMocks private BucketServiceImpl bucketService;
@@ -43,14 +43,14 @@ public class BucketServiceImplTest {
 	@Test
 	public void testCreateBucketFirst() {
 		// Mock DAO save()
-		when(bucketDAO.save(any(Bucket.class))).thenReturn(new Bucket());
+		when(bucketRepository.save(any(Bucket.class))).thenReturn(new Bucket());
 		assertNotNull(bucketService.createBucket(new Bucket()));
 	}
 
 	@Test
 	public void testCreateNullBucket() {
 		// Mock DAO save()
-		when(bucketDAO.save(any(Bucket.class))).thenReturn(null);
+		when(bucketRepository.save(any(Bucket.class))).thenReturn(null);
 
 		Bucket bucket = null;
 		assertNull(bucketService.createBucket(bucket));
@@ -61,7 +61,7 @@ public class BucketServiceImplTest {
 		List<Bucket> buckets = new ArrayList<>();
 
 		// Mock DAO findAll()
-		when(bucketDAO.findAll()).thenReturn(buckets);
+		when(bucketRepository.findAll()).thenReturn(buckets);
 
 		int nBuckets = buckets.size();
 		assertEquals(nBuckets, bucketService.getAllBuckets().size());
@@ -74,9 +74,9 @@ public class BucketServiceImplTest {
 		bucket.setBucketDescription("Description");
 
 		// Mock DAO findById() & save()
-		when(bucketDAO.findById(bucket.getBucketId()))
+		when(bucketRepository.findById(bucket.getBucketId()))
 				.thenReturn(java.util.Optional.of(bucket));
-		when(bucketDAO.save(any(Bucket.class))).thenReturn(bucket);
+		when(bucketRepository.save(any(Bucket.class))).thenReturn(bucket);
 
 		Bucket b = bucketService.getBucketById(404);
 		String description = "Updated Description";
@@ -92,8 +92,8 @@ public class BucketServiceImplTest {
 		Bucket bucket = new Bucket();
 
 		// Mock DAO save() & findById()
-		when(bucketDAO.save(bucket)).thenReturn(bucket);
-		when(bucketDAO.findById(any(Integer.class)))
+		when(bucketRepository.save(bucket)).thenReturn(bucket);
+		when(bucketRepository.findById(any(Integer.class)))
 				.thenReturn(Optional.of(new Bucket()));
 
 		bucket = bucketService.createBucket(bucket);
@@ -112,7 +112,7 @@ public class BucketServiceImplTest {
 		bucket.setBucketId(404);
 
 		// Mock DAO findById()
-		when(bucketDAO.findById(bucket.getBucketId())).
+		when(bucketRepository.findById(bucket.getBucketId())).
 				thenReturn(java.util.Optional.of(bucket));
 
 		assertEquals(bucket.getBucketId(),
@@ -121,13 +121,13 @@ public class BucketServiceImplTest {
 
 	@Test
 	public void testExistById() {
-		when(bucketDAO.existsById(any(Integer.class))).thenReturn(true);
+		when(bucketRepository.existsById(any(Integer.class))).thenReturn(true);
 		assertTrue(bucketService.existsById(406));
 	}
 
 	@Test
 	public void testExistByIdFail() {
-		when(bucketDAO.existsById(any(Integer.class))).thenReturn(false);
+		when(bucketRepository.existsById(any(Integer.class))).thenReturn(false);
 		assertFalse(bucketService.existsById(4061));
 	}
 }
