@@ -1,7 +1,7 @@
 package com.revature.screenforce.services;
 
-import com.revature.screenforce.daos.BucketDAO;
-import com.revature.screenforce.daos.QuestionDAO;
+import com.revature.screenforce.repositories.BucketRepository;
+import com.revature.screenforce.repositories.QuestionRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,8 +31,8 @@ import static org.mockito.Mockito.when;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
 public class QuestionServiceImplTest {
-	@Mock QuestionDAO questionDAO;
-	@Mock BucketDAO bucketDAO;
+	@Mock QuestionRepository questionRepository;
+	@Mock BucketRepository bucketRepository;
 	@Mock BucketServiceImpl bucketService;
 	@InjectMocks QuestionServiceImpl questionService;
 
@@ -44,7 +44,7 @@ public class QuestionServiceImplTest {
 	@Test
 	public void testCreate() {
 		// Mock DAO save()
-		when(questionDAO.save(any(Question.class))).thenReturn(new Question());
+		when(questionRepository.save(any(Question.class))).thenReturn(new Question());
 		assertNotNull(questionService.create(new Question()));
 	}
 
@@ -52,7 +52,7 @@ public class QuestionServiceImplTest {
 	public void testGetAllQuestions() {
 		// Mock DAO findAll()
 		List<Question> questions = new ArrayList<>();
-		when(questionDAO.findAll()).thenReturn(questions);
+		when(questionRepository.findAll()).thenReturn(questions);
 
 		int nQuestions = questions.size();
 		assertEquals(nQuestions, questionService.getAllQuestions().size());
@@ -61,12 +61,12 @@ public class QuestionServiceImplTest {
 	@Test
 	public void testGetQuestionsByBucket() {
 		// Mock DAO save() question
-		when(questionDAO.save(any(Question.class))).thenReturn(new Question());
+		when(questionRepository.save(any(Question.class))).thenReturn(new Question());
 		List<Question> questions = new ArrayList<>();
 		questions.add(questionService.create(new Question()));
 
 		// Mock DAO findAllByBucketId()
-		when(questionDAO.findAllByBucketBucketId(any(Integer.class)))
+		when(questionRepository.findAllByBucketBucketId(any(Integer.class)))
 				.thenReturn(questions);
 
 		assertEquals(questions.size(),
@@ -78,14 +78,14 @@ public class QuestionServiceImplTest {
 		// Mock DAO save() question
 		List<Question> questions = new ArrayList<>();
 		Question q1 = new Question(); q1.setQuestionId(1);
-		when(questionDAO.save(any(Question.class))).thenReturn(q1);
+		when(questionRepository.save(any(Question.class))).thenReturn(q1);
 		questions.add(questionService.create(q1));
 
 		// Mock DAO deleteById() q1
 		questionService.deleteByQuestionId(q1.getQuestionId());
 		questions.remove(q1);
 
-		when(questionDAO.findAll()).thenReturn(questions);
+		when(questionRepository.findAll()).thenReturn(questions);
 		assertEquals(questions.size(), questionService.getAllQuestions().size());
 	}
 
@@ -95,7 +95,7 @@ public class QuestionServiceImplTest {
 		Question q1 = new Question();
 		q1.setQuestionId(1);
 		q1.setIsActive(false);
-		when(questionDAO.save(any(Question.class))).thenReturn(q1);
+		when(questionRepository.save(any(Question.class))).thenReturn(q1);
 
 		q1.setIsActive(true);
 		assertEquals(q1.getIsActive(),
@@ -111,11 +111,11 @@ public class QuestionServiceImplTest {
 		Question q = new Question();
 		q.setBucket(bucket);
 		questions.add(q);
-		when(questionDAO.findAllByBucketBucketId(any(Integer.class)))
+		when(questionRepository.findAllByBucketBucketId(any(Integer.class)))
 				.thenReturn(questions);
 
 		// Mock DAO deleteByBucketBucketId()
-		questionDAO.deleteByBucketBucketId(bucket.getBucketId());
+		questionRepository.deleteByBucketBucketId(bucket.getBucketId());
 		questions.remove(q);
 
 		assertEquals(questions.size(),
@@ -124,13 +124,13 @@ public class QuestionServiceImplTest {
 	
 	@Test
 	public void testExistById() {
-		when(questionDAO.existsById(any(Integer.class))).thenReturn(true);
+		when(questionRepository.existsById(any(Integer.class))).thenReturn(true);
 		assertTrue(questionService.existsById(384));
 	}
 	
 	@Test
 	public void testExistByIdFail() {
-		when(questionDAO.existsById(any(Integer.class))).thenReturn(false);
+		when(questionRepository.existsById(any(Integer.class))).thenReturn(false);
 		assertFalse(questionService.existsById(-1));
 	}
 }
