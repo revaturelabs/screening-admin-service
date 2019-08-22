@@ -1,7 +1,7 @@
 package com.revature.screenforce.services;
 
 import com.revature.screenforce.beans.SkillType;
-import com.revature.screenforce.daos.WeightDAO;
+import com.revature.screenforce.repositories.WeightRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,7 +31,7 @@ import static org.mockito.Mockito.when;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
 public class WeightServiceImplTest {
-	@Mock WeightDAO weightDAO;
+	@Mock WeightRepository weightRepository;
 	@InjectMocks WeightServiceImpl weightService;
 
 	@Before
@@ -44,7 +44,7 @@ public class WeightServiceImplTest {
 		List<Weight> weights = new ArrayList<>();
 
 		// Mock DAO findAll()
-		when(weightDAO.findAll()).thenReturn(weights);
+		when(weightRepository.findAll()).thenReturn(weights);
 
 		int nWeights = weights.size();
 		assertEquals(nWeights, weightService.getAllWeights().size());
@@ -56,9 +56,9 @@ public class WeightServiceImplTest {
 		weight.setWeightValue(800);
 
 		// Mock DAO findById() & save()
-		when(weightDAO.findById(any(Integer.class)))
+		when(weightRepository.findById(any(Integer.class)))
 				.thenReturn(java.util.Optional.of(weight));
-		when(weightDAO.save(any(Weight.class))).thenReturn(weight);
+		when(weightRepository.save(any(Weight.class))).thenReturn(weight);
 		weightService.create(weight);
 		weight.setWeightValue(33);
 		weightService.update(weight);
@@ -69,14 +69,14 @@ public class WeightServiceImplTest {
 	@Test
 	public void testCreate() {
 		// Mock DAO save()
-		when(weightDAO.save(any(Weight.class))).thenReturn(new Weight());
+		when(weightRepository.save(any(Weight.class))).thenReturn(new Weight());
 		assertNotNull(weightService.create(new Weight()));
 	}
 	
 	@Test
 	public void testCreateNull() {
 		// Mock DAO save()
-		when(weightDAO.save(any(Weight.class))).thenReturn(null);
+		when(weightRepository.save(any(Weight.class))).thenReturn(null);
 		Weight nullWeight = weightService.create(new Weight());
 
 		assertNull(nullWeight);
@@ -85,8 +85,8 @@ public class WeightServiceImplTest {
 	@Test
 	public void testDeleteById() {
 		// Mock DAO save() & findById()
-		when(weightDAO.save(any(Weight.class))).thenReturn(new Weight());
-		when(weightDAO.findById(any(Integer.class)))
+		when(weightRepository.save(any(Weight.class))).thenReturn(new Weight());
+		when(weightRepository.findById(any(Integer.class)))
 				.thenReturn(java.util.Optional.of(new Weight()));
 
 		Weight weight = weightService.create(new Weight());
@@ -103,7 +103,7 @@ public class WeightServiceImplTest {
 	@Test
 	public void getAllWeightBySkillTypeId() {
 		// Mock DAO save()
-		when(weightDAO.save(any(Weight.class))).thenReturn(new Weight());
+		when(weightRepository.save(any(Weight.class))).thenReturn(new Weight());
 		SkillType st1 = new SkillType(); st1.setSkillTypeId(33);
 		SkillType st2 = new SkillType(); st2.setSkillTypeId(33);
 		Weight w1 = weightService.create(new Weight()); w1.setSkillType(st1);
@@ -113,7 +113,7 @@ public class WeightServiceImplTest {
 		List<Weight> weights = new ArrayList<>();
 		weights.add(w1);
 		weights.add(w2);
-		when(weightDAO.getAllBySkillTypeSkillTypeId(any(Integer.class)))
+		when(weightRepository.getAllBySkillTypeSkillTypeId(any(Integer.class)))
 				.thenReturn(weights);
 
 		assertEquals(weights.size(),
@@ -123,7 +123,7 @@ public class WeightServiceImplTest {
 	@Test
 	public void getWithSkillTypeAndBucketId() {
 		// Mock DAO getBySkillTypeSkillTypeIdAndBucketBucketId()
-		when(weightDAO.getBySkillTypeSkillTypeIdAndBucketBucketId(
+		when(weightRepository.getBySkillTypeSkillTypeIdAndBucketBucketId(
 				any(Integer.class),
 				any(Integer.class)))
 				.thenReturn(new Weight());
@@ -133,13 +133,13 @@ public class WeightServiceImplTest {
 
 	@Test
 	public void testExistById() {
-		when(weightDAO.existsById(any(Integer.class))).thenReturn(true);
+		when(weightRepository.existsById(any(Integer.class))).thenReturn(true);
 		assertTrue(weightService.existsById(51404));
 	}
 
 	@Test
 	public void testExistByIdFail() {
-		when(weightDAO.existsById(any(Integer.class))).thenReturn(false);
+		when(weightRepository.existsById(any(Integer.class))).thenReturn(false);
 		assertFalse(weightService.existsById(51404));
 	}
 }
