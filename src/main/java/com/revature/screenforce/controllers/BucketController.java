@@ -27,9 +27,12 @@ import java.util.List;
 @RequestMapping(value="/bucket")
 @ApiModel(value = "BucketController", description = "A rest controller to handle HTTP Requests made to /bucket")
 public class BucketController {
+	private BucketService bucketService;
 
 	@Autowired
-	private BucketService bucketService;	
+	public BucketController(BucketService bucketService) {
+		this.bucketService = bucketService;
+	}
 
 	/**
 	 * Gets all Buckets

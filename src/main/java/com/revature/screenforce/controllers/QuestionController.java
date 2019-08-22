@@ -1,6 +1,7 @@
 package com.revature.screenforce.controllers;
 
 
+import com.netflix.discovery.converters.Auto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -35,12 +36,14 @@ import java.util.List;
 @RequestMapping("/question")
 @ApiModel(value = "QuestionController", description = "A rest controller to handle HTTP Requests that return questions")
 public class QuestionController {
+	private QuestionService qs;
+	private BucketService bs;
 
 	@Autowired
-	private QuestionService qs;
-	
-	@Autowired
-	private BucketService bs;
+	public QuestionController(QuestionService qs, BucketService bs) {
+		this.qs = qs;
+		this.bs = bs;
+	}
 
 	/**
 	 * Get all questions
