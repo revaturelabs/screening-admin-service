@@ -35,13 +35,13 @@ import java.util.List;
 @RequestMapping("/question")
 @ApiModel(value = "QuestionController", description = "A rest controller to handle HTTP Requests that return questions")
 public class QuestionController {
-  private QuestionService qs;
-	private BucketService bs;
+	private QuestionService questionService;
+	private BucketService bucketService;
 
 	@Autowired
-	public QuestionController(QuestionService qs, BucketService bs) {
-		this.qs = qs;
-		this.bs = bs;
+	public QuestionController(QuestionService questionService, BucketService bucketService) {
+		this.questionService = questionService;
+		this.bucketService = bucketService;
 	}
   
 	/**
