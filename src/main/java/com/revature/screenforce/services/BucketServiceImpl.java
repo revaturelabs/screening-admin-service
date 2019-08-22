@@ -21,15 +21,15 @@ import java.util.List;
  */
 @Service
 public class BucketServiceImpl implements BucketService {
-	private BucketDAO bucketDAO;
+	private BucketRepository bucketRepository;
 	private QuestionService questionService;
 	private WeightService weightService;
 
 	@Autowired
-	public BucketServiceImpl(BucketDAO bd, QuestionService qs, WeightService ws) {
-		this.bucketDAO = bd;
-		this.questionService = qs;
-		this.weightService = ws;
+	public BucketServiceImpl(BucketRepository bucketRepository, QuestionService questionService, WeightService weightService) {
+		this.bucketRepository = bucketRepository;
+		this.questionService = questionService;
+		this.weightService = weightService;
 	}
 	
 	@Transactional
