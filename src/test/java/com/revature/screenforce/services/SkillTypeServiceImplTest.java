@@ -30,7 +30,7 @@ import static org.mockito.Mockito.when;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
 public class SkillTypeServiceImplTest {
-	@Mock SkillTypeRepository skillTypeDao;
+	@Mock SkillTypeRepository skillTypeRepository;
 	@Mock WeightService weightService;
 	@InjectMocks SkillTypeServiceImpl skillTypeService;
 
@@ -44,7 +44,7 @@ public class SkillTypeServiceImplTest {
 		List<SkillType> skillTypes = new ArrayList<>();
 
 		// Mock DAO findAll()
-		when(skillTypeDao.findAll()).thenReturn(skillTypes);
+		when(skillTypeRepository.findAll()).thenReturn(skillTypes);
 
 		int nSkillTypes = skillTypes.size();
 		assertEquals(nSkillTypes, skillTypeService.getAllSkillTypes().size());
@@ -53,7 +53,7 @@ public class SkillTypeServiceImplTest {
 	@Test
 	public void testCreateSkillType() {
 		// Mock DAO save()
-		when(skillTypeDao.save(any(SkillType.class))).thenReturn(new SkillType());
+		when(skillTypeRepository.save(any(SkillType.class))).thenReturn(new SkillType());
 		assertNotNull(skillTypeService.createSkillType(new SkillType()));
 	}
 
@@ -62,7 +62,7 @@ public class SkillTypeServiceImplTest {
 		SkillType skill = new SkillType("Intelligence", true);
 
 		// Mock DAO findById()
-		when(skillTypeDao.findById(any(Integer.class)))
+		when(skillTypeRepository.findById(any(Integer.class)))
 				.thenReturn(java.util.Optional.of(skill));
 		
 		assertEquals(skill,
@@ -75,9 +75,9 @@ public class SkillTypeServiceImplTest {
 		skillType.setTitle("Title");
 
 		// Mock DAO findById() & save()
-		when(skillTypeDao.findById(any(Integer.class)))
+		when(skillTypeRepository.findById(any(Integer.class)))
 				.thenReturn(java.util.Optional.of(skillType));
-		when(skillTypeDao.save(any(SkillType.class))).thenReturn(skillType);
+		when(skillTypeRepository.save(any(SkillType.class))).thenReturn(skillType);
 
 		SkillType st = skillTypeService.createSkillType(skillType);
 		st.setTitle("Updated Title");
@@ -93,16 +93,16 @@ public class SkillTypeServiceImplTest {
 		skillType.setSkillTypeId(4);
 
 		// Mock DAO save() & findById()
-		when(skillTypeDao.findById(any(Integer.class)))
+		when(skillTypeRepository.findById(any(Integer.class)))
 				.thenReturn(java.util.Optional.of(skillType));
-		when(skillTypeDao.save(any(SkillType.class))).thenReturn(skillType);
+		when(skillTypeRepository.save(any(SkillType.class))).thenReturn(skillType);
 		skills.add(skillTypeService.createSkillType(skillType));
 
 		// Mock DAO deleteById()
 		skillTypeService.deleteSkillType(skillType.getSkillTypeId());
 		skills.remove(skillType);
 
-		when(skillTypeDao.findAll()).thenReturn(skills);
+		when(skillTypeRepository.findAll()).thenReturn(skills);
 		assertEquals(skills.size(), skillTypeService.getAllSkillTypes().size());
 	}
 
@@ -112,11 +112,11 @@ public class SkillTypeServiceImplTest {
 		SkillType skillType = new SkillType("test", true);
 
 		// Mock DAO save()
-		when(skillTypeDao.save(any(SkillType.class))).thenReturn(skillType);
+		when(skillTypeRepository.save(any(SkillType.class))).thenReturn(skillType);
 		skills.add(skillTypeService.createSkillType(skillType));
 
 		// Mock DAO findAllByIsActive()
-		when(skillTypeDao.findAllByIsActive(any(Boolean.class))).thenReturn(skills);
+		when(skillTypeRepository.findAllByIsActive(any(Boolean.class))).thenReturn(skills);
 
 		assertEquals(skills.size(),
 				skillTypeService.getActiveSkillTypes(true).size());
@@ -124,13 +124,13 @@ public class SkillTypeServiceImplTest {
 
 	@Test
 	public void testExistById() {
-		when(skillTypeDao.existsById(any(Integer.class))).thenReturn(true);
+		when(skillTypeRepository.existsById(any(Integer.class))).thenReturn(true);
 		assertTrue(skillTypeService.existsById(51));
 	}
 	
 	@Test
 	public void testExistByIdFail() {
-		when(skillTypeDao.existsById(any(Integer.class))).thenReturn(false);
+		when(skillTypeRepository.existsById(any(Integer.class))).thenReturn(false);
 		assertFalse(skillTypeService.existsById(511));
 	}
 }
