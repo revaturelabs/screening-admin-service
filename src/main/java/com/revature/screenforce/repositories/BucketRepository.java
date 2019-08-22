@@ -1,4 +1,4 @@
-package com.revature.screenforce.daos;
+package com.revature.screenforce.repositories;
 
 import org.springframework.stereotype.Repository;
 
@@ -13,7 +13,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 
 @Repository
-public interface BucketDAO extends JpaRepository<Bucket, Integer>{
+public interface BucketRepository extends JpaRepository<Bucket, Integer>{
 	
 }
 

@@ -1,4 +1,4 @@
-package com.revature.screenforce.daos;
+package com.revature.screenforce.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -13,7 +13,7 @@ import java.util.List;
  * Data Access Obj for Weight
  */
 @Repository
-public interface WeightDAO extends JpaRepository<Weight, Integer> {
+public interface WeightRepository extends JpaRepository<Weight, Integer> {
     void deleteAllBySkillTypeSkillTypeId(int skillTypeId);
 
     List<Weight> getAllBySkillTypeSkillTypeId(int skillTypeId);

@@ -35,16 +35,20 @@ import java.util.List;
 @RequestMapping("/question")
 @ApiModel(value = "QuestionController", description = "A rest controller to handle HTTP Requests that return questions")
 public class QuestionController {
-
-	@Autowired
-	private QuestionService qs;
+	
+	private QuestionService questionService;
+	
+	private BucketService bucketService;
 	
 	@Autowired
-	private BucketService bs;
-
+	public QuestionController(QuestionService questionService, BucketService bucketService){
+		this.questionService = questionService;
+		this.bucketService = bucketService;
+	}
+	
 	/**
 	 * Get all questions
-	 * @return A List of all question in the databse
+	 * @return A List of all question in the database
 	 */
 	@ApiOperation(value="Get all questions",
 			response = Question.class,
@@ -52,7 +56,7 @@ public class QuestionController {
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "All questions returned") } )
 	@GetMapping()
 	public ResponseEntity<List<Question>> getQuestions() {
-		return new ResponseEntity<>(qs.getAllQuestions(), HttpStatus.OK);
+		return new ResponseEntity<>(questionService.getAllQuestions(), HttpStatus.OK);
 	}
 
 	/**
@@ -68,9 +72,9 @@ public class QuestionController {
 	})
 	@GetMapping("/{questionId}")
 	public ResponseEntity<Question> getQuestionById(@PathVariable int questionId) {
-		Question question = qs.getByQuestionId(questionId);
+		Question question = questionService.getByQuestionId(questionId);
 		if (question != null && !(question.equals(new Question()))) {
-			return new ResponseEntity<>(qs.getByQuestionId(questionId), HttpStatus.OK);
+			return new ResponseEntity<>(questionService.getByQuestionId(questionId), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
@@ -92,8 +96,8 @@ public class QuestionController {
 			@ApiResponse(code = 404, message = "bucketId is not found")} )
 	@GetMapping("/getByBucket/{bucketId}")
 	public ResponseEntity<List<Question>> getBucketQuestions(@PathVariable(value="bucketId") int bucketId) {
-		if (bs.existsById(bucketId)) {
-			return new ResponseEntity<>(qs.getQuestionsByBucket(bucketId), HttpStatus.OK);
+		if (bucketService.existsById(bucketId)) {
+			return new ResponseEntity<>(questionService.getQuestionsByBucket(bucketId), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
@@ -111,8 +115,8 @@ public class QuestionController {
 			@ApiResponse(code = 404, message = "bucketId is not found")} )
 	@DeleteMapping("/deleteByBucket/{bucketId}")
 	public ResponseEntity<Void> deleteByBucket(@PathVariable(value = "bucketId") int bucketId){
-		if(bs.existsById(bucketId)) {
-			qs.deleteByBucketId(bucketId);
+		if(bucketService.existsById(bucketId)) {
+			questionService.deleteByBucketId(bucketId);
 			return new ResponseEntity<>(HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -128,7 +132,7 @@ public class QuestionController {
 	@ApiResponses(value = { @ApiResponse(code = 201, message = "New question created") } )
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Question> create(@Valid @RequestBody Question question) {
-		return new ResponseEntity<>(this.qs.create(question), HttpStatus.CREATED);
+		return new ResponseEntity<>(this.questionService.create(question), HttpStatus.CREATED);
 	}
 	
 	/**
@@ -142,8 +146,8 @@ public class QuestionController {
 			@ApiResponse(code = 400, message = "Bad Request, Question is not updated") } )
 	@PutMapping(value = "/{id}" , consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Question> updateQuestion(@PathVariable(value = "id") int id, @RequestBody Question question) {
-		if (qs.existsById(id)) {
-			qs.updateQuestion(question);
+		if (questionService.existsById(id)) {
+			questionService.updateQuestion(question);
 			return new ResponseEntity<>(question, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -161,8 +165,8 @@ public class QuestionController {
 			@ApiResponse(code = 400, message = "Bad Request, QuestionID not found") } )
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deleteByQuestionId(@PathVariable(value="id") int id) {
-		if (qs.existsById(id)) {
-			qs.deleteByQuestionId(id);
+		if (questionService.existsById(id)) {
+			questionService.deleteByQuestionId(id);
 			return new ResponseEntity<>(HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

@@ -1,4 +1,4 @@
-package com.revature.screenforce.daos;
+package com.revature.screenforce.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -18,7 +18,7 @@ import java.util.List;
  * @author Jeremy Straus | 1807-QC | Emily Higgins
  */
 @Repository
-public interface QuestionDAO extends JpaRepository<Question, Integer> {
+public interface QuestionRepository extends JpaRepository<Question, Integer> {
 
 	/**
 	 * Returns Questions in a particular bucket
