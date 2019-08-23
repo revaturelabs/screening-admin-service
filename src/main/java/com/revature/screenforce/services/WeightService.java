@@ -22,6 +22,8 @@ public interface WeightService {
 	List<Weight> getAllWeights();
 
 	/**
+	 * Updates a weight
+	 *
 	 * @param weight Updates weight. no return
 	 */
 	void update(Weight weight);
@@ -44,10 +46,10 @@ public interface WeightService {
 	/**
 	 * Gets a list of buckets by SkillType
 	 *
-	 * @param SkillTypeID ID of SkillType to filter by
+	 * @param skillTypeId ID of SkillType to filter by
 	 * @return List of weights
 	 */
-	List<Weight> getAllWeightsBySkillTypeID(int skillTypeID);
+	List<Weight> getAllWeightsBySkillTypeID(int skillTypeId);
 
 	/**
 	 * Get a weight by its Id
@@ -56,6 +58,7 @@ public interface WeightService {
 	 * @return weight object
 	 */
 	Weight get(int weightId);
+
 	/**
 	 * Get a weight by its skillTypeId and bucketId
 	 *
@@ -81,7 +84,7 @@ public interface WeightService {
 	
 	/**
 	 * Check if id exist
-	 * @param id
+	 * @param id ID of weight
 	 */
 	public boolean existsById(int id);
 }
