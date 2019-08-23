@@ -31,8 +31,8 @@ public interface QuestionService {
 	
 	/**
 	 * Gets all questions
-	 * 
-	 * @return Question List 
+	 *
+	 * @return Question List
 	 */
 	List<Question> getAllQuestions();
 	
@@ -72,7 +72,7 @@ public interface QuestionService {
 	
 	/**
 	 * Check if id exist
-	 * @param id
+	 * @param id ID of question
 	 */
 	public boolean existsById(int id);
 }
