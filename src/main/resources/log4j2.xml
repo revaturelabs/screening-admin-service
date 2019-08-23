@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration>
 	<Appenders>
-
 		<Console name="console" target="SYSTEM_OUT">
 			<!-- Ref for pattern https://logging.apache.org/log4j/2.x/manual/layouts.html -->
 			<PatternLayout>
@@ -10,6 +9,7 @@
 		</Console>
 		<!-- http://logging.apache.org/log4j/2.x/manual/appenders.html#RollingFileAppender -->
 		<!-- log.gz is compressed logs -->
+
 		<RollingFile name="error" fileName="./logs/app-error.log"
 			filePattern="logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-error.log.gz">
 			<PatternLayout>
@@ -75,7 +75,6 @@
 	</Appenders>
 	<Loggers>
 		<Root level="all">
-			<AppenderRef ref="console" level="info" />
 			<AppenderRef ref="trace" level="trace" />
 			<AppenderRef ref="info" level="info" />
 			<AppenderRef ref="error" level="error" />

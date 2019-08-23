@@ -22,8 +22,8 @@ import java.util.List;
 
 @Service
 public class QuestionServiceImpl implements QuestionService {
-	
-	public QuestionRepository questionRepository;
+	private QuestionRepository questionRepository;
+
 	@Autowired
 	public QuestionServiceImpl(QuestionRepository questionRepository) {
 		this.questionRepository = questionRepository;
@@ -65,8 +65,7 @@ public class QuestionServiceImpl implements QuestionService {
 	@Override
 	@Transactional
 	public void deleteByBucketId(int bucketId) {
-		List<Question> q = new ArrayList<Question>();
-		q.addAll(getQuestionsByBucket(bucketId));
+	  List<Question> q = new ArrayList<Question>(this.getQuestionsByBucket(bucketId));
 		
 		for (Question question : q) {
 			deleteByQuestionId(question.getQuestionId());

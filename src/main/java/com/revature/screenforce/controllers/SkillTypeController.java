@@ -25,13 +25,13 @@ import java.util.List;
 @RequestMapping(value = "/skilltype")
 @ApiModel(value = "SkillTypeController", description = "A rest controller to handle HTTP Requests made to /skilltype")
 public class SkillTypeController {
-
-	
 	private SkillTypeService skillTypeService;
+
 	@Autowired
 	public SkillTypeController(SkillTypeService skillTypeService) {
 		this.skillTypeService = skillTypeService;
 	}
+  
 	/**
 	 * Gets all skill types
 	 * 

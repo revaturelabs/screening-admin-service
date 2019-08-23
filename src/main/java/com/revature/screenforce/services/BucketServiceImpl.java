@@ -21,10 +21,10 @@ import java.util.List;
  */
 @Service
 public class BucketServiceImpl implements BucketService {
-
 	private BucketRepository bucketRepository;
 	private QuestionService questionService;
 	private WeightService weightService;
+
 	@Autowired
 	public BucketServiceImpl(BucketRepository bucketRepository, QuestionService questionService, WeightService weightService) {
 		this.bucketRepository = bucketRepository;
