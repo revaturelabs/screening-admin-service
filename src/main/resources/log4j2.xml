@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration>
 	<Appenders>
-
-		<Appender type="File" name="File" fileName="${filename}">
-      		<Layout type="PatternLayout">
-        		<Pattern>%d %p %C{1.} [%t] %m%n</Pattern>
-      		</Layout>
-    	</Appender>
-		<!-- http://logging.apache.org/log4j/2.x/manual/appenders.html#RollingFileAppender -->
-		<!-- log.gz is compressed logs -->
 		<RollingFile name="error" fileName="./logs/app-error.log"
 			filePattern="logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-error.log.gz">
 			<PatternLayout>
@@ -74,13 +66,11 @@
 	</Appenders>
 	<Loggers>
 		<Root level="all">
-			<AppenderRef ref="console" level="info" />
 			<AppenderRef ref="trace" level="trace" />
 			<AppenderRef ref="info" level="info" />
 			<AppenderRef ref="error" level="error" />
 			<AppenderRef ref="debug" level="debug" />
 			<AppenderRef ref="fatal" level="fatal" />
-			<AppenderRef ref="socket"/>
 		</Root>
 	</Loggers>
 </Configuration>
