@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.revature.screenforce.beans.Bucket;
-import com.revature.screenforce.daos.BucketDAO;
+import com.revature.screenforce.repositories.BucketRepository;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
@@ -21,21 +21,22 @@ import java.util.List;
  */
 @Service
 public class BucketServiceImpl implements BucketService {
+	private BucketRepository bucketRepository;
+	private QuestionService questionService;
+	private WeightService weightService;
 
 	@Autowired
-	BucketDAO bucketDAO;
-
-	@Autowired
-	QuestionService questionService;
-
-	@Autowired
-	WeightService weightService;
+	public BucketServiceImpl(BucketRepository bucketRepository, QuestionService questionService, WeightService weightService) {
+		this.bucketRepository = bucketRepository;
+		this.questionService = questionService;
+		this.weightService = weightService;
+	}
 	
 	@Transactional
 	@Override
 	public Bucket createBucket(Bucket bucket) {
 		if(bucket != null && bucket != new Bucket()) {
-			return bucketDAO.save(bucket);
+			return bucketRepository.save(bucket);
 		} 
 		else {
 			return null;
@@ -45,7 +46,7 @@ public class BucketServiceImpl implements BucketService {
 	@Override
 	public List<Bucket> getAllBuckets() {
 		List<Bucket> buckets = new ArrayList<>();
-		bucketDAO.findAll().forEach(buckets::add);
+		bucketRepository.findAll().forEach(buckets::add);
 		return buckets;
 	}	
 
@@ -53,7 +54,7 @@ public class BucketServiceImpl implements BucketService {
 	@Transactional
 	public void updateBucket(Bucket bucket) {
 		if(!bucket.getBucketDescription().isEmpty()) {
-			bucketDAO.save(bucket);
+			bucketRepository.save(bucket);
 		}
 	}
 	
@@ -62,17 +63,17 @@ public class BucketServiceImpl implements BucketService {
 	public void deleteBucket(int bucketId) {
 		weightService.deleteAllByBucketId(bucketId);
 		questionService.deleteByBucketId(bucketId);
-		bucketDAO.deleteById(bucketId);
+		bucketRepository.deleteById(bucketId);
 	}
 	
 	@Override
 	public Bucket getBucketById(int bucketId) {
-		return bucketDAO.findById(bucketId).orElse(new Bucket());
+		return bucketRepository.findById(bucketId).orElse(new Bucket());
 	}
 
 	@Override
 	public boolean existsById(int bid) {
-		return bucketDAO.existsById(bid);
+		return bucketRepository.existsById(bid);
 	}
 	
 }

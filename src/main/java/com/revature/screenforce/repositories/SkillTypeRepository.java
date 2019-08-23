@@ -1,4 +1,4 @@
-package com.revature.screenforce.daos;
+package com.revature.screenforce.repositories;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ import com.revature.screenforce.beans.SkillType;
  * @author Isaac Pawling | 1805-WVU | Richard Orr
  */
 @Repository
-public interface SkillTypeDAO extends JpaRepository<SkillType, Integer> {
+public interface SkillTypeRepository extends JpaRepository<SkillType, Integer> {
 	
 	/**
 	 * Gets all active or inactive SkillType objects

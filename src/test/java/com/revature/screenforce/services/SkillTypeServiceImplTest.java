@@ -1,20 +1,24 @@
 package com.revature.screenforce.services;
 
+import com.revature.screenforce.repositories.SkillTypeRepository;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.revature.screenforce.Application;
 import com.revature.screenforce.beans.SkillType;
-import com.revature.screenforce.services.SkillTypeService;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 
 /**
  * SkillTypeService Tests using JUnit
@@ -25,71 +29,108 @@ import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
-@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_CLASS)
-@AutoConfigureTestDatabase
 public class SkillTypeServiceImplTest {
-	@Autowired
-	SkillTypeService skillTypeService;
+	@Mock SkillTypeRepository skillTypeRepository;
+	@Mock WeightService weightService;
+	@InjectMocks SkillTypeServiceImpl skillTypeService;
+
+	@Before
+	public void setup() {
+		MockitoAnnotations.initMocks(this);
+	}
 
 	@Test
 	public void testGetAllSkillTypes() {
-		SkillType skill = new SkillType();
-		int allBefore = skillTypeService.getAllSkillTypes().size();
-		skillTypeService.createSkillType(skill);
-		assertEquals((allBefore+1), skillTypeService.getAllSkillTypes().size());
+		List<SkillType> skillTypes = new ArrayList<>();
+
+		// Mock DAO findAll()
+		when(skillTypeRepository.findAll()).thenReturn(skillTypes);
+
+		int nSkillTypes = skillTypes.size();
+		assertEquals(nSkillTypes, skillTypeService.getAllSkillTypes().size());
 	}
 
 	@Test
 	public void testCreateSkillType() {
-		SkillType skill = new SkillType();
-		int allSkillTypesBeforeCreateNew = skillTypeService.getAllSkillTypes().size();
-		skillTypeService.createSkillType(skill);
-		assertEquals(allSkillTypesBeforeCreateNew + 1, skillTypeService.getAllSkillTypes().size());
+		// Mock DAO save()
+		when(skillTypeRepository.save(any(SkillType.class))).thenReturn(new SkillType());
+		assertNotNull(skillTypeService.createSkillType(new SkillType()));
 	}
 
 	@Test
 	public void testGetSkillType() {
 		SkillType skill = new SkillType("Intelligence", true);
-		skill = skillTypeService.createSkillType(skill);
+
+		// Mock DAO findById()
+		when(skillTypeRepository.findById(any(Integer.class)))
+				.thenReturn(java.util.Optional.of(skill));
 		
-		assertEquals(skill, skillTypeService.getSkillType(skill.getSkillTypeId()));
+		assertEquals(skill,
+				skillTypeService.getSkillType(skill.getSkillTypeId()));
 	}
 
 	@Test
 	public void testUpdateSkillType() {
 		SkillType skillType = new SkillType();
-		skillType = skillTypeService.createSkillType(skillType);
-		String newTitle = "New Title";
-		skillType.setTitle(newTitle);
-		skillTypeService.updateSkillType(skillType);
-		assertEquals(newTitle, skillTypeService.getSkillTypeById(skillType.getSkillTypeId()).getTitle());
+		skillType.setTitle("Title");
+
+		// Mock DAO findById() & save()
+		when(skillTypeRepository.findById(any(Integer.class)))
+				.thenReturn(java.util.Optional.of(skillType));
+		when(skillTypeRepository.save(any(SkillType.class))).thenReturn(skillType);
+
+		SkillType st = skillTypeService.createSkillType(skillType);
+		st.setTitle("Updated Title");
+		skillTypeService.updateSkillType(st);
+
+		assertEquals(st, skillTypeService.getSkillTypeById(st.getSkillTypeId()));
 	}
 
 	@Test
 	public void testDeleteSkillType() {
+		List<SkillType> skills = new ArrayList<>();
 		SkillType skillType = new SkillType();
-		int before = skillTypeService.getAllSkillTypes().size();
-		skillTypeService.createSkillType(skillType);
+		skillType.setSkillTypeId(4);
+
+		// Mock DAO save() & findById()
+		when(skillTypeRepository.findById(any(Integer.class)))
+				.thenReturn(java.util.Optional.of(skillType));
+		when(skillTypeRepository.save(any(SkillType.class))).thenReturn(skillType);
+		skills.add(skillTypeService.createSkillType(skillType));
+
+		// Mock DAO deleteById()
 		skillTypeService.deleteSkillType(skillType.getSkillTypeId());
-		int after = skillTypeService.getAllSkillTypes().size();
-		assertEquals(before, after);
+		skills.remove(skillType);
+
+		when(skillTypeRepository.findAll()).thenReturn(skills);
+		assertEquals(skills.size(), skillTypeService.getAllSkillTypes().size());
 	}
 
 	@Test
 	public void testGetActiveSkillTypes() {
+		List<SkillType> skills = new ArrayList<>();
 		SkillType skillType = new SkillType("test", true);
-		int activeSkillTypes = skillTypeService.getActiveSkillTypes(true).size();
-		skillTypeService.createSkillType(skillType);
-		assertEquals(activeSkillTypes+1, skillTypeService.getActiveSkillTypes(true).size());
+
+		// Mock DAO save()
+		when(skillTypeRepository.save(any(SkillType.class))).thenReturn(skillType);
+		skills.add(skillTypeService.createSkillType(skillType));
+
+		// Mock DAO findAllByIsActive()
+		when(skillTypeRepository.findAllByIsActive(any(Boolean.class))).thenReturn(skills);
+
+		assertEquals(skills.size(),
+				skillTypeService.getActiveSkillTypes(true).size());
 	}
 
 	@Test
 	public void testExistById() {
+		when(skillTypeRepository.existsById(any(Integer.class))).thenReturn(true);
 		assertTrue(skillTypeService.existsById(51));
 	}
 	
 	@Test
 	public void testExistByIdFail() {
+		when(skillTypeRepository.existsById(any(Integer.class))).thenReturn(false);
 		assertFalse(skillTypeService.existsById(511));
 	}
 }

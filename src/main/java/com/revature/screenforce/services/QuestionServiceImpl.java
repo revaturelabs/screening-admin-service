@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.screenforce.beans.Question;
-import com.revature.screenforce.daos.QuestionDAO;
+import com.revature.screenforce.repositories.QuestionRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,59 +22,58 @@ import java.util.List;
 
 @Service
 public class QuestionServiceImpl implements QuestionService {
-	
+	private QuestionRepository questionRepository;
+
 	@Autowired
-	private QuestionDAO questionDao;
-	
-	@Autowired
-	QuestionServiceImpl qService;
+	public QuestionServiceImpl(QuestionRepository questionRepository) {
+		this.questionRepository = questionRepository;
+	}
 	
 	@Transactional
 	@Override
 	public Question create(Question question) {
-		return questionDao.save(question);	
+		return questionRepository.save(question);	
 	}
 
 	@Override
 	public List<Question> getAllQuestions() {
-		return questionDao.findAll();
+		return questionRepository.findAll();
 	}
 
 	@Override
 	public List<Question> getQuestionsByBucket(int bucketId) {
-		return questionDao.findAllByBucketBucketId(bucketId);
+		return questionRepository.findAllByBucketBucketId(bucketId);
 	}
 
 	@Transactional
 	@Override
 	public void deleteByQuestionId(int questionId) {
-		questionDao.deleteById(questionId);
+		questionRepository.deleteById(questionId);
 	}
 
 	@Override
 	public Question getByQuestionId(int questionId) {
-		return questionDao.findById(questionId).orElse(null);
+		return questionRepository.findById(questionId).orElse(null);
 	}
 
 	@Override
 	@Transactional
 	public Question updateQuestion(Question question) {
-		return questionDao.save(question);
+		return questionRepository.save(question);
 	}
 
 	@Override
 	@Transactional
 	public void deleteByBucketId(int bucketId) {
-		List<Question> q = new ArrayList<Question>();
-		q.addAll(qService.getQuestionsByBucket(bucketId));
+	  List<Question> q = new ArrayList<Question>(this.getQuestionsByBucket(bucketId));
 		
 		for (Question question : q) {
-			qService.deleteByQuestionId(question.getQuestionId());
+			deleteByQuestionId(question.getQuestionId());
 		}
 	}
 
 	@Override
 	public boolean existsById(int id) {
-		return questionDao.existsById(id);
+		return questionRepository.existsById(id);
 	}
 }

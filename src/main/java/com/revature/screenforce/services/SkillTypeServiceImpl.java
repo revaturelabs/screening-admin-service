@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.revature.screenforce.beans.SkillType;
-import com.revature.screenforce.daos.SkillTypeDAO;
+import com.revature.screenforce.repositories.SkillTypeRepository;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -16,55 +16,56 @@ import java.util.List;
  */
 @Service
 public class SkillTypeServiceImpl implements SkillTypeService {
+	private SkillTypeRepository skillTypeRepository;
+	private WeightService weightService;
 
 	@Autowired
-	private SkillTypeDAO skillTypeDao;
-
-	
-	@Autowired
-	private WeightService ws;
+	public SkillTypeServiceImpl(SkillTypeRepository skillTypeRepository, WeightService weightService) {
+		this.skillTypeRepository = skillTypeRepository;
+		this.weightService = weightService;
+	}
 	
 	@Override
 	public List<SkillType> getAllSkillTypes() {
-		return skillTypeDao.findAll();
+		return skillTypeRepository.findAll();
 	}
 
 	@Override
 	@Transactional
 	public SkillType createSkillType(SkillType s) {
-		return skillTypeDao.save(s);
+		return skillTypeRepository.save(s);
 	}
 
 	@Override
 	public SkillType getSkillType(int id) {
-		return skillTypeDao.findById(id).orElse(null);
+		return skillTypeRepository.findById(id).orElse(null);
 	}
 
 	@Override
 	@Transactional
     public void updateSkillType(SkillType s) {
-        skillTypeDao.saveOnly(s.getSkillTypeId(), s.getTitle(), s.isActive());
+        skillTypeRepository.saveOnly(s.getSkillTypeId(), s.getTitle(), s.isActive());
     }
 
 	@Override
 	@Transactional
 	public void deleteSkillType(int id) {
-		ws.deleteAllBySkillTypeSkillTypeId(id);
-		skillTypeDao.deleteById(id);
+		weightService.deleteAllBySkillTypeSkillTypeId(id);
+		skillTypeRepository.deleteById(id);
 	}
 
 	@Override
 	public List<SkillType> getActiveSkillTypes(boolean b) {
-		return skillTypeDao.findAllByIsActive(b);
+		return skillTypeRepository.findAllByIsActive(b);
 	}
 
 	@Override
 	public SkillType getSkillTypeById(int skillTypeId) {
-		return skillTypeDao.findById(skillTypeId).orElse(null);
+		return skillTypeRepository.findById(skillTypeId).orElse(null);
 	}
 
 	@Override
 	public boolean existsById(int id) {
-		return skillTypeDao.existsById(id);
+		return skillTypeRepository.existsById(id);
 	}
 }
