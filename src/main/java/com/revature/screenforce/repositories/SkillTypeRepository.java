@@ -25,7 +25,14 @@ public interface SkillTypeRepository extends JpaRepository<SkillType, Integer> {
 	 * @return list of SkillType objects
 	 */
 	public List<SkillType> findAllByIsActive(boolean b);
-	
+
+	/**
+	 * Updates a skill type by ID
+	 *
+	 * @param id ID of skill type
+	 * @param title Name of skill type
+	 * @param b Active state of skill type
+	 */
     @Modifying
     @Query("update SkillType s set s.title = ?2, s.isActive = ?3 where s.skillTypeId = ?1")
     public void saveOnly(int id, String title, Boolean b);
