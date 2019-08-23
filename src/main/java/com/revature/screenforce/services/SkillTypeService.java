@@ -55,13 +55,13 @@ public interface SkillTypeService {
 	
 	/**
 	 * Gets the skill by its id
-	 * @param id primary key of skill to get
+	 * @param skillTypeId primary key of skill to get
 	 */
 	public SkillType getSkillTypeById(int skillTypeId);
 	
 	/**
 	 * Check if id exist
-	 * @param id
+	 * @param id ID of skill type
 	 */
 	public boolean existsById(int id);
 }
