@@ -5,7 +5,6 @@ import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
 import java.io.Serializable;
-//import java.util.Objects;
 
 /**
  * Outlines the Question POJO
@@ -99,7 +98,7 @@ public class Question implements Serializable {
         return sampleAnswer;
     }
 
-    public void setSampleAnswer1(String sampleAnswer) {
+    public void setSampleAnswer(String sampleAnswer) {
         this.sampleAnswer = sampleAnswer;
     }
 
