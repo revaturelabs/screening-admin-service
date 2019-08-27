@@ -45,6 +45,7 @@ public class Question implements Serializable {
     @Column(name = "QUESTION_TEXT")
     private String questionText;
 
+    /** Sample answer for the question */
     @ApiModelProperty(value = "sample answer")
     @Column(name = "SAMPLE_ANSWER")
     private String sampleAnswer;
