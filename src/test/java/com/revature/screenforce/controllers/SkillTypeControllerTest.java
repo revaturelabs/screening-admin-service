@@ -140,7 +140,7 @@ public class SkillTypeControllerTest {
 		given()
 				.port(port)
 				.when()
-				.delete("/skilltype/{id}", 56)
+				.delete("/skilltype/{id}", 52)
 				.then()
 				.statusCode(204);
 	}

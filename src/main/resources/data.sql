@@ -2,61 +2,120 @@
 --  SKILL TYPE
 --------------------------------------------------------
 
-insert into SKILL_TYPE (SKILL_TYPE_ID, TITLE, IS_ACTIVE) VALUES (51, 'Soft Skills', 1);
-insert into SKILL_TYPE (SKILL_TYPE_ID, TITLE, IS_ACTIVE) VALUES (52, 'Tech Skills', 1);
-insert into SKILL_TYPE (SKILL_TYPE_ID, TITLE, IS_ACTIVE) VALUES (53, 'Time Hacking Skills', 1);
-insert into SKILL_TYPE (SKILL_TYPE_ID, TITLE, IS_ACTIVE) VALUES (54, 'Basic Math Skills', 0);
-insert into SKILL_TYPE (SKILL_TYPE_ID, TITLE, IS_ACTIVE) VALUES (55, 'Advanced Math Skills', 0);
-insert into SKILL_TYPE (SKILL_TYPE_ID, TITLE, IS_ACTIVE) VALUES (56, 'Beta Skills', 0);
+insert into SKILL_TYPE (SKILL_TYPE_ID, TITLE, IS_ACTIVE) VALUES (51, 'Java', 1);
+insert into SKILL_TYPE (SKILL_TYPE_ID, TITLE, IS_ACTIVE) VALUES (52, '.NET', 1);
 
 --------------------------------------------------------
 --  BUCKET
 --------------------------------------------------------
-insert into bucket (bucket_id, bucket_description, is_active) values (404, 'Java Applied', true);
-insert into bucket (bucket_id, bucket_description, is_active) values (407, 'Hibernate', true);
-insert into bucket (bucket_id, bucket_description, is_active) values (406, 'SQL', true);
-insert into bucket (bucket_id, bucket_description, is_active) values (410, 'Angular', true);
-insert into bucket (bucket_id, bucket_description, is_active) values (411, 'Spring AoP', true);
-insert into bucket (bucket_id, bucket_description, is_active) values (412, 'JavaScript', true);
-insert into bucket (bucket_id, bucket_description, is_active) values (413, 'Java Concepts', true);
-insert into bucket (bucket_id, bucket_description, is_active) values (414, 'SOAP', true);
-insert into bucket (bucket_id, bucket_description, is_active) values (415, 'JDBC', true);
-insert into bucket (bucket_id, bucket_description, is_active) values (416, 'REST', true);
+insert into bucket (bucket_id, bucket_description, is_active) values (404, 'OOP', true);
+insert into bucket (bucket_id, bucket_description, is_active) values (407, 'Basic Java', true);
+insert into bucket (bucket_id, bucket_description, is_active) values (406, 'Advanced Java', true);
+insert into bucket (bucket_id, bucket_description, is_active) values (410, 'Web', true);
+insert into bucket (bucket_id, bucket_description, is_active) values (411, 'SQL', true);
+insert into bucket (bucket_id, bucket_description, is_active) values (412, 'Basic C#', true);
+insert into bucket (bucket_id, bucket_description, is_active) values (413, 'Advanced C#', true);
 
 --------------------------------------------------------
 --  WEIGHT
 --------------------------------------------------------
+-- OOP
 insert into WEIGHT (WEIGHT_ID, WEIGHT_VALUE, BUCKET_ID, SKILL_TYPE_ID) values (51404, 30, 404, 51);
-insert into WEIGHT (WEIGHT_ID, WEIGHT_VALUE, BUCKET_ID, SKILL_TYPE_ID) values (52404, 100, 404, 52);
-insert into WEIGHT (WEIGHT_ID, WEIGHT_VALUE, BUCKET_ID, SKILL_TYPE_ID) values (53404, 70, 404, 53);
-insert into WEIGHT (WEIGHT_ID, WEIGHT_VALUE, BUCKET_ID, SKILL_TYPE_ID) values (54405, 100, 406, 54);
-insert into WEIGHT (WEIGHT_ID, WEIGHT_VALUE, BUCKET_ID, SKILL_TYPE_ID) values (53405, 30, 406, 53);
-insert into WEIGHT (WEIGHT_ID, WEIGHT_VALUE, BUCKET_ID, SKILL_TYPE_ID) values (55405, 100, 412, 55);
-insert into WEIGHT (WEIGHT_ID, WEIGHT_VALUE, BUCKET_ID, SKILL_TYPE_ID) values (56406, 100, 406, 56);
-insert into WEIGHT (WEIGHT_ID, WEIGHT_VALUE, BUCKET_ID, SKILL_TYPE_ID) values (51406, 70, 406, 51);
+insert into WEIGHT (WEIGHT_ID, WEIGHT_VALUE, BUCKET_ID, SKILL_TYPE_ID) values (52404, 30, 404, 52);
+
+-- WEB
+insert into WEIGHT (WEIGHT_ID, WEIGHT_VALUE, BUCKET_ID, SKILL_TYPE_ID) values (53404, 10, 410, 51);
+insert into WEIGHT (WEIGHT_ID, WEIGHT_VALUE, BUCKET_ID, SKILL_TYPE_ID) values (54405, 10, 410, 52);
+
+-- SQL
+insert into WEIGHT (WEIGHT_ID, WEIGHT_VALUE, BUCKET_ID, SKILL_TYPE_ID) values (53405, 10, 411, 51);
+insert into WEIGHT (WEIGHT_ID, WEIGHT_VALUE, BUCKET_ID, SKILL_TYPE_ID) values (55405, 10, 411, 52);
+
+-- JAVA
+insert into WEIGHT (WEIGHT_ID, WEIGHT_VALUE, BUCKET_ID, SKILL_TYPE_ID) values (56406, 30, 407, 51);
+insert into WEIGHT (WEIGHT_ID, WEIGHT_VALUE, BUCKET_ID, SKILL_TYPE_ID) values (56407, 20, 406, 51);
+
+-- C#
+insert into WEIGHT (WEIGHT_ID, WEIGHT_VALUE, BUCKET_ID, SKILL_TYPE_ID) values (56408, 30, 412, 52);
+insert into WEIGHT (WEIGHT_ID, WEIGHT_VALUE, BUCKET_ID, SKILL_TYPE_ID) values (56409, 20, 413, 52);
 
 --------------------------------------------------------
 --  QUESTION
 --------------------------------------------------------
-insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER_1, SAMPLE_ANSWER_2, SAMPLE_ANSWER_3, SAMPLE_ANSWER_4, SAMPLE_ANSWER_5) values (10010,406,1,'What joins are used in SQL?' , 'Primarily together, under me. ' , 'Only self. All joins are self joins. ' , ' Self, inner.' , ' Self, inner, outer, left , right. ' , 'Self, inner, outer, left, right, natural. ' );
-insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER_1, SAMPLE_ANSWER_2, SAMPLE_ANSWER_3, SAMPLE_ANSWER_4, SAMPLE_ANSWER_5) values (10011,406,1,'What are the sublanguages of SQL?' , 'French, spanish, portuguese. ' , 'DML ' , ' DML, DDL' , ' DML,DDL,DQL,DCL ' , 'DML,DDL, DQL, DCL, TCL.' );
-insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER_1, SAMPLE_ANSWER_2, SAMPLE_ANSWER_3, SAMPLE_ANSWER_4, SAMPLE_ANSWER_5) values (10012,406,1,'What is the difference between drop and truncate?' , 'There is no difference. ' , 'Truncate is faster than drop. ' ,'One is DML and the other is DDL', ' Neither can be rolled back and both and DDL. Truncate is faster than drop. ' , 'Truncate removes the data from the database but leaves the underlying table structure. Drop removes the table entirely including the schema and the associated data.' );
-insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER_1, SAMPLE_ANSWER_2, SAMPLE_ANSWER_3, SAMPLE_ANSWER_4, SAMPLE_ANSWER_5) values (10007,414,1,'What transfer protocols are available in SOAP?' , 'No transfer protocols are required in SOAP, hence its popularity. ' , 'Http is supported by SOAP, as by most other service architectures. ' , ' SOAP supports http as well as ftp' , ' SOAP supports http, ftp, and sftp. ' , 'SOAP supports any number of transfer protocols including http, ftp, sftp, and https.' );
-insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER_1, SAMPLE_ANSWER_2, SAMPLE_ANSWER_3, SAMPLE_ANSWER_4, SAMPLE_ANSWER_5) values (10008,414,1,'What tags are used in the WSDL?' , 'html,h1, h2. ' , 'Operation ' , ' Binding, operation, port.' , ' Binding, operation, port, port type, message, documentation. ' , 'Binding, operation, port, port type, message, documentation, definition, service.' );
-insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER_1, SAMPLE_ANSWER_2, SAMPLE_ANSWER_3, SAMPLE_ANSWER_4, SAMPLE_ANSWER_5) values (10009,414,1,'What tags are used for a SOAP message?' , 'S,M,L, XL ' , 'Body ' , ' Body, header' , ' Body, header, envelope ' , 'Body, header, envelope, fault. Body and envelope are mandatory, the other tags are optional. The fault tag itself contains several tags, namely fault-actor, fault-string, fault-code, and fault-details.' );
-insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER_1, SAMPLE_ANSWER_2, SAMPLE_ANSWER_3, SAMPLE_ANSWER_4, SAMPLE_ANSWER_5) values (10004,416,1,'What operations in REST are idempotent?' , 'None, no operation can grasp the power of idem, its logically impossible. ' , 'GET and PUT ' , ' GET, PUT, POST, DELETE.' , 'GET, PUT, DELETE. ' , ' GET, PUT, and DELETE. An idempotent operation can be repeated an arbitrary number of times without changing the database state. ' );
-insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER_1, SAMPLE_ANSWER_2, SAMPLE_ANSWER_3, SAMPLE_ANSWER_4, SAMPLE_ANSWER_5) values (10005,416,1,'How many languages can be used in a REST service?' , 'One, REST only supports Java. ' , 'Two, REST is compatible with both the Java and .Net stacks. ' , ' Three. REST supports Java, C, and JavaScript in order to provide web and back end functionality. ' , 'Any amount. ' , ' REST affords interoperability which allows any number of languages to be used simultaneously to create the service. ' );
-insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER_1, SAMPLE_ANSWER_2, SAMPLE_ANSWER_3, SAMPLE_ANSWER_4, SAMPLE_ANSWER_5) values (10006,416,1,'What data transmission formats are available in REST? ' , 'The REST format. ' , 'REST uses XML only. ' , ' REST supports XML and JSON. ' , ' REST supports XML, JSON, and plain text. ' , 'REST supports any number of data formats including XML, JSON, YAML, and plain text. ' );
-insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER_1, SAMPLE_ANSWER_2, SAMPLE_ANSWER_3, SAMPLE_ANSWER_4, SAMPLE_ANSWER_5) values (10001, 415, 1,'What are the primary JDBC interfaces?' , 'Session, session factory ' , 'Connection ' , ' Connection, Statement' , 'Connection, Statement, Prepared Statement, Callable Statement ' , ' Connection, Statement, Prepared Statement, Callable Statement, Result Set,  Savepoint ' );
-insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER_1, SAMPLE_ANSWER_2, SAMPLE_ANSWER_3, SAMPLE_ANSWER_4, SAMPLE_ANSWER_5) values (10002, 415, 1,'What is JDBC?' , 'Junior Dominican-Brazilian Coalition ' , 'Java DataBase Connection  ' , ' Java DataBase Connection. Used to connect Java to the database.' , 'Java DataBase Connection. Used to connect Java to a SQL database. ' , ' Java DataBase Connection. Used to connect Java to a SQL database. Uses statements, prepared statements, and callable statements to either send raw SQL to the database to be executed or execute prepared SQL statements on the java side. ' );
-insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER_1, SAMPLE_ANSWER_2, SAMPLE_ANSWER_3, SAMPLE_ANSWER_4, SAMPLE_ANSWER_5) values (10003, 415, 1,'What is the difference between statements and prepared statements and why would we prefer one over the other?' , 'There is no difference.' , 'A statement is written using standard SQL syntax and a prepared statement is written differently' , ' Statements use raw SQL while prepared statements do not.' , 'A prepared statement has hardline requirements for the form of the data entered and executes the prepared SQL statement on the Java side. In contrast statements execute raw SQL in the SQL database itself and are therefore vulnerable to SQL injection. ' , ' A prepared statement parses the SQL statement to be executed, compiles it on the Java side, which allows more control and prevents SQL injection. Statements use raw SQL which is compiled by the database and can be SQL injected.' );
-insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER_1, SAMPLE_ANSWER_2, SAMPLE_ANSWER_3, SAMPLE_ANSWER_4, SAMPLE_ANSWER_5) values (10019, 410, 1, 'What is angular?', 'An obtuse angle.', 'Something to do with development', 'A web framework', 'Brumley Right answer', 'Fully correct answer.');
-insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER_1, SAMPLE_ANSWER_2, SAMPLE_ANSWER_3, SAMPLE_ANSWER_4, SAMPLE_ANSWER_5) values (10020, 410, 1, 'What are the 4 bindings?', 'Handcuffs, ball and chain, ..', 'Something to do with component and dom...', 'Names 2 of the 4.', 'Brumley Right.', 'Two way binding, event binding, interpolation, and property binding and description of each.'); 
-insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER_1, SAMPLE_ANSWER_2, SAMPLE_ANSWER_3, SAMPLE_ANSWER_4, SAMPLE_ANSWER_5) values (10021, 411, 1, 'What is an Aspect?', 'A what?', 'Something about paradigmns... ', 'A class', 'Brumley Right', 'Aspects in spring AoP are a class that is used modularize cross cutting concerns. (more details...)'); 
-insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER_1, SAMPLE_ANSWER_2, SAMPLE_ANSWER_3, SAMPLE_ANSWER_4, SAMPLE_ANSWER_5) values (10022, 411, 1, 'What are the ways you can advise a method?', 'Asking the instructor for advice????', '1 of 5', '3 of 5', 'Brumley Right', '@Before, @After, @AfterReturns, @AfterThrows, @Around.');
-insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER_1, SAMPLE_ANSWER_2, SAMPLE_ANSWER_3, SAMPLE_ANSWER_4, SAMPLE_ANSWER_5) values (10018, 412, 1, 'What is JavaScript?', 'A script I use to write my starbucks order on.', 'A programming language', 'A programming language for the web!', 'Brumley Right.', 'JavaScript is a dynamicly typed interpreted programming language that runs in most major browsers as well as serverside through things like node.js... blah blah blah.');
-insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER_1, SAMPLE_ANSWER_2, SAMPLE_ANSWER_3, SAMPLE_ANSWER_4, SAMPLE_ANSWER_5) values (10017, 412, 1, 'What values are falsey in JavaScript?', 'Anything that is not truthy!', '1 of 6', '3 of 6', 'Brumley Right', 'false, 0, empty string, NaN, ndefined, null');
-insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER_1, SAMPLE_ANSWER_2, SAMPLE_ANSWER_3, SAMPLE_ANSWER_4, SAMPLE_ANSWER_5) values (10013, 413, 1, 'What is Java?', 'Coffee', 'A programming langauge... Richard talked about it for like a week yo.', 'Java is a C like language that does objects!!.', 'Brumley Right', 'Java is a OOP language derived from C that has garbage collection, runs on any machine a JRE can run and is strongly typed. More stuff.... ');
-insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER_1, SAMPLE_ANSWER_2, SAMPLE_ANSWER_3, SAMPLE_ANSWER_4, SAMPLE_ANSWER_5) values (10014, 413, 1, 'What are the 8 primative types in Java?', '7 monkeys?', '2 of 8', '4 of 8', 'Brumley Right', 'float, double, int, long, short, byte, char, boolean.');
-insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER_1, SAMPLE_ANSWER_2, SAMPLE_ANSWER_3, SAMPLE_ANSWER_4, SAMPLE_ANSWER_5) values (10015, 414, 1, 'What is SOAP?', 'Something I use once a year.', 'Simple .... protocol??', 'Simple Object Access Protocol', 'Brumley Right', 'Simple Object Access Protocol that uses a WSDL file to ensure the client and server speak the same language and blah blah blah blah blah.');
-insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER_1, SAMPLE_ANSWER_2, SAMPLE_ANSWER_3, SAMPLE_ANSWER_4, SAMPLE_ANSWER_5) values (10016, 414, 1, 'What are your WSDL tags?', 'My what?', '2 of 9', '4 of 9', 'Brumley Right', 'Definitions, types, message, operation, port type, bindings, port, services, documentation.');
+-- OOP
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10000, 404, true, 'What are the Four Pillars of OOP?', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10001, 404, true, 'What is the difference between an object and a class?', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10002, 404, true, 'Explain Abstraction.', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10003, 404, true, 'Explain Polymorphism.', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10004, 404, true, 'Explain Inheritance.', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10005, 404, true, 'Explain Encapsulation.', 'Sample Answer');
+
+-- BASIC JAVA
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10100, 407, true, 'What are the JVM, JDK, and JRE?', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10101, 407, true, 'What are the primitive datatypes in Java?', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10102, 407, true, 'What are wrapper classes?', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10103, 407, true, 'How do constructors work in Java?', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10104, 407, true, 'What is the difference between == and .equals()?', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10105, 407, true, 'What is the difference between heap memory and stack memory?', 'Sample Answer');
+
+-- ADVANCED JAVA
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10200, 406, true, 'What does it mean for Java strings to be immutable?', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10201, 406, true, 'What is constructor chaining?', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10202, 406, true, 'What is a singleton and how can I create one?', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10203, 406, true, 'What is thread safety?', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10204, 406, true, 'Explain the Java collection framework.', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10205, 406, true, 'How do Maps in Java work?', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10206, 406, true, 'What is a marker interface?', 'Sample Answer');
+
+-- BASIC C#
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10300, 412, true, 'What is the difference between managed and unmanaged code?', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10301, 412, true, 'What is the difference between a class and a struct?', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10302, 412, true, 'What is boxing?', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10303, 412, true, 'What is the constant keyword?', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10304, 412, true, 'What is the difference between String and StringBuilder?', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10305, 412, true, 'What is a sealed class?', 'Sample Answer');
+
+-- ADVANCED C#
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10400, 413, true, 'What are delegates and how are they used?', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10401, 413, true, 'What is a partial class?', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10402, 413, true, 'What is the IEnumerable interface?', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10403, 413, true, 'What is a jagged array?', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10404, 413, true, 'How do the “is” and “as” operators work?', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10405, 413, true, 'What is the object pool?', 'Sample Answer');
+
+-- WEB
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10500, 410, true, 'What is HTML?', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10501, 410, true, 'What is the structure of an HTML document? ', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10502, 410, true, 'List some HTML tags.', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10503, 410, true, 'What is <head> used for? <body>?', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10504, 410, true, 'What is a doctype?', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10505, 410, true, 'What is the tag for an ordered list? Unordered list?', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10506, 410, true, 'What are some HTML5 tags?', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10507, 410, true, 'What is the syntax for a comment in HTML?', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10508, 410, true, 'Give me the HTML markup for a table.', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10509, 410, true, 'What are some tags you would use in a form?', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10510, 410, true, 'What is CSS?', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10511, 410, true, 'What are the different ways of styling an HTML page?', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10512, 410, true, 'Describe the CSS box model.', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10513, 410, true, 'What are the different types of CSS selectors?', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10514, 410, true, 'What is the relationship between HTML, CSS, and JavaScript?', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10515, 410, true, 'What is JavaScript? What do we use it for?', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10516, 410, true, 'Where is the best place to put a script tag in your HTML document?', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10517, 410, true, 'What are the data types in JS?', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10518, 410, true, 'What are the variable scopes in JS?', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10519, 410, true, 'What are JS objects?', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10520, 410, true, 'What is JSON?', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10521, 410, true, 'How to convert JS object to/from JSON?', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10522, 410, true, 'What does truthy/falsy mean?', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10523, 410, true, 'What is type coercion?', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10524, 410, true, 'What is the difference between == and === ?', 'Sample Answer');
+
+-- SQL
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10600, 411, true, 'What is SQL?', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10601, 411, true, 'What are the sub-languages in SQL?', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10602, 411, true, 'What commands do we see in these sub-languages?', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10603, 411, true, 'What is a Primary Key?', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10604, 411, true, 'What is a Composite Key?', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10605, 411, true, 'What is a Foreign Key?', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10606, 411, true, 'What are the different types of joins?', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10607, 411, true, 'What is the difference between Group By and Order By?', 'Sample Answer');

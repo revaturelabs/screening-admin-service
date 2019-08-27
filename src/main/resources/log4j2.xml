@@ -65,7 +65,7 @@
 		</RollingFile>
 	</Appenders>
 	<Loggers>
-		<Root level="all">
+		<Root level="info">
 			<AppenderRef ref="trace" level="trace" />
 			<AppenderRef ref="info" level="info" />
 			<AppenderRef ref="error" level="error" />

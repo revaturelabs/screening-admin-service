@@ -55,7 +55,7 @@ public class QuestionControllerTest {
 
 	@Test
 	public void testCreate() {
-		Question question = new Question(99999, null, false, "Test", "Test", "Test", "Test", "Test", "Test");
+		Question question = new Question(99999, null, false, "Test", "Test");
 
 		given()
 				.port(port)
@@ -69,21 +69,21 @@ public class QuestionControllerTest {
 
 	@Test
 	public void testUpdateQuestion() {
-		Question question = new Question(10007, null, false, "Test", "Test", "Test", "Test", "Test", "Test");
+		Question question = new Question(10007, null, false, "Test", "Test");
 
 		given()
 				.port(port)
 				.contentType("application/json")
 				.body(question)
 				.when()
-				.put("/question/{bucketId}", 10007)
+				.put("/question/{bucketId}", 10005)
 				.then()
 				.statusCode(200);
 	}
 	
 	@Test
 	public void testUpdateQuestionBadId() {
-		Question question = new Question(10007, null, false, "Test", "Test", "Test", "Test", "Test", "Test");
+		Question question = new Question(10005, null, false, "Test", "Test");
 
 		given()
 				.port(port)
@@ -100,7 +100,7 @@ public class QuestionControllerTest {
 		given()
 				.port(port)
 				.when()
-				.delete("/question/{id}", 10008)
+				.delete("/question/{id}", 10005)
 				.then()
 				.statusCode(200);
 	}
@@ -120,7 +120,7 @@ public class QuestionControllerTest {
 		given()
 				.port(port)
 				.when()
-				.get("/question/{questionId}", 10010)
+				.get("/question/{questionId}", 10004)
 				.then()
 				.log()
 				.ifError()

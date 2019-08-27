@@ -85,14 +85,14 @@ public class BucketControllerTest {
 
 	@Test
 	public void testUpdateBucket() {
-		Bucket b = new Bucket(1, "Updated Rest Assured Test", true);
+		Bucket b = new Bucket(404, "Updated Rest Assured Test", true);
 
 		given()
 			.port(port)
 			.contentType("application/json")
 			.body(b)
 			.when()
-			.put("/bucket/416")
+			.put("/bucket/404")
 			.then()
 			.statusCode(200);
 	}
