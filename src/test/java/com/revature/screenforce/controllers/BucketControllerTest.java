@@ -26,34 +26,34 @@ public class BucketControllerTest {
 	@Test
 	public void testGetConnectionToBucketEndpoint() {
 		given()
-			.port(port)
-			.when()
-			.get("/bucket")
-			.then()
-			.log()
-			.ifValidationFails()
-			.statusCode(200);
+				.port(port)
+				.when()
+				.get("/bucket")
+				.then()
+				.log()
+				.ifValidationFails()
+				.statusCode(200);
 	}
 
 	@Test
 	public void testGetBucketByBucketId() {
 		given()
-			.port(port)
-			.when()
-			.get("/bucket/{bucketId}", 404)
-			.then()
-			.body("bucketId", equalTo(404))
-			.statusCode(200);
+				.port(port)
+				.when()
+				.get("/bucket/{bucketId}", 404)
+				.then()
+				.body("bucketId", equalTo(404))
+				.statusCode(200);
 	}
 
 	@Test
 	public void testGetBucketByBucketIdBadId() {
 		given()
-			.port(port)
-			.when()
-			.get("/bucket/{bucketId}", -1)
-			.then()
-			.statusCode(404);
+				.port(port)
+				.when()
+				.get("/bucket/{bucketId}", -1)
+				.then()
+				.statusCode(404);
 	}
 
 	@Test
@@ -61,12 +61,12 @@ public class BucketControllerTest {
 		Bucket b = new Bucket(417, "Rest Assured Test Bucket", true);
 
 		given()
-			.port(port)
-			.contentType("application/json")
-			.body(b).when()
-			.post("/bucket")
-			.then()
-			.statusCode(201);
+				.port(port)
+				.contentType("application/json")
+				.body(b).when()
+				.post("/bucket")
+				.then()
+				.statusCode(201);
 	}
 
 	@Test
@@ -74,27 +74,27 @@ public class BucketControllerTest {
 		Bucket b = new Bucket(4321890, "", false);
 
 		given()
-			.port(port)
-			.contentType("application/json")
-			.body(b)
-			.when()
-			.post("/bucket")
-			.then()
-			.statusCode(415);
+				.port(port)
+				.contentType("application/json")
+				.body(b)
+				.when()
+				.post("/bucket")
+				.then()
+				.statusCode(415);
 	}
 
 	@Test
 	public void testUpdateBucket() {
-		Bucket b = new Bucket(1, "Updated Rest Assured Test", true);
+		Bucket b = new Bucket(404, "Updated Rest Assured Test", true);
 
 		given()
-			.port(port)
-			.contentType("application/json")
-			.body(b)
-			.when()
-			.put("/bucket/416")
-			.then()
-			.statusCode(200);
+				.port(port)
+				.contentType("application/json")
+				.body(b)
+				.when()
+				.put("/bucket/404")
+				.then()
+				.statusCode(200);
 	}
 
 	@Test
@@ -102,44 +102,44 @@ public class BucketControllerTest {
 		Bucket b = new Bucket(1, "Updated Rest Assured Test", true);
 
 		given()
-			.port(port)
-			.contentType("application/json")
-			.body(b)
-			.when()
-			.put("/bucket/1")
-			.then()
-			.statusCode(400);
+				.port(port)
+				.contentType("application/json")
+				.body(b)
+				.when()
+				.put("/bucket/1")
+				.then()
+				.statusCode(400);
 	}
 
 	@Test
 	public void testDeleteBucket() {
 		given()
-			.port(port)
-			.when()
-			.delete("/bucket/{bucketId}", 404)
-			.then()
-			.statusCode(204);
+				.port(port)
+				.when()
+				.delete("/bucket/{bucketId}", 404)
+				.then()
+				.statusCode(204);
 	}
 
 	@Test
 	public void testDeleteBucketFail() {
 		given()
-			.port(port)
-			.when()
-			.delete("/bucket/{bucketId}", 4014)
-			.then()
-			.statusCode(404);
+				.port(port)
+				.when()
+				.delete("/bucket/{bucketId}", 4014)
+				.then()
+				.statusCode(404);
 	}
 
 	@Test
 	public void testCreateEmptyBucket() {
 		Bucket b = new Bucket();
 		given()
-			.port(port)
-			.body(b)
-			.when()
-			.post("/bucket")
-			.then()
-			.statusCode(415);
+				.port(port)
+				.body(b)
+				.when()
+				.post("/bucket")
+				.then()
+				.statusCode(415);
 	}
 }
