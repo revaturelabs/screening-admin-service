@@ -5,7 +5,6 @@ import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Objects;
 
 /**
  * Outlines the Question POJO
@@ -46,30 +45,9 @@ public class Question implements Serializable {
     @Column(name = "QUESTION_TEXT")
     private String questionText;
 
-    /** Sample answer 1 */
-    @ApiModelProperty(value = "sample answer 1")
-    @Column(name = "SAMPLE_ANSWER_1")
-    private String sampleAnswer1;
-
-    /** Sample answer 2 */
-    @ApiModelProperty(value = "sample answer 2")
-    @Column(name = "SAMPLE_ANSWER_2")
-    private String sampleAnswer2;
-
-    /** Sample answer 3 */
-    @ApiModelProperty(value = "sample answer 3")
-    @Column(name = "SAMPLE_ANSWER_3")
-    private String sampleAnswer3;
-
-    /** Sample answer 4 */
-    @ApiModelProperty(value = "sample answer 4")
-    @Column(name = "SAMPLE_ANSWER_4")
-    private String sampleAnswer4;
-
-    /** Sample answer 5 */
-    @ApiModelProperty(value = "sample answer 5")
-    @Column(name = "SAMPLE_ANSWER_5")
-    private String sampleAnswer5;
+    @ApiModelProperty(value = "sample answer")
+    @Column(name = "SAMPLE_ANSWER")
+    private String sampleAnswer;
 
     /**
      * Instantiates a new question
@@ -85,24 +63,15 @@ public class Question implements Serializable {
      * @param bucket Bucket question is contained in
      * @param isActive Active state of the question
      * @param questionText Description of the question
-     * @param sampleAnswer1 Sample answer 1
-     * @param sampleAnswer2 Sample answer 2
-     * @param sampleAnswer3 Sample answer 3
-     * @param sampleAnswer4 Sample answer 4
-     * @param sampleAnswer5 Sample answer 5
-     */
-    public Question(Integer questionId, Bucket bucket, Boolean isActive, String questionText, String sampleAnswer1,
-                    String sampleAnswer2, String sampleAnswer3, String sampleAnswer4, String sampleAnswer5) {
+     * @param sampleAnswer Sample answer
+	 */
+    public Question(Integer questionId, Bucket bucket, Boolean isActive, String questionText, String sampleAnswer) {
         super();
         this.questionId = questionId;
         this.bucket = bucket;
         this.isActive = isActive;
         this.questionText = questionText;
-        this.sampleAnswer1 = sampleAnswer1;
-        this.sampleAnswer2 = sampleAnswer2;
-        this.sampleAnswer3 = sampleAnswer3;
-        this.sampleAnswer4 = sampleAnswer4;
-        this.sampleAnswer5 = sampleAnswer5;
+        this.sampleAnswer = sampleAnswer;
     }
 
     /**
@@ -177,117 +146,60 @@ public class Question implements Serializable {
         this.questionText = questionText;
     }
 
-    /**
-     * Returns sample answer 1
-     *
-     * @return Sample answer 1
-     */
-    public String getSampleAnswer1() {
-        return sampleAnswer1;
+	/**
+	 * Returns sample answer
+	 *
+	 * @return Sample answer
+	 */
+	public String getSampleAnswer() {
+        return sampleAnswer;
     }
 
-    /**
-     * Set sample answer 1
-     *
-     * @param sampleAnswer1 Sample answer 1
-     */
-    public void setSampleAnswer1(String sampleAnswer1) {
-        this.sampleAnswer1 = sampleAnswer1;
-    }
-
-    /**
-     * Returns sample answer 2
-     *
-     * @return Sample answer 2
-     */
-    public String getSampleAnswer2() {
-        return sampleAnswer2;
-    }
-
-    /**
-     * Set sample answer 2
-     *
-     * @param sampleAnswer2 Sample answer 2
-     */
-    public void setSampleAnswer2(String sampleAnswer2) {
-        this.sampleAnswer2 = sampleAnswer2;
-    }
-
-    /**
-     * Returns sample answer 3
-     *
-     * @return Sample answer 3
-     */
-    public String getSampleAnswer3() {
-        return sampleAnswer3;
-    }
-
-    /**
-     * Set sample answer 3
-     *
-     * @param sampleAnswer3 Sample answer 3
-     */
-    public void setSampleAnswer3(String sampleAnswer3) {
-        this.sampleAnswer3 = sampleAnswer3;
-    }
-
-    /**
-     * Returns sample answer 4
-     *
-     * @return Sample answer 4
-     */
-    public String getSampleAnswer4() {
-        return sampleAnswer4;
-    }
-
-    /**
-     * Set sample answer 4
-     *
-     * @param sampleAnswer4 Sample answer 4
-     */
-    public void setSampleAnswer4(String sampleAnswer4) {
-        this.sampleAnswer4 = sampleAnswer4;
-    }
-
-    /**
-     * Returns sample answer 5
-     *
-     * @return Sample answer 5
-     */
-    public String getSampleAnswer5() {
-        return sampleAnswer5;
-    }
-
-    /**
-     * Set sample answer 5
-     *
-     * @param sampleAnswer5 Sample answer 5
-     */
-    public void setSampleAnswer5(String sampleAnswer5) {
-        this.sampleAnswer5 = sampleAnswer5;
+	/**
+	 * Sets the sample answer
+	 *
+	 * @param sampleAnswer Sample answer
+	 */
+	public void setSampleAnswer(String sampleAnswer) {
+        this.sampleAnswer = sampleAnswer;
     }
 
     /**
      * Compares equality between two questions
      *
-     * @param o Question to compare
+     * @param obj Question to compare
      * @return true if questions are equal, false otherwise
      */
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Question question = (Question) o;
-        return Objects.equals(getQuestionId(), question.getQuestionId()) &&
-                Objects.equals(getBucket(), question.getBucket()) &&
-                Objects.equals(getIsActive(), question.getIsActive()) &&
-                Objects.equals(getQuestionText(), question.getQuestionText()) &&
-                Objects.equals(getSampleAnswer1(), question.getSampleAnswer1()) &&
-                Objects.equals(getSampleAnswer2(), question.getSampleAnswer2()) &&
-                Objects.equals(getSampleAnswer3(), question.getSampleAnswer3()) &&
-                Objects.equals(getSampleAnswer4(), question.getSampleAnswer4()) &&
-                Objects.equals(getSampleAnswer5(), question.getSampleAnswer5());
-    }
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Question other = (Question) obj;
+		if (bucket == null) {
+			if (other.bucket != null)
+				return false;
+		} else if (!bucket.equals(other.bucket))
+			return false;
+		if (isActive != other.isActive)
+			return false;
+		if (questionId != other.questionId)
+			return false;
+		if (questionText == null) {
+			if (other.questionText != null)
+				return false;
+		} else if (!questionText.equals(other.questionText))
+			return false;
+		if (sampleAnswer == null) {
+			if (other.sampleAnswer != null)
+				return false;
+		} else if (!sampleAnswer.equals(other.sampleAnswer))
+			return false;
+		return true;
+	}
 
     /**
      * Returns hashcode for question
@@ -295,9 +207,16 @@ public class Question implements Serializable {
      * @return Hashcode
      */
     @Override
-    public int hashCode() {
-        return Objects.hash(getQuestionId(), getBucket(), getIsActive(), getQuestionText(), getSampleAnswer1(), getSampleAnswer2(), getSampleAnswer3(), getSampleAnswer4(), getSampleAnswer5());
-    }
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((bucket == null) ? 0 : bucket.hashCode());
+		result = prime * result + (isActive ? 1231 : 1237);
+		result = prime * result + questionId;
+		result = prime * result + ((questionText == null) ? 0 : questionText.hashCode());
+		result = prime * result + ((sampleAnswer == null) ? 0 : sampleAnswer.hashCode());
+		return result;
+	}
 
     /**
      * Converts question to string
@@ -305,17 +224,8 @@ public class Question implements Serializable {
      * @return Question object's string representation
      */
     @Override
-    public String toString() {
-        return "Question{" +
-                "questionId=" + questionId +
-                ", bucket=" + bucket +
-                ", isActive=" + isActive +
-                ", questionText='" + questionText + '\'' +
-                ", sampleAnswer1='" + sampleAnswer1 + '\'' +
-                ", sampleAnswer2='" + sampleAnswer2 + '\'' +
-                ", sampleAnswer3='" + sampleAnswer3 + '\'' +
-                ", sampleAnswer4='" + sampleAnswer4 + '\'' +
-                ", sampleAnswer5='" + sampleAnswer5 + '\'' +
-                '}';
-    }
+	public String toString() {
+		return "Question [questionId=" + questionId + ", bucket=" + bucket + ", isActive=" + isActive
+				+ ", questionText=" + questionText + ", sampleAnswer=" + sampleAnswer + "]";
+	}
 }
