@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration>
 	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d{dd/MM/yyyy HH:mm:ss.SSSSSS} [%t] %-5level %logger{36} - %msg%n"/>
+		</Console>
 		<RollingFile name="error" fileName="./logs/app-error.log"
 			filePattern="logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-error.log.gz">
 			<PatternLayout>
@@ -65,7 +68,8 @@
 		</RollingFile>
 	</Appenders>
 	<Loggers>
-		<Root level="all">
+		<Root level="info">
+			<AppenderRef ref="Console"/>
 			<AppenderRef ref="trace" level="trace" />
 			<AppenderRef ref="info" level="info" />
 			<AppenderRef ref="error" level="error" />

@@ -37,7 +37,7 @@ insert into WEIGHT (WEIGHT_ID, WEIGHT_VALUE, BUCKET_ID, SKILL_TYPE_ID) values (5
 
 -- C#
 insert into WEIGHT (WEIGHT_ID, WEIGHT_VALUE, BUCKET_ID, SKILL_TYPE_ID) values (56408, 30, 412, 52);
-insert into WEIGHT (WEIGHT_ID, WEIGHT_VALUE, BUCKET_ID, SKILL_TYPE_ID) values (56408, 20, 413, 52);
+insert into WEIGHT (WEIGHT_ID, WEIGHT_VALUE, BUCKET_ID, SKILL_TYPE_ID) values (56409, 20, 413, 52);
 
 --------------------------------------------------------
 --  QUESTION
@@ -76,12 +76,12 @@ insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_A
 insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10305, 412, true, 'What is a sealed class?', 'Sample Answer');
 
 -- ADVANCED C#
-insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10401, 413, true, 'What are delegates and how are they used?', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10400, 413, true, 'What are delegates and how are they used?', 'Sample Answer');
 insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10401, 413, true, 'What is a partial class?', 'Sample Answer');
-insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10401, 413, true, 'What is the IEnumerable interface?', 'Sample Answer');
-insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10401, 413, true, 'What is a jagged array?', 'Sample Answer');
-insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10401, 413, true, 'How do the “is” and “as” operators work?', 'Sample Answer');
-insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10401, 413, true, 'What is the object pool?', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10402, 413, true, 'What is the IEnumerable interface?', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10403, 413, true, 'What is a jagged array?', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10404, 413, true, 'How do the “is” and “as” operators work?', 'Sample Answer');
+insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10405, 413, true, 'What is the object pool?', 'Sample Answer');
 
 -- WEB
 insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER) values(10500, 410, true, 'What is HTML?', 'Sample Answer');
