@@ -55,7 +55,7 @@ public class QuestionControllerTest {
 
 	@Test
 	public void testCreate() {
-		Question question = new Question(99999, null, false, "Test", "Test", "Test", "Test", "Test", "Test");
+		Question question = new Question(99999, null, false, "Test", "Test");
 
 		given()
 				.port(port)
@@ -69,7 +69,7 @@ public class QuestionControllerTest {
 
 	@Test
 	public void testUpdateQuestion() {
-		Question question = new Question(10007, null, false, "Test", "Test", "Test", "Test", "Test", "Test");
+		Question question = new Question(10007, null, false, "Test", "Test");
 
 		given()
 				.port(port)
@@ -83,7 +83,7 @@ public class QuestionControllerTest {
 	
 	@Test
 	public void testUpdateQuestionBadId() {
-		Question question = new Question(10007, null, false, "Test", "Test", "Test", "Test", "Test", "Test");
+		Question question = new Question(10007, null, false, "Test", "Test");
 
 		given()
 				.port(port)
