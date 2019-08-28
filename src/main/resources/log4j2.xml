@@ -66,7 +66,6 @@
 	</Appenders>
 	<Loggers>
 		<Root level="all">
-			<AppenderRef ref="console" level="info" />
 			<AppenderRef ref="trace" level="trace" />
 			<AppenderRef ref="info" level="info" />
 			<AppenderRef ref="error" level="error" />
