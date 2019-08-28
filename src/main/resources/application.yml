@@ -19,7 +19,3 @@ eureka:
 
 server:
   port: 8181
-
-
-
-

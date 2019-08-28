@@ -35,9 +35,18 @@ import java.util.List;
 @RequestMapping("/question")
 @ApiModel(value = "QuestionController", description = "A rest controller to handle HTTP Requests that return questions")
 public class QuestionController {
+	/** Question service */
 	private QuestionService questionService;
+
+	/** Bucket service */
 	private BucketService bucketService;
 
+	/**
+	 * Instantiates a new question controller
+	 *
+	 * @param questionService Question service
+	 * @param bucketService Bucket service
+	 */
 	@Autowired
 	public QuestionController(QuestionService questionService, BucketService bucketService) {
 		this.questionService = questionService;
@@ -102,10 +111,9 @@ public class QuestionController {
 		
 	}
 	/**
+	 * Deletes questions by bucket ID
 	 * 
-	 * @param bucketId
-	 * @return Void
-	 * 
+	 * @param bucketId Bucket ID
 	 */
 	@ApiOperation(value = "Delete all questions associated with a bucketId")
 	@ApiResponses(value = { 
@@ -135,7 +143,9 @@ public class QuestionController {
 	
 	/**
 	 * Updates a number of fields for a specific question
-	 * @param updated question object
+	 *
+	 * @param id ID of question to update
+	 * @param question question object
 	 * @return updated question and http status code 200
 	 */
 	@ApiOperation(value = "Updates question", response = Question.class)
@@ -154,7 +164,8 @@ public class QuestionController {
 	
 	/**
 	 * Removes a question from the DB, if found
-	 * @param questionId - id of question to remove
+	 *
+	 * @param id ID of question to remove
 	 * @return http status code 200
 	 */
 	@ApiOperation(value = "Deletes a question")

@@ -14,11 +14,34 @@ import java.util.List;
  */
 @Repository
 public interface WeightRepository extends JpaRepository<Weight, Integer> {
+    /**
+     * Delete weights by skill type ID
+     *
+     * @param skillTypeId Skill type ID
+     */
     void deleteAllBySkillTypeSkillTypeId(int skillTypeId);
 
+    /**
+     * Get all weights by skill type ID
+     *
+     * @param skillTypeId Skill type ID
+     * @return List of weights
+     */
     List<Weight> getAllBySkillTypeSkillTypeId(int skillTypeId);
 
+    /**
+     * Get weights by skill type ID and bucket ID
+     *
+     * @param skillTypeId Skill type ID
+     * @param bucketId Bucket ID
+     * @return Weight
+     */
     Weight getBySkillTypeSkillTypeIdAndBucketBucketId(int skillTypeId, int bucketId);
 
+    /**
+     * Delete weights by bucket ID
+     *
+     * @param bucketId Bucket ID
+     */
     void deleteAllByBucketBucketId(int bucketId);
 }

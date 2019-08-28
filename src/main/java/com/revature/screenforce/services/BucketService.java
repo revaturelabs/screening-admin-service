@@ -52,7 +52,7 @@ public interface BucketService {
 
 	/**
 	 * Check if id exist
-	 * @param bucketId
+	 * @param bid Bucket ID
 	 */
 	public boolean existsById(int bid);
 }

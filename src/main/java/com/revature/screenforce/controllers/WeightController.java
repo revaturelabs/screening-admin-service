@@ -27,9 +27,15 @@ import java.util.List;
 @RequestMapping(value = "/weight")
 @ApiModel(value = "SkillTypeController", description = "A rest controller to handle HTTP Requests for CRUD operations on weights")
 public class WeightController {
+	/** Weight service */
     private WeightService weightService;
 
-    @Autowired
+	/**
+	 * Instantiates a new weight controller
+	 *
+	 * @param weightService Weight service
+	 */
+	@Autowired
     public WeightController(WeightService weightService) {
     	this.weightService = weightService;
     }
@@ -115,6 +121,8 @@ public class WeightController {
     }
 
     /**
+	 * Creates a new weight
+	 *
      * @param weight - transient weight
      * @return persisted weight with ID created
      */
@@ -126,6 +134,8 @@ public class WeightController {
     }
 
     /**
+	 * Deletes a weight
+	 *
      * @param weightId - ID of skillType for weight to be deleted
      * @return Void
      */

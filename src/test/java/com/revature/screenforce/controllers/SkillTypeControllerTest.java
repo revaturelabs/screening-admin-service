@@ -38,43 +38,43 @@ public class SkillTypeControllerTest {
 	@Test
 	public void testGetSkills() {
 		given()
-				.port(port)
-				.when()
-				.get("/skilltype")
-				.then()
-				.statusCode(200);
+			.port(port)
+			.when()
+			.get("/skilltype")
+			.then()
+			.statusCode(200);
 	}
 
 	@Test
 	public void testGetActiveSkills() {
 		given()
-				.port(port)
-				.when()
-				.get("/skilltype/active")
-				.then()
-				.statusCode(200);
+			.port(port)
+			.when()
+			.get("/skilltype/active")
+			.then()
+			.statusCode(200);
 	}
 
 	@Test
 	public void testGetSkillById() {
 		given()
-				.port(port)
-				.when()
-				.get("/skilltype/{id}", 51)
-				.then()
-				.body("skillTypeId", equalTo(51))
-				.statusCode(200);
+			.port(port)
+			.when()
+			.get("/skilltype/{id}", 51)
+			.then()
+			.body("skillTypeId", equalTo(51))
+			.statusCode(200);
 	}
 
 
 	@Test
 	public void testGetSkillByIdForIdThatDoesNotExist() {
 		given()
-				.port(port)
-				.when()
-				.get("/skilltype/{id}", -1)
-				.then()
-				.statusCode(404);
+			.port(port)
+			.when()
+			.get("/skilltype/{id}", -1)
+			.then()
+			.statusCode(404);
 	}
 
 	@Test
@@ -82,13 +82,13 @@ public class SkillTypeControllerTest {
 		SkillType st = new SkillType("Charisma", true);
 
 		given()
-				.port(port)
-				.contentType("application/json")
-				.body(st)
-				.when()
-				.post("/skilltype")
-				.then()
-				.statusCode(201);
+			.port(port)
+			.contentType("application/json")
+			.body(st)
+			.when()
+			.post("/skilltype")
+			.then()
+			.statusCode(201);
 	}
 
 	@Test
@@ -96,13 +96,13 @@ public class SkillTypeControllerTest {
 		SkillType st = new SkillType("", true);
 
 		given()
-				.port(port)
-				.contentType("application/json")
-				.body(st)
-				.when()
-				.post("/skilltype")
-				.then()
-				.statusCode(406);
+			.port(port)
+			.contentType("application/json")
+			.body(st)
+			.when()
+			.post("/skilltype")
+			.then()
+			.statusCode(406);
 	}
 
 	@Test
@@ -111,13 +111,13 @@ public class SkillTypeControllerTest {
 		st.setTitle("Updated SkillType");
 
 		given()
-				.port(port)
-				.contentType("application/json")
-				.body(st)
-				.when()
-				.put("/skilltype/{id}", 51)
-				.then()
-				.statusCode(202);
+			.port(port)
+			.contentType("application/json")
+			.body(st)
+			.when()
+			.put("/skilltype/{id}", 51)
+			.then()
+			.statusCode(202);
 	}
 
 	@Test
@@ -126,33 +126,32 @@ public class SkillTypeControllerTest {
 		st.setTitle("Updated SkillType");
 		
 		given()
-				.port(port)
-				.contentType("application/json")
-				.body(st)
-				.when()
-				.put("/skilltype/{id}", -1)
-				.then()
-				.statusCode(404);
+			.port(port)
+			.contentType("application/json")
+			.body(st)
+			.when()
+			.put("/skilltype/{id}", -1)
+			.then()
+			.statusCode(404);
 	}
 
 	@Test
 	public void testDeleteSkillById() {
 		given()
-				.port(port)
-				.when()
-				.delete("/skilltype/{id}", 52)
-				.then()
-				.statusCode(204);
+			.port(port)
+			.when()
+			.delete("/skilltype/{id}", 52)
+			.then()
+			.statusCode(204);
 	}
 
 	@Test
 	public void testDeleteSkillByIdForIdThatDoesNotExist() {
 		given()
-				.port(port)
-				.when()
-				.delete("/skilltype/{id}", -1)
-				.then()
-				.statusCode(404);
+			.port(port)
+			.when()
+			.delete("/skilltype/{id}", -1)
+			.then()
+			.statusCode(404);
 	}
-
 }
