@@ -47,7 +47,7 @@ public class CategoryController {
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "All Category returned") } )
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Category>> getAllCategories() {
-		List<Cateory> s = categoryService.getAllCategories();
+		List<Category> s = categoryService.getAllCategories();
 		return new ResponseEntity<>(s, HttpStatus.OK);
 	}	
 	
