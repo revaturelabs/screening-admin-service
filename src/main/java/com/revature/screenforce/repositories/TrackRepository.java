@@ -7,33 +7,33 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.revature.screenforce.beans.SkillType;
+import com.revature.screenforce.beans.Track;
 
 /**
- * DAO Repository for the SkillType utilizing
+ * DAO Repository for the Track utilizing
  * JpaRepository & CrudRepository interface methods
  * 
  * @author Isaac Pawling | 1805-WVU | Richard Orr
  */
 @Repository
-public interface SkillTypeRepository extends JpaRepository<SkillType, Integer> {
+public interface TrackRepository extends JpaRepository<Track, Integer> {
 	
 	/**
-	 * Gets all active or inactive SkillType objects
+	 * Gets all active or inactive Track objects
 	 * 
 	 * @param b the boolean determining active status
-	 * @return list of SkillType objects
+	 * @return list of Track objects
 	 */
-	public List<SkillType> findAllByIsActive(boolean b);
+	public List<Track> findAllByIsActive(boolean b);
 
 	/**
-	 * Updates a skill type by ID
+	 * Updates a track type by ID
 	 *
-	 * @param id ID of skill type
-	 * @param title Name of skill type
-	 * @param b Active state of skill type
+	 * @param id ID of track type
+	 * @param title Name of track type
+	 * @param b Active state of track type
 	 */
     @Modifying
-    @Query("update SkillType s set s.title = ?2, s.isActive = ?3 where s.skillTypeId = ?1")
+    @Query("update Track s set s.title = ?2, s.isActive = ?3 where s.trackId = ?1")
     public void saveOnly(int id, String title, Boolean b);
 }

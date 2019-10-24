@@ -95,7 +95,7 @@ public class WeightServiceImplTest {
 		// Mock DAO deleteById()
 		weightService.deleteById(weight.getWeightId());
 
-		// getBucketById is set to return new Bucket() if no bucket with ID is
+		// getCategoryById is set to return new Category() if no category with ID is
 		// found
 		assertEquals(new Weight(), weightService.get(weight.getWeightId()));
 	}
@@ -121,9 +121,9 @@ public class WeightServiceImplTest {
 	}
 	
 	@Test
-	public void getWithSkillTypeAndBucketId() {
-		// Mock DAO getBySkillTypeSkillTypeIdAndBucketBucketId()
-		when(weightRepository.getBySkillTypeSkillTypeIdAndBucketBucketId(
+	public void getWithSkillTypeAndCategoryId() {
+		// Mock DAO getBySkillTypeSkillTypeIdAndCategoryCategoryId()
+		when(weightRepository.getBySkillTypeSkillTypeIdAndCategoryCategoryId(
 				any(Integer.class),
 				any(Integer.class)))
 				.thenReturn(new Weight());

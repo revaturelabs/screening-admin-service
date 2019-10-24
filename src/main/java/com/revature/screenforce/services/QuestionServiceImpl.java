@@ -57,13 +57,13 @@ public class QuestionServiceImpl implements QuestionService {
 	}
 
 	/**
-	 * Gets questions based on bucketId
-	 * @param bucketId of bucket
-	 * @return List of questions in the specified bucket
+	 * Gets questions based on categoryId
+	 * @param categoryId of category
+	 * @return List of questions in the specified category
 	 */
 	@Override
-	public List<Question> getQuestionsByBucket(int bucketId) {
-		return questionRepository.findAllByBucketBucketId(bucketId);
+	public List<Question> getQuestionsByCategory(int categoryId) {
+		return questionRepository.findAllByCategoryCategoryId(categoryId);
 	}
 
 	/**
@@ -104,9 +104,8 @@ public class QuestionServiceImpl implements QuestionService {
 	 */
 	@Override
 	@Transactional
-	public void deleteByBucketId(int bucketId) {
-	  List<Question> q = new ArrayList<>(this.getQuestionsByBucket(bucketId));
-		
+	public void deleteByCategoryId(int categoryId) {
+	  List<Question> q = new ArrayList<>(this.getQuestionsByCategory(categoryId));
 		for (Question question : q) {
 			deleteByQuestionId(question.getQuestionId());
 		}
@@ -117,7 +116,7 @@ public class QuestionServiceImpl implements QuestionService {
 	 * @param id ID of question
 	 */
 	@Override
-	public boolean existsById(int id) {
-		return questionRepository.existsById(id);
+	public boolean existsById(int questionId) {
+		return questionRepository.existsById(questionId);
 	}
 }
