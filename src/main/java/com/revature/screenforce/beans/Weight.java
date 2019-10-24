@@ -16,7 +16,7 @@ import java.util.Objects;
  *
  * POJO for the weight object
  */
-@ApiModel(value = "Weight", description = "Weights for Buckets within a SkillType, determining how a Bucket contributes to the final score")
+@ApiModel(value = "Weight", description = "Weights for Categories within a SkillType, determining how a Category contributes to the final score")
 @Entity
 @Table(name = "WEIGHT")
 public class Weight {
@@ -38,11 +38,11 @@ public class Weight {
     @JoinColumn(name = "SKILL_TYPE_ID")
     private SkillType skillType;
 
-    /** Bucket object */
-    @ApiModelProperty(value = "The Bucket Id")
+    /** Category object */
+    @ApiModelProperty(value = "The Category Id")
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "BUCKET_ID")
-    private Bucket bucket;
+    @JoinColumn(name = "CATEGORY_ID")
+    private Category category;
 
     /**
      * Instantiates a new weight
@@ -57,14 +57,14 @@ public class Weight {
      * @param weightId Weight ID
      * @param weightValue Weight value
      * @param skillType Skill type
-     * @param bucket Bucket
+     * @param category Category
      */
-    public Weight(int weightId, int weightValue, SkillType skillType, Bucket bucket) {
+    public Weight(int weightId, int weightValue, SkillType skillType, Category category) {
         super();
         this.weightId = weightId;
         this.weightValue = weightValue;
         this.skillType = skillType;
-        this.bucket = bucket;
+        this.category = category;
     }
 
     /**
@@ -122,21 +122,21 @@ public class Weight {
     }
 
     /**
-     * Returns bucket
+     * Returns category
      *
-     * @return Bucket
+     * @return Category
      */
-    public Bucket getBucket() {
-        return bucket;
+    public Category getCategory() {
+        return category;
     }
 
     /**
-     * Sets bucket
+     * Sets category
      *
-     * @param bucket Bucket
+     * @param category Category
      */
-    public void setBucket(Bucket bucket) {
-        this.bucket = bucket;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     /**
@@ -153,7 +153,7 @@ public class Weight {
         return getWeightId() == weight1.getWeightId() &&
                 getWeightValue() == weight1.getWeightValue() &&
                 getSkillType() == weight1.getSkillType() &&
-                getBucket() == weight1.getBucket();
+                getCategory() == weight1.getCategory();
     }
 
     /**
@@ -163,7 +163,7 @@ public class Weight {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(getWeightId(), getWeightValue(), getSkillType(), getBucket());
+        return Objects.hash(getWeightId(), getWeightValue(), getSkillType(), getCategory());
     }
 
     /**
@@ -177,7 +177,7 @@ public class Weight {
                 "weightId=" + weightId +
                 ", weightValue=" + weightValue +
                 ", skillType=" + skillType +
-                ", bucket=" + bucket +
+                ", category=" + category +
                 '}';
     }
 }
