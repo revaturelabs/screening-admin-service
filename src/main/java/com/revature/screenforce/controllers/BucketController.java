@@ -10,119 +10,119 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.revature.screenforce.beans.Bucket;
-import com.revature.screenforce.services.BucketService;
+import com.revature.screenforce.beans.Category;
+import com.revature.screenforce.services.CategoryService;
 
 import javax.validation.Valid;
 import java.util.List;
 	
 /**
- * Controller for the bucket
+ * Controller for the category
  * @author Adil Iqbal 	| 1805-WVU-MAY29 | Richard Orr
  * @author Theo Thompson| 1805-WVU-MAY29 | Richard Orr
  * @author Josh Dughi 	| 1803-USF-MAR26 | Wezley Singleton
  */
 @RestController
-@RequestMapping(value="/bucket")
-@ApiModel(value = "BucketController", description = "A rest controller to handle HTTP Requests made to /bucket")
-public class BucketController {
-	/** Bucket service */
-	private BucketService bucketService;
+@RequestMapping(value="/category")
+@ApiModel(value = "CategoryController", description = "A rest controller to handle HTTP Requests made to /category")
+public class CategoryController {
+	/** Category service */
+	private CategoryService CategoryService;
 
 	/**
-	 * Instantiates a new bucket controller
+	 * Instantiates a new category controller
 	 *
-	 * @param bucketService Bucket service
+	 * @param categoryService Category service
 	 */
   	@Autowired
-	public BucketController(BucketService bucketService) {	
-		this.bucketService = bucketService;
+	public CategoryController(CategoryService categoryService) {	
+		this.categoryService = categoryService;
 	}
 
 	/**
-	 * Gets all Buckets
-	 * @return List of Buckets and Http status code 
+	 * Gets all Categories
+	 * @return List of Categories and Http status code 
 	 */
-	@ApiOperation(value = "Gets a list of all the Buckets", response = Bucket.class, responseContainer = "List")
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "All Buckets returned") } )
+	@ApiOperation(value = "Gets a list of all the Categories", response = Category.class, responseContainer = "List")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "All Category returned") } )
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<Bucket>> getAllBuckets() {
-		List<Bucket> buckets = bucketService.getAllBuckets();
-		return new ResponseEntity<>(buckets, HttpStatus.OK);
+	public ResponseEntity<List<Category>> getAllCategories() {
+		List<Cateory> s = categoryService.getAllCategories();
+		return new ResponseEntity<>(s, HttpStatus.OK);
 	}	
 	
 	/**
-	 * Creates a new bucket
-	 * @param bucket - transient bucket
-	 * @return Detached bucket (w/ updated Id) and http status code
+	 * Creates a new category
+	 * @param category - transient category
+	 * @return Detached category (w/ updated Id) and http status code
 	 */
-	@ApiOperation(value = "Adds a new Bucket", response = Bucket.class)
+	@ApiOperation(value = "Adds a new Category", response = Category.class)
 	@ApiResponses(value = {
-			@ApiResponse(code = 201, message = "Created bucket returned"),
+			@ApiResponse(code = 201, message = "Created category returned"),
 			@ApiResponse(code = 415, message = "Unsupported Media")
 	})
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Bucket> createBucket(@Valid @RequestBody Bucket bucket) {
-		if (bucket != null && !bucket.getBucketDescription().equals("")) {
-			return new ResponseEntity<>(this.bucketService.createBucket(bucket), HttpStatus.CREATED);
+	public ResponseEntity<Category> createCategory(@Valid @RequestBody Category ) {
+		if ( != null && !.getCategoryDescription().equals("")) {
+			return new ResponseEntity<>(this.categoryService.createcategory(category), HttpStatus.CREATED);
 		}else {
 			return new ResponseEntity<>(HttpStatus.UNSUPPORTED_MEDIA_TYPE);
 		}
 	}	
 
 	/**
-	 * Updates a bucket located at "/id"
-	 * @param bucket - the updated bucket
-	 * @return Updated bucket and http status code
+	 * Updates a  located at "/id"
+	 * @param  - the updated 
+	 * @return Updated  and http status code
 	 */
-	@ApiOperation(value = "Updates a Bucket", response = Bucket.class)
+	@ApiOperation(value = "Updates a Category", response = Category.class)
 	@ApiResponses(value = { 
-			@ApiResponse(code = 200, message = "Bucket updated"),
-			@ApiResponse(code = 400, message = "Bad Request, Bucket not updated")
+			@ApiResponse(code = 200, message = "Category updated"),
+			@ApiResponse(code = 400, message = "Bad Request, Category not updated")
 			} )
-	@PutMapping(value = "/{bucketId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Bucket> updateBucket(@PathVariable(value = "bucketId") int bucketId, @RequestBody Bucket bucket) {
-		if (bucketService.existsById(bucketId)) {
-			bucketService.updateBucket(bucket);
-			return new ResponseEntity<>(bucket, HttpStatus.OK);
+	@PutMapping(value = "/{Id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Category> updateCategory(@PathVariable(value = "categoryId") int categoryId, @RequestBody Category category) {
+		if (categoryService.existsById(categoryId)) {
+			CategoryService.updateCategory(category);
+			return new ResponseEntity<>(category, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 	}
 	
 	/**
-	 * Gets an individual bucket
-	 * @param bucketId - Id of bucket to fetch
-	 * @return Requested bucket and http status code
+	 * Gets an individual 
+	 * @param Id - Id of  to fetch
+	 * @return Requested  and http status code
 	 */
-	@ApiOperation(value = "Gets a Bucket by bucket id", response = Bucket.class)
+	@ApiOperation(value = "Gets a Category by category id", response = Category.class)
 	@ApiResponses(value = {
-			@ApiResponse(code = 200, message = "Requested bucket returned"),
-			@ApiResponse(code = 404, message = "Bucket not found")
+			@ApiResponse(code = 200, message = "Requested category returned"),
+			@ApiResponse(code = 404, message = "Category not found")
 	} )
-	@GetMapping(value="/{bucketId}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Bucket> getBucketByBucketId(@PathVariable Integer bucketId) {
-		Bucket bucket = bucketService.getBucketById(bucketId);
-		if (bucket.equals(new Bucket())) {
+	@GetMapping(value="/{categoryId}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Category> getCategoryByCategoryId(@PathVariable Integer categoryId) {
+		Category category = categoryService.getCategoryById(categoryId);
+		if (category.equals(new Category())) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		} else {
-			return new ResponseEntity<>(bucket, HttpStatus.OK);
+			return new ResponseEntity<>(category, HttpStatus.OK);
 		}
 	}
 	
 	/**
-	 * Deletes a bucket
-	 * @param bucketId - Id of bucket to delete
+	 * Deletes a category
+	 * @param categoryId - Id of category to delete
 	 * @return http status 204
 	 */
-	@ApiOperation(value = "Deletes a Bucket")
+	@ApiOperation(value = "Deletes a Category")
 	@ApiResponses(value = { 
-			@ApiResponse(code = 204, message = "Bucket deleted"),
-			@ApiResponse(code = 404, message = "Bucket Not Found, Nothing is Deleted") } )
-	@DeleteMapping(value="/{bucketId}")
-	public ResponseEntity<Void> deleteBucket(@PathVariable Integer bucketId){
-		if (bucketService.existsById(bucketId)) {
-			bucketService.deleteBucket(bucketId);
+			@ApiResponse(code = 204, message = "Category deleted"),
+			@ApiResponse(code = 404, message = "Category Not Found, Nothing is Deleted") } )
+	@DeleteMapping(value="/{categoryId}")
+	public ResponseEntity<Void> deleteCategory(@PathVariable Integer categoryId){
+		if (categoryService.existsById(categoryId)) {
+			categoryService.deleteCategory(categoryId);
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
