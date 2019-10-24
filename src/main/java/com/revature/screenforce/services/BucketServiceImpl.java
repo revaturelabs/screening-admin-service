@@ -20,7 +20,7 @@ import java.util.List;
  *  @author Alpha Barry 	| 1807-QC | Emily Higgins
  */
 @Service
-public class BucketServiceImpl implements BucketService {
+public class BucketServiceImpl implements CategoryService {
 	/** Bucket repository */
 	private BucketRepository bucketRepository;
 

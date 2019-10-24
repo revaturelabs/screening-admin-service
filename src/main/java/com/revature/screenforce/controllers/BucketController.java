@@ -11,7 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.revature.screenforce.beans.Bucket;
-import com.revature.screenforce.services.BucketService;
+import com.revature.screenforce.services.CategoryService;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -27,7 +27,7 @@ import java.util.List;
 @ApiModel(value = "BucketController", description = "A rest controller to handle HTTP Requests made to /bucket")
 public class BucketController {
 	/** Bucket service */
-	private BucketService bucketService;
+	private CategoryService bucketService;
 
 	/**
 	 * Instantiates a new bucket controller
@@ -35,7 +35,7 @@ public class BucketController {
 	 * @param bucketService Bucket service
 	 */
   	@Autowired
-	public BucketController(BucketService bucketService) {	
+	public BucketController(CategoryService bucketService) {	
 		this.bucketService = bucketService;
 	}
 

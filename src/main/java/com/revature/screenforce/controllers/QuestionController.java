@@ -12,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.revature.screenforce.beans.Question;
-import com.revature.screenforce.services.BucketService;
+import com.revature.screenforce.services.CategoryService;
 import com.revature.screenforce.services.QuestionService;
 
 import javax.validation.Valid;
@@ -38,7 +38,7 @@ public class QuestionController {
 	private QuestionService questionService;
 
 	/** Bucket service */
-	private BucketService bucketService;
+	private CategoryService bucketService;
 
 	/**
 	 * Instantiates a new question controller
@@ -47,7 +47,7 @@ public class QuestionController {
 	 * @param bucketService Bucket service
 	 */
 	@Autowired
-	public QuestionController(QuestionService questionService, BucketService bucketService) {
+	public QuestionController(QuestionService questionService, CategoryService bucketService) {
 		this.questionService = questionService;
 		this.bucketService = bucketService;
 	}
