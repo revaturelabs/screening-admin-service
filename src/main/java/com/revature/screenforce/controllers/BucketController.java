@@ -23,14 +23,13 @@ import java.util.List;
  * @author Josh Dughi 	| 1803-USF-MAR26 | Wezley Singleton
  */
 @RestController
-@CrossOrigin
 @RequestMapping(value="/bucket")
 @ApiModel(value = "BucketController", description = "A rest controller to handle HTTP Requests made to /bucket")
 public class BucketController {
 	private BucketService bucketService;
 
   	@Autowired
-	public BucketController(BucketService bucketService) {
+	public BucketController(BucketService bucketService) {	
 		this.bucketService = bucketService;
 	}
 

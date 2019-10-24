@@ -31,7 +31,6 @@ import java.util.List;
  */
 
 @RestController
-@CrossOrigin
 @RequestMapping("/question")
 @ApiModel(value = "QuestionController", description = "A rest controller to handle HTTP Requests that return questions")
 public class QuestionController {

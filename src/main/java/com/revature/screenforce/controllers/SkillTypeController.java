@@ -21,7 +21,6 @@ import java.util.List;
  * @author Isaac Pawling | 1805-WVU | Richard Orr
  */
 @RestController
-@CrossOrigin
 @RequestMapping(value = "/skilltype")
 @ApiModel(value = "SkillTypeController", description = "A rest controller to handle HTTP Requests made to /skilltype")
 public class SkillTypeController {
