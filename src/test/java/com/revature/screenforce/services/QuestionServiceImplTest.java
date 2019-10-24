@@ -1,6 +1,6 @@
 package com.revature.screenforce.services;
 
-import com.revature.screenforce.repositories.BucketRepository;
+import com.revature.screenforce.repositories.CategoryRepository;
 import com.revature.screenforce.repositories.QuestionRepository;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,7 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.revature.screenforce.Application;
-import com.revature.screenforce.beans.Bucket;
+import com.revature.screenforce.beans.Category;
 import com.revature.screenforce.beans.Question;
 
 import java.util.ArrayList;
@@ -32,8 +32,8 @@ import static org.mockito.Mockito.when;
 @SpringBootTest(classes = Application.class)
 public class QuestionServiceImplTest {
 	@Mock QuestionRepository questionRepository;
-	@Mock BucketRepository bucketRepository;
-	@Mock CategoryServiceImpl bucketService;
+	@Mock CategoryRepository categoryRepository;
+	@Mock CategoryServiceImpl categoryService;
 	@InjectMocks QuestionServiceImpl questionService;
 
 	@Before
@@ -59,18 +59,18 @@ public class QuestionServiceImplTest {
 	}
 
 	@Test
-	public void testGetQuestionsByBucket() {
+	public void testGetQuestionsByCategory() {
 		// Mock DAO save() question
 		when(questionRepository.save(any(Question.class))).thenReturn(new Question());
 		List<Question> questions = new ArrayList<>();
 		questions.add(questionService.create(new Question()));
 
-		// Mock DAO findAllByBucketId()
-		when(questionRepository.findAllByBucketBucketId(any(Integer.class)))
+		// Mock DAO findAllByCategoryId()
+		when(questionRepository.findAllByCategoryCategoryId(any(Integer.class)))
 				.thenReturn(questions);
 
 		assertEquals(questions.size(),
-				questionService.getQuestionsByBucket(1).size());
+				questionService.getQuestionsByCategory(1).size());
 	}
 
 	@Test
@@ -103,23 +103,23 @@ public class QuestionServiceImplTest {
 	}
 
 	@Test
-	public void testDeleteByBucketId() {
-		// Mock DAO findAllByBucketBucketId()
-		Bucket bucket = new Bucket();
-		bucket.setBucketId(406);
+	public void testDeleteByCategoryId() {
+		// Mock DAO findAllByCategoryCategoryId()
+		Category category = new Category();
+		category.setCategoryId(406);
 		List<Question> questions = new ArrayList<>();
 		Question q = new Question();
-		q.setBucket(bucket);
+		q.setCategory(category);
 		questions.add(q);
-		when(questionRepository.findAllByBucketBucketId(any(Integer.class)))
+		when(questionRepository.findAllByCategoryCategoryId(any(Integer.class)))
 				.thenReturn(questions);
 
-		// Mock DAO deleteByBucketBucketId()
-		questionRepository.deleteByBucketBucketId(bucket.getBucketId());
+		// Mock DAO deleteByCategoryCategoryId()
+		questionRepository.deleteByCategoryCategoryId(category.getCategoryId());
 		questions.remove(q);
 
 		assertEquals(questions.size(),
-				questionService.getQuestionsByBucket(bucket.getBucketId()).size());
+				questionService.getQuestionsByCategory(category.getCategoryId()).size());
 	}
 	
 	@Test
