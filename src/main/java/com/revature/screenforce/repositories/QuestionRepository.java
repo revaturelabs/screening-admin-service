@@ -21,18 +21,18 @@ import java.util.List;
 public interface QuestionRepository extends JpaRepository<Question, Integer> {
 
 	/**
-	 * Returns Questions in a particular bucket
+	 * Returns Questions in a particular category
 	 * 
-	 * @param bucketId
-	 *            - id of Bucket
-	 * @return list of questions in the specified bucket
+	 * @param categoryId
+	 *            - id of category
+	 * @return list of questions in the specified category
 	 */
-	List<Question> findAllByBucketBucketId(int bucketId);
+	List<Question> findAllByCategoryCategoryId(int categoryId);
 
 	/**
-	 * Delete all questions with matching bucket Id
+	 * Delete all questions with matching category Id
 	 *
-	 * @param bucketId ID of bucket to filter by
+	 * @param categoryId ID of category to filter by
 	 */
-	void deleteByBucketBucketId(int bucketId);
+	void deleteByCategoryCategoryId(int categoryId);
 }
