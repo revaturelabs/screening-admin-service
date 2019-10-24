@@ -16,7 +16,7 @@ import java.util.Objects;
  *
  * POJO for the weight object
  */
-@ApiModel(value = "Weight", description = "Weights for Buckets within a SkillType, determining how a Bucket contributes to the final score")
+@ApiModel(value = "Weight", description = "Weights for Buckets within a Track, determining how a Bucket contributes to the final score")
 @Entity
 @Table(name = "WEIGHT")
 public class Weight {
@@ -32,11 +32,11 @@ public class Weight {
     @Column(name = "WEIGHT_VALUE")
     private int weightValue;
 
-    /** Skill type object */
-    @ApiModelProperty(value = "the SkillType Id")
+    /** Track object */
+    @ApiModelProperty(value = "the Track Id")
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "SKILL_TYPE_ID")
-    private SkillType skillType;
+    @JoinColumn(name = "TRACK_ID")
+    private Track track;
 
     /** Bucket object */
     @ApiModelProperty(value = "The Bucket Id")
@@ -56,14 +56,14 @@ public class Weight {
      *
      * @param weightId Weight ID
      * @param weightValue Weight value
-     * @param skillType Skill type
+     * @param track Track
      * @param bucket Bucket
      */
-    public Weight(int weightId, int weightValue, SkillType skillType, Bucket bucket) {
+    public Weight(int weightId, int weightValue, Track track, Bucket bucket) {
         super();
         this.weightId = weightId;
         this.weightValue = weightValue;
-        this.skillType = skillType;
+        this.track = track;
         this.bucket = bucket;
     }
 
@@ -104,21 +104,21 @@ public class Weight {
     }
 
     /**
-     * Returns skill type
+     * Returns track
      *
-     * @return Skill type
+     * @return Track
      */
-    public SkillType getSkillType() {
-        return skillType;
+    public Track getTrack() {
+        return track;
     }
 
     /**
-     * Sets skill type
+     * Sets track
      *
-     * @param skillType Skill type
+     * @param track Track
      */
-    public void setSkillType(SkillType skillType) {
-        this.skillType = skillType;
+    public void setTrack(Track track) {
+        this.track = track;
     }
 
     /**
@@ -152,7 +152,7 @@ public class Weight {
         Weight weight1 = (Weight) o;
         return getWeightId() == weight1.getWeightId() &&
                 getWeightValue() == weight1.getWeightValue() &&
-                getSkillType() == weight1.getSkillType() &&
+                getTrack() == weight1.getTrack() &&
                 getBucket() == weight1.getBucket();
     }
 
@@ -163,7 +163,7 @@ public class Weight {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(getWeightId(), getWeightValue(), getSkillType(), getBucket());
+        return Objects.hash(getWeightId(), getWeightValue(), getTrack(), getBucket());
     }
 
     /**
@@ -176,7 +176,7 @@ public class Weight {
         return "Weight{" +
                 "weightId=" + weightId +
                 ", weightValue=" + weightValue +
-                ", skillType=" + skillType +
+                ", track=" + track +
                 ", bucket=" + bucket +
                 '}';
     }
