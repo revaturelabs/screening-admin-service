@@ -25,31 +25,31 @@ public class QuestionControllerTest {
 	@Test
 	public void testGetQuestions() {
 		given()
-				.port(port)
-				.when()
-				.get("/question")
-				.then()
-				.statusCode(200);
+			.port(port)
+			.when()
+			.get("/question")
+			.then()
+			.statusCode(200);
 	}
 
 	@Test
 	public void testGetBucketQuestions() {
 		given()
-				.port(port)
-				.when()
-				.get("/question/getByBucket/{bucketId}", 404)
-				.then()
-				.statusCode(200);
+			.port(port)
+			.when()
+			.get("/question/getByBucket/{bucketId}", 404)
+			.then()
+			.statusCode(200);
 	}
-	
+
 	@Test
 	public void testGetBucketQuestionsFail() {
 		given()
-				.port(port)
-				.when()
-				.get("/question/getByBucket/{bucketId}", -2)
-				.then()
-				.statusCode(404);
+			.port(port)
+			.when()
+			.get("/question/getByBucket/{bucketId}", -2)
+			.then()
+			.statusCode(404);
 	}
 
 
@@ -58,13 +58,13 @@ public class QuestionControllerTest {
 		Question question = new Question(99999, null, false, "Test", "Test");
 
 		given()
-				.port(port)
-				.contentType("application/json")
-				.body(question)
-				.when()
-				.post("/question")
-				.then()
-				.statusCode(201);
+			.port(port)
+			.contentType("application/json")
+			.body(question)
+			.when()
+			.post("/question")
+			.then()
+			.statusCode(201);
 	}
 
 	@Test
@@ -72,91 +72,91 @@ public class QuestionControllerTest {
 		Question question = new Question(10007, null, false, "Test", "Test");
 
 		given()
-				.port(port)
-				.contentType("application/json")
-				.body(question)
-				.when()
-				.put("/question/{bucketId}", 10005)
-				.then()
-				.statusCode(200);
+			.port(port)
+			.contentType("application/json")
+			.body(question)
+			.when()
+			.put("/question/{bucketId}", 10005)
+			.then()
+			.statusCode(200);
 	}
-	
+
 	@Test
 	public void testUpdateQuestionBadId() {
 		Question question = new Question(10005, null, false, "Test", "Test");
 
 		given()
-				.port(port)
-				.contentType("application/json")
-				.body(question)
-				.when()
-				.put("/question/{bucketId}", -1)
-				.then()
-				.statusCode(400);
+			.port(port)
+			.contentType("application/json")
+			.body(question)
+			.when()
+			.put("/question/{bucketId}", -1)
+			.then()
+			.statusCode(400);
 	}
 
 	@Test
 	public void testDeleteByQuestionId() {
 		given()
-				.port(port)
-				.when()
-				.delete("/question/{id}", 10005)
-				.then()
-				.statusCode(200);
+			.port(port)
+			.when()
+			.delete("/question/{id}", 10005)
+			.then()
+			.statusCode(200);
 	}
-	
+
 	@Test
 	public void testDeleteByQuestionBadId() {
 		given()
-				.port(port)
-				.when()
-				.delete("/question/{id}", -2)
-				.then()
-				.statusCode(400);
+			.port(port)
+			.when()
+			.delete("/question/{id}", -2)
+			.then()
+			.statusCode(400);
 	}
 
 	@Test
 	public void testGetQuestionById() {
 		given()
-				.port(port)
-				.when()
-				.get("/question/{questionId}", 10004)
-				.then()
-				.log()
-				.ifError()
-				.assertThat()
-				.statusCode(200);
+			.port(port)
+			.when()
+			.get("/question/{questionId}", 10004)
+			.then()
+			.log()
+			.ifError()
+			.assertThat()
+			.statusCode(200);
 	}
 
 	@Test
 	public void testGetQuestionBadId() {
 		given()
-				.port(port)
-				.when()
-				.get("/question/{questionId}", -1)
-				.then()
-				.assertThat()
-				.statusCode(404);
+			.port(port)
+			.when()
+			.get("/question/{questionId}", -1)
+			.then()
+			.assertThat()
+			.statusCode(404);
 	}
-	
+
 	@Test
 	public void deleteByBucket() {
 		given()
-				.port(port)
-				.when()
-				.delete("/question/deleteByBucket/{bucketId}", 410)
-				.then()
-				.statusCode(200);
+			.port(port)
+			.when()
+			.delete("/question/deleteByBucket/{bucketId}", 410)
+			.then()
+			.statusCode(200);
 	}
-	
+
 	@Test
 	public void testDeleteByBucketFail() {
 		given()
-				.port(port)
-				.when()
-				.delete("/question/deleteByBucket/{bucketId}", 4061)
-				.then()
-				.statusCode(404);
+			.port(port)
+			.when()
+			.delete("/question/deleteByBucket/{bucketId}", 4061)
+			.then()
+			.statusCode(404);
 	}
 
 }

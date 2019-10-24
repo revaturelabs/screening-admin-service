@@ -24,6 +24,7 @@ public class Bucket implements Serializable {
 
     private static final long serialVersionUID = 2435095816452768808L;
 
+    /** ID of the bucket */
     @ApiModelProperty(value = "id of the Bucket")
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "BUCKET_SEQUENCE")
@@ -31,18 +32,30 @@ public class Bucket implements Serializable {
     @Column(name = "BUCKET_ID")
     private int bucketId;
 
+    /** Description of the bucket */
     @ApiModelProperty(value = "description of the Bucket")
     @Column(name = "BUCKET_DESCRIPTION")
     private String bucketDescription;
 
+    /** Denotes whether bucket is active or not */
     @ApiModelProperty(value = "denotes whether Bucket is active or not")
     @Column(name = "IS_ACTIVE")
     private boolean isActive;
 
+    /**
+     * Instantiates a new bucket
+     */
     public Bucket() {
         super();
     }
 
+    /**
+     * Instantiates a new bucket
+     *
+     * @param bucketId ID of bucket
+     * @param bucketDescription Description of bucket
+     * @param isActive Is bucket active?
+     */
     public Bucket(Integer bucketId, String bucketDescription, Boolean isActive) {
         super();
         this.bucketId = bucketId;
@@ -51,32 +64,65 @@ public class Bucket implements Serializable {
     }
 
     /**
-     * Getters & Setters
+     * Returns the bucket ID
+     *
+     * @return Bucket ID
      */
     public int getBucketId() {
         return bucketId;
     }
 
+    /**
+     * Set bucket ID
+     *
+     * @param bucketId Bucket ID
+     */
     public void setBucketId(int bucketId) {
         this.bucketId = bucketId;
     }
 
+    /**
+     * Returns bucket description
+     *
+     * @return Bucket description
+     */
     public String getBucketDescription() {
         return bucketDescription;
     }
 
+    /**
+     * Sets bucket description
+     *
+     * @param bucketDescription Bucket description
+     */
     public void setBucketDescription(String bucketDescription) {
         this.bucketDescription = bucketDescription;
     }
 
+    /**
+     * Returns if bucket is active
+     *
+     * @return Bucket's active state
+     */
     public boolean getIsActive() {
         return isActive;
     }
 
+    /**
+     * Change the active state of the bucket
+     *
+     * @param isActive Bucket's active state
+     */
     public void setIsActive(boolean isActive) {
         this.isActive = isActive;
     }
 
+    /**
+     * Compares equality between buckets
+     *
+     * @param o Bucket to compare
+     * @return True if buckets are equal, false otherwise
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -87,11 +133,21 @@ public class Bucket implements Serializable {
                 Objects.equals(getBucketDescription(), bucket.getBucketDescription());
     }
 
+    /**
+     * Returns hashcode of bucket
+     *
+     * @return Hashcore
+     */
     @Override
     public int hashCode() {
         return Objects.hash(getBucketId(), getBucketDescription(), isActive);
     }
 
+    /**
+     * Converts bucket to string
+     *
+     * @return String representation of bucket
+     */
     @Override
     public String toString() {
         return "Bucket{" +
@@ -101,4 +157,3 @@ public class Bucket implements Serializable {
                 '}';
     }
 }
-

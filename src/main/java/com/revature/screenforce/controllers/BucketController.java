@@ -26,8 +26,14 @@ import java.util.List;
 @RequestMapping(value="/bucket")
 @ApiModel(value = "BucketController", description = "A rest controller to handle HTTP Requests made to /bucket")
 public class BucketController {
+	/** Bucket service */
 	private BucketService bucketService;
 
+	/**
+	 * Instantiates a new bucket controller
+	 *
+	 * @param bucketService Bucket service
+	 */
   	@Autowired
 	public BucketController(BucketService bucketService) {	
 		this.bucketService = bucketService;
@@ -123,4 +129,3 @@ public class BucketController {
 		}
 	}	
 }
-	

@@ -24,8 +24,14 @@ import java.util.List;
 @RequestMapping(value = "/skilltype")
 @ApiModel(value = "SkillTypeController", description = "A rest controller to handle HTTP Requests made to /skilltype")
 public class SkillTypeController {
+	/** Skill type service */
 	private SkillTypeService skillTypeService;
 
+	/**
+	 * Instantiates a new skill type controller
+	 *
+	 * @param skillTypeService Skill type service
+	 */
 	@Autowired
 	public SkillTypeController(SkillTypeService skillTypeService) {
 		this.skillTypeService = skillTypeService;
@@ -81,7 +87,8 @@ public class SkillTypeController {
 	
 	/**
 	 * Creates a skill type
-	 * 
+	 *
+	 * @param s Skill type object to create
 	 * @return SkillType w/ updated Id and Http status code 200,
 	 * 	updating skilltype with empty title results in 406
 	 */
@@ -99,8 +106,9 @@ public class SkillTypeController {
 	}
 	
 	/**
-	 * Updates skilltype located at "/id"
-	 * 
+	 * Updates skill type located at "/id"
+	 *
+	 * @param s Skill type object to update
 	 * @return Http status code 202, 404 if skill type w/ provided Id DNE
 	 */
 	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
@@ -120,7 +128,8 @@ public class SkillTypeController {
 	
 	/**
 	 * Deletes a skill
-	 * 
+	 *
+	 * @param id ID of skill type to delete
 	 * @return Http status code 404 if SkillType DNE, 204 otherwise
 	 */
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)

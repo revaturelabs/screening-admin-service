@@ -20,31 +20,45 @@ import java.util.Objects;
 @Entity
 @Table(name = "WEIGHT")
 public class Weight {
-
+    /** Weight ID */
     @ApiModelProperty(value = "The weightId - primary key for the table")
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "WEIGHT_ID")
     private int weightId;
 
+    /** Weight needed for calculations */
     @ApiModelProperty(value = "The actual weight needed for calculation")
     @Column(name = "WEIGHT_VALUE")
     private int weightValue;
 
+    /** Skill type object */
     @ApiModelProperty(value = "the SkillType Id")
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "SKILL_TYPE_ID")
     private SkillType skillType;
 
+    /** Bucket object */
     @ApiModelProperty(value = "The Bucket Id")
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "BUCKET_ID")
     private Bucket bucket;
 
+    /**
+     * Instantiates a new weight
+     */
     public Weight() {
         super();
     }
 
+    /**
+     * Instantiates a new weight
+     *
+     * @param weightId Weight ID
+     * @param weightValue Weight value
+     * @param skillType Skill type
+     * @param bucket Bucket
+     */
     public Weight(int weightId, int weightValue, SkillType skillType, Bucket bucket) {
         super();
         this.weightId = weightId;
@@ -54,41 +68,83 @@ public class Weight {
     }
 
     /**
-     * Getters and setters
+     * Returns ID for weight
+     *
+     * @return Weight ID
      */
     public int getWeightId() {
         return weightId;
     }
 
+    /**
+     * Sets ID for weight
+     *
+     * @param weightId Weight ID
+     */
     public void setWeightId(int weightId) {
         this.weightId = weightId;
     }
 
+    /**
+     * Returns weight value
+     *
+     * @return Weight value
+     */
     public int getWeightValue() {
         return weightValue;
     }
 
+    /**
+     * Sets weight value
+     *
+     * @param weightValue Weight value
+     */
     public void setWeightValue(int weightValue) {
         this.weightValue = weightValue;
     }
 
+    /**
+     * Returns skill type
+     *
+     * @return Skill type
+     */
     public SkillType getSkillType() {
         return skillType;
     }
 
+    /**
+     * Sets skill type
+     *
+     * @param skillType Skill type
+     */
     public void setSkillType(SkillType skillType) {
         this.skillType = skillType;
     }
 
+    /**
+     * Returns bucket
+     *
+     * @return Bucket
+     */
     public Bucket getBucket() {
         return bucket;
     }
 
+    /**
+     * Sets bucket
+     *
+     * @param bucket Bucket
+     */
     public void setBucket(Bucket bucket) {
         this.bucket = bucket;
     }
 
-
+    /**
+     * Tests equality between weights
+     *
+     * @param o Weight to be compared
+     * @return True if weights are equal, false otherwise
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -100,11 +156,21 @@ public class Weight {
                 getBucket() == weight1.getBucket();
     }
 
+    /**
+     * Returns weight hashcode
+     *
+     * @return Hashcode for weight
+     */
     @Override
     public int hashCode() {
         return Objects.hash(getWeightId(), getWeightValue(), getSkillType(), getBucket());
     }
 
+    /**
+     * Converts weight object to string
+     *
+     * @return String representation of weight
+     */
     @Override
     public String toString() {
         return "Weight{" +
