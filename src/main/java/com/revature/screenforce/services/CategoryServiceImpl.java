@@ -21,8 +21,8 @@ import java.util.List;
  */
 @Service
 public class CategoryServiceImpl implements CategoryService {
-	/** Bucket repository */
-	private BucketRepository bucketRepository;
+	/** Category repository */
+	private CategoryRepository categoryRepository;
 
 	/** Question service */
 	private QuestionService questionService;
@@ -31,31 +31,31 @@ public class CategoryServiceImpl implements CategoryService {
 	private WeightService weightService;
 
 	/**
-	 * Instantiates a new bucket service
+	 * Instantiates a new category service
 	 *
-	 * @param bucketRepository Bucket repository
+	 * @param categoryRepository Category repository
 	 * @param questionService Question service
 	 * @param weightService Weight service
 	 */
 	@Autowired
-	public CategoryServiceImpl(BucketRepository bucketRepository,
+	public CategoryServiceImpl(CategoryRepository categoryRepository,
 							 QuestionService questionService,
 							 WeightService weightService) {
-		this.bucketRepository = bucketRepository;
+		this.categoryRepository = categoryRepository;
 		this.questionService = questionService;
 		this.weightService = weightService;
 	}
 
 	/**
-	 * creates a new bucket in the DB
-	 * @param bucket - a new bucket
-	 * @return Bucket obj w/ updated id
+	 * creates a new category in the DB
+	 * @param category - a new category
+	 * @return Category obj w/ updated id
 	 */
 	@Transactional
 	@Override
-	public Bucket createBucket(Bucket bucket) {
-		if(bucket != null && bucket != new Bucket()) {
-			return bucketRepository.save(bucket);
+	public Category createCategory(Category category) {
+		if(category != null && category != new Category()) {
+			return categoryRepository.save(category);
 		} 
 		else {
 			return null;
@@ -63,57 +63,57 @@ public class CategoryServiceImpl implements CategoryService {
 	}
 
 	/**
-	 * Fetches all buckets
-	 * @return list of buckets
+	 * Fetches all categories
+	 * @return list of categories
 	 */
 	@Override
-	public List<Bucket> getAllBuckets() {
-		List<Bucket> buckets = new ArrayList<>();
-		bucketRepository.findAll().forEach(buckets::add);
-		return buckets;
+	public List<Category> getAllCategories() {
+		List<Category> categories = new ArrayList<>();
+		categoryRepository.findAll().forEach(categories::add);
+		return categories;
 	}
 
 	/**
-	 * Updates bucket information
-	 * @param bucket - bucket to update
+	 * Updates category information
+	 * @param category - category to update
 	 */
 	@Override
 	@Transactional
-	public void updateBucket(Bucket bucket) {
-		if(!bucket.getBucketDescription().isEmpty()) {
-			bucketRepository.save(bucket);
+	public void updateCategory(Category category) {
+		if(!category.getCategoryDescription().isEmpty()) {
+			categoryRepository.save(category);
 		}
 	}
 
 	/**
-	 * Removes a bucket with the specified Id
-	 * @param bucketId - id of the bucket to be deleted
+	 * Removes a category with the specified Id
+	 * @param categoryId - id of the category to be deleted
 	 * No return
 	 */
 	@Override
 	@Transactional
-	public void deleteBucket(int bucketId) {
-		weightService.deleteAllByBucketId(bucketId);
-		questionService.deleteByBucketId(bucketId);
-		bucketRepository.deleteById(bucketId);
+	public void deleteCategory(int categoryId) {
+		weightService.deleteAllByCategoryId(categoryId);
+		questionService.deleteByCategoryId(categoryId);
+		categoryRepository.deleteById(categoryId);
 	}
 
 	/**
-	 * Gets a bucket by its Id
-	 * @param bucketId Id of bucket to filter by
-	 * @return bucket or null if id is not found
+	 * Gets a category by its Id
+	 * @param categoryId Id of category to filter by
+	 * @return category or null if id is not found
 	 */
 	@Override
-	public Bucket getBucketById(int bucketId) {
-		return bucketRepository.findById(bucketId).orElse(new Bucket());
+	public Category getCategoryById(int categoryId) {
+		return categoryRepository.findById(categoryId).orElse(new Category());
 	}
 
 	/**
 	 * Check if id exist
-	 * @param bid Bucket ID
+	 * @param bid Category ID
 	 */
 	@Override
-	public boolean existsById(int bid) {
-		return bucketRepository.existsById(bid);
+	public boolean existsById(int categoryId) {
+		return categoryRepository.existsById(categoryId);
 	}
 }
