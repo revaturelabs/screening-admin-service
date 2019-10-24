@@ -51,7 +51,7 @@ public class WeightServiceImpl implements WeightService {
     }
 
     /**
-     * creates new weighted pairing between a Bucket within a SkillType
+     * creates new weighted pairing between a Category within a SkillType
      *
      * @param weight Weight object to be persisted
      * @return weight obj after being persisted
@@ -101,29 +101,29 @@ public class WeightServiceImpl implements WeightService {
     }
 
     /**
-     * Get a weight by its skillTypeId and bucketId
+     * Get a weight by its skillTypeId and categoryId
      *
      * @param skillTypeId ID of skilltype to filter by
-     * @param bucketId    ID of bucket to filter by
-     * @return weight object with matching skillTypeId and bucketId
+     * @param categoryId    ID of category to filter by
+     * @return weight object with matching skillTypeId and categoryId
      */
     @Override
-    public Weight get(int skillTypeId, int bucketId) {
-        return weightRepository.getBySkillTypeSkillTypeIdAndBucketBucketId(skillTypeId, bucketId);
+    public Weight get(int skillTypeId, int categoryId) {
+        return weightRepository.getBySkillTypeSkillTypeIdAndBucketBucketId(skillTypeId, categoryId);
     }
 
     /**
-     * Delete all weights with a specified bucketId
+     * Delete all weights with a specified categoryId
      *
-     * @param bucketId BucketId to filter by
+     * @param categoryId CategoryId to filter by
      */
 	@Override
-	public void deleteAllByBucketId(int bucketId) {
-		weightRepository.deleteAllByBucketBucketId(bucketId);
+	public void deleteAllByCategoryId(int categoryId) {
+		weightRepository.deleteAllByCategoryCategoryId(categoryId);
 	}
 
     /**
-     * Delete all Buckets with matching SkillTypeId
+     * Delete all Categories with matching SkillTypeId
      *
      * @param skillTypeId Id of SkillType to filter by
      */
@@ -137,7 +137,7 @@ public class WeightServiceImpl implements WeightService {
      * @param id ID of weight
      */
 	@Override
-	public boolean existsById(int id) {
-		return weightRepository.existsById(id);
+	public boolean existsById(int weightId) {
+		return weightRepository.existsById(weightId);
 	}
 }

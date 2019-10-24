@@ -66,17 +66,17 @@ public interface WeightService {
 	 * @param bucketId    ID of bucket to filter by
 	 * @return weight object with matching skillTypeId and bucketId
 	 */
-	Weight get(int skillTypeId, int bucketId);
+	Weight get(int skillTypeId, int categoryId);
 
 	/**
-	 * Delete all weights with a specified bucketId
+	 * Delete all weights with a specified categoryId
 	 *
-	 * @param bucketId BucketId to filter by
+	 * @param categoryId categoryId to filter by
 	 */
-	void deleteAllByBucketId(int bucketId);
+	void deleteAllByCategoryId(int categoryId);
 
 	/**
-	 * Delete all Buckets with matching SkillTypeId
+	 * Delete all Categories with matching SkillTypeId
 	 *
 	 * @param skillTypeId Id of SkillType to filter by
 	 */
@@ -86,5 +86,5 @@ public interface WeightService {
 	 * Check if id exist
 	 * @param id ID of weight
 	 */
-	public boolean existsById(int id);
+	public boolean existsById(int weightId);
 }
