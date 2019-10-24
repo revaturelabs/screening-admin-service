@@ -33,7 +33,7 @@ public class BucketServiceImplTest {
 	@Mock BucketRepository bucketRepository;
 	@Mock QuestionService questionService;
 	@Mock WeightService weightService;
-	@InjectMocks private BucketServiceImpl bucketService;
+	@InjectMocks private CategoryServiceImpl bucketService;
 
 	@Before
 	public void setup() {

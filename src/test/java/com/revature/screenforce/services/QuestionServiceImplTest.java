@@ -33,7 +33,7 @@ import static org.mockito.Mockito.when;
 public class QuestionServiceImplTest {
 	@Mock QuestionRepository questionRepository;
 	@Mock BucketRepository bucketRepository;
-	@Mock BucketServiceImpl bucketService;
+	@Mock CategoryServiceImpl bucketService;
 	@InjectMocks QuestionServiceImpl questionService;
 
 	@Before

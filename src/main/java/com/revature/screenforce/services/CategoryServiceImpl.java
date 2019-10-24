@@ -20,7 +20,7 @@ import java.util.List;
  *  @author Alpha Barry 	| 1807-QC | Emily Higgins
  */
 @Service
-public class BucketServiceImpl implements CategoryService {
+public class CategoryServiceImpl implements CategoryService {
 	/** Bucket repository */
 	private BucketRepository bucketRepository;
 
@@ -38,7 +38,7 @@ public class BucketServiceImpl implements CategoryService {
 	 * @param weightService Weight service
 	 */
 	@Autowired
-	public BucketServiceImpl(BucketRepository bucketRepository,
+	public CategoryServiceImpl(BucketRepository bucketRepository,
 							 QuestionService questionService,
 							 WeightService weightService) {
 		this.bucketRepository = bucketRepository;
