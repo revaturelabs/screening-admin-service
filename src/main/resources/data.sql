@@ -1,9 +1,9 @@
 --------------------------------------------------------
---  SKILL TYPE
+--  TRACK
 --------------------------------------------------------
 
-insert into SKILL_TYPE (SKILL_TYPE_ID, TITLE, IS_ACTIVE) VALUES (51, 'Java', 1);
-insert into SKILL_TYPE (SKILL_TYPE_ID, TITLE, IS_ACTIVE) VALUES (52, '.NET', 1);
+insert into TRACK (TRACK_ID, TITLE, IS_ACTIVE) VALUES (51, 'Java', 1);
+insert into TRACK (TRACK_ID, TITLE, IS_ACTIVE) VALUES (52, '.NET', 1);
 
 --------------------------------------------------------
 --  CATEGORY
@@ -20,24 +20,24 @@ insert into category (category_id, category_description, is_active) values (413,
 --  WEIGHT
 --------------------------------------------------------
 -- OOP
-insert into WEIGHT (WEIGHT_ID, WEIGHT_VALUE, CATEGORY_ID, SKILL_TYPE_ID) values (51404, 30, 404, 51);
-insert into WEIGHT (WEIGHT_ID, WEIGHT_VALUE, CATEGORY_ID, SKILL_TYPE_ID) values (52404, 30, 404, 52);
+insert into WEIGHT (WEIGHT_ID, WEIGHT_VALUE, CATEGORY_ID, TRACK_ID) values (51404, 30, 404, 51);
+insert into WEIGHT (WEIGHT_ID, WEIGHT_VALUE, CATEGORY_ID, TRACK_ID) values (52404, 30, 404, 52);
 
 -- WEB
-insert into WEIGHT (WEIGHT_ID, WEIGHT_VALUE, CATEGORY_ID, SKILL_TYPE_ID) values (53404, 10, 410, 51);
-insert into WEIGHT (WEIGHT_ID, WEIGHT_VALUE, CATEGORY_ID, SKILL_TYPE_ID) values (54405, 10, 410, 52);
+insert into WEIGHT (WEIGHT_ID, WEIGHT_VALUE, CATEGORY_ID, TRACK_ID) values (53404, 10, 410, 51);
+insert into WEIGHT (WEIGHT_ID, WEIGHT_VALUE, CATEGORY_ID, TRACK_ID) values (54405, 10, 410, 52);
 
 -- SQL
-insert into WEIGHT (WEIGHT_ID, WEIGHT_VALUE, CATEGORY_ID, SKILL_TYPE_ID) values (53405, 10, 411, 51);
-insert into WEIGHT (WEIGHT_ID, WEIGHT_VALUE, CATEGORY_ID, SKILL_TYPE_ID) values (55405, 10, 411, 52);
+insert into WEIGHT (WEIGHT_ID, WEIGHT_VALUE, CATEGORY_ID, TRACK_ID) values (53405, 10, 411, 51);
+insert into WEIGHT (WEIGHT_ID, WEIGHT_VALUE, CATEGORY_ID, TRACK_ID) values (55405, 10, 411, 52);
 
 -- JAVA
-insert into WEIGHT (WEIGHT_ID, WEIGHT_VALUE, CATEGORY_ID, SKILL_TYPE_ID) values (56406, 30, 407, 51);
-insert into WEIGHT (WEIGHT_ID, WEIGHT_VALUE, CATEGORY_ID, SKILL_TYPE_ID) values (56407, 20, 406, 51);
+insert into WEIGHT (WEIGHT_ID, WEIGHT_VALUE, CATEGORY_ID, TRACK_ID) values (56406, 30, 407, 51);
+insert into WEIGHT (WEIGHT_ID, WEIGHT_VALUE, CATEGORY_ID, TRACK_ID) values (56407, 20, 406, 51);
 
 -- C#
-insert into WEIGHT (WEIGHT_ID, WEIGHT_VALUE, CATEGORY_ID, SKILL_TYPE_ID) values (56408, 30, 412, 52);
-insert into WEIGHT (WEIGHT_ID, WEIGHT_VALUE, CATEGORY_ID, SKILL_TYPE_ID) values (56409, 20, 413, 52);
+insert into WEIGHT (WEIGHT_ID, WEIGHT_VALUE, CATEGORY_ID, TRACK_ID) values (56408, 30, 412, 52);
+insert into WEIGHT (WEIGHT_ID, WEIGHT_VALUE, CATEGORY_ID, TRACK_ID) values (56409, 20, 413, 52);
 
 --------------------------------------------------------
 --  QUESTION
