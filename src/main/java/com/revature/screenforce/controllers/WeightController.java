@@ -24,7 +24,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping(value = "/weight")
-@ApiModel(value = "SkillTypeController", description = "A rest controller to handle HTTP Requests for CRUD operations on weights")
+@ApiModel(value = "TrackController", description = "A rest controller to handle HTTP Requests for CRUD operations on weights")
 public class WeightController {
 	/** Weight service */
     private WeightService weightService;
@@ -54,29 +54,29 @@ public class WeightController {
     /**
      * Returns weight from skill type and category ids
      *
-     * @param skillTypeId - the associated skill type
+     * @param trackId - the associated skill type
      * @param categoryId    - the associated category
      * @return weight obj
      */
     @ApiOperation(value = "Gets a weight based on skilltype and category", response = Weight.class)
-    @GetMapping("/{skillTypeId}/{categoryId}")
+    @GetMapping("/{trackId}/{categoryId}")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Requested weight returned")})
-    public ResponseEntity<Weight> getWeightFromIds(@PathVariable(value = "skillTypeId") int skillTypeId,
+    public ResponseEntity<Weight> getWeightFromIds(@PathVariable(value = "trackId") int trackId,
                                                    @PathVariable(value = "categoryId") int categoryId) {
-        return new ResponseEntity<>(weightService.get(skillTypeId, categoryId), HttpStatus.OK);
+        return new ResponseEntity<>(weightService.get(trackId, categoryId), HttpStatus.OK);
     }
 
 	/**
-	 * Get a list of weights based on their SkillTypes
+	 * Get a list of weights based on their Tracks
 	 *
-	 * @param skillTypeId Id of the SkillType to filter by
-	 * @return List of Weights with matching SkillTypes
+	 * @param trackId Id of the Track to filter by
+	 * @return List of Weights with matching Tracks
 	 */
-	@ApiOperation(value = "Get a list of weights based on their skillTypes", response = Weight.class, responseContainer = "List")
+	@ApiOperation(value = "Get a list of weights based on their tracks", response = Weight.class, responseContainer = "List")
 	@ApiResponses(value = {@ApiResponse(code = 200, message = "List of weights returned")})
-	@GetMapping("/getBySkillType/{skillTypeId}")
-	public ResponseEntity<List<Weight>> getWeightBySkillType(@PathVariable int skillTypeId) {
-		return new ResponseEntity<>(weightService.getAllWeightsBySkillTypeID(skillTypeId), HttpStatus.OK);
+	@GetMapping("/getByTrack/{trackId}")
+	public ResponseEntity<List<Weight>> getWeightByTrack(@PathVariable int trackId) {
+		return new ResponseEntity<>(weightService.getAllWeightsByTrackID(trackId), HttpStatus.OK);
 	}
 
 	/**
@@ -135,7 +135,7 @@ public class WeightController {
     /**
 	 * Deletes a weight
 	 *
-     * @param weightId - ID of skillType for weight to be deleted
+     * @param weightId - ID of track for weight to be deleted
      * @return Void
      */
     @ApiOperation(value = "Deletes a Weight", response = Void.class)

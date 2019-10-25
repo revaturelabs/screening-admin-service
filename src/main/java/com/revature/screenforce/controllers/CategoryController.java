@@ -27,7 +27,7 @@ import java.util.List;
 @ApiModel(value = "CategoryController", description = "A rest controller to handle HTTP Requests made to /category")
 public class CategoryController {
 	/** Category service */
-	private CategoryService CategoryService;
+	private CategoryService categoryService;
 
 	/**
 	 * Instantiates a new category controller
@@ -62,9 +62,9 @@ public class CategoryController {
 			@ApiResponse(code = 415, message = "Unsupported Media")
 	})
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Category> createCategory(@Valid @RequestBody Category ) {
-		if ( != null && !.getCategoryDescription().equals("")) {
-			return new ResponseEntity<>(this.categoryService.createcategory(category), HttpStatus.CREATED);
+	public ResponseEntity<Category> createCategory(@Valid @RequestBody Category category) {
+		if (category != null && ! category.getCategoryDescription().equals("")) {
+			return new ResponseEntity<>(this.categoryService.createCategory(category), HttpStatus.CREATED);
 		}else {
 			return new ResponseEntity<>(HttpStatus.UNSUPPORTED_MEDIA_TYPE);
 		}
@@ -83,7 +83,7 @@ public class CategoryController {
 	@PutMapping(value = "/{Id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Category> updateCategory(@PathVariable(value = "categoryId") int categoryId, @RequestBody Category category) {
 		if (categoryService.existsById(categoryId)) {
-			CategoryService.updateCategory(category);
+			categoryService.updateCategory(category);
 			return new ResponseEntity<>(category, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
