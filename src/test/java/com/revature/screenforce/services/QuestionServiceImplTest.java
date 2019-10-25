@@ -1,7 +1,15 @@
 package com.revature.screenforce.services;
 
-import com.revature.screenforce.repositories.CategoryRepository;
-import com.revature.screenforce.repositories.QuestionRepository;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,13 +22,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.revature.screenforce.Application;
 import com.revature.screenforce.beans.Category;
 import com.revature.screenforce.beans.Question;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.junit.Assert.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
+import com.revature.screenforce.repositories.CategoryRepository;
+import com.revature.screenforce.repositories.QuestionRepository;
 
 /**
  * Question Tests using JUnit

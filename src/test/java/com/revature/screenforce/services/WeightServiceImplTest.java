@@ -1,7 +1,16 @@
 package com.revature.screenforce.services;
 
-import com.revature.screenforce.beans.SkillType;
-import com.revature.screenforce.repositories.WeightRepository;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,17 +21,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.revature.screenforce.Application;
+import com.revature.screenforce.beans.Track;
 import com.revature.screenforce.beans.Weight;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.junit.Assert.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
+import com.revature.screenforce.repositories.WeightRepository;
 
 /**
- * SkillTypeService Tests using JUnit
+ * TrackService Tests using JUnit
  * @author Rishabh Rana | 1807-QC | Emily Higgins
  * @author Alpha Barry | 1807-QC | Emily Higgins
  * @author Omar Guzman | 1807-QC | Emily Higgins
@@ -101,29 +105,29 @@ public class WeightServiceImplTest {
 	}
 	
 	@Test
-	public void getAllWeightBySkillTypeId() {
+	public void getAllWeightByTrackId() {
 		// Mock DAO save()
 		when(weightRepository.save(any(Weight.class))).thenReturn(new Weight());
-		SkillType st1 = new SkillType(); st1.setSkillTypeId(33);
-		SkillType st2 = new SkillType(); st2.setSkillTypeId(33);
-		Weight w1 = weightService.create(new Weight()); w1.setSkillType(st1);
-		Weight w2 = weightService.create(new Weight()); w2.setSkillType(st2);
+		Track st1 = new Track(); st1.setTrackId(33);
+		Track st2 = new Track(); st2.setTrackId(33);
+		Weight w1 = weightService.create(new Weight()); w1.setTrack(st1);
+		Weight w2 = weightService.create(new Weight()); w2.setTrack(st2);
 
-		// Mock DAO getAllBySkillTypeSkillTypeId()
+		// Mock DAO getAllByTrackTrackId()
 		List<Weight> weights = new ArrayList<>();
 		weights.add(w1);
 		weights.add(w2);
-		when(weightRepository.getAllBySkillTypeSkillTypeId(any(Integer.class)))
+		when(weightRepository.getAllByTrackTrackId(any(Integer.class)))
 				.thenReturn(weights);
 
 		assertEquals(weights.size(),
-				weightService.getAllWeightsBySkillTypeID(33).size());
+				weightService.getAllWeightsByTrackID(33).size());
 	}
 	
 	@Test
-	public void getWithSkillTypeAndCategoryId() {
-		// Mock DAO getBySkillTypeSkillTypeIdAndCategoryCategoryId()
-		when(weightRepository.getBySkillTypeSkillTypeIdAndCategoryCategoryId(
+	public void getWithTrackAndCategoryId() {
+		// Mock DAO getByTrackTrackIdAndCategoryCategoryId()
+		when(weightRepository.getByTrackTrackIdAndCategoryCategoryId(
 				any(Integer.class),
 				any(Integer.class)))
 				.thenReturn(new Weight());

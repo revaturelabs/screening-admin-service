@@ -1,5 +1,8 @@
 package com.revature.screenforce.controllers;
 
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.equalTo;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -9,26 +12,23 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.revature.screenforce.Application;
-import com.revature.screenforce.beans.Bucket;
-
-import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.equalTo;
+import com.revature.screenforce.beans.Category;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = { Application.class }, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_CLASS)
 @AutoConfigureTestDatabase
-public class BucketControllerTest {
+public class CategoryControllerTest {
 
 	@LocalServerPort
 	private int port;
 
 	@Test
-	public void testGetConnectionToBucketEndpoint() {
+	public void testGetConnectionToCategoryEndpoint() {
 		given()
 			.port(port)
 			.when()
-			.get("/bucket")
+			.get("/category")
 			.then()
 			.log()
 			.ifValidationFails()
@@ -36,109 +36,109 @@ public class BucketControllerTest {
 	}
 
 	@Test
-	public void testGetBucketByBucketId() {
+	public void testGetCategoryByCategoryId() {
 		given()
 			.port(port)
 			.when()
-			.get("/bucket/{bucketId}", 404)
+			.get("/category/{categoryId}", 404)
 			.then()
-			.body("bucketId", equalTo(404))
+			.body("categoryId", equalTo(404))
 			.statusCode(200);
 	}
 
 	@Test
-	public void testGetBucketByBucketIdBadId() {
+	public void testGetCategoryByCategoryIdBadId() {
 		given()
 			.port(port)
 			.when()
-			.get("/bucket/{bucketId}", -1)
+			.get("/category/{categoryId}", -1)
 			.then()
 			.statusCode(404);
 	}
 
 	@Test
-	public void testCreateBucket() {
-		Bucket b = new Bucket(417, "Rest Assured Test Bucket", true);
+	public void testCreateCategory() {
+		Category b = new Category(417, "Rest Assured Test Category", true);
 
 		given()
 			.port(port)
 			.contentType("application/json")
 			.body(b).when()
-			.post("/bucket")
+			.post("/category")
 			.then()
 			.statusCode(201);
 	}
 
 	@Test
-	public void testCreateBucketBadData() {
-		Bucket b = new Bucket(4321890, "", false);
+	public void testCreateCategoryBadData() {
+		Category b = new Category(4321890, "", false);
 
 		given()
 			.port(port)
 			.contentType("application/json")
 			.body(b)
 			.when()
-			.post("/bucket")
+			.post("/category")
 			.then()
 			.statusCode(415);
 	}
 
 	@Test
-	public void testUpdateBucket() {
-		Bucket b = new Bucket(404, "Updated Rest Assured Test", true);
+	public void testUpdateCategory() {
+		Category b = new Category(404, "Updated Rest Assured Test", true);
 
 		given()
 			.port(port)
 			.contentType("application/json")
 			.body(b)
 			.when()
-			.put("/bucket/404")
+			.put("/category/404")
 			.then()
 			.statusCode(200);
 	}
 
 	@Test
-	public void testUpdateBucketFail() {
-		Bucket b = new Bucket(1, "Updated Rest Assured Test", true);
+	public void testUpdateCategoryFail() {
+		Category b = new Category(1, "Updated Rest Assured Test", true);
 
 		given()
 			.port(port)
 			.contentType("application/json")
 			.body(b)
 			.when()
-			.put("/bucket/1")
+			.put("/category/1")
 			.then()
 			.statusCode(400);
 	}
 
 	@Test
-	public void testDeleteBucket() {
+	public void testDeleteCategory() {
 		given()
 			.port(port)
 			.when()
-			.delete("/bucket/{bucketId}", 404)
+			.delete("/category/{categoryId}", 404)
 			.then()
 			.statusCode(204);
 	}
 
 	@Test
-	public void testDeleteBucketFail() {
+	public void testDeleteCategoryFail() {
 		given()
 			.port(port)
 			.when()
-			.delete("/bucket/{bucketId}", 4014)
+			.delete("/category/{categoryId}", 4014)
 			.then()
 			.statusCode(404);
 	}
 
 	@Test
-	public void testCreateEmptyBucket() {
-		Bucket b = new Bucket();
+	public void testCreateEmptyCategory() {
+		Category b = new Category();
 		given()
 			.port(port)
 			.body(b)
 			.when()
-			.post("/bucket")
+			.post("/category")
 			.then()
 			.statusCode(415);
 	}
