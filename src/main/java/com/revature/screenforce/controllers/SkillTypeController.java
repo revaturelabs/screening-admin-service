@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.revature.screenforce.beans.SkillType;
-import com.revature.screenforce.services.SkillTypeService;
+import com.revature.screenforce.services.TrackService;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -25,7 +25,7 @@ import java.util.List;
 @ApiModel(value = "SkillTypeController", description = "A rest controller to handle HTTP Requests made to /skilltype")
 public class SkillTypeController {
 	/** Skill type service */
-	private SkillTypeService skillTypeService;
+	private TrackService skillTypeService;
 
 	/**
 	 * Instantiates a new skill type controller
@@ -33,7 +33,7 @@ public class SkillTypeController {
 	 * @param skillTypeService Skill type service
 	 */
 	@Autowired
-	public SkillTypeController(SkillTypeService skillTypeService) {
+	public SkillTypeController(TrackService skillTypeService) {
 		this.skillTypeService = skillTypeService;
 	}
   

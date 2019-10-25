@@ -11,7 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.revature.screenforce.Application;
 import com.revature.screenforce.beans.SkillType;
-import com.revature.screenforce.services.SkillTypeServiceImpl;
+import com.revature.screenforce.services.TrackServiceImpl;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
@@ -30,7 +30,7 @@ import static org.hamcrest.Matchers.equalTo;
 public class SkillTypeControllerTest {
 
 	@Autowired
-	SkillTypeServiceImpl skillType;
+	TrackServiceImpl skillType;
 	@LocalServerPort
 	private int port;
 	private String host = "http://localhost:" + port;

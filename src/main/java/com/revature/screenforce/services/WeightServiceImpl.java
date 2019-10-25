@@ -51,7 +51,7 @@ public class WeightServiceImpl implements WeightService {
     }
 
     /**
-     * creates new weighted pairing between a Category within a SkillType
+     * creates new weighted pairing between a Category within a Track
      *
      * @param weight Weight object to be persisted
      * @return weight obj after being persisted
@@ -78,14 +78,14 @@ public class WeightServiceImpl implements WeightService {
     }
 
     /**
-     * Gets a list of categories by SkillType
+     * Gets a list of categories by Track
      *
-     * @param skillTypeId ID of SkillType to filter by
+     * @param trackId ID of Track to filter by
      * @return List of weights
      */
     @Override
-    public List<Weight> getAllWeightsBySkillTypeID(int skillTypeId) {
-        return weightRepository.getAllBySkillTypeSkillTypeId(skillTypeId);
+    public List<Weight> getAllWeightsByTrackID(int trackId) {
+        return weightRepository.getAllByTrackTrackId(trackId);
     }
 
     /**
@@ -101,15 +101,15 @@ public class WeightServiceImpl implements WeightService {
     }
 
     /**
-     * Get a weight by its skillTypeId and categoryId
+     * Get a weight by its trackId and categoryId
      *
-     * @param skillTypeId ID of skilltype to filter by
+     * @param trackId ID of skilltype to filter by
      * @param categoryId    ID of category to filter by
-     * @return weight object with matching skillTypeId and categoryId
+     * @return weight object with matching trackId and categoryId
      */
     @Override
-    public Weight get(int skillTypeId, int categoryId) {
-        return weightRepository.getBySkillTypeSkillTypeIdAndBucketBucketId(skillTypeId, categoryId);
+    public Weight get(int trackId, int categoryId) {
+        return weightRepository.getByTrackTrackIdAndCategoryCategoryId(trackId, categoryId);
     }
 
     /**
@@ -123,13 +123,13 @@ public class WeightServiceImpl implements WeightService {
 	}
 
     /**
-     * Delete all Categories with matching SkillTypeId
+     * Delete all Categories with matching TrackId
      *
-     * @param skillTypeId Id of SkillType to filter by
+     * @param trackId Id of Track to filter by
      */
     @Override
-    public void deleteAllBySkillTypeSkillTypeId(int skillTypeId) {
-        weightRepository.deleteAllBySkillTypeSkillTypeId(skillTypeId);
+    public void deleteAllByTrackTrackId(int trackId) {
+        weightRepository.deleteAllByTrackTrackId(trackId);
     }
 
     /**

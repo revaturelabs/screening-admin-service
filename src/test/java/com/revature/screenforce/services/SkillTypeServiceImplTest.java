@@ -32,7 +32,7 @@ import static org.mockito.Mockito.when;
 public class SkillTypeServiceImplTest {
 	@Mock SkillTypeRepository skillTypeRepository;
 	@Mock WeightService weightService;
-	@InjectMocks SkillTypeServiceImpl skillTypeService;
+	@InjectMocks TrackServiceImpl skillTypeService;
 
 	@Before
 	public void setup() {

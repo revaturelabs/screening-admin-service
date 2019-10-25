@@ -29,7 +29,7 @@ public interface WeightService {
 	void update(Weight weight);
 
 	/**
-	 * creates new weighted pairing between a category within a SkillType
+	 * creates new weighted pairing between a category within a Track
 	 *
 	 * @param weight Weight object to be persisted
 	 * @return weight obj after being persisted
@@ -44,12 +44,12 @@ public interface WeightService {
 	void deleteById(int weightId);
 
 	/**
-	 * Gets a list of categorys by SkillType
+	 * Gets a list of categorys by Track
 	 *
-	 * @param skillTypeId ID of SkillType to filter by
+	 * @param trackId ID of Track to filter by
 	 * @return List of weights
 	 */
-	List<Weight> getAllWeightsBySkillTypeID(int skillTypeId);
+	List<Weight> getAllWeightsByTrackID(int trackId);
 
 	/**
 	 * Get a weight by its Id
@@ -60,13 +60,13 @@ public interface WeightService {
 	Weight get(int weightId);
 
 	/**
-	 * Get a weight by its skillTypeId and categoryId
+	 * Get a weight by its trackId and categoryId
 	 *
-	 * @param skillTypeId ID of skilltype to filter by
+	 * @param trackId ID of skilltype to filter by
 	 * @param categoryId    ID of category to filter by
-	 * @return weight object with matching skillTypeId and categoryId
+	 * @return weight object with matching trackId and categoryId
 	 */
-	Weight get(int skillTypeId, int categoryId);
+	Weight get(int trackId, int categoryId);
 
 	/**
 	 * Delete all weights with a specified categoryId
@@ -76,11 +76,11 @@ public interface WeightService {
 	void deleteAllByCategoryId(int categoryId);
 
 	/**
-	 * Delete all Categories with matching SkillTypeId
+	 * Delete all Categories with matching TrackId
 	 *
-	 * @param skillTypeId Id of SkillType to filter by
+	 * @param trackId Id of Track to filter by
 	 */
-	void deleteAllBySkillTypeSkillTypeId(int skillTypeId);
+	void deleteAllByTrackTrackId(int trackId);
 	
 	/**
 	 * Check if id exist
