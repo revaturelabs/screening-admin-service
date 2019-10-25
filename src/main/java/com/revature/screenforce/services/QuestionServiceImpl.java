@@ -1,15 +1,15 @@
 package com.revature.screenforce.services;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.screenforce.beans.Question;
 import com.revature.screenforce.repositories.QuestionRepository;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Implementation of the QuestionService

@@ -29,7 +29,7 @@ public interface WeightService {
 	void update(Weight weight);
 
 	/**
-	 * creates new weighted pairing between a Bucket within a SkillType
+	 * creates new weighted pairing between a category within a SkillType
 	 *
 	 * @param weight Weight object to be persisted
 	 * @return weight obj after being persisted
@@ -44,7 +44,7 @@ public interface WeightService {
 	void deleteById(int weightId);
 
 	/**
-	 * Gets a list of buckets by SkillType
+	 * Gets a list of categorys by SkillType
 	 *
 	 * @param skillTypeId ID of SkillType to filter by
 	 * @return List of weights
@@ -60,11 +60,11 @@ public interface WeightService {
 	Weight get(int weightId);
 
 	/**
-	 * Get a weight by its skillTypeId and bucketId
+	 * Get a weight by its skillTypeId and categoryId
 	 *
 	 * @param skillTypeId ID of skilltype to filter by
-	 * @param bucketId    ID of bucket to filter by
-	 * @return weight object with matching skillTypeId and bucketId
+	 * @param categoryId    ID of category to filter by
+	 * @return weight object with matching skillTypeId and categoryId
 	 */
 	Weight get(int skillTypeId, int categoryId);
 

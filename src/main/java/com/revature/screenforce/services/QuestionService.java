@@ -1,10 +1,10 @@
 package com.revature.screenforce.services;
 
-import io.swagger.annotations.ApiModel;
-
 import java.util.List;
 
 import com.revature.screenforce.beans.Question;
+
+import io.swagger.annotations.ApiModel;
 
 /**
  * Interface that contains associated with the Question POJO

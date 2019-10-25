@@ -78,7 +78,7 @@ public class WeightServiceImpl implements WeightService {
     }
 
     /**
-     * Gets a list of buckets by SkillType
+     * Gets a list of categories by SkillType
      *
      * @param skillTypeId ID of SkillType to filter by
      * @return List of weights

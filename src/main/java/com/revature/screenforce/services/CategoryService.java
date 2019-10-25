@@ -4,11 +4,11 @@ import io.swagger.annotations.ApiModel;
 
 import java.util.List;
 
-import com.revature.screenforce.beans.Bucket;
+import com.revature.screenforce.beans.Category;
 
 
 /**
- * Interface for our Bucket service layer
+ * Interface for our Category service layer
  *  
  * @author adil iqbal | 1805-WVU-MAY29 | Richard Orr
  * @author Theo Thompson | 1805-WVU-MAY29 | Richard Orr
@@ -28,7 +28,7 @@ public interface CategoryService {
 	 * Fetches all categories 
 	 * @return list of categories
 	 */
-	public List<Category> getAllCategory();
+	public List<Category> getAllCategories();
 	
 	/**
 	 * Updates category information

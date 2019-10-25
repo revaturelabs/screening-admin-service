@@ -1,14 +1,15 @@
 package com.revature.screenforce.services;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.revature.screenforce.beans.Bucket;
-import com.revature.screenforce.repositories.BucketRepository;
-
-import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.List;
+import com.revature.screenforce.beans.Category;
+import com.revature.screenforce.repositories.CategoryRepository;
 
 
 /**
