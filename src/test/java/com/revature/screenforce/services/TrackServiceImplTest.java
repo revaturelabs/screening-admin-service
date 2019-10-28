@@ -25,6 +25,7 @@ import com.revature.screenforce.repositories.TrackRepository;
 
 /**
  * TrackService Tests using JUnit
+ * 
  * @author Rishabh Rana | 1807-QC | Emily Higgins
  * @author Alpha Barry | 1807-QC | Emily Higgins
  * @author Omar Guzman | 1807-QC | Emily Higgins
@@ -33,9 +34,12 @@ import com.revature.screenforce.repositories.TrackRepository;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
 public class TrackServiceImplTest {
-	@Mock TrackRepository trackRepository;
-	@Mock WeightService weightService;
-	@InjectMocks TrackServiceImpl trackService;
+	@Mock
+	TrackRepository trackRepository;
+	@Mock
+	WeightService weightService;
+	@InjectMocks
+	TrackServiceImpl trackService;
 
 	@Before
 	public void setup() {
@@ -62,14 +66,12 @@ public class TrackServiceImplTest {
 
 	@Test
 	public void testGetTrack() {
-		Track skill = new Track("Intelligence", true);
+		Track track = new Track("Intelligence", true);
 
 		// Mock DAO findById()
-		when(trackRepository.findById(any(Integer.class)))
-				.thenReturn(java.util.Optional.of(skill));
-		
-		assertEquals(skill,
-				trackService.getTrack(skill.getTrackId()));
+		when(trackRepository.findById(any(Integer.class))).thenReturn(java.util.Optional.of(track));
+
+		assertEquals(track, trackService.getTrack(track.getTrackId()));
 	}
 
 	@Test
@@ -78,51 +80,48 @@ public class TrackServiceImplTest {
 		track.setTitle("Title");
 
 		// Mock DAO findById() & save()
-		when(trackRepository.findById(any(Integer.class)))
-				.thenReturn(java.util.Optional.of(track));
+		when(trackRepository.findById(any(Integer.class))).thenReturn(java.util.Optional.of(track));
 		when(trackRepository.save(any(Track.class))).thenReturn(track);
 
-		Track st = trackService.createTrack(track);
-		st.setTitle("Updated Title");
-		trackService.updateTrack(st);
+		Track ts = trackService.createTrack(track);
+		ts.setTitle("Updated Title");
+		trackService.updateTrack(ts);
 
-		assertEquals(st, trackService.getTrackById(st.getTrackId()));
+		assertEquals(ts, trackService.getTrackById(ts.getTrackId()));
 	}
 
 	@Test
 	public void testDeleteTrack() {
-		List<Track> skills = new ArrayList<>();
+		List<Track> tracks = new ArrayList<>();
 		Track track = new Track();
 		track.setTrackId(4);
 
 		// Mock DAO save() & findById()
-		when(trackRepository.findById(any(Integer.class)))
-				.thenReturn(java.util.Optional.of(track));
+		when(trackRepository.findById(any(Integer.class))).thenReturn(java.util.Optional.of(track));
 		when(trackRepository.save(any(Track.class))).thenReturn(track);
-		skills.add(trackService.createTrack(track));
+		tracks.add(trackService.createTrack(track));
 
 		// Mock DAO deleteById()
 		trackService.deleteTrack(track.getTrackId());
-		skills.remove(track);
+		tracks.remove(track);
 
-		when(trackRepository.findAll()).thenReturn(skills);
-		assertEquals(skills.size(), trackService.getAllTracks().size());
+		when(trackRepository.findAll()).thenReturn(tracks);
+		assertEquals(tracks.size(), trackService.getAllTracks().size());
 	}
 
 	@Test
 	public void testGetActiveTracks() {
-		List<Track> skills = new ArrayList<>();
+		List<Track> tracks = new ArrayList<>();
 		Track track = new Track("test", true);
 
 		// Mock DAO save()
 		when(trackRepository.save(any(Track.class))).thenReturn(track);
-		skills.add(trackService.createTrack(track));
+		tracks.add(trackService.createTrack(track));
 
 		// Mock DAO findAllByIsActive()
-		when(trackRepository.findAllByIsActive(any(Boolean.class))).thenReturn(skills);
+		when(trackRepository.findAllByIsActive(any(Boolean.class))).thenReturn(tracks);
 
-		assertEquals(skills.size(),
-				trackService.getActiveTracks(true).size());
+		assertEquals(tracks.size(), trackService.getActiveTracks(true).size());
 	}
 
 	@Test
@@ -130,7 +129,7 @@ public class TrackServiceImplTest {
 		when(trackRepository.existsById(any(Integer.class))).thenReturn(true);
 		assertTrue(trackService.existsById(51));
 	}
-	
+
 	@Test
 	public void testExistByIdFail() {
 		when(trackRepository.existsById(any(Integer.class))).thenReturn(false);

@@ -21,129 +21,117 @@ import java.util.List;
  * @author Isaac Pawling | 1805-WVU | Richard Orr
  */
 @RestController
-@RequestMapping(value = "/skilltype")
-@ApiModel(value = "TrackController", description = "A rest controller to handle HTTP Requests made to /skilltype")
+@RequestMapping(value = "/track")
+@ApiModel(value = "TrackController", description = "A rest controller to handle HTTP Requests made to /track")
 public class TrackController {
-	/** Skill type service */
+	/** Track service */
 	private TrackService trackService;
 
 	/**
-	 * Instantiates a new skill type controller
+	 * Instantiates a new track controller
 	 *
-	 * @param trackService Skill type service
+	 * @param trackService Track service
 	 */
 	@Autowired
 	public TrackController(TrackService trackService) {
 		this.trackService = trackService;
 	}
-  
+
 	/**
-	 * Gets all skill types
+	 * Gets all tracks
 	 * 
 	 * @return List of all Track objects
 	 */
-	@RequestMapping(method=RequestMethod.GET)
-	@ApiOperation(value = "Gets list of Tracks",
-	    response = Track.class,
-	    responseContainer = "List")
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "All Tracks returned") } )
-	public ResponseEntity<List<Track>> getSkills() {
+	@RequestMapping(method = RequestMethod.GET)
+	@ApiOperation(value = "Gets list of Tracks", response = Track.class, responseContainer = "List")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "All Tracks returned") })
+	public ResponseEntity<List<Track>> getTracks() {
 		return new ResponseEntity<>(trackService.getAllTracks(), HttpStatus.OK);
 	}
-	
+
 	/**
-	 * Gets all active skill types
+	 * Gets all active tracks
 	 * 
 	 * @return List of all active Track objects
 	 */
-	@RequestMapping(method=RequestMethod.GET, value = "/active")
-	@ApiOperation(value = "Gets list of active Tracks",
-	    response = Track.class,
-	    responseContainer = "List")
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "All active Tracks returned") } )
-	public ResponseEntity<List<Track>> getActiveSkills() {
+	@RequestMapping(method = RequestMethod.GET, value = "/active")
+	@ApiOperation(value = "Gets list of active Tracks", response = Track.class, responseContainer = "List")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "All active Tracks returned") })
+	public ResponseEntity<List<Track>> getActiveTracks() {
 		return new ResponseEntity<>(trackService.getActiveTracks(true), HttpStatus.OK);
 	}
-	
+
 	/**
 	 * Gets requested Id
 	 * 
 	 * @return Track object and Http status code 200 if found, 404 otherwise
 	 */
-	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	@ApiOperation(value = "Gets a Track by id",
-	    response = Track.class)
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	@ApiOperation(value = "Gets a Track by id", response = Track.class)
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Requested Track returned"),
-			@ApiResponse(code = 404, message = "Requested Track not found") } )
-	public ResponseEntity<Track> getSkillById(@PathVariable(value="id") Integer id) {
-		Track skill = trackService.getTrack(id);
-		if (skill == null) {
+			@ApiResponse(code = 404, message = "Requested Track not found") })
+	public ResponseEntity<Track> getTrackById(@PathVariable(value = "id") Integer id) {
+		Track track = trackService.getTrack(id);
+		if (track == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}else {
-			return new ResponseEntity<>(skill, HttpStatus.OK);
-		}			
+		} else {
+			return new ResponseEntity<>(track, HttpStatus.OK);
+		}
 	}
-	
-	
+
 	/**
-	 * Creates a skill type
+	 * Creates a track
 	 *
-	 * @param s Skill type object to create
-	 * @return Track w/ updated Id and Http status code 200,
-	 * 	updating skilltype with empty title results in 406
+	 * @param s Track object to create
+	 * @return Track w/ updated Id and Http status code 200, updating track with
+	 *         empty title results in 406
 	 */
-	@RequestMapping(method=RequestMethod.POST)
-	@ApiOperation(value = "Creates a Track",
-	    response = Track.class)
-	@ApiResponses(value = { 
-			@ApiResponse(code = 201, message = "Track created"),
-			@ApiResponse(code = 406, message = "Track must have a title") } )
-	public ResponseEntity<Track> postSkill(@Valid @RequestBody Track s) {
-		if (s.getTitle().equals("")) {
+	@RequestMapping(method = RequestMethod.POST)
+	@ApiOperation(value = "Creates a Track", response = Track.class)
+	@ApiResponses(value = { @ApiResponse(code = 201, message = "Track created"),
+			@ApiResponse(code = 406, message = "Track must have a title") })
+	public ResponseEntity<Track> postTrack(@Valid @RequestBody Track track) {
+		if (track.getTitle().equals("")) {
 			return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
 		}
-		return new ResponseEntity<>(trackService.createTrack(s), HttpStatus.CREATED);
+		return new ResponseEntity<>(trackService.createTrack(track), HttpStatus.CREATED);
 	}
-	
+
 	/**
-	 * Updates skill type located at "/id"
+	 * Updates track located at "/id"
 	 *
-	 * @param s Skill type object to update
-	 * @return Http status code 202, 404 if skill type w/ provided Id DNE
+	 * @param s Track object to update
+	 * @return Http status code 202, 404 if track type w/ provided Id DNE
 	 */
-	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
-	@ApiOperation(value = "Puts a Track by id",
-	    response = Track.class)
-	@ApiResponses(value = { 
-			@ApiResponse(code = 202, message = "Track updated"),
-			@ApiResponse(code = 404, message = "Track not found") } )
-	public ResponseEntity<Void> putSkillById(@PathVariable(value="id") int id, @RequestBody Track s) {
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	@ApiOperation(value = "Puts a Track by id", response = Track.class)
+	@ApiResponses(value = { @ApiResponse(code = 202, message = "Track updated"),
+			@ApiResponse(code = 404, message = "Track not found") })
+	public ResponseEntity<Void> putTrackById(@PathVariable(value = "id") int id, @RequestBody Track track) {
 		if (trackService.existsById(id)) {
-			trackService.updateTrack(s);
+			trackService.updateTrack(track);
 			return new ResponseEntity<>(HttpStatus.ACCEPTED);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
-	
+
 	/**
-	 * Deletes a skill
+	 * Deletes a track
 	 *
-	 * @param id ID of skill type to delete
+	 * @param id ID of track to delete
 	 * @return Http status code 404 if Track DNE, 204 otherwise
 	 */
-	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
-	@ApiOperation(value = "Deletes a Track by id",
-	    response = Track.class)
-	@ApiResponses(value = { 
-			@ApiResponse(code = 204, message = "Track deleted"),
-			@ApiResponse(code = 404, message = "Track not found") } )
-	public ResponseEntity<Void> deleteSkillById(@PathVariable(value="id") int id) {
-		Track sType = trackService.getTrack(id);
-		if (sType != null) {
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	@ApiOperation(value = "Deletes a Track by id", response = Track.class)
+	@ApiResponses(value = { @ApiResponse(code = 204, message = "Track deleted"),
+			@ApiResponse(code = 404, message = "Track not found") })
+	public ResponseEntity<Void> deleteTrackById(@PathVariable(value = "id") int id) {
+		Track track = trackService.getTrack(id);
+		if (track != null) {
 			trackService.deleteTrack(id);
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT);	
-		}else {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}

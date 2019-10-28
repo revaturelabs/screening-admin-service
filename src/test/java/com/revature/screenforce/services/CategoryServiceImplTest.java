@@ -34,10 +34,14 @@ import com.revature.screenforce.repositories.CategoryRepository;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
 public class CategoryServiceImplTest {
-	@Mock CategoryRepository categoryRepository;
-	@Mock QuestionService questionService;
-	@Mock WeightService weightService;
-	@InjectMocks private CategoryServiceImpl categoryService;
+	@Mock
+	CategoryRepository categoryRepository;
+	@Mock
+	QuestionService questionService;
+	@Mock
+	WeightService weightService;
+	@InjectMocks
+	private CategoryServiceImpl categoryService;
 
 	@Before
 	public void setup() {
@@ -78,17 +82,15 @@ public class CategoryServiceImplTest {
 		category.setCategoryDescription("Description");
 
 		// Mock DAO findById() & save()
-		when(categoryRepository.findById(category.getCategoryId()))
-				.thenReturn(java.util.Optional.of(category));
+		when(categoryRepository.findById(category.getCategoryId())).thenReturn(java.util.Optional.of(category));
 		when(categoryRepository.save(any(Category.class))).thenReturn(category);
 
 		Category b = categoryService.getCategoryById(404);
 		String description = "Updated Description";
 		b.setCategoryDescription(description);
-	    categoryService.updateCategory(b);
+		categoryService.updateCategory(b);
 
-		assertEquals(description, categoryService.getCategoryById(404)
-				.getCategoryDescription());
+		assertEquals(description, categoryService.getCategoryById(404).getCategoryDescription());
 	}
 
 	@Test
@@ -97,8 +99,7 @@ public class CategoryServiceImplTest {
 
 		// Mock DAO save() & findById()
 		when(categoryRepository.save(category)).thenReturn(category);
-		when(categoryRepository.findById(any(Integer.class)))
-				.thenReturn(Optional.of(new Category()));
+		when(categoryRepository.findById(any(Integer.class))).thenReturn(Optional.of(new Category()));
 
 		category = categoryService.createCategory(category);
 		category.setCategoryId(404);
@@ -106,8 +107,7 @@ public class CategoryServiceImplTest {
 
 		// getCategoryById is set to return new Category() if no category with ID is
 		// found
-		assertEquals(new Category(),
-				categoryService.getCategoryById(category.getCategoryId()));
+		assertEquals(new Category(), categoryService.getCategoryById(category.getCategoryId()));
 	}
 
 	@Test
@@ -116,8 +116,7 @@ public class CategoryServiceImplTest {
 		category.setCategoryId(404);
 
 		// Mock DAO findById()
-		when(categoryRepository.findById(category.getCategoryId())).
-				thenReturn(java.util.Optional.of(category));
+		when(categoryRepository.findById(category.getCategoryId())).thenReturn(java.util.Optional.of(category));
 
 		assertEquals(category.getCategoryId(),
 				categoryService.getCategoryById(category.getCategoryId()).getCategoryId());

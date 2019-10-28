@@ -120,7 +120,7 @@ public class WeightControllerTest {
 	}
 
 	@Test
-	public void testGetByTrackAndWeight() {
+	public void testGetWeightByTrackIdAndCategoryId() {
 		given()
 				.port(port)
 				.when()
@@ -130,7 +130,7 @@ public class WeightControllerTest {
 	}
 
 	@Test
-	public void testGetWeightByTrack() {
+	public void testGetWeightByTrackId() {
 		given()
 				.port(port)
 				.when()

@@ -34,10 +34,14 @@ import com.revature.screenforce.repositories.QuestionRepository;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
 public class QuestionServiceImplTest {
-	@Mock QuestionRepository questionRepository;
-	@Mock CategoryRepository categoryRepository;
-	@Mock CategoryServiceImpl categoryService;
-	@InjectMocks QuestionServiceImpl questionService;
+	@Mock
+	QuestionRepository questionRepository;
+	@Mock
+	CategoryRepository categoryRepository;
+	@Mock
+	CategoryServiceImpl categoryService;
+	@InjectMocks
+	QuestionServiceImpl questionService;
 
 	@Before
 	public void setup() {
@@ -69,18 +73,17 @@ public class QuestionServiceImplTest {
 		questions.add(questionService.create(new Question()));
 
 		// Mock DAO findAllByCategoryId()
-		when(questionRepository.findAllByCategoryCategoryId(any(Integer.class)))
-				.thenReturn(questions);
+		when(questionRepository.findAllByCategoryCategoryId(any(Integer.class))).thenReturn(questions);
 
-		assertEquals(questions.size(),
-				questionService.getQuestionsByCategory(1).size());
+		assertEquals(questions.size(), questionService.getQuestionsByCategory(1).size());
 	}
 
 	@Test
 	public void testDeleteByQuestionId() {
 		// Mock DAO save() question
 		List<Question> questions = new ArrayList<>();
-		Question q1 = new Question(); q1.setQuestionId(1);
+		Question q1 = new Question();
+		q1.setQuestionId(1);
 		when(questionRepository.save(any(Question.class))).thenReturn(q1);
 		questions.add(questionService.create(q1));
 
@@ -101,8 +104,7 @@ public class QuestionServiceImplTest {
 		when(questionRepository.save(any(Question.class))).thenReturn(q1);
 
 		q1.setIsActive(true);
-		assertEquals(q1.getIsActive(),
-				questionService.updateQuestion(q1).getIsActive());
+		assertEquals(q1.getIsActive(), questionService.updateQuestion(q1).getIsActive());
 	}
 
 	@Test
@@ -114,23 +116,21 @@ public class QuestionServiceImplTest {
 		Question q = new Question();
 		q.setCategory(category);
 		questions.add(q);
-		when(questionRepository.findAllByCategoryCategoryId(any(Integer.class)))
-				.thenReturn(questions);
+		when(questionRepository.findAllByCategoryCategoryId(any(Integer.class))).thenReturn(questions);
 
 		// Mock DAO deleteByCategoryCategoryId()
 		questionRepository.deleteByCategoryCategoryId(category.getCategoryId());
 		questions.remove(q);
 
-		assertEquals(questions.size(),
-				questionService.getQuestionsByCategory(category.getCategoryId()).size());
+		assertEquals(questions.size(), questionService.getQuestionsByCategory(category.getCategoryId()).size());
 	}
-	
+
 	@Test
 	public void testExistById() {
 		when(questionRepository.existsById(any(Integer.class))).thenReturn(true);
 		assertTrue(questionService.existsById(384));
 	}
-	
+
 	@Test
 	public void testExistByIdFail() {
 		when(questionRepository.existsById(any(Integer.class))).thenReturn(false);

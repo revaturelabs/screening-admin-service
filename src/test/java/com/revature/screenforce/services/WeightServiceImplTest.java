@@ -27,6 +27,7 @@ import com.revature.screenforce.repositories.WeightRepository;
 
 /**
  * TrackService Tests using JUnit
+ * 
  * @author Rishabh Rana | 1807-QC | Emily Higgins
  * @author Alpha Barry | 1807-QC | Emily Higgins
  * @author Omar Guzman | 1807-QC | Emily Higgins
@@ -35,14 +36,16 @@ import com.revature.screenforce.repositories.WeightRepository;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
 public class WeightServiceImplTest {
-	@Mock WeightRepository weightRepository;
-	@InjectMocks WeightServiceImpl weightService;
+	@Mock
+	WeightRepository weightRepository;
+	@InjectMocks
+	WeightServiceImpl weightService;
 
 	@Before
 	public void setup() {
 		MockitoAnnotations.initMocks(this);
 	}
-	
+
 	@Test
 	public void testGetAllWeights() {
 		List<Weight> weights = new ArrayList<>();
@@ -60,8 +63,7 @@ public class WeightServiceImplTest {
 		weight.setWeightValue(800);
 
 		// Mock DAO findById() & save()
-		when(weightRepository.findById(any(Integer.class)))
-				.thenReturn(java.util.Optional.of(weight));
+		when(weightRepository.findById(any(Integer.class))).thenReturn(java.util.Optional.of(weight));
 		when(weightRepository.save(any(Weight.class))).thenReturn(weight);
 		weightService.create(weight);
 		weight.setWeightValue(33);
@@ -76,7 +78,7 @@ public class WeightServiceImplTest {
 		when(weightRepository.save(any(Weight.class))).thenReturn(new Weight());
 		assertNotNull(weightService.create(new Weight()));
 	}
-	
+
 	@Test
 	public void testCreateNull() {
 		// Mock DAO save()
@@ -90,8 +92,7 @@ public class WeightServiceImplTest {
 	public void testDeleteById() {
 		// Mock DAO save() & findById()
 		when(weightRepository.save(any(Weight.class))).thenReturn(new Weight());
-		when(weightRepository.findById(any(Integer.class)))
-				.thenReturn(java.util.Optional.of(new Weight()));
+		when(weightRepository.findById(any(Integer.class))).thenReturn(java.util.Optional.of(new Weight()));
 
 		Weight weight = weightService.create(new Weight());
 		weight.setWeightId(33);
@@ -103,33 +104,33 @@ public class WeightServiceImplTest {
 		// found
 		assertEquals(new Weight(), weightService.get(weight.getWeightId()));
 	}
-	
+
 	@Test
 	public void getAllWeightByTrackId() {
 		// Mock DAO save()
 		when(weightRepository.save(any(Weight.class))).thenReturn(new Weight());
-		Track st1 = new Track(); st1.setTrackId(33);
-		Track st2 = new Track(); st2.setTrackId(33);
-		Weight w1 = weightService.create(new Weight()); w1.setTrack(st1);
-		Weight w2 = weightService.create(new Weight()); w2.setTrack(st2);
+		Track t1 = new Track();
+		t1.setTrackId(33);
+		Track t2 = new Track();
+		t2.setTrackId(33);
+		Weight w1 = weightService.create(new Weight());
+		w1.setTrack(t1);
+		Weight w2 = weightService.create(new Weight());
+		w2.setTrack(t2);
 
 		// Mock DAO getAllByTrackTrackId()
 		List<Weight> weights = new ArrayList<>();
 		weights.add(w1);
 		weights.add(w2);
-		when(weightRepository.getAllByTrackTrackId(any(Integer.class)))
-				.thenReturn(weights);
+		when(weightRepository.getAllByTrackTrackId(any(Integer.class))).thenReturn(weights);
 
-		assertEquals(weights.size(),
-				weightService.getAllWeightsByTrackID(33).size());
+		assertEquals(weights.size(), weightService.getAllWeightsByTrackID(33).size());
 	}
-	
+
 	@Test
 	public void getWithTrackAndCategoryId() {
 		// Mock DAO getByTrackTrackIdAndCategoryCategoryId()
-		when(weightRepository.getByTrackTrackIdAndCategoryCategoryId(
-				any(Integer.class),
-				any(Integer.class)))
+		when(weightRepository.getByTrackTrackIdAndCategoryCategoryId(any(Integer.class), any(Integer.class)))
 				.thenReturn(new Weight());
 
 		assertEquals(new Weight(), weightService.get(3, 3));

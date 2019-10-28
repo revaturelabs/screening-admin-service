@@ -20,7 +20,7 @@ import io.swagger.annotations.ApiModelProperty;
  * @author Isaac Pawling | 1085-WVU | Richard Orr
  * @author Jeremy Straus | 1807-QC | Emily Higgins
  */
-@ApiModel(value = "Track", description = "Track corresponding to an overall training track, associated with a number of Buckets")
+@ApiModel(value = "Track", description = "Track corresponding to an overall training track, associated with a number of Categories")
 @Entity
 @Table(name = "TRACK")
 public class Track implements Serializable {
@@ -30,7 +30,7 @@ public class Track implements Serializable {
 	/** ID of the track */
 	@ApiModelProperty(value = "Track id")
 	@Id
-	@SequenceGenerator(name = "trackSeq", sequenceName = "TRACK_SEQUENCE", allocationSize=1)
+	@SequenceGenerator(name = "trackSeq", sequenceName = "TRACK_SEQUENCE", allocationSize = 1)
 	@GeneratedValue(generator = "trackSeq", strategy = GenerationType.SEQUENCE)
 	@Column(name = "TRACK_ID")
 	private int trackId;
@@ -41,9 +41,9 @@ public class Track implements Serializable {
 	private String title;
 
 	/** Active state of the track */
-    @ApiModelProperty(value = "is the Track currently active")
-    @Column(name = "is_active")
-    private boolean isActive;
+	@ApiModelProperty(value = "is the Track currently active")
+	@Column(name = "is_active")
+	private boolean isActive;
 
 	/**
 	 * Instantiates a new track
@@ -55,7 +55,7 @@ public class Track implements Serializable {
 	/**
 	 * Instantiates a new track
 	 *
-	 * @param title Name of the track
+	 * @param title    Name of the track
 	 * @param isActive Active state of the track
 	 */
 	public Track(String title, boolean isActive) {
@@ -134,12 +134,13 @@ public class Track implements Serializable {
 	 */
 	@Override
 	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
 		Track track = (Track) o;
-		return getTrackId() == track.getTrackId() &&
-				isActive() == track.isActive() &&
-				Objects.equals(getTitle(), track.getTitle());
+		return getTrackId() == track.getTrackId() && isActive() == track.isActive()
+				&& Objects.equals(getTitle(), track.getTitle());
 	}
 
 	/**
@@ -159,10 +160,6 @@ public class Track implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "Track{" +
-				"trackId=" + trackId +
-				", title='" + title + '\'' +
-				", isActive=" + isActive +
-				'}';
+		return "Track{" + "trackId=" + trackId + ", title='" + title + '\'' + ", isActive=" + isActive + '}';
 	}
 }
