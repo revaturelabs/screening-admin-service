@@ -24,7 +24,7 @@ import java.util.List;
 @RequestMapping(value = "/track")
 @ApiModel(value = "TrackController", description = "A rest controller to handle HTTP Requests made to /track")
 public class TrackController {
-	/** Track service */
+	
 	private TrackService trackService;
 
 	/**
@@ -82,7 +82,7 @@ public class TrackController {
 	/**
 	 * Creates a track
 	 *
-	 * @param s Track object to create
+	 * @param the Track object to create
 	 * @return Track w/ updated Id and Http status code 200, updating track with
 	 *         empty title results in 406
 	 */

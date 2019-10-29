@@ -13,7 +13,7 @@ import com.revature.screenforce.repositories.CategoryRepository;
 
 
 /**
- * Implementation for our Bucket service layer
+ * Implementation for Category service layer
  *  
  *  @author adil iqbal 		| 1805-WVU-MAY29 | Richard Orr
  *  @author Theo Thompson 	| 1805-WVU-MAY29 | Richard Orr
@@ -111,7 +111,7 @@ public class CategoryServiceImpl implements CategoryService {
 
 	/**
 	 * Check if id exist
-	 * @param bid Category ID
+	 * @param categoryId Category ID
 	 */
 	@Override
 	public boolean existsById(int categoryId) {

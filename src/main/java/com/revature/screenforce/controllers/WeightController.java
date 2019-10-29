@@ -26,7 +26,7 @@ import java.util.List;
 @RequestMapping(value = "/weight")
 @ApiModel(value = "TrackController", description = "A rest controller to handle HTTP Requests for CRUD operations on weights")
 public class WeightController {
-	/** Weight service */
+	
 	private WeightService weightService;
 
 	/**
@@ -52,7 +52,7 @@ public class WeightController {
 	}
 
 	/**
-	 * Returns weight from track and category id's
+	 * Returns weight from track and category ids
 	 *
 	 * @param trackId    - the associated track
 	 * @param categoryId - the associated category

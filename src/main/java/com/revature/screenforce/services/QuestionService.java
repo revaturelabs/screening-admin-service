@@ -65,14 +65,14 @@ public interface QuestionService {
 	Question updateQuestion(Question question);
 
     /**
-     * Delete all questions associated with a specific bucket
-     * @param bucketId Id of bucket to filter by
+     * Delete all questions associated with a specific category
+     * @param categoryId to filter by
      */
 	void deleteByCategoryId(int categoryId);
 	
 	/**
 	 * Check if id exist
-	 * @param id ID of question
+	 * @param questionId ID of question
 	 */
 	public boolean existsById(int questionId);
 }

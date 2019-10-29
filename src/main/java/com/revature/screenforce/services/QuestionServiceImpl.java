@@ -99,8 +99,8 @@ public class QuestionServiceImpl implements QuestionService {
 	}
 
 	/**
-	 * Delete all questions associated with a specific bucket
-	 * @param bucketId Id of bucket to filter by
+	 * Delete all questions associated with a specific category
+	 * @param categoryId to filter by
 	 */
 	@Override
 	@Transactional
@@ -113,7 +113,7 @@ public class QuestionServiceImpl implements QuestionService {
 
 	/**
 	 * Check if id exist
-	 * @param id ID of question
+	 * @param questionId
 	 */
 	@Override
 	public boolean existsById(int questionId) {
