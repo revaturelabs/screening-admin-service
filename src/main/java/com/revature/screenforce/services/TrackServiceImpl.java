@@ -22,9 +22,9 @@ public class TrackServiceImpl implements TrackService {
 	private WeightService weightService;
 
 	/**
-	 * Instantiates a new skill type service
+	 * Instantiates a new Track service
 	 *
-	 * @param trackRepository Skill type repository
+	 * @param trackRepository Track repository
 	 * @param weightService Weight service
 	 */
 	@Autowired
@@ -45,48 +45,49 @@ public class TrackServiceImpl implements TrackService {
 
 	/**
 	 * Creates a new track
-	 * @param s transient track
+	 * @param track transient track
 	 * @return detached track
 	 */
 	@Override
 	@Transactional
-	public Track createTrack(Track s) {
-		return trackRepository.save(s);
+	public Track createTrack(Track track) {
+		return trackRepository.save(track);
 	}
 
 	/**
 	 * Method that returns a specific Track
-	 * @param id the primary key of the Track
+	 * @param trackId the primary key of the Track
 	 * @return an individual track
 	 */
 	@Override
-	public Track getTrack(int id) {
-		return trackRepository.findById(id).orElse(null);
+	public Track getTrack(int trackId) {
+		return trackRepository.findById(trackId).orElse(null);
 	}
 
 	/**
-	 * Updates a skill's title
-	 * @param s existing skill object w/ updated title
+	 * Updates a Track
+	 * @param track existing Track object w/ updated values
 	 */
 	@Override
 	@Transactional
-    public void updateTrack(Track s) {
-        trackRepository.saveOnly(s.getTrackId(), s.getTitle(), s.isActive());
+    public void updateTrack(Track track) {
+        trackRepository.saveOnly(track.getTrackId(), track.getTitle(), track.isActive());
     }
 
 	/**
-	 * Removes skill with specified Id
-	 * @param id primary key of skill to review
+	 * Removes track with specified Id
+	 * @param trackId
 	 */
 	@Override
 	@Transactional
-	public void deleteTrack(int id) {
-		weightService.deleteAllByTrackTrackId(id);
-		trackRepository.deleteById(id);
+	public void deleteTrack(int trackId) {
+		weightService.deleteAllByTrackTrackId(trackId);
+		trackRepository.deleteById(trackId);
 	}
 
 	/**
 	 * Method that returns all active Tracks
+	 * @param b active state of Tracks to return
 	 * @return list of Track objects
 	 */
 	@Override
@@ -95,8 +96,8 @@ public class TrackServiceImpl implements TrackService {
 	}
 
 	/**
-	 * Gets the skill by its id
-	 * @param trackId primary key of skill to get
+	 * Gets a Track by its id
+	 * @param trackId primary key of Track to get
 	 */
 	@Override
 	public Track getTrackById(int trackId) {
@@ -104,11 +105,11 @@ public class TrackServiceImpl implements TrackService {
 	}
 
 	/**
-	 * Check if id exist
-	 * @param id ID of skill type
+	 * Check if Track with specified id exists
+	 * @param trackId
 	 */
 	@Override
-	public boolean existsById(int id) {
-		return trackRepository.existsById(id);
+	public boolean existsById(int trackId) {
+		return trackRepository.existsById(trackId);
 	}
 }

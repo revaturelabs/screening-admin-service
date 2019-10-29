@@ -100,13 +100,12 @@ public class CategoryControllerTest {
 	@Test
 	public void testUpdateCategoryFail() {
 		Category b = new Category(1, "Updated Rest Assured Test", true);
-
 		given()
 			.port(port)
 			.contentType("application/json")
 			.body(b)
 			.when()
-			.put("/category/1")
+			.put("/category/0")
 			.then()
 			.statusCode(400);
 	}

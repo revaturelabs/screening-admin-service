@@ -39,12 +39,12 @@ public interface WeightService {
 	/**
 	 * Deletes weight based on ID
 	 *
-	 * @param weightId No return
+	 * @param weightId
 	 */
 	void deleteById(int weightId);
 
 	/**
-	 * Gets a list of categoriess by Track
+	 * Gets a list of weights by Track
 	 *
 	 * @param trackId ID of Track to filter by
 	 * @return List of weights
@@ -69,23 +69,23 @@ public interface WeightService {
 	Weight get(int trackId, int categoryId);
 
 	/**
-	 * Delete all weights with a specified categoryId
+	 * Delete all weights with matching categoryId
 	 *
 	 * @param categoryId categoryId to filter by
 	 */
 	void deleteAllByCategoryId(int categoryId);
 
 	/**
-	 * Delete all Categories with matching TrackId
+	 * Delete all Weights with matching trackId
 	 *
 	 * @param trackId Id of Track to filter by
 	 */
 	void deleteAllByTrackTrackId(int trackId);
 
 	/**
-	 * Check if id exist
+	 * Check if weight with specified id exists
 	 * 
-	 * @param id ID of weight
+	 * @param weightId
 	 */
 	public boolean existsById(int weightId);
 }

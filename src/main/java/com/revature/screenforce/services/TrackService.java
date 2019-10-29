@@ -35,33 +35,33 @@ public interface TrackService {
 	
 	/**
 	 * Creates a new track
-	 * @param s transient track
+	 * @param track transient track
 	 * @return detached track
 	 */
-	public Track createTrack(Track s);
+	public Track createTrack(Track track);
 	
 	/**
-	 * Updates a skill's title
-	 * @param s existing skill object w/ updated title
+	 * Updates a track's title
+	 * @param track existing track object w/ updated title
 	 */
-	public void updateTrack(Track s);
+	public void updateTrack(Track track);
 	
 	/**
-	 * Removes skill with specified Id
-	 * @param id primary key of skill to review
+	 * Removes track with specified Id
+	 * @param trackId primary key of track to review
 	 */
-	public void deleteTrack(int id);
+	public void deleteTrack(int trackId);
 
 	
 	/**
-	 * Gets the skill by its id
-	 * @param trackId primary key of skill to get
+	 * Gets the track by its id
+	 * @param trackId primary key of track to get
 	 */
 	public Track getTrackById(int trackId);
 	
 	/**
-	 * Check if id exist
-	 * @param id ID of skill type
+	 * Check if track with specified id exists
+	 * @param trackId
 	 */
-	public boolean existsById(int id);
+	public boolean existsById(int trackId);
 }

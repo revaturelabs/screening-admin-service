@@ -72,7 +72,7 @@ public class CategoryController {
 	}
 
 	/**
-	 * Updates a located at "/id"
+	 * Updates a category with id matching specified categoryId
 	 * 
 	 * @param - the updated
 	 * @return Updated and http status code
@@ -80,7 +80,7 @@ public class CategoryController {
 	@ApiOperation(value = "Updates a Category", response = Category.class)
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Category updated"),
 			@ApiResponse(code = 400, message = "Bad Request, Category not updated") })
-	@PutMapping(value = "/{Id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@PutMapping(value = "/{categoryId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Category> updateCategory(@PathVariable(value = "categoryId") int categoryId,
 			@RequestBody Category category) {
 		if (categoryService.existsById(categoryId)) {
@@ -88,7 +88,7 @@ public class CategoryController {
 			return new ResponseEntity<>(category, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		}
+		} 
 	}
 
 	/**

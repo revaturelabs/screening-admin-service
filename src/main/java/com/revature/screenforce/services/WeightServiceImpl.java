@@ -133,9 +133,9 @@ public class WeightServiceImpl implements WeightService {
 	}
 
 	/**
-	 * Check if id exist
+	 * Check if weight with specified id exists
 	 * 
-	 * @param id ID of weight
+	 * @param weightId
 	 */
 	@Override
 	public boolean existsById(int weightId) {
