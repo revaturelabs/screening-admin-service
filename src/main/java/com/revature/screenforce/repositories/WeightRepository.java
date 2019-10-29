@@ -17,31 +17,31 @@ public interface WeightRepository extends JpaRepository<Weight, Integer> {
     /**
      * Delete weights by skill type ID
      *
-     * @param skillTypeId Skill type ID
+     * @param trackId Skill type ID
      */
-    void deleteAllBySkillTypeSkillTypeId(int skillTypeId);
+    void deleteAllByTrackTrackId(int trackId);
 
     /**
      * Get all weights by skill type ID
      *
-     * @param skillTypeId Skill type ID
+     * @param trackId Skill type ID
      * @return List of weights
      */
-    List<Weight> getAllBySkillTypeSkillTypeId(int skillTypeId);
+    List<Weight> getAllByTrackTrackId(int trackId);
 
     /**
-     * Get weights by skill type ID and bucket ID
+     * Get weights by skill type ID and category ID
      *
-     * @param skillTypeId Skill type ID
-     * @param bucketId Bucket ID
+     * @param trackId Skill type ID
+     * @param categoryId Category ID
      * @return Weight
      */
-    Weight getBySkillTypeSkillTypeIdAndBucketBucketId(int skillTypeId, int bucketId);
+    Weight getByTrackTrackIdAndCategoryCategoryId(int trackId, int categoryId);
 
     /**
-     * Delete weights by bucket ID
+     * Delete weights by category ID
      *
-     * @param bucketId Bucket ID
+     * @param categoryId Category ID
      */
-    void deleteAllByBucketBucketId(int bucketId);
+    void deleteAllByCategoryCategoryId(int categoryId);
 }

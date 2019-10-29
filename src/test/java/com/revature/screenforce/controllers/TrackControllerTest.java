@@ -1,5 +1,8 @@
 package com.revature.screenforce.controllers;
 
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.equalTo;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,14 +13,11 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.revature.screenforce.Application;
-import com.revature.screenforce.beans.SkillType;
-import com.revature.screenforce.services.SkillTypeServiceImpl;
-
-import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.equalTo;
+import com.revature.screenforce.beans.Track;
+import com.revature.screenforce.services.TrackServiceImpl;
 
 /**
- * Tests for the SkillType Controller
+ * Tests for the Track Controller
  *
  * @author Rishabh Rana | 1807-QC | Emily Higgins
  */
@@ -27,20 +27,19 @@ import static org.hamcrest.Matchers.equalTo;
 @SpringBootTest(classes = {Application.class}, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_CLASS)
 @AutoConfigureTestDatabase
-public class SkillTypeControllerTest {
+public class TrackControllerTest {
 
 	@Autowired
-	SkillTypeServiceImpl skillType;
+	TrackServiceImpl track;
 	@LocalServerPort
 	private int port;
-	private String host = "http://localhost:" + port;
 
 	@Test
 	public void testGetSkills() {
 		given()
 			.port(port)
 			.when()
-			.get("/skilltype")
+			.get("/track")
 			.then()
 			.statusCode(200);
 	}
@@ -50,7 +49,7 @@ public class SkillTypeControllerTest {
 		given()
 			.port(port)
 			.when()
-			.get("/skilltype/active")
+			.get("/track/active")
 			.then()
 			.statusCode(200);
 	}
@@ -60,9 +59,9 @@ public class SkillTypeControllerTest {
 		given()
 			.port(port)
 			.when()
-			.get("/skilltype/{id}", 51)
+			.get("/track/{id}", 51)
 			.then()
-			.body("skillTypeId", equalTo(51))
+			.body("trackId", equalTo(51))
 			.statusCode(200);
 	}
 
@@ -72,65 +71,65 @@ public class SkillTypeControllerTest {
 		given()
 			.port(port)
 			.when()
-			.get("/skilltype/{id}", -1)
+			.get("/track/{id}", -1)
 			.then()
 			.statusCode(404);
 	}
 
 	@Test
 	public void testCreateSkill() {
-		SkillType st = new SkillType("Charisma", true);
+		Track st = new Track("Charisma", true);
 
 		given()
 			.port(port)
 			.contentType("application/json")
 			.body(st)
 			.when()
-			.post("/skilltype")
+			.post("/track")
 			.then()
 			.statusCode(201);
 	}
 
 	@Test
 	public void testCreateSkillWithoutTitle() {
-		SkillType st = new SkillType("", true);
+		Track st = new Track("", true);
 
 		given()
 			.port(port)
 			.contentType("application/json")
 			.body(st)
 			.when()
-			.post("/skilltype")
+			.post("/track")
 			.then()
 			.statusCode(406);
 	}
 
 	@Test
 	public void testUpdateSkillById() {
-		SkillType st = skillType.getSkillType(51);
-		st.setTitle("Updated SkillType");
+		Track st = track.getTrack(51);
+		st.setTitle("Updated Track");
 
 		given()
 			.port(port)
 			.contentType("application/json")
 			.body(st)
 			.when()
-			.put("/skilltype/{id}", 51)
+			.put("/track/{id}", 51)
 			.then()
 			.statusCode(202);
 	}
 
 	@Test
 	public void testUpdateSkillBadId() {
-		SkillType st = skillType.getSkillType(51);
-		st.setTitle("Updated SkillType");
+		Track st = track.getTrack(51);
+		st.setTitle("Updated Track");
 		
 		given()
 			.port(port)
 			.contentType("application/json")
 			.body(st)
 			.when()
-			.put("/skilltype/{id}", -1)
+			.put("/track/{id}", -1)
 			.then()
 			.statusCode(404);
 	}
@@ -140,7 +139,7 @@ public class SkillTypeControllerTest {
 		given()
 			.port(port)
 			.when()
-			.delete("/skilltype/{id}", 52)
+			.delete("/track/{id}", 52)
 			.then()
 			.statusCode(204);
 	}
@@ -150,7 +149,7 @@ public class SkillTypeControllerTest {
 		given()
 			.port(port)
 			.when()
-			.delete("/skilltype/{id}", -1)
+			.delete("/track/{id}", -1)
 			.then()
 			.statusCode(404);
 	}

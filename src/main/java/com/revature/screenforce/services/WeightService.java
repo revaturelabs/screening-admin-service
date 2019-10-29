@@ -29,7 +29,7 @@ public interface WeightService {
 	void update(Weight weight);
 
 	/**
-	 * creates new weighted pairing between a Bucket within a SkillType
+	 * creates new weighted pairing between a category within a Track
 	 *
 	 * @param weight Weight object to be persisted
 	 * @return weight obj after being persisted
@@ -39,17 +39,17 @@ public interface WeightService {
 	/**
 	 * Deletes weight based on ID
 	 *
-	 * @param weightId No return
+	 * @param weightId
 	 */
 	void deleteById(int weightId);
 
 	/**
-	 * Gets a list of buckets by SkillType
+	 * Gets a list of weights by Track
 	 *
-	 * @param skillTypeId ID of SkillType to filter by
+	 * @param trackId ID of Track to filter by
 	 * @return List of weights
 	 */
-	List<Weight> getAllWeightsBySkillTypeID(int skillTypeId);
+	List<Weight> getAllWeightsByTrackID(int trackId);
 
 	/**
 	 * Get a weight by its Id
@@ -60,31 +60,32 @@ public interface WeightService {
 	Weight get(int weightId);
 
 	/**
-	 * Get a weight by its skillTypeId and bucketId
+	 * Get a weight by its trackId and categoryId
 	 *
-	 * @param skillTypeId ID of skilltype to filter by
-	 * @param bucketId    ID of bucket to filter by
-	 * @return weight object with matching skillTypeId and bucketId
+	 * @param trackId    ID of track to filter by
+	 * @param categoryId ID of category to filter by
+	 * @return weight object with matching trackId and categoryId
 	 */
-	Weight get(int skillTypeId, int bucketId);
+	Weight get(int trackId, int categoryId);
 
 	/**
-	 * Delete all weights with a specified bucketId
+	 * Delete all weights with matching categoryId
 	 *
-	 * @param bucketId BucketId to filter by
+	 * @param categoryId categoryId to filter by
 	 */
-	void deleteAllByBucketId(int bucketId);
+	void deleteAllByCategoryId(int categoryId);
 
 	/**
-	 * Delete all Buckets with matching SkillTypeId
+	 * Delete all Weights with matching trackId
 	 *
-	 * @param skillTypeId Id of SkillType to filter by
+	 * @param trackId Id of Track to filter by
 	 */
-	void deleteAllBySkillTypeSkillTypeId(int skillTypeId);
-	
+	void deleteAllByTrackTrackId(int trackId);
+
 	/**
-	 * Check if id exist
-	 * @param id ID of weight
+	 * Check if weight with specified id exists
+	 * 
+	 * @param weightId
 	 */
-	public boolean existsById(int id);
+	public boolean existsById(int weightId);
 }

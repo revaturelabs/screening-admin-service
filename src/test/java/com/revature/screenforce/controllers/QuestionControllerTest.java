@@ -1,5 +1,7 @@
 package com.revature.screenforce.controllers;
 
+import static io.restassured.RestAssured.given;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -10,8 +12,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.revature.screenforce.Application;
 import com.revature.screenforce.beans.Question;
-
-import static io.restassured.RestAssured.given;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -33,21 +33,21 @@ public class QuestionControllerTest {
 	}
 
 	@Test
-	public void testGetBucketQuestions() {
+	public void testGetCategoryQuestions() {
 		given()
 			.port(port)
 			.when()
-			.get("/question/getByBucket/{bucketId}", 404)
+			.get("/question/getByCategory/{categoryId}", 404)
 			.then()
 			.statusCode(200);
 	}
 
 	@Test
-	public void testGetBucketQuestionsFail() {
+	public void testGetCategoryQuestionsFail() {
 		given()
 			.port(port)
 			.when()
-			.get("/question/getByBucket/{bucketId}", -2)
+			.get("/question/getByCategory/{categoryId}", -2)
 			.then()
 			.statusCode(404);
 	}
@@ -76,7 +76,7 @@ public class QuestionControllerTest {
 			.contentType("application/json")
 			.body(question)
 			.when()
-			.put("/question/{bucketId}", 10005)
+			.put("/question/{categoryId}", 10005)
 			.then()
 			.statusCode(200);
 	}
@@ -90,7 +90,7 @@ public class QuestionControllerTest {
 			.contentType("application/json")
 			.body(question)
 			.when()
-			.put("/question/{bucketId}", -1)
+			.put("/question/{categoryId}", -1)
 			.then()
 			.statusCode(400);
 	}
@@ -140,21 +140,21 @@ public class QuestionControllerTest {
 	}
 
 	@Test
-	public void deleteByBucket() {
+	public void deleteByCategory() {
 		given()
 			.port(port)
 			.when()
-			.delete("/question/deleteByBucket/{bucketId}", 410)
+			.delete("/question/deleteByCategory/{categoryId}", 410)
 			.then()
 			.statusCode(200);
 	}
 
 	@Test
-	public void testDeleteByBucketFail() {
+	public void testDeleteByCategoryFail() {
 		given()
 			.port(port)
 			.when()
-			.delete("/question/deleteByBucket/{bucketId}", 4061)
+			.delete("/question/deleteByCategory/{categoryId}", 4061)
 			.then()
 			.statusCode(404);
 	}

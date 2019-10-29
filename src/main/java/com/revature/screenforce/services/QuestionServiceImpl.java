@@ -1,15 +1,15 @@
 package com.revature.screenforce.services;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.screenforce.beans.Question;
 import com.revature.screenforce.repositories.QuestionRepository;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Implementation of the QuestionService
@@ -57,13 +57,13 @@ public class QuestionServiceImpl implements QuestionService {
 	}
 
 	/**
-	 * Gets questions based on bucketId
-	 * @param bucketId of bucket
-	 * @return List of questions in the specified bucket
+	 * Gets questions based on categoryId
+	 * @param categoryId of category
+	 * @return List of questions in the specified category
 	 */
 	@Override
-	public List<Question> getQuestionsByBucket(int bucketId) {
-		return questionRepository.findAllByBucketBucketId(bucketId);
+	public List<Question> getQuestionsByCategory(int categoryId) {
+		return questionRepository.findAllByCategoryCategoryId(categoryId);
 	}
 
 	/**
@@ -99,14 +99,13 @@ public class QuestionServiceImpl implements QuestionService {
 	}
 
 	/**
-	 * Delete all questions associated with a specific bucket
-	 * @param bucketId Id of bucket to filter by
+	 * Delete all questions associated with a specific category
+	 * @param categoryId to filter by
 	 */
 	@Override
 	@Transactional
-	public void deleteByBucketId(int bucketId) {
-	  List<Question> q = new ArrayList<>(this.getQuestionsByBucket(bucketId));
-		
+	public void deleteByCategoryId(int categoryId) {
+	  List<Question> q = new ArrayList<>(this.getQuestionsByCategory(categoryId));
 		for (Question question : q) {
 			deleteByQuestionId(question.getQuestionId());
 		}
@@ -114,10 +113,10 @@ public class QuestionServiceImpl implements QuestionService {
 
 	/**
 	 * Check if id exist
-	 * @param id ID of question
+	 * @param questionId
 	 */
 	@Override
-	public boolean existsById(int id) {
-		return questionRepository.existsById(id);
+	public boolean existsById(int questionId) {
+		return questionRepository.existsById(questionId);
 	}
 }

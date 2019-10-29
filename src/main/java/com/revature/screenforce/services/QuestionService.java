@@ -1,10 +1,10 @@
 package com.revature.screenforce.services;
 
-import io.swagger.annotations.ApiModel;
-
 import java.util.List;
 
 import com.revature.screenforce.beans.Question;
+
+import io.swagger.annotations.ApiModel;
 
 /**
  * Interface that contains associated with the Question POJO
@@ -37,11 +37,11 @@ public interface QuestionService {
 	List<Question> getAllQuestions();
 	
 	/**
-	 * Gets questions based on bucketId
-	 * @param bucketId of bucket
-	 * @return List of questions in the specified bucket
+	 * Gets questions based on categoryId
+	 * @param categoryId of category
+	 * @return List of questions in the specified category
 	 */
-	List<Question> getQuestionsByBucket(int bucketId);
+	List<Question> getQuestionsByCategory(int categoryId);
 	
 	/**
 	 * Delete question by id
@@ -65,14 +65,14 @@ public interface QuestionService {
 	Question updateQuestion(Question question);
 
     /**
-     * Delete all questions associated with a specific bucket
-     * @param bucketId Id of bucket to filter by
+     * Delete all questions associated with a specific category
+     * @param categoryId to filter by
      */
-	void deleteByBucketId(int bucketId);
+	void deleteByCategoryId(int categoryId);
 	
 	/**
 	 * Check if id exist
-	 * @param id ID of question
+	 * @param questionId ID of question
 	 */
-	public boolean existsById(int id);
+	public boolean existsById(int questionId);
 }

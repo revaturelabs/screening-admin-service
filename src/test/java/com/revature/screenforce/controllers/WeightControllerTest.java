@@ -1,5 +1,7 @@
 package com.revature.screenforce.controllers;
 
+import static io.restassured.RestAssured.given;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +14,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.revature.screenforce.Application;
 import com.revature.screenforce.beans.Weight;
 import com.revature.screenforce.services.WeightServiceImpl;
-
-import static io.restassured.RestAssured.given;
 
 
 @RunWith(SpringRunner.class)
@@ -120,21 +120,21 @@ public class WeightControllerTest {
 	}
 
 	@Test
-	public void testGetBySkillTypeAndWeight() {
+	public void testGetWeightByTrackIdAndCategoryId() {
 		given()
 				.port(port)
 				.when()
-				.get("/weight/{skillTypeId}/{bucketId}", 51, 404)
+				.get("/weight/{trackId}/{categoryId}", 51, 404)
 				.then()
 				.statusCode(200);
 	}
 
 	@Test
-	public void testGetWeightBySkillType() {
+	public void testGetWeightByTrackId() {
 		given()
 				.port(port)
 				.when()
-				.get("/weight/getBySkillType/{skillTypeId}", 51)
+				.get("/weight/getByTrack/{trackId}", 51)
 				.then()
 				.statusCode(200);
 	}

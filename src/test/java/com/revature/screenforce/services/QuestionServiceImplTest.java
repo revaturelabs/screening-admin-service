@@ -1,7 +1,15 @@
 package com.revature.screenforce.services;
 
-import com.revature.screenforce.repositories.BucketRepository;
-import com.revature.screenforce.repositories.QuestionRepository;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,15 +20,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.revature.screenforce.Application;
-import com.revature.screenforce.beans.Bucket;
+import com.revature.screenforce.beans.Category;
 import com.revature.screenforce.beans.Question;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.junit.Assert.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
+import com.revature.screenforce.repositories.CategoryRepository;
+import com.revature.screenforce.repositories.QuestionRepository;
 
 /**
  * Question Tests using JUnit
@@ -31,10 +34,14 @@ import static org.mockito.Mockito.when;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
 public class QuestionServiceImplTest {
-	@Mock QuestionRepository questionRepository;
-	@Mock BucketRepository bucketRepository;
-	@Mock BucketServiceImpl bucketService;
-	@InjectMocks QuestionServiceImpl questionService;
+	@Mock
+	QuestionRepository questionRepository;
+	@Mock
+	CategoryRepository categoryRepository;
+	@Mock
+	CategoryServiceImpl categoryService;
+	@InjectMocks
+	QuestionServiceImpl questionService;
 
 	@Before
 	public void setup() {
@@ -59,25 +66,24 @@ public class QuestionServiceImplTest {
 	}
 
 	@Test
-	public void testGetQuestionsByBucket() {
+	public void testGetQuestionsByCategory() {
 		// Mock DAO save() question
 		when(questionRepository.save(any(Question.class))).thenReturn(new Question());
 		List<Question> questions = new ArrayList<>();
 		questions.add(questionService.create(new Question()));
 
-		// Mock DAO findAllByBucketId()
-		when(questionRepository.findAllByBucketBucketId(any(Integer.class)))
-				.thenReturn(questions);
+		// Mock DAO findAllByCategoryId()
+		when(questionRepository.findAllByCategoryCategoryId(any(Integer.class))).thenReturn(questions);
 
-		assertEquals(questions.size(),
-				questionService.getQuestionsByBucket(1).size());
+		assertEquals(questions.size(), questionService.getQuestionsByCategory(1).size());
 	}
 
 	@Test
 	public void testDeleteByQuestionId() {
 		// Mock DAO save() question
 		List<Question> questions = new ArrayList<>();
-		Question q1 = new Question(); q1.setQuestionId(1);
+		Question q1 = new Question();
+		q1.setQuestionId(1);
 		when(questionRepository.save(any(Question.class))).thenReturn(q1);
 		questions.add(questionService.create(q1));
 
@@ -98,36 +104,33 @@ public class QuestionServiceImplTest {
 		when(questionRepository.save(any(Question.class))).thenReturn(q1);
 
 		q1.setIsActive(true);
-		assertEquals(q1.getIsActive(),
-				questionService.updateQuestion(q1).getIsActive());
+		assertEquals(q1.getIsActive(), questionService.updateQuestion(q1).getIsActive());
 	}
 
 	@Test
-	public void testDeleteByBucketId() {
-		// Mock DAO findAllByBucketBucketId()
-		Bucket bucket = new Bucket();
-		bucket.setBucketId(406);
+	public void testDeleteByCategoryId() {
+		// Mock DAO findAllByCategoryCategoryId()
+		Category category = new Category();
+		category.setCategoryId(406);
 		List<Question> questions = new ArrayList<>();
 		Question q = new Question();
-		q.setBucket(bucket);
+		q.setCategory(category);
 		questions.add(q);
-		when(questionRepository.findAllByBucketBucketId(any(Integer.class)))
-				.thenReturn(questions);
+		when(questionRepository.findAllByCategoryCategoryId(any(Integer.class))).thenReturn(questions);
 
-		// Mock DAO deleteByBucketBucketId()
-		questionRepository.deleteByBucketBucketId(bucket.getBucketId());
+		// Mock DAO deleteByCategoryCategoryId()
+		questionRepository.deleteByCategoryCategoryId(category.getCategoryId());
 		questions.remove(q);
 
-		assertEquals(questions.size(),
-				questionService.getQuestionsByBucket(bucket.getBucketId()).size());
+		assertEquals(questions.size(), questionService.getQuestionsByCategory(category.getCategoryId()).size());
 	}
-	
+
 	@Test
 	public void testExistById() {
 		when(questionRepository.existsById(any(Integer.class))).thenReturn(true);
 		assertTrue(questionService.existsById(384));
 	}
-	
+
 	@Test
 	public void testExistByIdFail() {
 		when(questionRepository.existsById(any(Integer.class))).thenReturn(false);

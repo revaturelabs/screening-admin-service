@@ -29,11 +29,11 @@ public class Question implements Serializable {
     @Column(name = "QUESTION_ID")
     private int questionId;
 
-    /** Bucket question is contained in */
-    @ApiModelProperty(value = "Bucket id")
+    /** Category question is contained in */
+    @ApiModelProperty(value = "Category id")
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "BUCKET_ID")
-    private Bucket bucket;
+    @JoinColumn(name = "CATEGORY_ID")
+    private Category category;
 
     /** Active state of the question */
     @ApiModelProperty(value = "Boolean as to whether or not Question is active")
@@ -61,15 +61,15 @@ public class Question implements Serializable {
      * Instantiates a new question
      *
      * @param questionId ID of the question
-     * @param bucket Bucket question is contained in
+     * @param category Category question is contained in
      * @param isActive Active state of the question
      * @param questionText Description of the question
      * @param sampleAnswer Sample answer
 	 */
-    public Question(Integer questionId, Bucket bucket, Boolean isActive, String questionText, String sampleAnswer) {
+    public Question(Integer questionId, Category category, Boolean isActive, String questionText, String sampleAnswer) {
         super();
         this.questionId = questionId;
-        this.bucket = bucket;
+        this.category = category;
         this.isActive = isActive;
         this.questionText = questionText;
         this.sampleAnswer = sampleAnswer;
@@ -94,21 +94,21 @@ public class Question implements Serializable {
     }
 
     /**
-     * Returns bucket question is contained in
+     * Returns category question is contained in
      *
-     * @return Bucket containing question
+     * @return Category containing question
      */
-    public Bucket getBucket() {
-        return bucket;
+    public Category getCategory() {
+        return category;
     }
 
     /**
-     * Set bucket to contain question
+     * Set category to contain question
      *
-     * @param bucket Bucket to contain question
+     * @param category Category to contain question
      */
-    public void setBucket(Bucket bucket) {
-        this.bucket = bucket;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     /**
@@ -180,10 +180,10 @@ public class Question implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Question other = (Question) obj;
-		if (bucket == null) {
-			if (other.bucket != null)
+		if (category == null) {
+			if (other.category != null)
 				return false;
-		} else if (!bucket.equals(other.bucket))
+		} else if (!category.equals(other.category))
 			return false;
 		if (isActive != other.isActive)
 			return false;
@@ -211,7 +211,7 @@ public class Question implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((bucket == null) ? 0 : bucket.hashCode());
+		result = prime * result + ((category == null) ? 0 : category.hashCode());
 		result = prime * result + (isActive ? 1231 : 1237);
 		result = prime * result + questionId;
 		result = prime * result + ((questionText == null) ? 0 : questionText.hashCode());
@@ -226,7 +226,7 @@ public class Question implements Serializable {
      */
     @Override
 	public String toString() {
-		return "Question [questionId=" + questionId + ", bucket=" + bucket + ", isActive=" + isActive
+		return "Question [questionId=" + questionId + ", category=" + category + ", isActive=" + isActive
 				+ ", questionText=" + questionText + ", sampleAnswer=" + sampleAnswer + "]";
 	}
 }
